@@ -152,7 +152,7 @@ $$
 ::: {.exercise}
 Demuestra que si un dado entramado como en la figura, y con extremos en el eje horizontal, está en equilibro, entonces su correspondiente reflexión en el eje horizontal también está en equilibrio. ¿Será posible generalizar este principio a un entramado general?
 
-![](./eje_2.png){width=70%} 
+![](./eje2.png){width=70%} 
 :::
 
 <details>
