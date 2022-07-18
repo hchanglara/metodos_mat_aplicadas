@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Cálculo discreto | Métodos de matemáticas aplicadas</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Cálculo discreto | Métodos de matemáticas aplicadas" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Cálculo discreto | Métodos de matemáticas aplicadas" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Héctor Andrés Chang-Lara" />
+
+
+<meta name="date" content="2022-07-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hello-bookdown.html"/>
+<link rel="next" href="cross.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Métodos de matemáticas aplicadas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="entramados.html"><a href="entramados.html"><i class="fa fa-check"></i><b>1</b> Entramados</a></li>
+<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html"><i class="fa fa-check"></i><b>3</b> Cálculo discreto</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#gradiente"><i class="fa fa-check"></i><b>3.1</b> Gradiente</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#ley-de-ciclos"><i class="fa fa-check"></i><b>3.1.1</b> Ley de ciclos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#divergencia"><i class="fa fa-check"></i><b>3.2</b> Divergencia</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#ley-de-conservación"><i class="fa fa-check"></i><b>3.2.1</b> Ley de conservación</a></li>
+<li class="chapter" data-level="3.2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#lema-de-poincaré-para-la-divergencia"><i class="fa fa-check"></i><b>3.2.2</b> Lema de Poincaré para la divergencia</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#integración-por-partes"><i class="fa fa-check"></i><b>3.3</b> Integración por partes</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#descomposición-de-helmholtz"><i class="fa fa-check"></i><b>3.3.1</b> Descomposición de Helmholtz</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#laplaciano"><i class="fa fa-check"></i><b>3.4</b> Laplaciano</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>4</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>4.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="4.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>4.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dinámica.html"><a href="dinámica.html"><i class="fa fa-check"></i><b>5</b> Dinámica</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dinámica.html"><a href="dinámica.html#difusión"><i class="fa fa-check"></i><b>5.1</b> Difusión</a></li>
+<li class="chapter" data-level="5.2" data-path="dinámica.html"><a href="dinámica.html#oscilación"><i class="fa fa-check"></i><b>5.2</b> Oscilación</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>6</b> Parts</a></li>
+<li class="chapter" data-level="7" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>7</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>7.1</b> Footnotes</a></li>
+<li class="chapter" data-level="7.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>7.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>8</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>8.1</b> Equations</a></li>
+<li class="chapter" data-level="8.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>8.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="8.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>8.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>9</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>9.1</b> Publishing</a></li>
+<li class="chapter" data-level="9.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>9.2</b> 404 pages</a></li>
+<li class="chapter" data-level="9.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>9.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos de matemáticas aplicadas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cálculo-discreto" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Cálculo discreto<a href="cálculo-discreto.html#cálculo-discreto" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Una grafo dirigido <span class="math inline">\(G = (V,E)\)</span> consiste de un conjunto de vértices <span class="math inline">\(V\)</span>, también llamados nodos, y un conjunto de aristas <span class="math inline">\(E \subseteq V^2\)</span>, es decir pares ordenados de <span class="math inline">\(V\)</span>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-3" class="definition"><strong>Definición 3.1  </strong></span>Dado <span class="math inline">\(e = (a,b)\in E\)</span>, denotamos por <span class="math inline">\(e_-=a\)</span> y <span class="math inline">\(e_+=b\)</span> los nodos de partida y llegada de <span class="math inline">\(e\)</span> respectivamente y decimos que <span class="math inline">\(e\)</span> está orientado de <span class="math inline">\(a\)</span> a <span class="math inline">\(b\)</span>.</p>
+<p>En general trabajaremos con grafos con aristas simples, es decir que a lo sumo existe una arista que conecta dos vértices en cualquier orientación. Sin embargo, cuando <span class="math inline">\(e=(a,b)\in E\)</span> podríamos hacer referencia a la arista <span class="math inline">\(-e=(b,a)\)</span> como la arista <span class="math inline">\(e\)</span> con el sentido opuesto.</p>
+<p>Finalmente, podemos considerar también conjuntos de aristas no orientadas en cuyo caso decimos que el grafo es no dirigido.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-4" class="exercise"><strong>Ejercicio 3.1  </strong></span>Dibuja el grafo <span class="math inline">\(G=(V,E)\)</span> para
+<span class="math display">\[
+V = \{1,2,3,a,b,c\}, \qquad E = \{(1,a),(1,b),(1,c),(2,a),(2,b),(2,c),(3,a),(3,b),(3,c)\}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<iframe src="https://www.geogebra.org/classic/mzyubrdc?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0">
+</iframe>
+</details>
+<hr />
+<p>Las redes eléctricas son uno de los modelos más conocidos que se pueden formular en términos de grafos. Sobre el grafo podemos caracterizar por ejemplo el potencial o voltaje como una función <span class="math inline">\(u:V\to \mathbb R\)</span> y la corriente como una función <span class="math inline">\(i:E\to \mathbb R\)</span>. Siguiendo un poco la nomenclatura que sugiere este modelo, distinguimos dos tipos de funciones en <span class="math inline">\(G\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Potencial:</strong> Es una función sobre el conjunto de vértices <span class="math inline">\(u: V \to \mathbb R\)</span>.</li>
+<li><strong>Flujo:</strong> Es una función sobre el conjunto de aristas <span class="math inline">\(i: E \to \mathbb R\)</span>.</li>
+</ol>
+<p>En algunos casos también podríamos considerar que dichas funciones tomen valores en <span class="math inline">\(\mathbb C\)</span>, <span class="math inline">\(\mathbb R^n\)</span> ó <span class="math inline">\(\mathbb C^n\)</span>.</p>
+<p>Cuando <span class="math inline">\(G\)</span> es un grafo dirigido, decimos que <span class="math inline">\(i:E\to\mathbb R\)</span> es <strong>par</strong> cuando no depende de la orientación <span class="math inline">\(i(-e) = i(e)\)</span>, y decimos que <strong>impar</strong> si en cambio <span class="math inline">\(i(-e) = -i(e)\)</span>. Una función <span class="math inline">\(i:E\to\mathbb R\)</span> en un grafo no dirigido es equivalente a una función par en el mismo grafo y con cualquier orientación sobre las aristas.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-5" class="example"><strong>Ejemplo 3.1  </strong></span>En el modelo de <a href="entramados.html#entramados">entramados</a> en la sección anterior, el grafo no dirigido <span class="math inline">\(G=(V,E)\)</span> con <span class="math inline">\(V = \{0,1,2,3\}\)</span> y <span class="math inline">\(E=\{\{0,1\},\{1,2\},\{2,3\}\}\)</span> nos proporciona la información sobre cuales nodos están conectados entre si. Las posiciones de los nodos se caracterizan por <span class="math inline">\(q:V\to \mathbb R^2\)</span> y las longitudes de los enlaces están determinadas por <span class="math inline">\(\ell:E\to\mathbb R\)</span>.</p>
+<p><img src="eje_1.png" style="width:70.0%" /></p>
+<p>Para modelar las tensiones es conveniente considerar el grafo dirigido <span class="math inline">\(G=(V,E&#39;)\)</span> de alguna forma arbitraria, quizás <span class="math inline">\(E&#39;=\{(0,1),(1,2),(2,3)\}\)</span>. De esta forma contamos con la función par <span class="math inline">\(\lambda:E&#39;\to\mathbb R\)</span> y la función impar <span class="math inline">\(T: E&#39; \to \mathbb R^2\)</span> tales que
+<span class="math display">\[
+T(e) = \lambda(e)(q(e_+)-q(e_-))
+\]</span>
+es la tensión sobre el nodo <span class="math inline">\(e_-\)</span> a lo largo de <span class="math inline">\(e\)</span>. A su vez y gracias a la ley de acción y reacción, <span class="math inline">\(T(-e) = -T(e)\)</span> es la tensión sobre el nodo <span class="math inline">\(e_+\)</span> a lo largo de <span class="math inline">\(e\)</span> pero en la orientación opuesta, es decir <span class="math inline">\(-e\)</span>.</p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-6" class="example"><strong>Ejemplo 3.2  </strong></span>Un potencial <span class="math inline">\(u:V\to\mathbb R\)</span> sobre una red de resistencia genera una corriente <span class="math inline">\(i:E\to \mathbb R\)</span> que modelamos usando la ley de Ohm para una dada resistencia <span class="math inline">\(R:E\to (0,\infty)\)</span> (función par). Esto quiere decir que la corriente <span class="math inline">\(i(e)\)</span> que atraviesa una arista <span class="math inline">\(e = (e_-,e_+)\)</span> es proporcional a la diferencia de los potenciales en los extremos de la arista
+<span class="math display">\[
+i(e) = \frac{u(e_+) - u(e_-)}{R(e)}, \qquad R(e) &gt;0: \text{ Resistencia.}
+\]</span></p>
+</div>
+<hr />
+<div id="gradiente" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Gradiente<a href="cálculo-discreto.html#gradiente" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tanto en la construcción de las tensiones <span class="math inline">\(T\)</span>, como en la de la corriente eléctrica <span class="math inline">\(i\)</span>, estamos considerando la variación de una dada función (las posiciones <span class="math inline">\(q\)</span> ó el potencial <span class="math inline">\(u\)</span>) a lo largo de una arista dada. Esto es una versión discreta de la derivada direccional. En este caso requerimos que el grafo sea orientado.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-7" class="definition"><strong>Definición 3.2  </strong></span>Dado potencial <span class="math inline">\(u:V\to\mathbb R\)</span> sobre un grafo dirigido <span class="math inline">\(G=(V,E)\)</span>, definimos el gradiente <span class="math inline">\(Du: E \to \mathbb R\)</span> tal que
+<span class="math display">\[
+Du(e) = u(e_{+})-u(e_{-}).
+\]</span></p>
+</div>
+<p>En particular, el gradiente es una función impar.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-8" class="example"><strong>Ejemplo 3.3  </strong></span>En la siguiente figura se calculó el gradiente de la función dada en los vértices</p>
+<p><img src="grad.png" style="width:70.0%" /></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-9" class="exercise"><strong>Ejercicio 3.2  </strong></span>Verifica que el gradiente satisface la identidad de Leibniz
+<span class="math display">\[
+D(u_1u_2) = u_1^+ Du_2 + u_2^-Du_1
+\]</span>
+donde <span class="math inline">\(u^\pm:E\to\mathbb R\)</span> se define a partir de <span class="math inline">\(u:V\to\mathbb R\)</span> como <span class="math inline">\(u^\pm(e) = u(e_\pm)\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<span class="math display">\[
+  \begin{aligned}
+  D(u_1u_2)(e) &amp;= u_1(e_+)u_2(e_+) - u_1(e_-)u_2(e_-),\\
+               &amp;= u_1(e_+)u_2(e_+) - u_1(e_+)u_2(e_-) + u_1(e_+)u_2(e_-) - u_1(e_-)u_2(e_-),\\
+               &amp;= u_1(e_+)(u_2(e_+)-u_2(e_-)) + u_2(e_-)(u_1(e_+)-u_1(e_-)),\\
+               &amp;= u_1(e_+)Du_2(e) + u_2(e_-)Du_1(e),\\
+               &amp;= (u_1^+Du_2 + u_2^-Du_1)(e).
+  \end{aligned}
+  \]</span>
+</details>
+<hr />
+<div id="ley-de-ciclos" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Ley de ciclos<a href="cálculo-discreto.html#ley-de-ciclos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No toda función <span class="math inline">\(i:E\to \mathbb R\)</span> es necesariamente un gradiente. Una condición necesaria y suficiente es la <strong>ley de ciclos</strong>. Para poder enunciar esta ley es conveniente dar algunas definiciones previas para un dado grafo dirigido <span class="math inline">\(G=(V,E)\)</span>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-10" class="definition"><strong>Definición 3.3  </strong></span>Un <strong>camino no orientado</strong> es una sucesión de vértices <span class="math inline">\(x_0,x_1, \dots, x_n \in V\)</span> tal que <span class="math inline">\((x_j,x_{j+1})\)</span> o <span class="math inline">\((x_{j+1},x_{j})\)</span> es una arista en <span class="math inline">\(E\)</span> para todo <span class="math inline">\(j\in\{0,1,\ldots,(n-1)\}\)</span>. Se dice que el camino es un <strong>ciclo</strong> si además <span class="math inline">\(x_n=x_0\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-11" class="definition"><strong>Definición 3.4  </strong></span>Una <strong>componente conexa</strong> de <span class="math inline">\(G\)</span> es un subconjunto <span class="math inline">\(V&#39;\subseteq V\)</span> tal que:</p>
+<ul>
+<li><p>Todos los vértices en <span class="math inline">\(V&#39;\)</span> están conectados entre si por algún camino.</p></li>
+<li><p>Ningún vértice de <span class="math inline">\(V&#39;\)</span> está conectado con ningún vértice de <span class="math inline">\(V\setminus V&#39;\)</span>.</p></li>
+</ul>
+<p>Decimos que <span class="math inline">\(G\)</span> es <strong>conexo</strong> si tiene una única componente conexa.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-12" class="theorem"><strong>Teorema 3.1  (Ley de ciclos) </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo dirigido finito. Una función impar <span class="math inline">\(i:E\to\mathbb R\)</span> es igual al gradiente de una función <span class="math inline">\(u:V\to \mathbb R\)</span> si y solo si para todo ciclo <span class="math inline">\(x_0,x_1, \dots, x_n=x_0\)</span> se tiene que
+<span class="math display">\[
+\sum_{j=0}^{n-1} i(x_j,x_{j+1}) = 0.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-13" class="proof"><em>Demostración</em>. </span>Por un lado es fácil verificar la identidad para flujos gradientes usando la propiedad telescópica. Dado un ciclo <span class="math inline">\(x_0,x_1, \dots, x_n=x_0\)</span>
+<span class="math display">\[
+\sum_{j=0}^{n-1} Du(x_j,x_{j+1}) = \sum_{j=0}^{n-1} (u(x_{j+1})-u(x_j)) = u(x_n)-u(x_0)=0.
+\]</span></p>
+<p>Podemos construir <span class="math inline">\(u:V&#39;\to \mathbb R\)</span> sobre cada una de las componentes conexa de <span class="math inline">\(G\)</span> de la siguiente forma. Fijemos <span class="math inline">\(x_0 \in V&#39;\)</span> y definimos
+<span class="math display">\[
+u(x) := \sum_{j=0}^{n-1} i(x_j,x_{j+1})
+\]</span>
+donde <span class="math inline">\(x_0,x_1, \dots, x_n=x\)</span> es un camino no orientado que conecta <span class="math inline">\(x_0\)</span> con <span class="math inline">\(x\in V&#39;\)</span>.</p>
+<p>La hipótesis dada por la ley de ciclos garantiza que esta construcción no depende del camino escogido, es decir que está bien definida sin posible ambigüedad: Dados dos caminos <span class="math inline">\(x_0,\ldots,x_n=x\)</span> y <span class="math inline">\(y_0=x_0,\ldots,y_m=x\)</span> se tiene que <span class="math inline">\(z_0=x_0,\ldots,z_n=x_n,z_{n+1}=y_{m-1},\ldots,z_{n+m}=y_0\)</span> es un ciclo y por lo tanto
+<span class="math display">\[
+0 = \sum_{j=0}^{n+m-1} i(z_j,z_{j+1}) = \sum_{j=0}^{n-1} i(x_j,x_{j+1}) - \sum_{j=0}^{m-1} i(y_j,y_{j+1}).
+\]</span></p>
+<p>Veamos finalmente que <span class="math inline">\(Du = i\)</span>. Dado <span class="math inline">\(e=(a,b)\)</span> con <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> en la misma componente que <span class="math inline">\(x_0\)</span>, tomamos un camino <span class="math inline">\(x_0,x_1,\ldots, x_n=a\)</span> de <span class="math inline">\(x_0\)</span> a <span class="math inline">\(a\)</span> y luego añadimos <span class="math inline">\(x_{n+1}=b\)</span> para formar un camino de <span class="math inline">\(x_0\)</span> a <span class="math inline">\(b\)</span>. Por lo tanto
+<span class="math display">\[
+Du(e) = u(b)-u(a) = \sum_{j=0}^{n} i(x_j,x_{j+1})-\sum_{j=0}^{n-1} i(x_j,x_{j+1}) = i(a,b),
+\]</span>
+con lo cual concluímos la demostración.</p>
+</div>
+<p>Este argumento nos permite apreciar que <span class="math inline">\(u\)</span> está únicamente determinado salvo potenciales constantes en cada componente conexa de <span class="math inline">\(G\)</span>. Las constantes son los valores arbitrarios que daríamos a <span class="math inline">\(u\)</span> sobre el nodo <span class="math inline">\(x_0\)</span>, que en nuestra demostración fue cero.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-14" class="exercise"><strong>Ejercicio 3.3  </strong></span>Calcula los potenciales que generan el flujo dado en la siguiente figura</p>
+<p><img src="eje_3.png" style="width:70.0%" /></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+El flujo satisface la ley de ciclos. Por ejemplo en el triángulo de la izquierda la suma correspondiente es <span class="math inline">\(-3+1+2=0\)</span> y de igual forma podemos verificar en el triángulo de la derecha (<span class="math inline">\(2+(-1)+(-1)=0\)</span>) o en el cuadrado exterior (<span class="math inline">\((-3)+1-(-1)-(-1)=0\)</span>). Si tomamos <span class="math inline">\(u(A)=0\)</span> sin pérdida de generalidad tenemos que
+<span class="math display">\[
+  \begin{cases}
+  u(B) = 1 + u(A) = 1,\\
+  u(C) = 3 + u(A) = 3,\\
+  u(D) = -1 + u(C) = 2.
+  \end{cases}
+  \]</span>
+Verificamos además que con estos valores se obtiene el gradiente prescrito
+<span class="math display">\[
+  \begin{cases}
+  Du(AB) = u(B)-u(A) = 1-0 = 1,\\
+  Du(BC) = u(C)-u(B) = 3-1 = 2,\\
+  Du(CA) = u(A)-u(C) = 0-3 = -3,\\
+  Du(CD) = u(D)-u(C) = 2-3 = -1,\\
+  Du(DB) = u(B)-u(D) = 1-2 = -1.
+  \end{cases}
+  \]</span>
+En general, <span class="math inline">\(u\)</span> tiene el gradiente prescrito si y solo si
+<span class="math display">\[
+  u(A) = C, \qquad u(B) = 1+C, \qquad u(C) = 3+C, \qquad u(D)=2+C.
+  \]</span>
+</details>
+<hr />
+<details>
+<summary>
+<strong>Margen de cálculo:</strong> El lema de Poincaré
+</summary>
+<p>Como ya el lector habrá notado, estas construcciones y propiedades encuentran paralelos en cálculo multivariable, y de hecho las demostraciones reproducen las mismas ideas: Los caminos son curvas, los ciclos son lazos o curvas cerradas y la expresión <span class="math inline">\(\sum_{j=0}^{n-1} i(x_j,x_{j+1})\)</span> es análoga a la integral de línea o el trabajo de un campo vectorial sobre una curva.</p>
+<p>El resultado que acabamos de enunciar se conoce como el <strong>Lema de Poincaré global</strong>. Recordemos su enunciado junto con el resultado local.</p>
+<p><strong>Lema de Poincaré (global):</strong> Un campo vectorial <span class="math inline">\(v \in C(\Omega\subseteq\mathbb R^n\to\mathbb R^n)\)</span> es el gradiente de algún potencial <span class="math inline">\(u\in C^1(\Omega\to\mathbb R)\)</span> si y sólo si para cualquier curva cerrada <span class="math inline">\(\gamma \in C^1([a,b]\to\Omega)\)</span> (i.e. <span class="math inline">\(\gamma(b)=\gamma(a)\)</span>) se tiene que el trabajo que ejerce <span class="math inline">\(v\)</span> sobre la curva <span class="math inline">\(\gamma\)</span> se anula
+<span class="math display">\[
+\int_\gamma v = \int_a^b v(\gamma(t))\cdot \gamma&#39;(t)dt = 0.
+\]</span></p>
+<p><strong>Lema de Poincaré (local):</strong> Si <span class="math inline">\(\Omega\subseteq\mathbb R^n\)</span> es simplemente conexo<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> entonces <span class="math inline">\(v \in C^1(\Omega\to\mathbb R^n)\)</span> es un gradiente si y solo si <span class="math inline">\(\partial_iv_j = \partial_jv_i\)</span>.</p>
+</details>
+</div>
+</div>
+<div id="divergencia" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Divergencia<a href="cálculo-discreto.html#divergencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Otro operador diferencial que tiene su análogo en grafos es la divergencia. Heurísticamente, la divergencia de un campo vectorial mide la producción/absorción de masa a partir de un flujo.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-15" class="definition"><strong>Definición 3.5  </strong></span>Dado <span class="math inline">\(i: E \to \mathbb R\)</span> denotamos por <span class="math inline">\(\operatorname{div} i:V\to \mathbb R\)</span> a la divergencia de <span class="math inline">\(i\)</span> donde
+<span class="math display">\[
+\operatorname{div} i(v) = \sum_{e_-=v}i(e)-\sum_{e_+=v}i(e)
+\]</span></p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-16" class="example"><strong>Ejemplo 3.4  </strong></span>En la siguiente figura se calculó la divergencia de la función dada en las aristas</p>
+<p><img src="div.png" style="width:70.0%" /></p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-17" class="example"><strong>Ejemplo 3.5  </strong></span>Las ecuaciones de balance para un entramado se escriben en términos de la divergencia de las tensiones sobre los nodos libres como
+<span class="math display">\[
+\operatorname{div} T = -mge_y
+\]</span></p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-18" class="example"><strong>Ejemplo 3.6  </strong></span>La ley de Kirchhoff dice que en en un nodo que no está conectado a la batería, la corriente que entra y sale de este son iguales. En términos de la divergencia quiere decir que
+<span class="math display">\[
+\operatorname{div} i = 0
+\]</span></p>
+</div>
+<hr />
+<div id="ley-de-conservación" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Ley de conservación<a href="cálculo-discreto.html#ley-de-conservación" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al igual que antes, podríamos preguntarnos si todo potencial es la divergencia de algún campo. Esto no es necesariamente cierto, la divergencia satisface la <strong>ley de conservación</strong>, análoga al teorema de la divergencia. Un caso particular ilustrativo de esta ley postula que la suma de la divergencia sobre un grafo finito es igual a cero
+<span class="math display">\[
+\sum_{v\in V} \operatorname{div} i(v) = 0.
+\]</span>
+Una vez más la justificación se basa en una propiedad telescópica para la suma: Cada arista aparece dos veces en la suma con signos opuestos dependiendo si se considera su vértice origen o de llegada.</p>
+<p>Para dar una versión discreta del teorema de la divergencia consideramos el campo normal exterior <span class="math inline">\(n_\Omega:E\to \mathbb R\)</span> tal que
+<span class="math display">\[
+n_\Omega(e) = \begin{cases}
++1 \text{ si $e_-\in \Omega$ y $e_+\in V\setminus \Omega$},\\
+-1 \text{ si $e_-\in V\setminus \Omega$ y $e_+\in \Omega$},\\
+0 \text{ en cualquier otro caso}
+\end{cases}
+\]</span>
+en este caso el signo de <span class="math inline">\(n_\Omega(e)\)</span> indica cuando la arista orientada conecta a <span class="math inline">\(\Omega\)</span> con su complemento o viceversa.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-19" class="exercise"><strong>Ejercicio 3.4  </strong></span>El campo normal es el gradiente de una dada función ¿Cuál?.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<span class="math inline">\(n_\Omega = D1_{V\setminus \Omega}\)</span> donde
+<span class="math display">\[
+  1_{V\setminus \Omega}(x) = \begin{cases}
+  1 \text{ si } x\in V\setminus \Omega,\\
+  0 \text{ en cualquier otro caso}.
+  \end{cases}
+  \]</span>
+</details>
+<hr />
+<div class="theorem">
+<p><span id="thm:unlabeled-div-20" class="theorem"><strong>Teorema 3.2  (Ley de conservación) </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo dirigido finito. La divergencia de <span class="math inline">\(i:E\to \mathbb R\)</span> verifica
+<span class="math display">\[
+\sum_{v\in \Omega} \operatorname{div} i(v) = \sum_{e\in E} i(e)n_\Omega(e)
+\]</span></p>
+</div>
+<p>De hecho la suma en el lado derecho ocurre en realidad sobre un subconjunto de aristas que podemos definir como el borde de <span class="math inline">\(\partial\Omega\)</span>
+<span class="math display">\[
+\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap E\setminus \Omega \neq \emptyset\}
+\]</span>
+es decir las aristas que conectan <span class="math inline">\(\Omega\)</span> con su complemento en cualquier orientación.</p>
+<p>La cantidad <span class="math inline">\(i(e)n_\Omega(e)\)</span> es positiva cuando <span class="math inline">\(e_-\in \Omega\)</span>, <span class="math inline">\(e_+\in V\setminus \Omega\)</span> y <span class="math inline">\(i(e)&gt;0\)</span>; o bien cuando <span class="math inline">\(e_-\in V\setminus \Omega\)</span>, <span class="math inline">\(e_+\in \Omega\)</span> y <span class="math inline">\(i(e)&lt;0\)</span>. En cualquier caso, <span class="math inline">\(i(e)n_\Omega(e)\)</span> se interpreta como la cantidad de masa que escapa de <span class="math inline">\(\Omega\)</span> por medio de <span class="math inline">\(e\)</span>. Un razonamiento similar se dá cuando <span class="math inline">\(i(e)n_\Omega(e)\)</span> es negativo para la masa que entra. El balance total nos dice que la masa que se produce o absorbe en <span class="math inline">\(\Omega\)</span> se puede medir de dos formas, sumando las divergencias en <span class="math inline">\(\Omega\)</span> u observando las contribuciones que escapan o entran por las aristas que conectan a <span class="math inline">\(\Omega\)</span> con su complemento <span class="math inline">\(V\setminus \Omega\)</span> en cualquier orientación.</p>
+<div class="proof">
+<p><span id="unlabeled-div-21" class="proof"><em>Demostración</em>. </span>Sean <span class="math inline">\(1_\pm:V\times E\to \mathbb R\)</span> definidas según
+<span class="math display">\[
+1_\pm(v,e) := \begin{cases}
+1 \text{ si } e_\pm = v,\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span>
+En particular usaremos que
+<span class="math display">\[
+\sum_{v\in \Omega} 1_\pm(v,e) = \begin{cases}
+1 \text{ si } e_\pm \in \Omega,\\
+0 \text{ encualquier otro caso}
+\end{cases}
+\]</span></p>
+<p>Tenemos así que
+<span class="math display">\[
+\begin{aligned}
+\sum_{v\in \Omega} \operatorname{div} i(v) &amp;= \sum_{v\in \Omega} \sum_{e_-=v} i(e) - \sum_{v\in \Omega} \sum_{e_+=v} i(e),\\
+&amp;= \sum_{v\in \Omega} \sum_{e \in E} i(e)1_-(v,e) - \sum_{v\in \Omega} \sum_{e \in E} i(e)1_-(v,e),\\
+&amp;= \sum_{e \in E} \sum_{v\in \Omega}i(e)1_-(v,e) - \sum_{e \in E} \sum_{v\in \Omega}i(e)1_-(v,e),\\
+&amp;= \sum_{e_-\in \Omega} i(e) -\sum_{e_+\in \Omega} i(e),\\
+&amp;= \sum_{\substack{e_-\in \Omega\\e_+\in V\setminus \Omega}} i(e) + \sum_{e_-, e_+\in \Omega} i(e) - \sum_{\substack{e_+\in \Omega\\e_-\in V\setminus \Omega}} i(e) - \sum_{e_-, e_+\in \Omega} i(e),\\
+&amp;= \sum_{\substack{e_-\in \Omega\\e_+\in V\setminus \Omega}} i(e) - \sum_{\substack{e_+\in \Omega\\e_-\in V\setminus \Omega}} i(e)
+\end{aligned}
+\]</span></p>
+<p>Esta última expresión es por definición de <span class="math inline">\(n_\Omega\)</span> igual a
+<span class="math display">\[
+\sum_{e\in E} i(e)n_\Omega(e),
+\]</span>
+con lo cual se concluye la demostración.</p>
+</div>
+<details>
+<summary>
+<strong>Margen de cálculo:</strong> El teorema de la divergencia
+</summary>
+<p>El teorema de la divergencia nos dice que dado un subconjunto <span class="math inline">\(\Omega \subset\mathbb R^n\)</span> con frontera localmente de clase <span class="math inline">\(C^1\)</span> a trozos, y campo <span class="math inline">\(v\in C^1(\overline{\Omega}\to\mathbb R^n)\)</span>, entonces
+<span class="math display">\[
+\int_\Omega \operatorname{div} v = \int_{\partial \Omega} v\cdot n
+\]</span>
+donde <span class="math inline">\(n\)</span> es el vector normal exterior a <span class="math inline">\(\Omega\)</span>.</p>
+El lado derecho integra el flujo que escapa o entra en <span class="math inline">\(\Omega\)</span> a través de su borde. En concreto, si en un punto dado del borde <span class="math inline">\(v\cdot n &gt;0\)</span> entonces <span class="math inline">\(v\)</span> apunta en la dirección de <span class="math inline">\(n\)</span> y el flujo escapa con una tasa igual a <span class="math inline">\(v\cdot n\)</span>, si en cambio <span class="math inline">\(v\cdot n &lt; 0\)</span> el flujo estaría entrando, y si <span class="math inline">\(v\cdot n=0\)</span> se tiene que <span class="math inline">\(v\)</span> es tangente y el flujo apenas roza la superficie. El lado izquierdo de la expresión es una integral sobre <span class="math inline">\(\Omega\)</span> que representa la producción/absorción de flujo por el campo <span class="math inline">\(v\)</span>.
+</details>
+</div>
+<div id="lema-de-poincaré-para-la-divergencia" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Lema de Poincaré para la divergencia<a href="cálculo-discreto.html#lema-de-poincaré-para-la-divergencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-22" class="theorem"><strong>Teorema 3.3  </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo dirigido finito. Para cualquier <span class="math inline">\(\mu:V\to\mathbb R\)</span> tal que
+<span class="math display">\[
+\sum_{x\in V}\mu(x)=0
+\]</span>
+existe por lo menos una solución <span class="math inline">\(i:E\to\mathbb R\)</span> de
+<span class="math display">\[
+\operatorname{div} i = \mu.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-23" class="proof"><em>Demostración</em>. </span>Asumamos sin pérdida de generalidad que <span class="math inline">\(G\)</span> es conexo. Tomemos un nodo arbitrario <span class="math inline">\(x_0\in V\)</span> y consideremos inductivamente caminos no orientados que vayan conectando a <span class="math inline">\(x_0\)</span> con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un <strong>árbol generador</strong> del grafo con raíz en el nodo <span class="math inline">\(x_0\)</span>, es decir un sub-grafo de <span class="math inline">\(G\)</span> libre de ciclos que conecta a todos los vértices. Fijamos <span class="math inline">\(i=0\)</span> en las aristas que no pertenecen a los caminos señalados y en los demás ajustaremos <span class="math inline">\(i\)</span> para que satisfaga la ecuación dada.</p>
+<p>La idea ahora consiste en ir tomando distintas ramas del árbol e ir asignando <span class="math inline">\(i\)</span> convenientemente como una función impar. Sea por ejemplo <span class="math inline">\(y_1,\ldots,y_k\)</span> una rama, donde <span class="math inline">\(y_1\)</span> es una hoja, es decir un nodo del árbol con un único nodo adyacente en el árbol (<span class="math inline">\(y_2\)</span>). Tomemos <span class="math inline">\(e_j = (y_j,y_{j+1})\)</span> y vamos fijando <span class="math inline">\(i\)</span> recursivamente tal que
+<span class="math display">\[
+i(e_{j+1}) = i(e_j) + \mu(y_{j+1}), \qquad i(e_1) = \mu(y_1).
+\]</span>
+Esto garantiza que <span class="math inline">\(\operatorname{div} i=\mu\)</span> sobre <span class="math inline">\(y_1,\ldots,y_{k-1}\)</span>.</p>
+<p>Una vez terminado este algoritmo garantizamos que <span class="math inline">\(\operatorname{div} i=\mu\)</span> en <span class="math inline">\(V\setminus \{x_0\}\)</span>. Como último paso debe también cumplirse la ecuación en <span class="math inline">\(x_0\)</span> gracias a que <span class="math inline">\(\sum_{x\in V} \operatorname{div} i(x)=\sum_{x\in V} \mu(x)=0\)</span>.</p>
+</div>
+<p>Notemos que si <span class="math inline">\(x_0,\ldots,x_k=x_0\)</span> es un dado ciclo del grafo, entonces si tomamos <span class="math inline">\(i=1\)</span> en las aristas del ciclo y cero por fuera de estas, obtenemos una solución de <span class="math inline">\(\operatorname{div} i=0\)</span>. De hecho, todas las soluciones homogéneas se obtienen por superposiciones de este ejemplo. El núcleo de la divergencia es un espacio vectorial generado por los ciclos independientes del grafo y su dimensión es un imprtante invariante topológico conocido como el <strong>primer número de Betti</strong>.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-24" class="exercise"><strong>Ejercicio 3.5  </strong></span>Calcula los flujos <span class="math inline">\(i:E\to \mathbb R\)</span> tal que <span class="math inline">\(\operatorname{div} i=\mu\)</span></p>
+<p><img src="div2.png" style="width:70.0%" /></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<p>Verificamos primero que la suma de los valores en los nodos se anula.</p>
+<p>Para calcular una solución particular tomamos el árbol generador con aristas <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(-e\)</span> y definimos así
+<span class="math display">\[
+  i(c)=i(d)=0, \qquad i(a)=1, \qquad i(e)=2, \qquad i(b)=0
+  \]</span>
+el cual verifica fácilmente la ecuación de divergencia esperada.</p>
+Cualquier otra solución se obtiene como la superposición de la solución previa con las del sistema homogéneo
+<span class="math display">\[
+  \begin{cases}
+  i(a)+i(b)-i(e)=0,\\
+  -i(a)+i(c)=0,\\
+  -i(b)+i(d)=0,\\
+  -i(c)-i(d)+i(e)=0.
+  \end{cases}
+  \]</span>
+Dos soluciones linealmente independientes se obtienen por ejemplo de los ciclos <span class="math inline">\(a,c,e\)</span> y <span class="math inline">\(b,d,e\)</span> respectivamente
+<span class="math display">\[
+  \begin{aligned}
+  &amp;i(a)=i(c)=i(e)=1,\qquad i(b)=i(d)=0,\\
+  &amp;i(a)=i(c)=0, \qquad i(b)=i(d)=i(e)=1.
+  \end{aligned}
+  \]</span>
+Si usamos la reducción de Gauss-Jordan podemos verificar que esta es además una base de las soluciones homogéneas.
+</details>
+<hr />
+</div>
+</div>
+<div id="integración-por-partes" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Integración por partes<a href="cálculo-discreto.html#integración-por-partes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En esta sección denotamos <span class="math inline">\(M=|V|&lt;\infty\)</span> e identificamos a las funciones <span class="math inline">\(u:V\to \mathbb R\)</span> con vectores de <span class="math inline">\(\mathbb R^M\)</span>. Igualmente, <span class="math inline">\(N=|E|&lt;\infty\)</span> e identificamos a las funciones <span class="math inline">\(i:E\to \mathbb R\)</span> con vectores de <span class="math inline">\(\mathbb R^N\)</span>. Eventualmente también podríamos considerar funciones complejas.</p>
+<p>El gradiente <span class="math inline">\(D:\mathbb R^M\to\mathbb R^N\)</span> se representa así por la matriz <span class="math inline">\((D_{e,x}) \in \mathbb R^{N\times M}\)</span> tal que
+<span class="math display">\[
+D_{e,x} = \begin{cases}
+1 \text{ si } x=e_+,\\
+-1 \text{ si } x=e_-,\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span>
+Mientras que la divergencia <span class="math inline">\(\operatorname{div}:\mathbb R^N\to\mathbb R^M\)</span> se representa por la matriz <span class="math inline">\((\operatorname{div}_{x,e}) \in \mathbb R^{M\times N}\)</span> tal que
+<span class="math display">\[
+\operatorname{div}_{x,e} = \begin{cases}
+-1 \text{ si } e_+=x,\\
+1 \text{ si } e_-=x,\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span>
+Descubrimos de esta forma que <span class="math inline">\(D^T = -\operatorname{div}\)</span> o equivalentemente la fórmula de <strong>integración por partes</strong>
+<span class="math display">\[
+\sum_{e\in E} (iDu)(e) = i\cdot Du = -u\cdot \operatorname{div} i = -\sum_{x\in V} (u\operatorname{div} i)(x).
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-25" class="exercise"><strong>Ejercicio 3.6  </strong></span>Calcula las matrices asociadas con el gradiente y la divergencia para el siguiente grafo</p>
+<p><img src="k3.png" style="width:70.0%" /></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<span class="math display">\[
+  D = \begin{pmatrix}
+  -1 &amp;  1 &amp;  0 &amp;  0\\
+   0 &amp; -1 &amp;  1 &amp;  0\\
+   1 &amp;  0 &amp; -1 &amp;  0\\
+  -1 &amp;  0 &amp;  0 &amp;  1\\
+   0 &amp;  0 &amp;  1 &amp; -1
+  \end{pmatrix} \qquad \operatorname{div} = -D^T = \begin{pmatrix}
+  1 &amp; 0 &amp; -1 &amp; 1 &amp; 0\\
+  -1 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; -1 &amp; 1 &amp; 0 &amp; -1\\
+  0 &amp; 0 &amp; 0 &amp; -1 &amp; 1
+  \end{pmatrix}.
+  \]</span>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-26" class="exercise"><strong>Ejercicio 3.7  </strong></span>Demuestra la fórmula de integración por partes sobre un dominio <span class="math inline">\(\Omega \subseteq V\)</span>
+<span class="math display" id="eq:ipv">\[\begin{equation}
+\sum_{\Omega} u\operatorname{div}i = \sum_{E} u^-in_\Omega - \sum_{e_+\in \Omega} iDu
+\tag{3.1}
+\end{equation}\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+Basta con usar que <span class="math inline">\(Dv\cdot i = - v\cdot \operatorname{div} i\)</span> para <span class="math inline">\(v := u 1_{\Omega}\)</span>.
+</details>
+<hr />
+<details>
+<summary>
+<strong>Margen de cálculo:</strong> Integración por partes
+</summary>
+La fórmula de integración por partes nos dice que dado un subconjunto <span class="math inline">\(\Omega \subset\mathbb R^n\)</span> con frontera localmente de clase <span class="math inline">\(C^1\)</span> a trozos, un campo <em>vectorial</em> <span class="math inline">\(v\in C^1(\overline{\Omega}\to\mathbb R^n)\)</span>, y un campo <em>escalar</em> <span class="math inline">\(u\in C^1(\overline{\Omega}\to\mathbb R^n)\)</span> entonces
+<span class="math display">\[
+\int_\Omega u \operatorname{div} v = \int_{\partial \Omega} u v\cdot n - \int_\Omega Du\cdot v
+\]</span>
+donde <span class="math inline">\(n\)</span> es el vector normal exterior a <span class="math inline">\(\Omega\)</span>.
+</details>
+<div id="descomposición-de-helmholtz" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Descomposición de Helmholtz<a href="cálculo-discreto.html#descomposición-de-helmholtz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al igual que antes sean <span class="math inline">\(M=|V|\)</span> y <span class="math inline">\(N=|E|\)</span>. La relación <span class="math inline">\(D^T=-\operatorname{div}\)</span> nos permite dar la descomposición ortogonal
+<span class="math display">\[
+\mathbb R^N = D(\mathbb R^M) + \ker(\operatorname{div}).
+\]</span>
+también conocida como la <strong>descomposición de Helmholtz</strong>. Es decir que cualquier <span class="math inline">\(i:E\to\mathbb R\)</span> puede escribirse de forma <em>única</em><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> como
+<span class="math display">\[
+i= Du + j
+\]</span>
+tal que
+<span class="math display">\[
+\operatorname{div} j = 0,
+\]</span>
+y como corolario <span class="math inline">\(Du \perp j\)</span>.</p>
+<p>En términos físicos, cualquier flujo se descompone en una parte que preserva la masa (<span class="math inline">\(j\)</span>) y en un flujo gradiente (<span class="math inline">\(Du\)</span>).</p>
+<details>
+<summary>
+<strong>Margen de álgebra lineal:</strong> El teorema fundamental de álgebra lineal
+</summary>
+Dado <span class="math inline">\(A:\mathbb R^M\to \mathbb R^N\)</span> se tiene que
+<span class="math display">\[
+A(\mathbb R^M)^\perp = \ker(A^T).
+\]</span>
+Si <span class="math inline">\(x \perp A(\mathbb R^M)\)</span> entonces <span class="math inline">\(0 = x\cdot AA^Tx = \|A^T x\|^2\)</span>, lo cual implica <span class="math inline">\(A^Tx=0\)</span>. Por otro lado si <span class="math inline">\(A^Tx=0\)</span> entonces para <span class="math inline">\(y\in \mathbb R^M\)</span> arbitrario <span class="math inline">\(x\cdot Ay = A^Tx\cdot y=0\)</span>.
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-27" class="exercise"><strong>Ejercicio 3.8  </strong></span>Calcula la descomposición de Helmholtz para el siguiente flujo</p>
+<p><img src="helmhotz.png" style="width:70.0%" /></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<p>Sea <span class="math inline">\(i:E\to \mathbb R\)</span> los valores que se muestran en la gráfica. Buscamos calcular <span class="math inline">\(u:V\to \mathbb R\)</span> y <span class="math inline">\(j:E\to \mathbb R\)</span> tales que <span class="math inline">\(i=Du+j\)</span> y <span class="math inline">\(\operatorname{div}j=0\)</span>. Si tomamos así la divergencia en la expresión <span class="math inline">\(i=Du+j\)</span> encontramos que <span class="math inline">\(u\)</span> satisface
+<span class="math display">\[
+\begin{cases}
+-2u(A)+u(B)+u(C)=3,\\
+u(A)-3u(B)+u(C)+u(D)=4,\\
+u(A)+u(B)-3u(C)+u(D)=-7,\\
+u(B)+u(C)-2u(D)=0.
+\end{cases}
+\]</span>
+Las soluciones homogénes del sistema son los potenciales constantes<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Ajustando esta constante de forma que <span class="math inline">\(u(A)=0\)</span> obtenemos un sistema que podemos resolver numéricamente</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="cálculo-discreto.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="cálculo-discreto.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="cálculo-discreto.html#cb2-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[ <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
+<span id="cb2-4"><a href="cálculo-discreto.html#cb2-4" aria-hidden="true" tabindex="-1"></a>              [<span class="op">-</span><span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb2-5"><a href="cálculo-discreto.html#cb2-5" aria-hidden="true" tabindex="-1"></a>              [ <span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>, <span class="dv">1</span>]])</span>
+<span id="cb2-6"><a href="cálculo-discreto.html#cb2-6" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">7</span>])</span>
+<span id="cb2-7"><a href="cálculo-discreto.html#cb2-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.linalg.inv(A).dot(B)</span>
+<span id="cb2-8"><a href="cálculo-discreto.html#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="cálculo-discreto.html#cb2-9" aria-hidden="true" tabindex="-1"></a>Du <span class="op">=</span> [X[<span class="dv">0</span>],X[<span class="dv">1</span>]<span class="op">-</span>X[<span class="dv">0</span>],<span class="op">-</span>X[<span class="dv">1</span>],X[<span class="dv">2</span>]<span class="op">-</span>X[<span class="dv">1</span>],X[<span class="dv">0</span>]<span class="op">-</span>X[<span class="dv">2</span>]]</span>
+<span id="cb2-10"><a href="cálculo-discreto.html#cb2-10" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">5</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
+<span id="cb2-11"><a href="cálculo-discreto.html#cb2-11" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> i<span class="op">-</span>Du</span>
+<span id="cb2-12"><a href="cálculo-discreto.html#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="cálculo-discreto.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;[Du(AB), Du(BC), Du(CA), Du(CD), Du(DB)] = </span><span class="sc">{}</span><span class="st">.&quot;</span>.<span class="bu">format</span>(Du))</span></code></pre></div>
+<pre><code>## [Du(AB), Du(BC), Du(CA), Du(CD), Du(DB)] = [0.125, 2.75, -2.875, -1.375, -1.375].</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="cálculo-discreto.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;[j(AB), j(BC), j(CA), j(CD), j(DB)] = </span><span class="sc">{}</span><span class="st">.&quot;</span>.<span class="bu">format</span>(j))</span></code></pre></div>
+<pre><code>## [j(AB), j(BC), j(CA), j(CD), j(DB)] = [0.875 2.25  0.875 1.375 1.375].</code></pre>
+</details>
+</div>
+</div>
+<div id="laplaciano" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Laplaciano<a href="cálculo-discreto.html#laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El Laplaciano es un operador diferencial que se construye aplicando sucesivamente el gradiente y la divergencia. Es decir que mide la producción de masa del gradiente. Además, luego de una manipulación algebraica, observamos que es proporcional a la diferencia entre el promedio en los vértices adyacentes y el valor en el centro.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-28" class="definition"><strong>Definición 3.6  </strong></span>Dado <span class="math inline">\(u: V \to \mathbb R\)</span>, el Laplaciano <span class="math inline">\(\Delta u: V \to \mathbb R\)</span> se define tal que
+<span class="math display">\[
+\Delta u(v) = \operatorname{div}(D u)(v) = \sum_{w \sim v} (u(w)-u(v)).
+\]</span>
+donde <span class="math inline">\(w \sim v\)</span> si existe una arista que une a <span class="math inline">\(v\)</span> y <span class="math inline">\(w\)</span> en cualquier orientación.</p>
+</div>
+<p>A pesar de que tanto el gradiente como la divergencia requieren que el grafo tenga una orientación, <strong>el Laplaciano está bien definido en grafos no dirigidos</strong>.</p>
+<p>Cuando <span class="math inline">\(u: V \to \mathbb R\)</span> es un potencial tal que <span class="math inline">\(\Delta u=0\)</span> en <span class="math inline">\(\Omega \subseteq V\)</span>, decimos que <span class="math inline">\(u\)</span> es una función <strong>armónica</strong> sobre <span class="math inline">\(\Omega\)</span>.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-29" class="example"><strong>Ejemplo 3.7  </strong></span>Considera una red eléctrica con resistencias de un Ohm (<span class="math inline">\(R(e)=1\)</span>) la cual modelamos como una grafo dirigido de forma arbitraria. Una batería de un voltio entre dos nodos <span class="math inline">\(v_+,v_-\in V\)</span> genera un potencial eléctrico <span class="math inline">\(u:V\to \mathbb R\)</span> que se puede determinar a partir de la ley de Ohm y la ley de Kirchhoff.</p>
+<p>Según la ley de Ohm tenemos que la corriente se calcula según
+<span class="math display">\[
+i=Du.
+\]</span></p>
+<p>Según la ley de Kirchhoff tenemos que fuera de los nodos donde se conecta la bateria, la corriente se conserva, es decir
+<span class="math display">\[
+0=\operatorname{div}i = \Delta u \text{ en } V\setminus\{v_\pm\}
+\]</span></p>
+<p>Junto con las condiciones de borde en los nodos donde se conecta la batería
+<span class="math display">\[
+\qquad u(v_+) = 1, \qquad u(v_-) = 0,
+\]</span>
+obtenemos un sistme de ecuaciones lineales con igual número de ecuaciones que de incógnitas.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-30" class="exercise"><strong>Ejercicio 3.9  </strong></span>Calcula el potencial eléctrico que se genera en un cubo de resistencias de un Ohm, cuando se conecta una batería de un voltio entre dos nodos opuestos del cubo</p>
+<p><img src="cube.png" with="70%" /></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+Asumamos sin pérdida de gneralidad que se conecta la bateria de los nodos <span class="math inline">\(A\)</span> a <span class="math inline">\(D\)</span> tal que <span class="math inline">\(v(A)=1\)</span> y <span class="math inline">\(v(D)=0\)</span>. Tenemos un sistema de ecuaciones lineales de dimensiones 6 por 6. De existir una única solución<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> observamos que por simetría se debe cumplir que <span class="math inline">\(v(B)=v(F)=v(H)=\alpha\)</span> (los nodos adyacentes a <span class="math inline">\(A\)</span>) y <span class="math inline">\(v(C)=v(E)=v(G)=\beta\)</span> (los nodos adyacentes a <span class="math inline">\(E\)</span>). Esto reduce el sistema a uno de 2 por 2
+<span class="math display">\[
+  \begin{cases}
+  -9\alpha+6\beta = -3,\\
+  6\alpha -9\beta = 0
+  \end{cases} \qquad\Rightarrow\qquad \alpha = \frac{3}{5}, \qquad \beta = \frac{2}{5}.
+  \]</span>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-31" class="exercise"><strong>Ejercicio 3.10  </strong></span>Da un análogo discreto para la fórmula de Green
+<span class="math display">\[
+\int_\Omega (u_1\Delta u_2 - u_2\Delta u_1) = \int_{\partial\Omega} (u_1Du_2 - u_2 Du_1)\cdot n
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+De la fórmula de integración por partes <a href="cálculo-discreto.html#eq:ipv">(3.1)</a>
+<span class="math display">\[
+\sum_\Omega u_i \Delta u_j = \sum_{E} u_i^- Du_j n_\Omega - \sum_{e_+\in \Omega} Du_iDu_j
+\]</span>
+Por lo tanto al tomar la resta se cancelan el segundo término a la deracha quedando así
+<span class="math display">\[
+\sum_\Omega (u_1 \Delta u_2-u_2 \Delta u_1) = \sum_{E} (u_1^- Du_2 - u_2^- Du_1)n_\Omega.
+\]</span>
+</details>
+<hr />
+<p>En general podemos añadir una operación intermedia entre el gradiente y la divergencia. Esto genera operadores con características similares al Laplaciano.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-32" class="example"><strong>Ejemplo 3.8  </strong></span>Considera ahora una red eléctrica con resistencias variables. La ley de Ohm consiste en tomar el gradiente del potencial y luego dividir por las resistencias para obtener la corriente. Al recíproco de la resistencia también se le conoce como la capacitancia y puede ser más conveniente de usar en este ejemplo. En este caso las ecuaciones de balance para el potencial eléctrico tienen la forma
+<span class="math display">\[
+\operatorname{div} (CDu) = 0 \qquad C = 1/R : \text{Capacitancia}
+\]</span>
+(fuera de los nodos donde se conecta la batería).</p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-33" class="example"><strong>Ejemplo 3.9  </strong></span>Las ecuaciones de balance en los <a href="entramados.html#entramados">entramados</a> se implementan en tres pasos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Se toman las posiciones relativas entre nodos adyacentes, es decir el gradiente de las posiciones <span class="math inline">\(q:V\to\mathbb R^2\)</span>.</p></li>
+<li><p>Se forman las tensiones a partir de las posiciones relativas y los multiplicadores <span class="math inline">\(\lambda:E\to \mathbb R\)</span>.</p></li>
+<li><p>Se propone el balance de fuerzas en términos de la divergencia de la tensión.</p></li>
+</ol>
+<p>En síntesis se obtiene que en los nodos libres
+<span class="math display">\[
+\operatorname{div} (\lambda D q) = mge_2
+\]</span>
+A diferencia de los problemas de redes eléctricas, tanto <span class="math inline">\(q\)</span> como <span class="math inline">\(\lambda\)</span> son variables por ser determinadas lo cual hace que el problema sea no-lineal en dichas incógnitas.</p>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>es decir que cualquier ciclo puede ser deformado continuamente a un punto. Por ejemplo, si <span class="math inline">\(n=2\)</span> dice que <span class="math inline">\(\Omega\)</span> no tiene hoyos.<a href="cálculo-discreto.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Dado <span class="math inline">\(i:E\to \mathbb R\)</span>, el potencial <span class="math inline">\(u\)</span> no es único pero su gradiente <span class="math inline">\(Du\)</span> sí.<a href="cálculo-discreto.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Esto puede verificarse de la reducción de Gauss-Jordan en este caso, y además será demostrado con mayor generalidad.<a href="cálculo-discreto.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Una vez más, esto puede chequearse a mano o con una herramienta numérica.<a href="cálculo-discreto.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hello-bookdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cross.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-calculo.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/02-calculo.Rmd",
+"text": null
+},
+"download": ["bookdown_intro.pdf", "bookdown_intro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

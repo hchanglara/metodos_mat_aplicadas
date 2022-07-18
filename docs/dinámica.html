@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 4 Cross-references | Métodos de matemáticas aplicadas</title>
+  <title>Capítulo 5 Dinámica | Métodos de matemáticas aplicadas</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 4 Cross-references | Métodos de matemáticas aplicadas" />
+  <meta property="og:title" content="Capítulo 5 Dinámica | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 4 Cross-references | Métodos de matemáticas aplicadas" />
+  <meta name="twitter:title" content="Capítulo 5 Dinámica | Métodos de matemáticas aplicadas" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="cálculo-discreto.html"/>
-<link rel="next" href="dinámica.html"/>
+<link rel="prev" href="cross.html"/>
+<link rel="next" href="parts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,92 +239,105 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cross" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Capítulo 4</span> Cross-references<a href="cross.html#cross" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Cross-references make it easier for your readers to find and link to elements in your book.</p>
-<div id="chapters-and-sub-chapters" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Chapters and sub-chapters<a href="cross.html#chapters-and-sub-chapters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are two steps to cross-reference any heading:</p>
-<ol style="list-style-type: decimal">
-<li>Label the heading: <code># Hello world {#nice-label}</code>.
-<ul>
-<li>Leave the label off if you like the automated heading generated based on your heading title: for example, <code># Hello world</code> = <code># Hello world {#hello-world}</code>.</li>
-<li>To label an un-numbered heading, use: <code># Hello world {-#nice-label}</code> or <code>{# Hello world .unnumbered}</code>.</li>
-</ul></li>
-<li>Next, reference the labeled heading anywhere in the text using <code>\@ref(nice-label)</code>; for example, please see Chapter <a href="cross.html#cross">4</a>.
-<ul>
-<li>If you prefer text as the link instead of a numbered reference use: <a href="cross.html#cross">any text you want can go here</a>.</li>
-</ul></li>
-</ol>
+<div id="dinámica" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Dinámica<a href="dinámica.html#dinámica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="difusión" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Difusión<a href="dinámica.html#difusión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos un grafo dirigido <span class="math inline">\(G=(V,E)\)</span> y una familia de densidades <span class="math inline">\(u(x,t)\)</span> que toma valores reales para cada vértice <span class="math inline">\(x\in V\)</span> en tiempo <span class="math inline">\(t\in\mathbb R\)</span>. Decimos que un flujo <span class="math inline">\(f(e,t)\)</span> transporta a <span class="math inline">\(u\)</span> si en cada instante salen <span class="math inline">\(f(e,t)\)</span> unidades de masa de <span class="math inline">\(e_-\)</span> hacia <span class="math inline">\(e_+\)</span> por la arista <span class="math inline">\(e\)</span>. Es decir que sobre cada <span class="math inline">\(x\in V\)</span> se tiene que
+<span class="math display">\[
+\partial_t u(x,t) = \sum_{e_+=x} f(e,t) - \sum_{e_-=x} f(e,t) = -\operatorname{div} f(x,t).
+\]</span></p>
+<p>En distintos modelos puede darse el caso de que <span class="math inline">\(f\)</span> esté determinada por la misma función <span class="math inline">\(u\)</span>, esto se conoce como una <strong>ley constitutiva</strong>. Un caso muy común es que <span class="math inline">\(f\)</span> sea proporcional a <span class="math inline">\(-Du\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-34" class="example"><strong>Ejemplo 5.1  </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo que modela una red de habitaciones en renta y <span class="math inline">\(u:V\times \mathbb R\to\mathbb R\)</span> la población que vive en dicha red. Asumiendo la ley de oferta y demanda, el precio de renta <span class="math inline">\(p=p(x,t)\)</span> de una habitación <span class="math inline">\(x\)</span> en el instante <span class="math inline">\(t\)</span> debe ser proporcional a la demanda, la cual podemos considerar en nuestro caso proporcional a la población que habita dicho nodo, digamos por ejemplo que <span class="math inline">\(p = k_1u\)</span>. La población busca moverse entre nodos adyacentes si percibe que el precio le es favorable, por ejemplo <span class="math inline">\(f=-k_2Dp\)</span>. Llegamos así a la ecuación
+<span class="math display">\[
+\partial_t u = -\operatorname{div} f = \operatorname{div}(k_2Dp) = \operatorname{div}(aDu), \qquad a := k_1k_2.
+\]</span></p>
 </div>
-<div id="captioned-figures-and-tables" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Captioned figures and tables<a href="cross.html#captioned-figures-and-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Figures and tables <em>with captions</em> can also be cross-referenced from elsewhere in your book using <code>\@ref(fig:chunk-label)</code> and <code>\@ref(tab:chunk-label)</code>, respectively.</p>
-<p>See Figure <a href="cross.html#fig:nice-fig">4.1</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="cross.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))</span>
-<span id="cb6-2"><a href="cross.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nice-fig"></span>
-<img src="bookdown_intro_files/figure-html/nice-fig-5.png" alt="Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases." width="80%" />
-<p class="caption">
-Figura 4.1: Here is a nice figure!
-</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-35" class="exercise"><strong>Ejercicio 5.1  </strong></span>Demuestra que el total de la población se mantiene constante.</p>
 </div>
-<p>Don’t miss Table <a href="cross.html#tab:nice-tab">4.1</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="cross.html#cb7-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb7-2"><a href="cross.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(pressure, <span class="dv">10</span>), <span class="at">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
-<span id="cb7-3"><a href="cross.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb7-4"><a href="cross.html#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<table>
-<caption><span id="tab:nice-tab">Tabla 4.1: </span>Here is a nice table!</caption>
-<thead>
-<tr class="header">
-<th align="right">temperature</th>
-<th align="right">pressure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0.0002</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="right">0.0012</td>
-</tr>
-<tr class="odd">
-<td align="right">40</td>
-<td align="right">0.0060</td>
-</tr>
-<tr class="even">
-<td align="right">60</td>
-<td align="right">0.0300</td>
-</tr>
-<tr class="odd">
-<td align="right">80</td>
-<td align="right">0.0900</td>
-</tr>
-<tr class="even">
-<td align="right">100</td>
-<td align="right">0.2700</td>
-</tr>
-<tr class="odd">
-<td align="right">120</td>
-<td align="right">0.7500</td>
-</tr>
-<tr class="even">
-<td align="right">140</td>
-<td align="right">1.8500</td>
-</tr>
-<tr class="odd">
-<td align="right">160</td>
-<td align="right">4.2000</td>
-</tr>
-<tr class="even">
-<td align="right">180</td>
-<td align="right">8.8000</td>
-</tr>
-</tbody>
-</table>
+<details>
+<summary>
+Solución
+</summary>
+Gracias a la fórmula de divergencia
+<span class="math display">\[
+  \partial_t \sum_{V} u =  \sum_{V} \partial_t u = \sum_{V} \operatorname{div}(aDu)=0.
+  \]</span>
+</details>
+<hr />
+<p>El problema <span class="math inline">\(\partial_t u = \operatorname{div}(aDu)\)</span>, también conocido como la <strong>ecuación de calor</strong> o <strong>difusión</strong>, representa un sistema de EDOs lineales y de primer orden con tantas ecuaciones e incógnitas como la cardinalidad de <span class="math inline">\(V\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-36" class="example"><strong>Ejemplo 5.2  </strong></span>Las funciones <span class="math inline">\(S\)</span> e <span class="math inline">\(I\)</span> representan poblaciones de individuos susceptibles e infectados para una dada epidemia modelada geográficamente sobre un grafo. Cada una de ellas se mueve sobre una red por flujos dados por
+<span class="math display">\[
+f_S = -c_S DS, \qquad f_I = -c_I DI.
+\]</span>
+La dinámica de la epidemia en cada nodo está dada por las tazas de transmisión (<span class="math inline">\(\beta\)</span>) y recuperación (<span class="math inline">\(\gamma\)</span>). En específico planteamos el modelo de <span class="math inline">\(2|V|\)</span> ecuaciones de primer orden no-lineales
+<span class="math display">\[
+\partial_t S = -\beta SI + \operatorname{div}(c_SDS), \qquad \partial_t I = \beta SI - \gamma I + \operatorname{div}(c_IDI)
+\]</span></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-37" class="exercise"><strong>Ejercicio 5.2  </strong></span>Demuestra que el total de la población susceptible o infectada es una función decreciente.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<span class="math display">\[
+  \partial_t \sum_{V} (S+I) = \sum_{V} (-\gamma I + \operatorname{div}(c_SDS)+\operatorname{div}(c_IDI)) = - \gamma \sum_{V} I \leq 0.
+  \]</span>
+</details>
+</div>
+<div id="oscilación" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Oscilación<a href="dinámica.html#oscilación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El sistema de EDOs lineales y de segundo orden dado por
+<span class="math display">\[
+\partial_t^2 u = \operatorname{div}(aDu)
+\]</span>
+también es común en distintos modelos. Esta se conoce como la <strong>ecuación de onda</strong>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-38" class="example"><strong>Ejemplo 5.3  </strong></span>Un grafo <span class="math inline">\(G=(V,E)\)</span> modela las conexiones en un sistema de masas <span class="math inline">\(m:V\to (0,\infty)\)</span> unidas por resortes con constantes <span class="math inline">\(k:E\to[0,\infty)\)</span>. Sea <span class="math inline">\(q:V\to \mathbb R^n\)</span> los desplazamientos de las masas a partir de una configuración dada de equilibrio. A partir de la ley de Hooke planteamos el sistema <span class="math inline">\(n\times|V|\)</span> ecuaciones e incógnitas,
+<span class="math display">\[
+m\partial_t^2 q = \operatorname{div}(kDq).
+\]</span></p>
+</div>
+<p>Recordemos que cualquier sistema de segundo orden puede ser llevado a un sistema de primer orden tomando a las velocidades como incógnitas del sistema. Por ejemplo,
+<span class="math display">\[
+\partial_t^2 u = \operatorname{div}(aDu) \qquad \Leftrightarrow\qquad \begin{cases}
+\partial_t u = v,\\
+\partial_t v = \operatorname{div}(aDu).
+\end{cases}
+\]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-39" class="example"><strong>Ejemplo 5.4  </strong></span>El grafo <span class="math inline">\(G=(V,E)\)</span> vuelve a modelar una red de habitaciones en renta, <span class="math inline">\(u:V\times \mathbb R\to\mathbb R\)</span> la población que vive en dicha red y <span class="math inline">\(p:V\times \mathbb R\to\mathbb R\)</span> los precios. Una vez más asumimos que la población se mueve según el flujo <span class="math inline">\(f = -Dp\)</span>. Por otro lado los precios se modifican gradualmente dependiendo de la demanda en relación a los nodos adyacentes.</p>
+<p>Esto último puede ser reflejado por ejemplo en la ecuación <span class="math inline">\(\partial_t p = -\Delta u\)</span>, es decir que el precio disminuye si el promedio de la población vecina es mayor la población en el nodo en consideración, con la intención de atraerla.</p>
+<p>En resumen obtenemos el sistema de ecuaciones
+<span class="math display">\[
+\partial_t u = \Delta p, \qquad \partial_t p = -\Delta u.
+\]</span>
+Estas implican las ecuaciones de onda desacopladas para el bilaplaciano
+<span class="math display">\[
+\partial_t^2 u = -\Delta^2 u, \qquad \partial_t^2 p = -\Delta^2p.
+\]</span></p>
+</div>
+<!--
+
+
+
+\begin{center}
+\colorbox[HTML]{E5F3CC}{
+\begin{minipage}[c]{450px}
+\begin{ejemplo}
+Demuestra que la población total, la suma de los precios, y $\sum(u^2+p^2)$ permanecen constantes.
+\end{ejemplo}
+\end{minipage}}
+\end{center}
+-->
 
 </div>
 </div>
@@ -333,8 +346,8 @@ Figura 4.1: Here is a nice figure!
           </div>
         </div>
       </div>
-<a href="cálculo-discreto.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dinámica.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cross.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -365,7 +378,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-dinamica.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -373,7 +386,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/02-cross-refs.Rmd",
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/03-dinamica.Rmd",
 "text": null
 },
 "download": ["bookdown_intro.pdf", "bookdown_intro.epub"],

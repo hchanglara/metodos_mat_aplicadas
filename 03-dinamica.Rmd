@@ -1,0 +1,113 @@
+# Dinámica
+
+## Difusión
+
+Consideremos un grafo dirigido $G=(V,E)$ y una familia de densidades $u(x,t)$ que toma valores reales para cada vértice $x\in V$ en tiempo $t\in\mathbb R$. Decimos que un flujo $f(e,t)$ transporta a $u$ si en cada instante salen $f(e,t)$ unidades de masa de $e_-$ hacia $e_+$ por la arista $e$. Es decir que sobre cada $x\in V$ se tiene que
+$$
+\partial_t u(x,t) = \sum_{e_+=x} f(e,t) - \sum_{e_-=x} f(e,t) = -\operatorname{div} f(x,t).
+$$
+
+En distintos modelos puede darse el caso de que $f$ esté determinada por la misma función $u$, esto se conoce como una **ley constitutiva**. Un caso muy común es que $f$ sea proporcional a $-Du$.
+
+:::{.example}
+Sea $G=(V,E)$ un grafo que modela una red de habitaciones en renta y $u:V\times \mathbb R\to\mathbb R$ la población que vive en dicha red. Asumiendo la ley de oferta y demanda, el precio de renta $p=p(x,t)$ de una habitación $x$ en el instante $t$ debe ser proporcional a la demanda, la cual podemos considerar en nuestro caso proporcional a la población que habita dicho nodo, digamos por ejemplo que $p = k_1u$. La población busca moverse entre nodos adyacentes si percibe que el precio le es favorable, por ejemplo $f=-k_2Dp$. Llegamos así a la ecuación
+$$
+\partial_t u = -\operatorname{div} f = \operatorname{div}(k_2Dp) = \operatorname{div}(aDu), \qquad a := k_1k_2.
+$$
+:::
+
+---
+
+:::{.exercise}
+Demuestra que el total de la población se mantiene constante.
+:::
+
+<details>
+  <summary>Solución</summary>
+  Gracias a la fórmula de divergencia
+  $$
+  \partial_t \sum_{V} u =  \sum_{V} \partial_t u = \sum_{V} \operatorname{div}(aDu)=0.
+  $$
+</details>
+
+---
+
+El problema $\partial_t u = \operatorname{div}(aDu)$, también conocido como la **ecuación de calor** o **difusión**, representa un sistema de EDOs lineales y de primer orden con tantas ecuaciones e incógnitas como la cardinalidad de $V$.
+
+:::{.example}
+Las funciones $S$ e $I$ representan poblaciones de individuos susceptibles e infectados para una dada epidemia modelada geográficamente sobre un grafo. Cada una de ellas se mueve sobre una red por flujos dados por
+$$
+f_S = -c_S DS, \qquad f_I = -c_I DI.
+$$
+La dinámica de la epidemia en cada nodo está dada por las tazas de transmisión ($\beta$) y recuperación ($\gamma$). En específico planteamos el modelo de $2|V|$ ecuaciones de primer orden no-lineales
+$$
+\partial_t S = -\beta SI + \operatorname{div}(c_SDS), \qquad \partial_t I = \beta SI - \gamma I + \operatorname{div}(c_IDI)
+$$
+:::
+
+---
+
+:::{.exercise}
+Demuestra que el total de la población susceptible o infectada es una función decreciente. 
+:::
+
+<details>
+  <summary>Solución</summary>
+  $$
+  \partial_t \sum_{V} (S+I) = \sum_{V} (-\gamma I + \operatorname{div}(c_SDS)+\operatorname{div}(c_IDI)) = - \gamma \sum_{V} I \leq 0.
+  $$
+</details>
+
+## Oscilación
+
+El sistema de EDOs lineales y de segundo orden dado por
+$$
+\partial_t^2 u = \operatorname{div}(aDu)
+$$
+también es común en distintos modelos. Esta se conoce como la **ecuación de onda**.
+
+:::{.example}
+Un grafo $G=(V,E)$ modela las conexiones en un sistema de masas $m:V\to (0,\infty)$ unidas por resortes con constantes $k:E\to[0,\infty)$. Sea $q:V\to \mathbb R^n$ los desplazamientos de las masas a partir de una configuración dada de equilibrio. A partir de la ley de Hooke planteamos el sistema $n\times|V|$ ecuaciones e incógnitas,
+$$
+m\partial_t^2 q = \operatorname{div}(kDq).
+$$
+:::
+
+Recordemos que cualquier sistema de segundo orden puede ser llevado a un sistema de primer orden tomando a las velocidades como incógnitas del sistema. Por ejemplo,
+$$
+\partial_t^2 u = \operatorname{div}(aDu) \qquad \Leftrightarrow\qquad \begin{cases}
+\partial_t u = v,\\
+\partial_t v = \operatorname{div}(aDu).
+\end{cases}
+$$
+
+---
+
+:::{.example}
+El grafo $G=(V,E)$ vuelve a modelar una red de habitaciones en renta, $u:V\times \mathbb R\to\mathbb R$ la población que vive en dicha red y $p:V\times \mathbb R\to\mathbb R$ los precios. Una vez más asumimos que la población se mueve según el flujo $f = -Dp$. Por otro lado los precios se modifican gradualmente dependiendo de la demanda en relación a los nodos adyacentes.
+
+Esto último puede ser reflejado por ejemplo en la ecuación $\partial_t p = -\Delta u$, es decir que el precio disminuye si el promedio de la población vecina es mayor la población en el nodo en consideración, con la intención de atraerla.
+
+En resumen obtenemos el sistema de ecuaciones
+$$
+\partial_t u = \Delta p, \qquad \partial_t p = -\Delta u.
+$$
+Estas implican las ecuaciones de onda desacopladas para el bilaplaciano
+$$
+\partial_t^2 u = -\Delta^2 u, \qquad \partial_t^2 p = -\Delta^2p.
+$$
+:::
+
+<!--
+
+
+
+\begin{center}
+\colorbox[HTML]{E5F3CC}{
+\begin{minipage}[c]{450px}
+\begin{ejemplo}
+Demuestra que la población total, la suma de los precios, y $\sum(u^2+p^2)$ permanecen constantes.
+\end{ejemplo}
+\end{minipage}}
+\end{center}
+-->

@@ -1,15 +1,29 @@
-
 p.caption {
   color: #777;
   margin-top: 10px;
 }
+
 p code {
   white-space: inherit;
 }
+
 pre {
   word-break: normal;
   word-wrap: normal;
 }
+
 pre code {
   white-space: inherit;
+}
+
+.calc {
+    display: block;
+    margin: 12px 0;
+    font-style: italic;
+}
+
+.calc:before {
+    content: "Margen de Cálculo.";
+    font-weight: bold;
+    font-style: normal;
 }
