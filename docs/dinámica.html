@@ -486,7 +486,7 @@ Estas implican las ecuaciones de onda desacopladas para el bilaplaciano
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-10" class="exercise"><strong>Ejercicio 3.5  </strong></span>Considera una oscilación de la forma <span class="math inline">\(\partial_t^2 u = -\Delta^2 u\)</span> sobre el siguiente grafo. Calcula <span class="math inline">\(u\)</span> para todo tiempo dadas las condiciones iniciales ilustradas en la figura, partiendo del reposo.</p>
+<p><span id="exr:unlabeled-div-10" class="exercise"><strong>Ejercicio 3.5  </strong></span>Considera una oscilación de la forma <span class="math inline">\(\partial_t^2 u = -\Delta^2 u\)</span> sobre el siguiente grafo. Calcula <span class="math inline">\(u\)</span> para todo tiempo dadas las condiciones iniciales ilustradas en la figura, partiendo del reposo. Grafica la solución en el intervalo <span class="math inline">\([0,6]\)</span>.</p>
 <p><img src="oscila.png" style="width:70.0%" /></p>
 </div>
 <details>
@@ -523,6 +523,7 @@ Solución
   1 &amp; 0 &amp; 1 &amp; -2
   \end{pmatrix}
   \]</span></p>
+<p>Para calcular la solución analítica usamos el paquete simbólico de python.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="dinámica.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="dinámica.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="dinámica.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> smp</span>
@@ -538,17 +539,22 @@ Solución
 <span id="cb5-13"><a href="dinámica.html#cb5-13" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> smp.Matrix(smp.BlockMatrix([[smp.ZeroMatrix(<span class="dv">4</span>,<span class="dv">4</span>),smp.Identity(<span class="dv">4</span>)],</span>
 <span id="cb5-14"><a href="dinámica.html#cb5-14" aria-hidden="true" tabindex="-1"></a>            [<span class="op">-</span>Delta<span class="op">*</span>Delta,smp.ZeroMatrix(<span class="dv">4</span>,<span class="dv">4</span>)]]))<span class="op">*</span>t</span>
 <span id="cb5-15"><a href="dinámica.html#cb5-15" aria-hidden="true" tabindex="-1"></a>eB <span class="op">=</span> smp.re(B.exp())</span>
-<span id="cb5-16"><a href="dinámica.html#cb5-16" aria-hidden="true" tabindex="-1"></a>eB_f <span class="op">=</span> smp.lambdify(t,eB)</span>
-<span id="cb5-17"><a href="dinámica.html#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="dinámica.html#cb5-18" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">100</span>)</span>
-<span id="cb5-19"><a href="dinámica.html#cb5-19" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
-<span id="cb5-20"><a href="dinámica.html#cb5-20" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.einsum(<span class="st">&#39;ijk,j-&gt;ik&#39;</span>,eB_f(t),y0)</span>
-<span id="cb5-21"><a href="dinámica.html#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">0</span>,:],label<span class="op">=</span><span class="st">&#39;a&#39;</span>)</span>
-<span id="cb5-22"><a href="dinámica.html#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">1</span>,:],label<span class="op">=</span><span class="st">&#39;b&#39;</span>)</span>
-<span id="cb5-23"><a href="dinámica.html#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">2</span>,:],label<span class="op">=</span><span class="st">&#39;c&#39;</span>)</span>
-<span id="cb5-24"><a href="dinámica.html#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">3</span>,:],label<span class="op">=</span><span class="st">&#39;d&#39;</span>)</span>
-<span id="cb5-25"><a href="dinámica.html#cb5-25" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;lower right&#39;</span>)</span></code></pre></div>
-<img src="bookdown_intro_files/figure-html/unnamed-chunk-6-7.png" width="960" />
+<span id="cb5-16"><a href="dinámica.html#cb5-16" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> smp.Matrix([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
+<span id="cb5-17"><a href="dinámica.html#cb5-17" aria-hidden="true" tabindex="-1"></a>y_s <span class="op">=</span> eB<span class="op">*</span>y0</span>
+<span id="cb5-18"><a href="dinámica.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;$$&#39;</span> <span class="op">+</span> smp.latex(y_s[:<span class="dv">4</span>]) <span class="op">+</span> <span class="st">&#39;$$&#39;</span>)</span></code></pre></div>
+<p><span class="math display">\[\left[ \frac{3}{2} - \frac{3 \cos{\left(4 t \right)}}{2}, \  - \cos{\left(2 t \right)} + \frac{\cos{\left(4 t \right)}}{2} + \frac{3}{2}, \  \frac{\cos{\left(4 t \right)}}{2} + \frac{3}{2}, \  \cos{\left(2 t \right)} + \frac{\cos{\left(4 t \right)}}{2} + \frac{3}{2}\right]\]</span></p>
+<p>Las gráficas están dadas por</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="dinámica.html#cb6-1" aria-hidden="true" tabindex="-1"></a>eB_f <span class="op">=</span> smp.lambdify(t,eB)</span>
+<span id="cb6-2"><a href="dinámica.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="dinámica.html#cb6-3" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">600</span>)</span>
+<span id="cb6-4"><a href="dinámica.html#cb6-4" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
+<span id="cb6-5"><a href="dinámica.html#cb6-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.einsum(<span class="st">&#39;ijk,j-&gt;ik&#39;</span>,eB_f(t),y0)</span>
+<span id="cb6-6"><a href="dinámica.html#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">0</span>,:],label<span class="op">=</span><span class="st">&#39;a&#39;</span>)</span>
+<span id="cb6-7"><a href="dinámica.html#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">1</span>,:],label<span class="op">=</span><span class="st">&#39;b&#39;</span>)</span>
+<span id="cb6-8"><a href="dinámica.html#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">2</span>,:],label<span class="op">=</span><span class="st">&#39;c&#39;</span>)</span>
+<span id="cb6-9"><a href="dinámica.html#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y[<span class="dv">3</span>,:],label<span class="op">=</span><span class="st">&#39;d&#39;</span>)</span>
+<span id="cb6-10"><a href="dinámica.html#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;lower right&#39;</span>)</span></code></pre></div>
+<img src="bookdown_intro_files/figure-html/unnamed-chunk-7-7.png" width="960" />
 </details>
 <!--
 

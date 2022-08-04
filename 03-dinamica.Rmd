@@ -334,7 +334,7 @@ $$
 ---
 
 :::{.exercise}
-Considera una oscilación de la forma $\partial_t^2 u = -\Delta^2 u$ sobre el siguiente grafo. Calcula $u$ para todo tiempo dadas las condiciones iniciales ilustradas en la figura, partiendo del reposo.
+Considera una oscilación de la forma $\partial_t^2 u = -\Delta^2 u$ sobre el siguiente grafo. Calcula $u$ para todo tiempo dadas las condiciones iniciales ilustradas en la figura, partiendo del reposo. Grafica la solución en el intervalo $[0,6]$.
 
 ![](./oscila.png){width=70%}
 :::
@@ -371,7 +371,10 @@ Considera una oscilación de la forma $\partial_t^2 u = -\Delta^2 u$ sobre el si
   1 & 0 & 1 & -2
   \end{pmatrix}
   $$
-```{python}
+  
+  Para calcular la solución analítica usamos el paquete simbólico de python.
+  
+```{python, results='asis'}
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as smp
@@ -387,9 +390,17 @@ t = smp.symbols('t',real='True')
 B = smp.Matrix(smp.BlockMatrix([[smp.ZeroMatrix(4,4),smp.Identity(4)],
             [-Delta*Delta,smp.ZeroMatrix(4,4)]]))*t
 eB = smp.re(B.exp())
+y0 = smp.Matrix([0,1,2,3,0,0,0,0])
+y_s = eB*y0
+print('$$' + smp.latex(y_s[:4]) + '$$')
+```
+
+Las gráficas están dadas por
+
+```{python}
 eB_f = smp.lambdify(t,eB)
 
-t = np.linspace(0,6,100)
+t = np.linspace(0,6,600)
 y0 = np.array([0,1,2,3,0,0,0,0])
 y = np.einsum('ijk,j->ik',eB_f(t),y0)
 plt.plot(t,y[0,:],label='a')
