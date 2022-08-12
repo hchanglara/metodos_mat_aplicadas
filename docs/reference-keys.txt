@@ -54,10 +54,7 @@ dinámica
 transporte
 difusión
 oscilación
-entramado--sol
 implementación-del-entramado
-librerías
-datos
 librerías-y-datos
 ecuación-diferencial
 integración-y-graficación
