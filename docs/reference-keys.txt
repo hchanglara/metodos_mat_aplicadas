@@ -54,10 +54,10 @@ dinámica
 transporte
 difusión
 oscilación
-exm:unlabeled-div-1
-exm:unlabeled-div-2
-exr:unlabeled-div-4
-exr:unlabeled-div-6
-exm:unlabeled-div-8
-exm:unlabeled-div-9
-exr:unlabeled-div-10
+entramado--sol
+implementación-del-entramado
+librerías
+datos
+librerías-y-datos
+ecuación-diferencial
+integración-y-graficación
