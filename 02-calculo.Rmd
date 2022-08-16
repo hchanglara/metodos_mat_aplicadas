@@ -1,11 +1,10 @@
 # Cálculo discreto
 
-
 Una grafo dirigido $G = (V,E)$ consiste de un conjunto de vértices $V$, también llamados nodos, y un conjunto de aristas $E \subseteq V^2$, es decir pares ordenados de $V$.
 
-Dado $e = (a,b)\in E$, denotamos por $e_-=a$ y $e_+=b$ los nodos de partida y llegada de $e$ respectivamente y decimos que $e$ está orientado de $a$ a $b$.
+Dado $e = (a,b)\in E$, denotamos por $e_-=a$ y $e_+=b$ los nodos de partida y llegada de $e$ respectivamente y decimos que $e$ está orientado del nodo de salida $a$ al nodo de llegada $b$.
 
-En general trabajaremos con grafos con aristas simples, es decir que a lo sumo existe una arista que conecta dos vértices en cualquier orientación. Sin embargo, cuando $e=(a,b)\in E$ podríamos hacer referencia a la arista $-e=(b,a)$ como la arista $e$ con el sentido opuesto. 
+En general trabajaremos con grafos con aristas simples, es decir que a lo sumo existe una arista que conecta dos vértices en cualquier orientación. Sin embargo, cuando $e=(a,b)\in E$ podríamos hacer referencia a la arista $-e:=(b,a)$ como la arista $e$ pero con el sentido opuesto. Denotaremos $-E = \{-e \in V^2:e\in E\}$.
 
 Finalmente, podemos considerar también conjuntos de aristas no orientadas en cuyo caso decimos que el grafo es no dirigido.
 
@@ -33,7 +32,7 @@ Las redes eléctricas son uno de los modelos más conocidos que se pueden formul
 
 En algunos casos también podríamos considerar que dichas funciones tomen valores en $\mathbb C$, $\mathbb R^n$ ó $\mathbb C^n$.
 
-Cuando $G$ es un grafo dirigido, decimos que $f:E\to\mathbb R$ es **par** cuando no depende de la orientación $f(-e) = f(e)$, y decimos que **impar** si en cambio $f(-e) = -f(e)$. Una función $f:E\to\mathbb R$ en un grafo no dirigido es equivalente a una función par en el mismo grafo y con cualquier orientación sobre las aristas.
+También denominamos como flujos a funciones que están definidas en $E\cup -E$, es decir que consideran ambas orientaciones de las aristas. Decimos que $f:E\cup -E\to\mathbb R$ es **par** cuando no depende de la orientación $f(-e) = f(e)$, y decimos que **impar** si en cambio $f(-e) = -f(e)$. Una función $f:E\to\mathbb R$ en un grafo no dirigido es equivalente a una función par en el mismo grafo y con cualquier orientación sobre las aristas.
  
 ---
 
@@ -65,7 +64,7 @@ $$
 Tanto en la construcción de las tensiones $T$, como en la de la corriente eléctrica $i$, estamos considerando la variación de una dada función (las posiciones $q$ ó el potencial $u$) a lo largo de una arista dada. Esto es una versión discreta de la derivada direccional. En este caso requerimos que el grafo sea orientado.
 
 :::{.definition}
-Dado potencial $u:V\to\mathbb R$ sobre un grafo dirigido $G=(V,E)$, definimos el gradiente $Du: E \to \mathbb R$ tal que
+Dado potencial $u:V\to\mathbb R$ sobre un grafo dirigido $G=(V,E)$, definimos el gradiente $Du: E\cup -E \to \mathbb R$ tal que
 $$
 Du(e) = u(e_{+})-u(e_{-}).
 $$
@@ -113,10 +112,10 @@ donde $u^\pm:E\to\mathbb R$ se define a partir de $u:V\to\mathbb R$ como $u^\pm(
 
 ### Ley de ciclos
 
-No toda función $f:E\to \mathbb R$ es necesariamente un gradiente. Una condición necesaria y suficiente es la **ley de ciclos**. Para poder enunciar esta ley es conveniente dar algunas definiciones previas para un dado grafo dirigido $G=(V,E)$.
+No toda función (impar) $f:E\cup -E \to \mathbb R$ es necesariamente un gradiente. Una condición necesaria y suficiente es la **ley de ciclos**. Para poder enunciar esta ley es conveniente dar algunas definiciones previas para un dado grafo dirigido $G=(V,E)$.
 
 :::{.definition}
-Un **camino no orientado** es una sucesión de vértices $x_0,x_1, \dots, x_n \in V$ tal que $(x_j,x_{j+1})$ o $(x_{j+1},x_{j})$ es una arista en $E$ para todo $j\in\{0,1,\ldots,(n-1)\}$. Se dice que el camino es un **ciclo** si además $x_n=x_0$.
+Un **camino no orientado** es una sucesión de vértices $x_0,x_1, \dots, x_n \in V$ tal que $(x_j,x_{j+1}) \in E\cup -E$ para todo $j\in\{0,1,\ldots,(n-1)\}$. Se dice que el camino es un **ciclo** si además $x_n=x_0$.
 :::
 
 :::{.definition}
@@ -130,7 +129,7 @@ Decimos que $G$ es **conexo** si tiene una única componente conexa.
 :::
 
 :::{.theorem name="Ley de ciclos"}
-Sea $G=(V,E)$ un grafo dirigido finito. Una función impar $f:E\to\mathbb R$ es igual al gradiente de una función $u:V\to \mathbb R$ si y solo si para todo ciclo $x_0,x_1, \dots, x_n=x_0$ se tiene que
+Sea $G=(V,E)$ un grafo dirigido finito. Una función impar $f:E\cup -E\to\mathbb R$ es igual al gradiente de una función $u:V\to \mathbb R$ si y solo si para todo ciclo $x_0,x_1, \dots, x_n=x_0$ se tiene que
 $$
 \sum_{j=0}^{n-1} f(x_j,x_{j+1}) = 0.
 $$
@@ -142,7 +141,7 @@ $$
 \sum_{j=0}^{n-1} Du(x_j,x_{j+1}) = \sum_{j=0}^{n-1} (u(x_{j+1})-u(x_j)) = u(x_n)-u(x_0)=0.
 $$
 
-Podemos construir $u:V'\to \mathbb R$ sobre cada una de las componentes conexas de $G$ procedemos de la siguiente forma. Fijemos $x_0 \in V'$ y definimos
+Podemos construir $u:V'\to \mathbb R$ sobre cada una de las componentes conexas de $G$ de la siguiente forma: Fijemos $x_0 \in V'$ y definimos
 $$
 u(x) := \sum_{j=0}^{n-1} f(x_j,x_{j+1})
 $$
@@ -160,7 +159,7 @@ $$
 con lo cual concluímos la demostración.
 :::
 
-Este argumento nos permite apreciar que $u$ está únicamente determinado salvo potenciales constantes en cada componente conexa de $G$. Las constantes son los valores arbitrarios que daríamos a $u$ sobre el nodo $x_0$, que en nuestra demostración fue cero.
+Este argumento nos permite apreciar que $u$ está únicamente determinado salvo potenciales constantes en cada componente conexa de $G$. Las constantes son los valores arbitrarios que daríamos a $u$ sobre el nodo $x_0$, que en nuestra demostración fue cero. En otras palabras, la nulidad del gradiente captura el número de compnentes conexas del grafo.
 
 ---
 
@@ -354,26 +353,34 @@ El lado derecho integra el flujo que escapa o entra en $\Omega$ a través de su 
 ### Lema de Poincaré para la divergencia
 
 :::{.theorem}
-Sea $G=(V,E)$ un grafo dirigido finito. Para cualquier $\mu:V\to\mathbb R$ tal que
+Sea $G=(V,E)$ un grafo dirigido finito y conexo. Para cualquier $\mu:V\to\mathbb R$ tal que
 $$
 \sum_{x\in V}\mu(x)=0
 $$
-existe por lo menos una solución $i:E\to\mathbb R$ de
+existe por lo menos una solución $f:E\to\mathbb R$ de
 $$
 \operatorname{div} f = \mu.
 $$
 :::
 
 :::{.proof}
-Asumamos sin pérdida de generalidad que $G$ es conexo. Tomemos un nodo arbitrario $x_0\in V$ y consideremos inductivamente caminos no orientados que vayan conectando a $x_0$ con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un **árbol generador** del grafo con raíz en el nodo $x_0$, es decir un sub-grafo de $G$ libre de ciclos que conecta a todos los vértices. Fijamos $f=0$ en las aristas que no pertenecen a los caminos señalados y en los demás ajustaremos $f$ para que satisfaga la ecuación dada.
+Tomemos un nodo arbitrario $x_0\in V$ y consideremos inductivamente caminos no orientados que vayan conectando a $x_0$ con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un **árbol generador** del grafo con raíz en el nodo $x_0$, en otras palabras un sub-grafo $T_0 := (V_0=V,E_0\subseteq E)$ libre de ciclos y conexo. Fijamos $f=0$ en las aristas de $E\setminus E_0$ y en los demás ajustaremos $f$ para que satisfaga la ecuación dada.
 
-La idea ahora consiste en ir tomando distintas ramas del árbol e ir asignando $f$ convenientemente como una función impar. Sea por ejemplo $y_1,\ldots,y_k$ una rama, donde $y_1$ es una hoja, es decir un nodo del árbol con un único nodo adyacente en el árbol ($y_2$). Tomemos $e_j = (y_j,y_{j+1})$ y vamos fijando $f$ recursivamente tal que
-$$
-f(e_{j+1}) = f(e_j) + \mu(y_{j+1}), \qquad f(e_1) = \mu(y_1).
-$$
-Esto garantiza que $\operatorname{div} f=\mu$ sobre $y_1,\ldots,y_{k-1}$.
+En la siguiente construcción estaremos definiendo a $f:E\cup-E\to \mathbb R$ como una función impar.
 
-Una vez terminado este algoritmo garantizamos que $\operatorname{div} f=\mu$ en $V\setminus \{x_0\}$. Como última observación tenemos que la ecuación también debe cumplirse en $x_0$ gracias a que $\sum_{x\in V} \operatorname{div} f(x)=\sum_{x\in V} \mu(x)=0$.
+La idea consiste en ir podando las ramas del árbol a medida que asignamos $f$ convenientemente. Si $|V_0|=1$ el problema sería trivial, asumamos así que $|V_0|>1$. En el primer paso tomamos una hoja de $T_0$, es decir un $x\in V_0$ con un único nodo $y \sim_{T_0} x$. Declaramos así $f(x,y) = \mu(x)$ de modo que se tiene que $\operatorname{div}f(x) = \mu(x)$ ($f$ es distinto de cero en a lo sumo una arista en esta suma). Una vez declarado $f$ en la arista $e=(x,y)$ procedemos a considerar el árbol $T_1 = (V_0\setminus \{x\},E_1:=E_0\setminus \{(x,y),(y,x)\})$.
+
+Asumamos de forma inductiva que luego de $k$ pasos contamos con los árboles
+$$
+T_k = (V_k,E_k) \subset T_{k-1} := (V_{k-1},E_{k-1}) \subset \ldots \subset T_0
+$$
+tales que $f$ ha sido definida en $E\setminus E_k$ tal que $\operatorname{div}f=\mu$ se satisface sobre $V\setminus V_k$. Para el siguiente paso tomamos una hoja $x \in V_k$ y fijamos $f$ sobre la (única) arista $(x,y) \in E_k\cup-E_k$ de modo que la ecuación ahora se satisfaga sobre el nodo $x$. Para el siguiente paso podamos a $x$ de $T_k$, es decir que
+$$
+T_{k+1}:= (V_{k+1}=V_k\setminus\{x\},E_{k+1}:=E_k\setminus\{(x,y),(y,x)\}).
+$$
+Claramente esta construcción garantiza que las hipótesis inductivas se siguen cumpliendo en el siguiente paso.
+
+Una vez terminado este algoritmo garantizamos que $\operatorname{div} f=\mu$ se cumple en $V\setminus \{x_0\}$ (la raíz del árbol). Como última observación tenemos que la ecuación también debe cumplirse en $x_0$ gracias a que $\sum_{x\in V} \operatorname{div} f(x)=\sum_{x\in V} \mu(x)=0$.
 :::
 
 Notemos que si $x_0,\ldots,x_k=x_0$ es un dado ciclo del grafo, entonces si tomamos $f=1$ en las aristas del ciclo y cero por fuera de estas, obtenemos una solución de $\operatorname{div} f=0$. De hecho, todas las soluciones homogéneas se obtienen por superposiciones de este ejemplo. El núcleo de la divergencia es un espacio vectorial generado por los ciclos independientes del grafo y su dimensión es un importante invariante topológico conocido como el **primer número de Betti**.
@@ -417,9 +424,9 @@ Calcula los flujos $f:E\to \mathbb R$ tal que $\operatorname{div} f=\mu$ para la
 
 ## Integración por partes
 
-En esta sección denotamos $M=|V|<\infty$ e identificamos a las funciones $u:V\to \mathbb R$ con vectores de $\mathbb R^M$. Igualmente, $N=|E|<\infty$ e identificamos a las funciones $i:E\to \mathbb R$ con vectores de $\mathbb R^N$. Eventualmente también podríamos considerar funciones complejas.
+En esta sección identificamos a las funciones $u:V\to \mathbb R$ con vectores de $\mathbb R^{|V|}$. Igualmente identificamos a las funciones $f:E\to \mathbb R$ con vectores de $\mathbb R^{|E|}$. Eventualmente también podríamos considerar funciones complejas.
 
-El gradiente $D:\mathbb R^M\to\mathbb R^N$ se representa así por la matriz $(D_{e,x}) \in \mathbb R^{N\times M}$ tal que
+El gradiente $D:\mathbb R^{|V|}\to\mathbb R^{|E|}$ se representa así por la matriz $(D_{e,x}) \in \mathbb R^{|E|\times |V|}$ tal que
 $$
 D_{e,x} = \begin{cases}
 1 \text{ si } x=e_+,\\
@@ -427,7 +434,7 @@ D_{e,x} = \begin{cases}
 0 \text{ en cualquier otro caso}.
 \end{cases}
 $$
-Mientras que la divergencia $\operatorname{div}:\mathbb R^N\to\mathbb R^M$ se representa por la matriz $(\operatorname{div}_{x,e}) \in \mathbb R^{M\times N}$ tal que
+Mientras que la divergencia $\operatorname{div}:\mathbb R^{|E|}\to\mathbb R^{|V|}$ se representa por la matriz $(\operatorname{div}_{x,e}) \in \mathbb R^{M\times N}$ tal que
 $$
 \operatorname{div}_{x,e} = \begin{cases}
 -1 \text{ si } e_+=x,\\
@@ -496,9 +503,9 @@ donde $n$ es el vector normal exterior a $\Omega$.
 
 ### Descomposición de Helmholtz
 
-Al igual que antes sean $M=|V|$ y $N=|E|$. La relación $D^T=-\operatorname{div}$ nos permite dar la descomposición ortogonal
+La relación $D^T=-\operatorname{div}$ nos permite dar la descomposición ortogonal
 $$
-\mathbb R^N = D(\mathbb R^M) + \ker(\operatorname{div}).
+\mathbb R^{|E|} = D(\mathbb R^{|V|}) + \ker(\operatorname{div}).
 $$
 también conocida como la **descomposición de Helmholtz**. Es decir que cualquier $f:E\to\mathbb R$ puede escribirse de forma *única*^[Dado $f:E\to \mathbb R$, el potencial $u$ no es único pero su gradiente $Du$ sí.] como
 $$
@@ -506,17 +513,17 @@ f = Du + g
 $$
 tal que
 $$
-\operatorname{div} j = 0,
+\operatorname{div} g = 0,
 $$
-y como corolario $Du \perp j$.
+y como corolario $Du \perp g$.
 
-En términos físicos, cualquier flujo se descompone en una parte que preserva la masa ($j$) y en un flujo gradiente ($Du$).
+En términos físicos, cualquier flujo se descompone en una parte que preserva la masa ($g$) y en un flujo gradiente ($Du$).
 
 <details>
   <summary>**Margen de álgebra lineal:** El teorema fundamental de álgebra lineal</summary>
-Dado $A:\mathbb R^M\to \mathbb R^N$ se tiene que
+Dado $A:\mathbb R^M\to \mathbb R^{N}$ se tiene que
 $$
-A(\mathbb R^M)^\perp = \ker(A^T).
+A(\mathbb R^{M})^\perp = \ker(A^T).
 $$
 Si $x \perp A(\mathbb R^M)$ entonces $0 = x\cdot AA^Tx = \|A^T x\|^2$, lo cual implica $A^Tx=0$. Por otro lado si $A^Tx=0$ entonces para $y\in \mathbb R^M$ arbitrario $x\cdot Ay = A^Tx\cdot y=0$.
 </details>
@@ -532,7 +539,7 @@ Calcula la descomposición de Helmholtz para el siguiente flujo
 
 <details>
   <summary>Solución</summary>
-Sea $f:E\to \mathbb R$ los valores que se muestran en la gráfica. Buscamos calcular $u:V\to \mathbb R$ y $j:E\to \mathbb R$ tales que $f=Du+j$ y $\operatorname{div}j=0$. Si tomamos así la divergencia en la expresión $f=Du+j$ encontramos que $u$ satisface
+Sea $f:E\to \mathbb R$ los valores que se muestran en la gráfica. Buscamos calcular $u:V\to \mathbb R$ y $g:E\to \mathbb R$ tales que $f=Du+g$ y $\operatorname{div}g=0$. Si tomamos así la divergencia en la expresión $f=Du+g$ encontramos que $u$ satisface
 $$
 \begin{cases}
 -2u(A)+u(B)+u(C)=3,\\
@@ -553,10 +560,10 @@ X = np.linalg.inv(A).dot(B)
 
 Du = [X[0],X[1]-X[0],-X[1],X[2]-X[1],X[0]-X[2]]
 f = np.array([1,5,-2,0,0])
-j = f-Du
+g = f-Du
 
 print("[Du(AB), Du(BC), Du(CA), Du(CD), Du(DB)] = {}.".format(Du))
-print("[j(AB), j(BC), j(CA), j(CD), j(DB)] = {}.".format(j))
+print("[jg(AB), g(BC), g(CA), g(CD), g(DB)] = {}.".format(g))
 ```
 </details>
 
