@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2022-08-12" />
+<meta name="date" content="2022-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,6 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#librerías-y-datos"><i class="fa fa-check"></i><b>4.1</b> Librerías y datos</a></li>
 <li class="chapter" data-level="4.2" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#ecuación-diferencial"><i class="fa fa-check"></i><b>4.2</b> Ecuación diferencial</a></li>
 <li class="chapter" data-level="4.3" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#integración-y-graficación"><i class="fa fa-check"></i><b>4.3</b> Integración y graficación</a></li>
+<li class="chapter" data-level="4.4" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#espectro-del-laplaciano"><i class="fa fa-check"></i><b>4.4</b> Espectro del Laplaciano</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -301,6 +302,190 @@ Esta es justamente la tensión que se ejerce sobre el nodo inicial de la arista,
 <span id="cb17-11"><a href="implementación-del-entramado.html#cb17-11" aria-hidden="true" tabindex="-1"></a>  ax.plot3D(pos[i<span class="op">*</span>N:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>N,<span class="dv">0</span>], pos[i<span class="op">*</span>N:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>N:,<span class="dv">1</span>], pos[i<span class="op">*</span>N:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>N,<span class="dv">2</span>],<span class="st">&#39;bo-&#39;</span>)</span>
 <span id="cb17-12"><a href="implementación-del-entramado.html#cb17-12" aria-hidden="true" tabindex="-1"></a>  ax.plot3D(pos[i:N<span class="op">**</span><span class="dv">2</span>:N,<span class="dv">0</span>], pos[i:N<span class="op">**</span><span class="dv">2</span>:N,<span class="dv">1</span>], pos[i:N<span class="op">**</span><span class="dv">2</span>:N,<span class="dv">2</span>],<span class="st">&#39;b-&#39;</span>)</span></code></pre></div>
 <p><img src="bookdown_intro_files/figure-html/unnamed-chunk-15-13.png" width="672" /></p>
+
+</div>
+<div id="espectro-del-laplaciano" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Espectro del Laplaciano<a href="implementación-del-entramado.html#espectro-del-laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hemos visto tres familias de problemas relacionados con el operador lineal <span class="math inline">\(u \mapsto Lu = \operatorname{div}(aDu)\)</span>:</p>
+<ul>
+<li><p><strong>Elíptico:</strong> <span class="math inline">\(\operatorname{div}(aDu) = f\)</span>,</p></li>
+<li><p><strong>Parabólico:</strong> <span class="math inline">\(\p_t u = \operatorname{div}(aDu) + f\)</span>,</p></li>
+<li><p><strong>Hiperbólico:</strong> <span class="math inline">\(\p_t^2 u = \operatorname{div}(aDu) + f\)</span>.</p></li>
+</ul>
+<p>Como tales, la descomposición espectral de <span class="math inline">\(L\)</span> trivializa el cálculo de las soluciones. A continuación daremos un breve recorrido a la teoría discreta de Fourier con la cual podemos clarificar como resolver cada uno de estos problemas.</p>
+<p>Para <span class="math inline">\(a:E\to (0,\infty)\)</span> la composición dada por <span class="math inline">\(Lu = \operatorname{div}(aDu)\)</span> es un operador simétrico, negativo semi-definido. La simetría es una aplicación de la fórmula de integración por partes, bien sea usando que
+<span class="math display">\[
+(\operatorname{div} \operatorname{diag}(a) D)^T = D^T \operatorname{diag}(a)^T \operatorname{div}^T = (-\operatorname{div})  \operatorname{diag}(a)(-D) = \operatorname{div}\operatorname{diag}(a)D,
+\]</span>
+o en términos de las sumas
+<span class="math display">\[
+\sum_{x\in V} v(x)\operatorname{div}(aDu)(x) = -\sum_{e\in E} Dv(e)Du(e)a(e) = \sum_{x\in V} u(x)\operatorname{div}(aDv)(x).
+\]</span>
+La no-positividad la verificamos tomando <span class="math inline">\(v=u\)</span> tal que
+<span class="math display">\[\begin{align}
+\label{eq:no_pos}
+\sum_{x\in V} u(x)\operatorname{div}(aDu)(x) = -\sum_{e\in E} (Du(e))^2a(e) \leq 0.
+\end{align}\]</span></p>
+<p>Gracias al sabemos que <span class="math inline">\(L\)</span> es diagonalizable, sus autovalores son reales no-positivos y además posee una base de autofunciones ortogonales. Denotemos por <span class="math inline">\(\phi_0,\ldots,\phi_{M-1}\)</span> a una base ortogonal con autovalores <span class="math inline">\(-\l_0,\ldots,-\l_{M-1}\)</span> respectivamente.</p>
+<p>Gracias a la identidad <span class="math inline">\(\eqref{eq:no_pos}\)</span> vemos además que <span class="math inline">\(\operatorname{div}(aDu)=0\)</span> si y solo si <span class="math inline">\(Du=0\)</span>. Si <span class="math inline">\(G\)</span> es conexo entonces esto solamente se cumple para las funciones constantes. En otras palabras, <span class="math inline">\(\l=0\)</span> es un autovalor simple cuyo autoespacio consiste de las funciones constantes. En general, <span class="math inline">\(\l=0\)</span> es un autovalor de <span class="math inline">\(L\)</span> cuya multiplicidad geométrica es igual al número de componentes conexas de <span class="math inline">\(G\)</span>.</p>
+<p></p>
+<p>Gracias a la ortogonalidad podemos calcular la descomposición de una función arbitraria usando productos internos. Esta se conoce como la .</p>
+<p>Dado que
+<span class="math display">\[
+u = \sum_{j=0}^{M-1} \hat u_j \phi_j
+\]</span>
+tenemos que tomando en ambos lados el producto interno con <span class="math inline">\(\phi_j\)</span> obtenemos que
+<span class="math display">\[
+\hat u_j = \frac{1}{\|\phi_j\|^2}\sum_{x\in V} u(x) \overline{\phi_j(x)}.
+\]</span>
+Los coeficientes <span class="math inline">\(\hat u_j\)</span> se conocen como los .</p>
+<p>Retomemos los distintos problemas que anunciamos al principio de esta sección.</p>
+<p>Dada la descomposición
+<span class="math display">\[
+f = \sum_{j=0}^{M-1} \hat f_j\phi_j, \qquad \hat f_j = \frac{1}{\|\phi_j\|^2}\sum_{x\in V} f(x)\overline{\phi_j(x)},
+\]</span>
+tenemos que <span class="math inline">\(u = \sum_{j=0}^{M-1} \hat u_j\phi_j\)</span> satisface <span class="math inline">\(Lu=f\)</span> si y solo si para todo <span class="math inline">\(j\in\{0,\ldots,(M-1)\}\)</span>
+<span class="math display">\[
+-\l_j \hat u_j = \hat f_j.
+\]</span></p>
+<p>Recordemos la hipótesis de conexidad para <span class="math inline">\(G\)</span> la cual garantiza que <span class="math inline">\(\l_0=0\)</span> es un autovalor simple cuyo autoespacio son las funciones constantes generadas por <span class="math inline">\(\phi_0=1\)</span>. Para <span class="math inline">\(j\neq 0\)</span> tenemos <span class="math inline">\(\l_j &gt; 0\)</span> por lo cual <span class="math inline">\(\hat u_j = -\hat f_j/\l_j\)</span>. Para <span class="math inline">\(j=0\)</span> tenemos sin embargo que <span class="math inline">\(\l_0=0\)</span> en cuyo caso la ecuación tiene solución solamente si se da la condición de ortogonalidad <span class="math inline">\(f\perp \phi_0\)</span>, equivalente a decir que
+<span class="math display">\[
+\sum_{x\in V} f(x) = 0.
+\]</span>
+Bajo esta hipótesis, el correspondiente coeficiente <span class="math inline">\(\hat u_0\)</span> es arbitrario.</p>
+<p>Bajo la condición anterior para <span class="math inline">\(f\)</span>, tenemos que las soluciones de <span class="math inline">\(Lu=f\)</span> están dadas por
+<span class="math display">\[
+u(x) = c - \sum_{j=1}^{M-1} \frac{\hat f_j}{\l_j}\phi_j(x) = c - \sum_{j=1}^{M-1} \frac{1}{\l_j\|\phi_j\|^2}\1\sum_{y\in V} f(y)\overline{\phi_j(y)}\2\phi_j(x)
+\]</span>
+El término constante es la solución homogénea del sistema. El segundo es una solución particular la cual podemos reescribir como
+<span class="math display">\[
+u_p(x) := -\sum_{y\in V} G(x,y)f(y), \qquad G(x,y) := \sum_{j=1}^{M-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2}\l_j^{-1}.
+\]</span></p>
+<p>El sistema <span class="math inline">\(\p_t u = Lu+f\)</span> se reduce a un sistema de ecuaciones diferenciales ordinarias desacopladas
+<span class="math display">\[
+\hat u_j&#39; = -\l_j \hat u_j + \hat f_j
+\]</span>
+Usando por ejemplo la técnica del factor integrante obtenemos
+<span class="math display">\[\begin{align*}
+\hat u_j(t) &amp;= \hat u_j(0)e^{-\l_j t} + \int_0^t \hat f_j(s)e^{-\l_j(t-s)}ds\\
+&amp;= \frac{1}{\|\phi_j\|^2}\sum_{y=1}^M \1u(y,0)\overline{\phi_j(y)}e^{-\l_j t} + \int_0^t f(y,s)\overline{\phi_j(y)}e^{-\l_j(t-s)}ds\2
+\end{align*}\]</span></p>
+<p>Agrupando los términos para la solución concluimos que
+<span class="math display">\[
+u(x,t) = \sum_{y\in V} u(y,0)H(x,y,t) + \int_0^t\sum_{y\in V} f(y,s)H(x,y,t-s)ds
+\]</span>
+donde
+<span class="math display">\[
+H(x,y,t) := \sum_{j=0}^{M-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2}e^{-\l_j t} = \frac{1}{M} + \sum_{j=1}^{M-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2}e^{-\l_j t}.
+\]</span></p>
+% \begin{center}
+% \colorbox[HTML]{E5F3CC}{
+% \begin{minipage}[c]{450px}
+%
+<p>\end{minipage}}
+\end{center}</p>
+<p>El sistema <span class="math inline">\(\p_t^2 u = Lu+f\)</span> también se reduce a un sistema de ecuaciones desacopladas de segundo orden
+<span class="math display">\[
+\hat u_j&#39;&#39; = -\l_j \hat u_j + \hat f_j
+\]</span>
+Tenemos así que <span class="math inline">\(\hat u_j(t)\)</span> se puede calcular en términos de su posición y velocidad inicial.</p>
+<p>Para <span class="math inline">\(j=0\)</span>
+<span class="math display">\[\begin{align*}
+\hat u_0(t) &amp;= \hat u_0(0) + \hat u_0&#39;(0) t + \int_0^t \hat f_0(s)(t-s)ds.
+\end{align*}\]</span></p>
+<p>Para <span class="math inline">\(j\neq0\)</span> denotamos la frecuencia <span class="math inline">\(\w_j=\sqrt{\l_j}\)</span> tal que
+<span class="math display">\[\begin{align*}
+\hat u_j(t) &amp;= \hat u_j(0)\cos(\w_j t) + \hat u_j&#39;(0)\frac{\sen(\w_j t)}{\w_j} + \int_0^t \hat f_j(s)\frac{\sen(\w_j(t-s))}{\w_j}ds.
+\end{align*}\]</span></p>
+<p>Agrupando los términos para la solución concluimos que
+<span class="math display">\[
+u(x,t) = \sum_{j=0}^{M-1} u(y,0)W_1(x,y,t)+\p_t u(y,0)W_2(x,y,t) + \int_0^t f(y,s)W_2(x,y,t-s)ds
+\]</span>
+donde
+<span class="math display">\[\begin{align*}
+W_1(x,y,t) &amp;:= \sum_{j=0}^{M-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2}\cos(\w_j t), \\
+W_2(x,y,t) &amp;:= \frac{t}{M} + \sum_{j=1}^{M-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2}\frac{\sen(\w_j t)}{\w_j}.
+\end{align*}\]</span></p>
+<p>% En los tres problemas que hemos analizado hemos encontrado que las soluciones aparecen en términos de un núcleo de la forma
+% <span class="math display">\[
+% N(x,y) = \sum_{j=0}^{M-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2}p_j.
+% \]</span>
+% Verificamos fácilmente la identidad de simetría dado que <span class="math inline">\(p_j\in \mathbb R\)</span>
+% <span class="math display">\[
+% N(x,y) = \overline{N(y,x)}.
+% \]</span>
+% Si además tomamos a las autofunciones <span class="math inline">\(\phi_j\)</span> como funciones reales entonces
+% <span class="math display">\[
+% N(x,y) = N(y,x).
+% \]</span></p>
+<p>% En algunos casos veremos que <span class="math inline">\(\phi_j(x)\overline{\phi_j(x)}=1\)</span> de donde se tiene que
+% <span class="math display">\[
+% N(x,x) =  \sum_{j=0}^{M-1} \frac{}{\|\phi_j\|^2}p_j.
+% \]</span></p>
+<p>En esta sección veremos como resolver el problema presentado en la siguiente caricatura de Randall Munroe autor de .</p>
+<p>La resistencia efectiva se define de la siguiente forma. Etiquetemos primero los nodos de la red por <span class="math inline">\((x,y) \in \Z^2\)</span> tales que los nodos marcados son el origen <span class="math inline">\((0,0)\)</span> y <span class="math inline">\((2,1)\)</span>. Se fija un potencial <span class="math inline">\(u\)</span> sobre la red tal que <span class="math inline">\(u(0,0)=0\)</span>, <span class="math inline">\(u(2,1)=1\)</span>, mientras que en los demás nodos <span class="math inline">\(u\)</span> es armónica, es decir que para <span class="math inline">\((x,y) \in \Z^2 \sm \{(0,0),(2,1)\}\)</span>
+<span class="math display">\[
+\D u(x,y) = u(x-1,y) + u(x+1,y) + u(x,y-1) + u(x,y+1) - 4u(x,y) = 0.
+\]</span>
+Para que <span class="math inline">\(u\)</span> esté definida de forma unívoca hay que pedir adicionalmente que <span class="math inline">\(u\to 0\)</span> cuando <span class="math inline">\(|(x,y)|\to \infty\)</span>. Desde una perspectiva física esta condición en infinito es la más natural.</p>
+<p>La corriente <span class="math inline">\(i\)</span> que sale del origen es la divergencia de <span class="math inline">\(u\)</span> en dicho punto, <span class="math inline">\(i= \operatorname{div} u(0,0)\)</span>. Este es a su vez la corriente que entra en el vértice <span class="math inline">\((2,1)\)</span> la cual se calcula de igual forma como <span class="math inline">\(i = -\operatorname{div} u(2,1)\)</span>. Si buscamos simplificar la red por el caso más sencillo que conecta a <span class="math inline">\((0,0)\)</span> y <span class="math inline">\((2,1)\)</span>, es decir el grafo con solamente estos dos vértices y una arista entre ellos, entonces la resistencia efectiva <span class="math inline">\(R\)</span> es aquella que debemos dar a esta única conexión para que la corriente siga siendo <span class="math inline">\(i\)</span> bajo el mismo potencial. En otras palabras <span class="math inline">\(R = 1/i\)</span>.</p>
+<p>Como primer paso veremos como calcular el potencial análogo en el toro <span class="math inline">\(V_{N} = (\Z/N\Z)^2\)</span>, es decir un problema periódico donde identificamos las coordenadas enteras módulo <span class="math inline">\(N\gg1\)</span>. Cuando <span class="math inline">\(N\to \infty\)</span> el potencial eléctrico converge al potencial en <span class="math inline">\(\Z^2\)</span>. Este límite, a pesar de ser intuitivo, amerita una demostración que no presentaremos dado que buscamos enfatizar otras ideas por el momento. La ventaja de esta aproximación es que ahora nuestra ecuación es un problema de álgebra lineal en un espacio de dimensión <span class="math inline">\(N^2-2\)</span>
+<span class="math display">\[
+\D u = 0 \text{ en } V_{N}\sm \{(0,0),(2,1)\}, \qquad u(0,0)=0,\qquad u(2,1)=1.
+\]</span></p>
+<p>De las discusiones previas sabemos que a partir de la descomposición espectral del Laplaciano en <span class="math inline">\(V_{N}\)</span> podríamos calcular en cambio una solución particular de
+<span class="math display">\[
+\D v = \mathbbm \mathbbm 1_{(0,0)}-\mathbbm \mathbbm 1_{(2,1)} \text{ en } V_{N}.
+\]</span>
+Notemos que el lado derecho es de hecho perpendicular a las constantes, lo cual garantiza la existencia de soluciones. Para obtener <span class="math inline">\(u\)</span> a partir de <span class="math inline">\(v\)</span> verificamos que
+<span class="math display">\[
+u(x,y) = \frac{v(x,y)-v(0,0)}{v(2,1)-v(0,0)}
+\]</span>
+satisface la ecuación requerida y entonces
+<span class="math display">\[
+R_N = \frac{1}{\operatorname{div} u(0,0)} = \frac{v(2,1)-v(0,0)}{\operatorname{div} v(0,0)} = v(2,1)-v(0,0).
+\]</span>
+Nuestra estrategia será entonces calcular el límite de esta expresión cuando <span class="math inline">\(N\to\infty\)</span>.</p>
+<p>Procedamos a calcular el espectro del Laplaciano sobre el toro (Ejercicio <span class="math inline">\(\ref{ejer:toro}\)</span>). Asumamos la hipótesis de
+<span class="math display">\[
+\phi(x,y) = \a(x)\b(y).
+\]</span>
+Este tipo de funciones toman ventaja de la simetría del problema con lo cual el Laplaciano se simplifica como operadores discretos más sencillos para cada factor
+<span class="math display">\[
+\D \phi(x,y) = \a(x)(\b(y-1)-2\b(y)+\b(y+1)) + (\a(x-1)-2\a(x)+\a(x+1))\b(y).
+\]</span></p>
+<p>Si <span class="math inline">\(\a\)</span> y <span class="math inline">\(\b\)</span> son autofunciones del Laplaciano en el grafo cíclico de tamaño <span class="math inline">\(N\)</span>, entonces <span class="math inline">\(\phi\)</span> es una autofunción en el toro. Tomemos de esta forma la base de Fourier
+<span class="math display">\[
+\phi_{k,l}(x,y) = \w^{kx+ly}, \qquad \w = e^{2\pi i/N}, \qquad (k,l)\in\{0,1,\ldots,(N-1)\}^2,
+\]</span>
+con autovalores <span class="math inline">\(-\l_{k,l}\)</span> tal que
+<span class="math display">\[
+\l_{k,l} := 4(\sen^2(\pi k/N)+\sen^2(\pi l/N)),
+\]</span>
+y normas
+<span class="math display">\[
+\|\phi_{k,l}\|^2=\sum_{(x,y)\in V_N} \phi_{k,l}(x,y)\overline{\phi_{k,l}(x,y)} = N^2.
+\]</span></p>
+<p>Finalmente reconstruimos la solución particular usando la fórmula de representación</p>
+<p><span class="math display">\[\begin{align*}
+v(x,y) &amp;= -\sum_{(x&#39;,y&#39;) \in V_N} K(x,y;x&#39;,y&#39;)(\mathbbm 1_{(0,0)}-\mathbbm 1_{(2,1)})(x&#39;,y&#39;) = K(x,y;2,1)-K(x,y;0,0).
+\end{align*}\]</span>
+donde para <span class="math inline">\(\w = e^{2\pi i/N}\)</span>
+<span class="math display">\[
+K(x,y;x&#39;,y&#39;) = \frac{1}{N^2}\sum_{(k,l)\neq (0,0)} \frac{\phi_{k,l}(x,y)\overline{\phi_{k,l}(x&#39;,y&#39;)}}{\l_{k,l}} = \frac{1}{4N^2}\sum_{(k,l)\neq (0,0)} \frac{\w^{k(x-x&#39;)+l(y-y&#39;)}}{\sen^2(\pi k/N)+\sen^2(\pi l/N)}.
+\]</span></p>
+<p>La resistencia efectiva es calculada así por
+<span class="math display">\[\begin{align*}
+R &amp;= v(2,1)-v(0,0),\\
+&amp;= K(2,1;2,1)-K(2,1;0,0) - K(0,0;2,1)+K(0,0;0,0),\\
+&amp;= \frac{1}{2N^2} \sum_{(k,l)\neq (0,0)} \frac{1-\cos((2k+l)2\pi/N)}{\sen^2(\pi k/N)+\sen^2(\pi l/N)},\\
+&amp;= \frac{1}{N^2} \sum_{(k,l)\neq (0,0)} \frac{\sen^2((2k+l)\pi/N)}{\sen^2(\pi k/N)+\sen^2(\pi l/N)}.
+\end{align*}\]</span>
+En el límite podemos entonces calcular <span class="math inline">\(R\)</span> por la integral de Riemann
+<span class="math display">\[
+R = \frac{1}{\pi^2}\int_0^\pi\int_0^\pi \frac{\sen^2(2x+y)}{\sen^2x+\sen^2y}dydx
+\]</span></p>
+<p>{Integración numérica}</p>
 
 </div>
 </div>

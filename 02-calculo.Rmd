@@ -563,7 +563,7 @@ f = np.array([1,5,-2,0,0])
 g = f-Du
 
 print("[Du(AB), Du(BC), Du(CA), Du(CD), Du(DB)] = {}.".format(Du))
-print("[jg(AB), g(BC), g(CA), g(CD), g(DB)] = {}.".format(g))
+print("[g(AB), g(BC), g(CA), g(CD), g(DB)] = {}.".format(g))
 ```
 </details>
 
@@ -615,7 +615,7 @@ Calcula el potencial eléctrico que se genera en un cubo de resistencias de un O
 
 <details>
   <summary>Solución</summary>
-  Asumamos sin pérdida de gneralidad que se conecta la bateria de los nodos $A$ a $D$ tal que $v(A)=1$ y $v(D)=0$. Tenemos un sistema de ecuaciones lineales de dimensiones 6 por 6. De existir una única solución^[Una vez más, esto puede chequearse a mano o con una herramienta numérica.] observamos que por simetría se debe cumplir que $v(B)=v(F)=v(H)=\alpha$ (los nodos adyacentes a $A$) y $v(C)=v(E)=v(G)=\beta$ (los nodos adyacentes a $E$). Esto reduce el sistema a uno de 2 por 2
+  Asumamos sin pérdida de generalidad que se conecta la bateria de los nodos $A$ a $D$ tal que $v(A)=1$ y $v(D)=0$. Tenemos un sistema de ecuaciones lineales de dimensiones 6 por 6. De existir una única solución^[Una vez más, esto puede chequearse a mano o con una herramienta numérica.] observamos que por simetría se debe cumplir que $v(B)=v(F)=v(H)=\alpha$ (los nodos adyacentes a $A$) y $v(C)=v(E)=v(G)=\beta$ (los nodos adyacentes a $E$). Esto reduce el sistema a uno de 2 por 2
   $$
   \begin{cases}
   -9\alpha+6\beta = -3,\\
