@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2022-08-17" />
+<meta name="date" content="2022-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="implementación-del-entramado.html"/>
-
+<link rel="next" href="el-problema-de-dirichlet.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -179,6 +179,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-parabólico"><i class="fa fa-check"></i><b>5.2</b> Problema parabólico</a></li>
 <li class="chapter" data-level="5.3" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-hiperbólico"><i class="fa fa-check"></i><b>5.3</b> Problema hiperbólico</a></li>
 <li class="chapter" data-level="5.4" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#nerd-sniping"><i class="fa fa-check"></i><b>5.4</b> Nerd sniping</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html"><i class="fa fa-check"></i><b>6</b> El problema de Dirichlet</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#ley-de-conservación"><i class="fa fa-check"></i><b>6.1</b> Ley de conservación</a></li>
+<li class="chapter" data-level="6.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones"><i class="fa fa-check"></i><b>6.2</b> Existencia y unicidad de soluciones</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#principio-del-mínimo"><i class="fa fa-check"></i><b>6.2.1</b> Principio del mínimo</a></li>
+<li class="chapter" data-level="6.2.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#método-de-balayage"><i class="fa fa-check"></i><b>6.2.2</b> Método de Balayage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#fórmulas-de-representación"><i class="fa fa-check"></i><b>6.3</b> Fórmulas de representación</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#la-función-de-green"><i class="fa fa-check"></i><b>6.3.1</b> La función de Green</a></li>
+<li class="chapter" data-level="6.3.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#el-núcleo-de-poisson"><i class="fa fa-check"></i><b>6.3.2</b> El núcleo de Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#caminatas-aleatorias"><i class="fa fa-check"></i><b>6.4</b> Caminatas Aleatorias</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -331,7 +346,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-48" class="exercise"><strong>Ejercicio 5.4  </strong></span>Calcula el espectro del Laplaciano en los siguientes casos:</p>
+<p><span id="exr:espectro" class="exercise"><strong>Ejercicio 5.4  </strong></span>Calcula el espectro del Laplaciano en los siguientes casos:</p>
 <ul>
 <li><p>Sólidos platónicos: tetraedro, cubo, octaedro, dodecaedro, icosaedro,</p></li>
 <li><p>Grafo completo,</p></li>
@@ -370,7 +385,7 @@ u_p(x) := -\sum_{y\in V} G(x,y)f(y), \qquad G(x,y) := \sum_{j=1}^{|V|-1} \frac{\
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-49" class="exercise"><strong>Ejercicio 5.5  </strong></span>Demuestra que<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>
+<p><span id="exr:unlabeled-div-48" class="exercise"><strong>Ejercicio 5.5  </strong></span>Demuestra que<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>
 <span class="math display">\[
 \Delta_1 G(x,y) = \Delta_2 G(x,y) = \frac{1}{|V|}- 1_y(x)=\frac{1}{|V|}- 1_x(y).
 \]</span></p>
@@ -382,7 +397,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-50" class="exercise"><strong>Ejercicio 5.6  </strong></span>Demuestra que
+<p><span id="exr:unlabeled-div-49" class="exercise"><strong>Ejercicio 5.6  </strong></span>Demuestra que
 <span class="math display">\[
 \sum_{x\in V} G(x,x) = \sum_{j=1}^{|V|-1} \lambda_j^{-1}.
 \]</span></p>
@@ -394,7 +409,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-51" class="exercise"><strong>Ejercicio 5.7  </strong></span>Demuestra que <span class="math inline">\(G\)</span> es independiente de la base de Fourier.</p>
+<p><span id="exr:unlabeled-div-50" class="exercise"><strong>Ejercicio 5.7  </strong></span>Demuestra que <span class="math inline">\(G\)</span> es independiente de la base de Fourier.</p>
 </div>
 <details>
 <summary>
@@ -403,7 +418,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-52" class="exercise"><strong>Ejercicio 5.8  </strong></span>Demuestra que <span class="math inline">\(G(x,y)=G(y,x)\)</span>.</p>
+<p><span id="exr:unlabeled-div-51" class="exercise"><strong>Ejercicio 5.8  </strong></span>Demuestra que <span class="math inline">\(G(x,y)=G(y,x)\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -412,7 +427,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-53" class="exercise"><strong>Ejercicio 5.9  </strong></span>Demuestra que para <span class="math inline">\(x\in[0,M]\)</span>
+<p><span id="exr:unlabeled-div-52" class="exercise"><strong>Ejercicio 5.9  </strong></span>Demuestra que para <span class="math inline">\(x\in[0,M]\)</span>
 <span class="math display">\[
 \sum_{j=1}^{M-1} \frac{e^{2\pi i j x}-1}{\sin^2(\pi j/M)} = 2x(x-M)
 \]</span></p>
@@ -446,7 +461,7 @@ H(x,y,t) := \sum_{j=0}^{|V|-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-54" class="exercise"><strong>Ejercicio 5.10  </strong></span>Demuestra que <span class="math inline">\(H(y,x,t) = H(x,y,t)\)</span>.</p>
+<p><span id="exr:unlabeled-div-53" class="exercise"><strong>Ejercicio 5.10  </strong></span>Demuestra que <span class="math inline">\(H(y,x,t) = H(x,y,t)\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -455,7 +470,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-55" class="exercise"><strong>Ejercicio 5.11  </strong></span>Demuestra que <span class="math inline">\(H\)</span> es la solución del problema de valores iniciales
+<p><span id="exr:unlabeled-div-54" class="exercise"><strong>Ejercicio 5.11  </strong></span>Demuestra que <span class="math inline">\(H\)</span> es la solución del problema de valores iniciales
 <span class="math display">\[
 \begin{cases}
 \partial_t H = \Delta_1 H = \Delta_2 H,\\
@@ -471,16 +486,17 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-56" class="exercise"><strong>Ejercicio 5.12  </strong></span>Sea <span class="math inline">\(u\)</span> tal que <span class="math inline">\(\partial_t u = \Delta u\)</span>. Calcula <span class="math inline">\(\lim_{t\to\infty} u(t)\)</span> en términos de <span class="math inline">\(u(0)\)</span>.</p>
+<p><span id="exr:unlabeled-div-55" class="exercise"><strong>Ejercicio 5.12  </strong></span>Sea <span class="math inline">\(u\)</span> tal que <span class="math inline">\(\partial_t u = \Delta u\)</span>. Calcula <span class="math inline">\(\lim_{t\to\infty} u(t)\)</span> en términos de <span class="math inline">\(u(0)\)</span>.</p>
 </div>
 <details>
 <summary>
 Solución
 </summary>
+<span class="math inline">\(\lim_{t\to\infty} u(t) = \frac{1}{M}\sum_{x\in V}u(x,0)\)</span>
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-57" class="exercise"><strong>Ejercicio 5.13  </strong></span>Para <span class="math inline">\(G\)</span> conexo demuestra que se da la siguiente expresión asintótica cuando <span class="math inline">\(t\to\infty\)</span>
+<p><span id="exr:unlabeled-div-56" class="exercise"><strong>Ejercicio 5.13  </strong></span>Para <span class="math inline">\(G\)</span> conexo demuestra que se da la siguiente expresión asintótica cuando <span class="math inline">\(t\to\infty\)</span>
 <span class="math display">\[
 \int_0^t H(x,y,s)ds = \frac{t}{|V|} + G(x,y) + O(e^{-\lambda_1 t})
 \]</span></p>
@@ -517,7 +533,7 @@ W_2(x,y,t) &amp;:= \frac{t}{|V|} + \sum_{j=1}^{|V|-1} \frac{\phi_j(x)\overline{\
 \end{align*}\]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-58" class="exercise"><strong>Ejercicio 5.14  </strong></span>(Ley de Stokes) Demuestra que si
+<p><span id="exr:unlabeled-div-57" class="exercise"><strong>Ejercicio 5.14  </strong></span>(Ley de Stokes) Demuestra que si
 <span class="math display">\[
 \begin{cases}
 \partial_t^2u = Lu,\\
@@ -567,7 +583,7 @@ satisface la ecuación requerida y entonces
 R_N = \frac{1}{\operatorname{div} u(0,0)} = \frac{v(2,1)-v(0,0)}{\operatorname{div} v(0,0)} = v(2,1)-v(0,0).
 \]</span>
 Nuestra estrategia será entonces calcular el límite de esta expresión cuando <span class="math inline">\(N\to\infty\)</span>.</p>
-<p>Procedamos a calcular el espectro del Laplaciano sobre el toro (Ejercicio <span class="math inline">\(\ref{ejer:toro}\)</span>). Asumamos la hipótesis de
+<p>Procedamos a calcular el espectro del Laplaciano sobre el toro (Ejercicio <a href="espectro-del-laplaciano.html#exr:espectro">5.4</a>). Asumamos la hipótesis de
 <span class="math display">\[
 \phi(x,y) = \alpha(x)\beta(y).
 \]</span>
@@ -589,7 +605,7 @@ y normas
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-59" class="exercise"><strong>Ejercicio 5.15  </strong></span>Verifica que a partir de las siguientes funciones también se puede formar una base ortogonal del Laplaciano
+<p><span id="exr:unlabeled-div-58" class="exercise"><strong>Ejercicio 5.15  </strong></span>Verifica que a partir de las siguientes funciones también se puede formar una base ortogonal del Laplaciano
 <span class="math display">\[\begin{align*}
 \cos(2\pi kx/N)\cos(2\pi ly/N),\quad \cos(2\pi kx/N)\sin(2\pi ly/N),\quad \sin(2\pi kx/N)\sin(2\pi ly/N).    
 \end{align*}\]</span></p>
@@ -618,11 +634,23 @@ R &amp;= v(2,1)-v(0,0),\\
 En el límite podemos entonces calcular <span class="math inline">\(R\)</span> por la integral de Riemann
 <span class="math display">\[
 R = \frac{1}{\pi^2}\int_0^\pi\int_0^\pi \frac{\sin^2(2x+y)}{\sin^2x+\sin^2y}dydx
+\]</span>
+Evaluamos numericamente la integral usando</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="espectro-del-laplaciano.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="espectro-del-laplaciano.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> dblquad</span>
+<span id="cb18-3"><a href="espectro-del-laplaciano.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="espectro-del-laplaciano.html#cb18-4" aria-hidden="true" tabindex="-1"></a>integrando <span class="op">=</span> <span class="kw">lambda</span> x, y : np.sin(<span class="dv">2</span><span class="op">*</span>x<span class="op">+</span>y)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(np.sin(x)<span class="op">**</span><span class="dv">2</span><span class="op">+</span>np.sin(y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb18-5"><a href="espectro-del-laplaciano.html#cb18-5" aria-hidden="true" tabindex="-1"></a>integral, error <span class="op">=</span> dblquad(integrando,<span class="dv">0</span>,np.pi,<span class="dv">0</span>,np.pi)</span>
+<span id="cb18-6"><a href="espectro-del-laplaciano.html#cb18-6" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> integral<span class="op">/</span>np.pi<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb18-7"><a href="espectro-del-laplaciano.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(R)</span></code></pre></div>
+<pre><code>## 0.7732395447351639</code></pre>
+<p>De forma alternativa es posible <a href="https://physics.stackexchange.com/questions/2072/on-this-infinite-grid-of-resistors-whats-the-equivalent-resistance">calcular analíticamente la integral</a> dando como resultado
+<span class="math display">\[
+R = \frac{4}{\pi}-\frac{1}{2}
 \]</span></p>
-<p>{Integración numérica}</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-60" class="exercise"><strong>Ejercicio 5.16  </strong></span>Sea
+<p><span id="exr:unlabeled-div-59" class="exercise"><strong>Ejercicio 5.16  </strong></span>Sea
 <span class="math display">\[
 R(m,n) = \int_0^\pi\int_0^\pi \frac{\sin^2(mx+ny)}{\sin^2x+\sin^2y}dydx.
 \]</span>
@@ -636,20 +664,6 @@ Solución
 
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="6">
@@ -664,8 +678,8 @@ Solución
           </div>
         </div>
       </div>
-<a href="implementación-del-entramado.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="implementación-del-entramado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="el-problema-de-dirichlet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

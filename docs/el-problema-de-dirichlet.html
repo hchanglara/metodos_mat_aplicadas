@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 El problema de Dirichlet | Métodos de matemáticas aplicadas</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 El problema de Dirichlet | Métodos de matemáticas aplicadas" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 El problema de Dirichlet | Métodos de matemáticas aplicadas" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Héctor Andrés Chang-Lara" />
+
+
+<meta name="date" content="2022-08-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="espectro-del-laplaciano.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Métodos de matemáticas aplicadas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="entramados.html"><a href="entramados.html"><i class="fa fa-check"></i><b>1</b> Entramados</a></li>
+<li class="chapter" data-level="2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html"><i class="fa fa-check"></i><b>2</b> Cálculo discreto</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#gradiente"><i class="fa fa-check"></i><b>2.1</b> Gradiente</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#ley-de-ciclos"><i class="fa fa-check"></i><b>2.1.1</b> Ley de ciclos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#divergencia"><i class="fa fa-check"></i><b>2.2</b> Divergencia</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#fórmula-de-la-divergencia"><i class="fa fa-check"></i><b>2.2.1</b> Fórmula de la divergencia</a></li>
+<li class="chapter" data-level="2.2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#lema-de-poincaré-para-la-divergencia"><i class="fa fa-check"></i><b>2.2.2</b> Lema de Poincaré para la divergencia</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#integración-por-partes"><i class="fa fa-check"></i><b>2.3</b> Integración por partes</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#descomposición-de-helmholtz"><i class="fa fa-check"></i><b>2.3.1</b> Descomposición de Helmholtz</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#laplaciano"><i class="fa fa-check"></i><b>2.4</b> Laplaciano</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dinámica.html"><a href="dinámica.html"><i class="fa fa-check"></i><b>3</b> Dinámica</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dinámica.html"><a href="dinámica.html#transporte"><i class="fa fa-check"></i><b>3.1</b> Transporte</a></li>
+<li class="chapter" data-level="3.2" data-path="dinámica.html"><a href="dinámica.html#difusión"><i class="fa fa-check"></i><b>3.2</b> Difusión</a></li>
+<li class="chapter" data-level="3.3" data-path="dinámica.html"><a href="dinámica.html#oscilación"><i class="fa fa-check"></i><b>3.3</b> Oscilación</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html"><i class="fa fa-check"></i><b>4</b> Implementación del entramado</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#librerías-y-datos"><i class="fa fa-check"></i><b>4.1</b> Librerías y datos</a></li>
+<li class="chapter" data-level="4.2" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#ecuación-diferencial"><i class="fa fa-check"></i><b>4.2</b> Ecuación diferencial</a></li>
+<li class="chapter" data-level="4.3" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#integración-y-graficación"><i class="fa fa-check"></i><b>4.3</b> Integración y graficación</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html"><i class="fa fa-check"></i><b>5</b> Espectro del Laplaciano</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-elíptico"><i class="fa fa-check"></i><b>5.1</b> Problema elíptico</a></li>
+<li class="chapter" data-level="5.2" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-parabólico"><i class="fa fa-check"></i><b>5.2</b> Problema parabólico</a></li>
+<li class="chapter" data-level="5.3" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-hiperbólico"><i class="fa fa-check"></i><b>5.3</b> Problema hiperbólico</a></li>
+<li class="chapter" data-level="5.4" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#nerd-sniping"><i class="fa fa-check"></i><b>5.4</b> Nerd sniping</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html"><i class="fa fa-check"></i><b>6</b> El problema de Dirichlet</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#ley-de-conservación"><i class="fa fa-check"></i><b>6.1</b> Ley de conservación</a></li>
+<li class="chapter" data-level="6.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones"><i class="fa fa-check"></i><b>6.2</b> Existencia y unicidad de soluciones</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#principio-del-mínimo"><i class="fa fa-check"></i><b>6.2.1</b> Principio del mínimo</a></li>
+<li class="chapter" data-level="6.2.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#método-de-balayage"><i class="fa fa-check"></i><b>6.2.2</b> Método de Balayage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#fórmulas-de-representación"><i class="fa fa-check"></i><b>6.3</b> Fórmulas de representación</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#la-función-de-green"><i class="fa fa-check"></i><b>6.3.1</b> La función de Green</a></li>
+<li class="chapter" data-level="6.3.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#el-núcleo-de-poisson"><i class="fa fa-check"></i><b>6.3.2</b> El núcleo de Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#caminatas-aleatorias"><i class="fa fa-check"></i><b>6.4</b> Caminatas Aleatorias</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos de matemáticas aplicadas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="el-problema-de-dirichlet" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> El problema de Dirichlet<a href="el-problema-de-dirichlet.html#el-problema-de-dirichlet" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Un barrendero tiene la tarea de limpiar una dada región (acotada) en cuarto cubierto de baldosas. Cada vez que este barre una baldosa, toda la masa que se encuentra en ella se distribuye en porciones iguales entre las cuatro baldosas adyacentes. En general, limpiar la región es un proceso que entendemos en el límite de un número infinito de pasos.</p>
+<p><img src="barrendero-1.png" style="width:70.0%" /></p>
+<p>El orden en que se barren las baldosas no es conmutativo, véase por ejemplo la figura a continuación. Sin embargo, descubrimos que en el límite se recupera una cierta propiedad Abeliana: Una vez limpia la región, la distribución de masa alrededor de ella es independiente de como se haya barrido.</p>
+<p><img src="barrendero2-1.png" style="width:70.0%" /></p>
+<p>El problema lo podemos modelar en un grafo general pero con la intención de ilustrar un caso concreto pensemos en la retícula <span class="math inline">\(\mathbb Z^2\)</span> con la relación de adyacencia <span class="math inline">\(x\sim y\)</span> cuando <span class="math inline">\(\|x-y\| = 1\)</span>. Es decir que cada baldosa tiene exactamente cuatro baldosas adyacentes en cada una de las direcciones cardinales.</p>
+<p>Sea <span class="math inline">\(\mu:\mathbb Z^2\to [0,\infty)\)</span> la distribución de masa inicial que buscamos barrer de algún <span class="math inline">\(\Omega\subseteq\mathbb Z^2\)</span>. Un plan de barridas está dado por una lista de baldosas <span class="math inline">\(b_1,b_2,\ldots \in \Omega\)</span>, las que iremos barriendo en el orden respectivo. Si <span class="math inline">\(\infty_i:\mathbb Z^2\to [0,\infty)\)</span> denota la distribución de masa luego del <span class="math inline">\(i^{mo}\)</span> paso, se tiene entonces la siguiente fórmula recursiva comenzando de <span class="math inline">\(\mu_0:=\mu\)</span>,
+<span class="math display">\[
+\mu_i(x) :=
+\begin{cases}
+0 \text{ si } x=b_i\\
+\mu_{i-1}(x) + \tfrac{1}{4}\mu_{i-1}(b_i) \text{ si } x\sim b_i\\
+\mu_{i-1}(x) \text{  en cualquier otro caso}.
+\end{cases}
+\]</span></p>
+<p>Decimos que el plan plan <span class="math inline">\(b_1,b_2,\ldots \in \Omega\)</span> barre a <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span> si
+<span class="math display">\[
+\lim_{i\to\infty} \mu_i(x) = 0, \qquad \forall x\in \Omega.
+\]</span></p>
+<p>Nuestro teorema puede ser entonces formulado de la siguiente manera.</p>
+<div class="theorem">
+<p><span id="thm:tma1" class="theorem"><strong>Teorema 6.1  </strong></span>Dado <span class="math inline">\(\Omega\subseteq\mathbb Z^2\)</span> finito y <span class="math inline">\(\mu:\mathbb Z^2\to [0,\infty)\)</span> se tiene que cualesquiera dos planes <span class="math inline">\(b_1,b_2,\ldots \in \Omega\)</span> y <span class="math inline">\(b_1&#39;,b_2&#39;,\ldots \in \Omega\)</span> que barren a <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span> satisfacen que los siguientes límites existen para todo <span class="math inline">\(x\in \mathbb Z^2\)</span> y
+<span class="math display">\[
+\lim_{i\to \infty} \mu_i(x) = \lim_{i\to \infty} \mu&#39;_i(x).
+\]</span></p>
+</div>
+<p>Daremos la demostración del teorema en la Sección <a href="el-problema-de-dirichlet.html#principio-del-mínimo">Principio del mínimo</a> luego de presentar y motivar algunas construcciones auxiliares.</p>
+<div id="ley-de-conservación" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Ley de conservación<a href="el-problema-de-dirichlet.html#ley-de-conservación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una idea útil es llevar el registro de cuánta masa ha salido de una dada baldosa <span class="math inline">\(x\)</span> hasta una dada iteración. Para ser precisos definimos para cada subíndice <span class="math inline">\(i\geq 0\)</span> las funciones <span class="math inline">\(u_i:\mathbb Z^2\to [0,\infty)\)</span> comenzando por <span class="math inline">\(u_0=0\)</span> y de forma inductiva según
+<span class="math display">\[
+u_i := u_{i-1} + \mu_{i-1}(b_i) 1_{b_i}
+\]</span>
+Observemos que para cualquier plan <span class="math inline">\(b_1,b_2,\ldots \in \Omega\)</span> se tiene necesariamente que <span class="math inline">\(u_i=0\)</span> en <span class="math inline">\(\mathbb Z^2\setminus \Omega\)</span>.</p>
+<p>La función <span class="math inline">\(u_i\)</span> nos permite dar una fórmula para la <strong>ley de conservación de masas</strong>: En los primeros <span class="math inline">\(i\)</span> pasos, la masa que entra menos la que sale de una baldosa <span class="math inline">\(x\)</span> es justamente la diferencia entre las distribuciones <span class="math inline">\(\mu_i\)</span> menos <span class="math inline">\(\mu_0\)</span> en <span class="math inline">\(x\)</span>
+<span class="math display">\[
+\underbrace{\mu_i(x)}_{\text{masa final}}-\underbrace{\mu_0(x)}_{\text{masa inicial}} = \underbrace{\frac{1}{4}\sum_{y\sim x} u_i(y)}_{\text{masa que entra}} - \underbrace{u_i(x)}_{\text{masa que sale}} = \tfrac{1}{4}\Delta u(x)
+\]</span>
+Esta puede ser demostrada por un argumento inductivo que dejamos de ejercicio.</p>
+<p>Volviendo al modelo del barrendero, vemos que si <span class="math inline">\(\mu_i \to \mu_\infty\)</span> entonces <span class="math inline">\(u_i\)</span> también converge a una función <span class="math inline">\(u:\mathbb Z^2\to[0,\infty)\)</span><a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> tal que <span class="math inline">\(\tfrac{1}{4}\Delta u = \mu_\infty - \mu_0 = \mu_\infty-\mu\)</span>. Si el plan barre a <span class="math inline">\(\Omega\)</span> recuperamos el siguiente sistema de ecuaciones lineales
+<span class="math display">\[\begin{align}\label{eq:lap}
+\begin{cases}
+-\tfrac{1}{4}\Delta u = -\mu \text{ en } \Omega,\\
+u = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\end{align}\]</span></p>
+<p>Veamos a grandes rasgos las ideas en la demostración del Teorema <a href="el-problema-de-dirichlet.html#thm:tma1">6.1</a> a partir de estas construcciones. Si el sistema que satisface <span class="math inline">\(u\)</span> tiene una solución, entonces esta función queda determinada por <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\Omega\)</span> y es independientemente del plan. Usando que <span class="math inline">\(\mu_\infty = \mu + \lim_{i\to\infty} \tfrac{1}{4}\Delta u_i = \mu+\tfrac{1}{4}\Delta u\)</span> vemos que también <span class="math inline">\(\mu_\infty\)</span> es independientemente del plan, lo cual concluiría la demostración.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-60" class="exercise"><strong>Ejercicio 6.1  </strong></span>Asumiendo la estrategia esbozada en esta sección, calcula la distribución final <span class="math inline">\(\mu_\infty\)</span> si <span class="math inline">\(\Omega = \{(0,0),(1,0),(0,1)\}\)</span> y <span class="math inline">\(\mu= 1_\Omega\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+<div id="existencia-y-unicidad-de-soluciones" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Existencia y unicidad de soluciones<a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El principio del mínimo nos permitirá demostrar que el sistema dado por <span class="math inline">\(\eqref{eq:lap}\)</span> no tiene más de una solución. Para problemas lineales con igual número (finito) de ecuaciones e incógnitas, esto equivale a decir que el sistema de hecho siempre tiene solución.</p>
+<div id="principio-del-mínimo" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Principio del mínimo<a href="el-problema-de-dirichlet.html#principio-del-mínimo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La idea consiste en el siguiente principio general: Si <span class="math inline">\(u:V\to\mathbb R\)</span> es no-negativa en <span class="math inline">\(V\setminus \Omega\)</span> y satisface <span class="math inline">\(\Delta u\leq 0\)</span> en <span class="math inline">\(\Omega\)</span> entonces <span class="math inline">\(u\)</span> es necesariamente no-negativa en <span class="math inline">\(\Omega\)</span>. Como veremos en la siguiente demostración, esto es una manifestación del criterio de la segunda derivada (discreto): <span class="math inline">\(\Delta u(x^*)\geq 0\)</span> si <span class="math inline">\(u\)</span> alcanza su mínimo en <span class="math inline">\(x^*\)</span>.</p>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-61" class="lemma"><strong>Lema 6.1  (Principio del Mínimo) </strong></span>Sea <span class="math inline">\(u:V\to\mathbb R\)</span> tal que para <span class="math inline">\(\Omega\subseteq V\)</span> finito <span class="math inline">\(\Delta u \leq 0\)</span> en <span class="math inline">\(\Omega\)</span>. Entonces
+<span class="math display">\[
+\inf_{V\setminus\Omega} u \geq 0 \qquad\Rightarrow\qquad \min_{\Omega} u\geq 0.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-62" class="proof"><em>Demostración</em>. </span>Asumamos por contradicción que <span class="math inline">\(m:= \min_{\Omega} u &lt; 0\)</span> y sea <span class="math inline">\(\Omega&#39;=\{x\in \Omega : u(x) = m\}\)</span> finito y no vacío, más aún sabemos que es finito dado que <span class="math inline">\(\Omega&#39;\subseteq\Omega\)</span>. Tomemos ahora <span class="math inline">\(x^*\in \Omega&#39;\)</span> tal que existe <span class="math inline">\(y\sim x^*\)</span> para el cual <span class="math inline">\(u(y)&gt;u(x^*)\)</span>. Vemos ahora que tenemos la siguiente contradicción a partir de evaluar la ecuación <span class="math inline">\(\Delta u\leq 0\)</span> sobre <span class="math inline">\(x^*\)</span>
+<span class="math display">\[
+0 &lt; \sum_{z\sim x^*} (u(z) -u(x^*)) = \Delta u(x^*) \leq 0.
+\]</span></p>
+</div>
+<div class="corollary">
+<p><span id="cor:unlabeled-div-63" class="corollary"><strong>Corolario 6.1  (Existencia y unicidad de soluciones) </strong></span>Para <span class="math inline">\(\Omega\subseteq V\)</span> finito y <span class="math inline">\(\mu,\varphi:V\to\mathbb R\)</span> el siguiente sistema tiene solución única
+<span class="math display">\[
+\begin{cases}
+\Delta u = \mu \text{ en } \Omega,\\
+u = \varphi \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-64" class="proof"><em>Demostración</em>. </span>Basta con demostrar que el sistema lineal dado por las ecuaciones en <span class="math inline">\(\Omega\)</span>, con <span class="math inline">\(N=|\Omega|\)</span> ecuaciones e incógnitas, tiene a lo sumo una solución. En otras palabras, el operador lineal asociado de <span class="math inline">\(\mathbb R^N\)</span> en si mismo es inyectivo, y por lo tanto también es biyectivo gracias al teorema fundamental del álgebra lineal.</p>
+<p>Si <span class="math inline">\(u,v:V\to \mathbb R\)</span> son dos soluciones, entonces <span class="math inline">\(w:=u-v\)</span> satisface <span class="math inline">\(\Delta w=0\)</span> en <span class="math inline">\(\Omega\)</span> y <span class="math inline">\(w = 0\)</span> en <span class="math inline">\(V\setminus \Omega\)</span>. Gracias al principio del mínimo obtenemos que <span class="math inline">\(w\geq 0\)</span> en <span class="math inline">\(\Omega\)</span> y por lo tanto en todo <span class="math inline">\(V\)</span>. Si aplicamos el mismo razonamiento a <span class="math inline">\(-w\)</span> obtenemos la otra desigualdad de donde concluimos <span class="math inline">\(w=0\)</span>, es decir que queda establecida la unicidad de soluciones y con ello la demostración.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-65" class="exercise"><strong>Ejercicio 6.2  </strong></span>Demuestra que si <span class="math inline">\(\Omega = \{x = (x_1,x_2) \in \mathbb Z^2 : x_2&gt;0\}\)</span> entonces existen por lo menos dos soluciones distintas del problema
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ en } \Omega,\\
+u = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span>
+Es decir que la hipótesis de que <span class="math inline">\(\Omega\)</span> sea finito es necesaria para la unicidad de soluciones.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="proof">
+<p><span id="unlabeled-div-66" class="proof"><em>Demostración</em> (Teorema <a href="el-problema-de-dirichlet.html#thm:tma1">6.1</a>). </span>Construimos de forma recursiva y partiendo de <span class="math inline">\(u_0 := 0\)</span> las funciones <span class="math inline">\(u_i := u_{i-1} + \mu_{i-1} 1_{b_i}\)</span> las cuales verifican
+<span class="math display">\[
+\begin{cases}
+\tfrac{1}{4}\Delta u_i = \mu_i-\mu \text{ en } \Omega,\\
+u_i = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span>
+Definimos también <span class="math inline">\(u:\mathbb Z^2\to \mathbb R\)</span> como la solución de
+<span class="math display">\[
+\begin{cases}
+\tfrac{1}{4}\Delta u = -\mu \text{ en } \Omega,\\
+u = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span></p>
+<p>Debemos corroborar entonces los siguientes puntos:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\mu_{\infty} := \lim_{i\to\infty}\mu_i\)</span> está bien definido.</p></li>
+<li><p><span class="math inline">\(u_\infty := \lim_{i\to\infty}u_i\)</span> está bien definido.</p></li>
+<li><p><span class="math inline">\(u_\infty = u\)</span>.</p></li>
+</ol>
+<p>Para ver el primer punto basta con fijarse en el comportamiento de <span class="math inline">\(\mu_i\)</span> en <span class="math inline">\(\mathbb Z^2\setminus \Omega\)</span>, ya que sabemos por hipótesis que estas tienden a cero en <span class="math inline">\(\Omega\)</span>. En <span class="math inline">\(\mathbb Z^2\setminus \Omega\)</span> se tiene que <span class="math inline">\(\mu_i\)</span> es una sucesión no-decreciente de funciones que está mayorizada por <span class="math inline">\(\mu + \sum_{x\in\Omega} \mu(x)\)</span>.</p>
+<p>Como <span class="math inline">\(u_i\)</span> es no-decreciente, basta con probar que <span class="math inline">\(u\geq u_i\)</span> para demostrar el segundo punto y adicionalmente obtener <span class="math inline">\(u\geq u_\infty\)</span>. La diferencia <span class="math inline">\(v_i := u-u_i\)</span> satisface
+<span class="math display">\[
+\begin{cases}
+\Delta v_i = \Delta u - \Delta u_i = -4\mu_i \leq 0 \text{ en } \Omega,\\
+v_i = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span>
+Gracias principio del mínimo se deduce que <span class="math inline">\(\min_\Omega v_i \geq 0\)</span> y por lo tanto <span class="math inline">\(u\geq u_i\)</span>.</p>
+<p>Dado que <span class="math inline">\(b_1,b_2,\ldots\in\Omega\)</span> barre a <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span> tenemos que tomando <span class="math inline">\(i\to\infty\)</span> en el sistema para <span class="math inline">\(u_i\)</span>
+<span class="math display">\[
+\begin{cases}
+\tfrac{1}{4}\Delta u_\infty = -\mu \text{ en } \Omega,\\
+u_\infty = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span>
+Por la unicidad de soluciones del problema lineal llegamos a que necesariamente <span class="math inline">\(u_\infty=u\)</span>.</p>
+<p>Finalmente para concluir la demostración podemos calcular <span class="math inline">\(\mu_\infty\)</span> a partir de <span class="math inline">\(\mu_\infty = \mu+\tfrac{1}{4}\Delta u_\infty\)</span>. Recordemos que <span class="math inline">\(u_\infty=u\)</span> está igualmente definido por un sistema de ecuaciones lineales que depende solamente de <span class="math inline">\(\Omega\)</span> y <span class="math inline">\(\mu\)</span> y no del plan. Esto indica que <span class="math inline">\(\mu_\infty\)</span> también está definida independientemente del plan.</p>
+</div>
+<p>Nuestro teorema garantiza que para cualquier <span class="math inline">\(\Omega\subseteq\mathbb Z^2\)</span> finito y <span class="math inline">\(\mu:\mathbb Z^2\to [0,\infty)\)</span> se tiene que si <span class="math inline">\(\mu\)</span> puede ser barrido de <span class="math inline">\(\Omega\)</span>, entonces la distribución de masa que queda por fuera de <span class="math inline">\(\Omega\)</span> es independiente del plan. Queda abierta la pregunta de si podemos en todo caso barrer o no a <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span>.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-67" class="theorem"><strong>Teorema 6.2  </strong></span>Dado <span class="math inline">\(\Omega\subseteq\mathbb Z^2\)</span> finito y <span class="math inline">\(\mu:\mathbb Z^2\to[0,\infty)\)</span> existe un plan <span class="math inline">\(b_1,b_2,\ldots\in\Omega\)</span> que barre a <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-68" class="proof"><em>Demostración</em>. </span>Sea <span class="math inline">\(b_1,b_2,\ldots\in\Omega\)</span> un plan que recorre cada baldosa un número infinito de veces. Ciertamente estos planes existen incluso si <span class="math inline">\(\Omega\)</span> es infinito (usando un argumento de diagonal de Cantor). Esta condición implica que para cada <span class="math inline">\(x\in\Omega\)</span>, existe un número infinito de sub-índices tales que <span class="math inline">\(\mu_i(x)=0\)</span>. Basta probar así que <span class="math inline">\(\mu_\infty = \lim_{i\to\infty}\mu_i\)</span> existe para deducir que necesariamente <span class="math inline">\(\mu_\infty=0\)</span> en <span class="math inline">\(\Omega\)</span>.</p>
+<p>Definimos <span class="math inline">\(u_i\)</span> y <span class="math inline">\(u\)</span> exactamente como en la demostración anterior. Recordemos que <span class="math inline">\(u_i\)</span> es no-decreciente y (por el principio del mínimo) acotada por <span class="math inline">\(u\)</span>, por lo tanto <span class="math inline">\(u_\infty:=\lim_{i\to\infty}u_i\)</span> está bien definida. Dado que <span class="math inline">\(\mu_i = \mu + \Delta u_i\)</span> tenemos que la existencia del límite para <span class="math inline">\(\mu_i\)</span> queda demostrada por la existencia del límite para <span class="math inline">\(u_i\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-69" class="exercise"><strong>Ejercicio 6.3  </strong></span>Demuestra que existe un plan que barre a <span class="math inline">\(\mu= 1_{(1,0)}\)</span> de <span class="math inline">\(\Omega = \mathbb Z^2\setminus \{(0,0)\}\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-70" class="exercise"><strong>Ejercicio 6.4  </strong></span>Sea <span class="math inline">\(\Omega\subseteq\mathbb Z^2\)</span> finito, <span class="math inline">\(\mu:\mathbb Z^2\to[0,\infty)\)</span> y <span class="math inline">\(\mu_\infty\)</span> la distribución que resulta al barrer <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span>. Demuestra ley de conservación de masa dada por
+<span class="math display">\[
+\sum_{x\in\mathbb Z^2} \mu_\infty(x) = \sum_{x\in \mathbb Z^2} \mu(x).
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-71" class="exercise"><strong>Ejercicio 6.5  </strong></span>Sea <span class="math inline">\(\mu= 1_{(1,0)}\)</span> y <span class="math inline">\(\mu_\infty\)</span> la distribución que resulta al barrer <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega= \mathbb Z^2\setminus \{(0,0)\}\)</span>. ¿Será cierto que <span class="math inline">\(\mu_\infty(0,0) = 1\)</span>, o habrá masa que escapa a infinito?<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+<div id="método-de-balayage" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Método de Balayage<a href="el-problema-de-dirichlet.html#método-de-balayage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Poincaré propuso a finales del siglo XIX el siguiente algoritmo para resolver el sistema
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ en } \Omega,\\
+u = \varphi \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}.
+\]</span></p>
+<p>Asumamos <span class="math inline">\(\Omega\)</span> finito y sea <span class="math inline">\(\partial\Omega := \{y \in \mathbb Z^2\setminus \Omega : \exists x\in \Omega \text{ adyacente a } y\}\)</span>. Comenzamos entonces a partir de
+<span class="math display">\[
+u_0(x) := \begin{cases}
+\max_{\partial\Omega}\varphi \text{ si } x\in\Omega,\\
+\varphi(x) \text{ en cualquier otro caso}.
+\end{cases},
+\]</span>
+tal que
+<span class="math display">\[
+\begin{cases}
+\Delta u_0 \leq 0 \text{ en } \Omega,\\
+u_0 = \varphi \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span>
+Hagamos notar que por el principio del mínimo, <span class="math inline">\(u_0\geq \min_{\partial\Omega} \varphi\)</span>.</p>
+<p>Sea <span class="math inline">\(b_1,b_2,\ldots \in \Omega\)</span> tal que para cada <span class="math inline">\(x\in \Omega\)</span> el conjunto de índices <span class="math inline">\(\{i : b_i=x\}\)</span> es infinito. Definimos ahora <span class="math inline">\(u_i\)</span> modificando a <span class="math inline">\(u_{i-1}\)</span> en <span class="math inline">\(b_i\)</span> de forma que <span class="math inline">\(\Delta u_i(b_i) =0\)</span>, es decir
+<span class="math display">\[
+u_i(x) := \begin{cases}
+\frac{1}{4} \sum_{y\sim b_i} u_{i-1}(y) \text{ si } x = b_i,\\
+u_{i-1}(x) \text{ en cualquier otro caso}.
+\end{cases}
+\]</span>
+En otras palabras, en el paso <span class="math inline">\(i\)</span> estamos barriendo el Laplaciano de <span class="math inline">\(u_{i-1}\)</span> en <span class="math inline">\(b_i\)</span>.</p>
+<p>Se puede demostrar por inducción que cada <span class="math inline">\(u_i\)</span> satisface
+<span class="math display">\[
+\begin{cases}
+\Delta u_i \leq 0 \text{ en } \Omega,\\
+u_i = \varphi \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span>
+Gracias a esto observamos que la sucesión es decreciente. También, cuando la restringimos a <span class="math inline">\(\Omega\)</span>, está acotada por debajo por <span class="math inline">\(\min_{\partial\Omega}\varphi\)</span>. Como consecuencia converge a la solución que se busca calcular.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-72" class="exercise"><strong>Ejercicio 6.6  </strong></span>Implementa el método de balayage. El programa debe recibir un conjunto <span class="math inline">\(\Omega\subseteq\mathbb Z^2\)</span> finito junto con <span class="math inline">\(\varphi:\partial\Omega\to\mathbb R\)</span>, debe devolver la solución correspondiente del problema de Dirichlet <span class="math inline">\(u:\Omega\to \mathbb Z^2\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+</div>
+<div id="fórmulas-de-representación" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Fórmulas de representación<a href="el-problema-de-dirichlet.html#fórmulas-de-representación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="la-función-de-green" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> La función de Green<a href="el-problema-de-dirichlet.html#la-función-de-green" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para <span class="math inline">\(\Omega\subseteq V\)</span> finito, definimos la <strong>función de Green</strong> <span class="math inline">\(G_\Omega:V^2\to\mathbb R\)</span> tal que <span class="math inline">\(u(y)=G_\Omega(x,y)\)</span> es la solución de
+<span class="math display">\[
+\begin{cases}
+\Delta u = - 1_x \text{ en } \Omega,\\
+u=0 \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-73" class="example"><strong>Ejemplo 6.1  </strong></span>Si <span class="math inline">\(\Omega=\{x_0\}\)</span>, entonces
+<span class="math display">\[
+G_\Omega(x,y) = \begin{cases}
+1/\deg(x_0) \text{ si } y=x=x_0,\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span>
+donde <span class="math inline">\(\deg(x_0)\)</span> es el grado del vértice <span class="math inline">\(x_0\)</span>, es decir cuantas aristas llegan y salen de <span class="math inline">\(x_0\)</span>.</p>
+</div>
+<p>Igualmente definimos <span class="math inline">\(G_\Omega\)</span> sobre una distribución <span class="math inline">\(\mu:V\to\mathbb R\)</span> tal que <span class="math inline">\(u(y)=G_\Omega(\mu,y)\)</span> es la solución de
+<span class="math display">\[
+\begin{cases}
+\Delta u = -\mu \text{ en } \Omega,\\
+u=0 \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span>
+Es decir que en particular <span class="math inline">\(G_\Omega(x,\cdot) = G_\Omega( 1_x,\cdot)\)</span>.</p>
+<p>Gracias al principio de superposición tenemos que a partir de esta podemos resolver
+<span class="math display">\[
+\begin{cases}
+\Delta u = -\mu \text{ en } \Omega,\\
+u=0 \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span>
+usando la fórmula de representación
+<span class="math display">\[
+u(y) = \sum_{x\in V} \mu(x)G_\Omega(x,y) = G_\Omega(\mu,y).
+\]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-74" class="example"><strong>Ejemplo 6.2  </strong></span>Para el problema del barrendero (<span class="math inline">\(V=\mathbb Z^2\)</span>) tenemos que <span class="math inline">\(u(y)= 4G_\Omega(\mu,y)\)</span> indica cuanta masa sale de <span class="math inline">\(y\)</span> cuando se barre <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span>.</p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-75" class="example"><strong>Ejemplo 6.3  </strong></span>Veamos como calcular la función de Green para <span class="math inline">\(\Omega = [1,n] \subseteq V=\mathbb Z\)</span> con <span class="math inline">\(n\geq 1\)</span> y la relación de adyacencia dada por <span class="math inline">\(x\sim y\)</span> si <span class="math inline">\(|x-y|=1\)</span>. Denotamos a lo largo de este ejemplo a <span class="math inline">\(g_{i,j} := G_\Omega(i,j)\)</span> con <span class="math inline">\(i,j\in \{0,1,\ldots,n,n+1\}\)</span>, los valores de interés (<span class="math inline">\(G_\Omega(x,y) = 0\)</span> fuera de estos casos).</p>
+<p>Para <span class="math inline">\(j\in[1,i-1]\)</span>, tenemos la ecuación
+<span class="math display">\[
+2g_{i,j} = g_{i,j-1}+g_{i,j+1},
+\]</span>
+la cual junto a <span class="math inline">\(g_{i,0} = 0\)</span> indica que <span class="math inline">\(g_{i,j}=\alpha j\)</span> para <span class="math inline">\(j\in[0,i]\)</span>.</p>
+<p>Para <span class="math inline">\(j\in[i+1,n]\)</span>, tenemos también la ecuación
+<span class="math display">\[
+2g_{i,j} = g_{i,j-1}+g_{i,j+1},
+\]</span>
+la cual junto a <span class="math inline">\(g_{i,n+1} = 0\)</span> indica que <span class="math inline">\(g_{i,j}=\beta(n+1-j)\)</span> para <span class="math inline">\(j\in[i,n+1]\)</span>.</p>
+<p>Por un lado sabemos que <span class="math inline">\(\alpha i = \beta(n+1-i)\)</span> y adicionalmente usando la ecuación para <span class="math inline">\(j=i\)</span>
+<span class="math display">\[
+-1=g_{i,i-1}+g_{i,i+1}-2g_{i,i} = -\alpha-\beta
+\]</span>
+obtenemos que <span class="math inline">\(\alpha=(n+1-i)/(n+1)\)</span> y <span class="math inline">\(\beta=i/(n+1)\)</span>. En conclusión
+<span class="math display">\[
+g_{i,j} = \begin{cases}
+(n+1-i)j/(n+1) \text{ si } j\in[1,i),\\
+(n+1-j)i/(n+1) \text{ si } j\in(i,n],\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-76" class="exercise"><strong>Ejercicio 6.7  </strong></span>Calcula la función de Green para <span class="math inline">\(\Omega = [1,n]\times\{0\}\cap \mathbb Z^2\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>Los ejemplos previos sugieren la siguiente simetría
+<span class="math display">\[
+G_\Omega(x,y)=G_\Omega(y,x).
+\]</span></p>
+<div class="proof">
+<p><span id="unlabeled-div-77" class="proof"><em>Demostración</em>. </span>Usaremos en repetidas ocasiones que si alguno de los nodos <span class="math inline">\(x\)</span> o <span class="math inline">\(y\)</span> están en <span class="math inline">\(V\setminus \Omega\)</span> se tiene automáticamente que <span class="math inline">\(G_\Omega(x,y)=G_\Omega(y,x)=0\)</span>.</p>
+<p>Basta ver que <span class="math inline">\((x,y) \mapsto G_\Omega(y,x)\)</span> satisface las mismas condiciones para la definición de <span class="math inline">\(G_\Omega\)</span>, es decir que <span class="math inline">\(v(y) = G_\Omega(y,x)\)</span> cumple
+<span class="math display">\[
+\begin{cases}
+\Delta v = -  1_x \text{ en } \Omega,\\
+v = 0 \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span></p>
+<p>Las condición de borde ya sabemos que se satisface. Para ver la ecuación asumimos que <span class="math inline">\(x\in \Omega\)</span> (el otro caso siendo tivial) y comprobaremos que <span class="math inline">\(w(x) = \Delta_1 G(y,x)+ 1_y(x) = \Delta_1 G(y,x)+ 1_x(y)=0\)</span> para cualquier <span class="math inline">\(y\in \Omega\)</span>. Por un lado tenemos la condición de borde
+<span class="math display">\[
+w(x) = 0+0 = 0 \text{ si } x\in V\setminus \Omega.
+\]</span>
+Por el otro tenemos que
+<span class="math display">\[
+\Delta w (x) = \Delta_2\Delta_1G(y,x)+\Delta  1_y(x) = \Delta_1\Delta_2 G(y,x)+\Delta  1_y(x) = \Delta  1_{y}(x) - \Delta  1_y(x)=0.
+\]</span>
+Gracias a la unicidad de la solución trivial podemos finalmente concluir la demostración.</p>
+</div>
+</div>
+<div id="el-núcleo-de-poisson" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> El núcleo de Poisson<a href="el-problema-de-dirichlet.html#el-núcleo-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para <span class="math inline">\(\Omega\subseteq V\)</span> finito, <span class="math inline">\(x,y \in V\)</span> definimos el <strong>núcleo de Poisson</strong>
+<span class="math display">\[
+P_\Omega(x,y) :=  1_x (y) + \Delta_2 G_\Omega(x,y).
+\]</span>
+Observemos los valores no triviales de <span class="math inline">\(P_\Omega(x,y)\)</span> ocurren cuando <span class="math inline">\(x\in \Omega\)</span> y <span class="math inline">\(y\in V\setminus \Omega\)</span>. Si <span class="math inline">\(x\in V\setminus \Omega\)</span> entonces <span class="math inline">\(G_\Omega(x,\cdot) = 0\)</span> y <span class="math inline">\(P_\Omega(x,y) = 1_x (y)\)</span>. Si <span class="math inline">\(y\in \Omega\)</span> entonces <span class="math inline">\(\Delta_2 G_\Omega(x,y) = - 1_x (y)\)</span> y <span class="math inline">\(P_\Omega(x,y)=0\)</span>.</p>
+<p>En particular, la simetría de <span class="math inline">\(G\)</span> <strong>no</strong> implica la propiedad análoga para <span class="math inline">\(P_\Omega\)</span>.</p>
+<p>Igualmente extendemos la construcción para <span class="math inline">\(\mu:V\to \mathbb R\)</span> usando
+<span class="math display">\[
+P_\Omega(\mu,y) :=  \mu(y) + \Delta_2 G_\Omega(\mu,y).
+\]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-78" class="example"><strong>Ejemplo 6.4  </strong></span>Si <span class="math inline">\(\Omega=\{x_0\}\)</span>, entonces
+<span class="math display">\[
+P_\Omega(x,y) = \begin{cases}
+1/\deg(x_0) \text{ si } x=x_0,\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span></p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-79" class="example"><strong>Ejemplo 6.5  </strong></span>Para el problema del barrendero (<span class="math inline">\(V=\mathbb Z^2\)</span>) tenemos que al barrer <span class="math inline">\(\mu\)</span> de <span class="math inline">\(\Omega\)</span> la distribución de masa que resulta está dada por <span class="math inline">\(P_\Omega(\mu)\)</span>.</p>
+</div>
+<hr />
+<p>De la linealidad del problema junto con la existencia y unicidad de soluciones se deduce que
+<span class="math display">\[
+P_\Omega(\alpha\mu+\beta\nu) = \alpha P_\Omega(\mu) +\beta P_\Omega(\nu).
+\]</span></p>
+<p>Gracias a la interpretación de núcleo de Poisson en términos del problema del barrendero es natural pensar que dados <span class="math inline">\(\Omega_1\subseteq\Omega_2\subseteq V\)</span> finitos, se tiene la siguiente propiedad
+<span class="math display">\[
+P_{\Omega_2} = P_{\Omega_2}\circ P_{\Omega_1}.
+\]</span>
+Denominaremos a esta como la <strong>propiedad de semi-grupo</strong>.</p>
+<p>Como consecuencia de la linealidad y la propiedad de semi-grupo tenemos la siguiente <strong>interpretación dual del núcleo de Poisson</strong>: Para <span class="math inline">\(y\in V\)</span> fijo, la función <span class="math inline">\(u(x) = P_\Omega(x,y)\)</span> es la solución de
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ en } \Omega,\\
+u= 1_{y} \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span>
+Esta formulación es más sencilla de recordar y conveniente al momento de calcular <span class="math inline">\(P_\Omega\)</span> sin necesidad de calcular la función de Green.</p>
+<p>Como consecuencia de la formulación dual de núcleo de Poisson y el principio de superposición tenemos la <strong>fórmula de representación</strong>
+<span class="math display">\[
+u(x) = \sum_{y\in V} \varphi(y) P_\Omega(x,y) \qquad\Leftrightarrow\qquad\begin{cases}
+\Delta u = 0 \text{ en } \Omega,\\
+u= \varphi \text{ en } V\setminus \Omega.
+\end{cases}
+\]</span>
+Más aún, si a esta añadimos la fórmula de representación para la función de Green, junto con su propia simetría, obtenemos que
+<span class="math display">\[
+u(x) = \sum_{y\in V} \varphi(y) P_\Omega(x,y)+\mu(y) G_\Omega(x,y) \qquad\Leftrightarrow\qquad \begin{cases}
+\Delta u = -\mu \text{ en }\Omega,\\
+u=\varphi \text{ en } V\setminus \Omega.
+\end{cases}.
+\]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-80" class="example"><strong>Ejemplo 6.6  </strong></span>Veamos como calcular el núcleo de Poisson para <span class="math inline">\(\Omega = [1,n] \subseteq V=\mathbb Z\)</span> con <span class="math inline">\(n\geq 1\)</span> y la relación de adyacencia dada por <span class="math inline">\(x\sim y\)</span> si <span class="math inline">\(|x-y|=1\)</span>. Denotamos a lo largo de este ejemplo a <span class="math inline">\(p_{i,j} := P_\Omega(i,j)\)</span> con <span class="math inline">\(i,j\in \{0,1,\ldots,n,n+1\}\)</span>, los valores de interés (<span class="math inline">\(P_\Omega(x,y) = 0\)</span> fuera de estos casos). En realidad solamente debemos calcular <span class="math inline">\(p_{i,0}\)</span> y <span class="math inline">\(p_{i,n+1}\)</span>, los demás valores también se anulan.</p>
+<p>Para <span class="math inline">\(j=0\)</span>, tenemos la ecuación
+<span class="math display">\[
+2p_{i,0} = p_{i-1,0}+p_{i+1,0},
+\]</span>
+la cual junto a <span class="math inline">\(p_{0,0} = 1\)</span> y <span class="math inline">\(p_{n+1,0}=0\)</span> indica que <span class="math inline">\(p_{i,0}=(n+1-i)/(n+1)\)</span> para <span class="math inline">\(i\in[0,n+1]\)</span>.\</p>
+<p>Para <span class="math inline">\(j=n+1\)</span>, tenemos también la ecuación
+<span class="math display">\[
+2p_{i,n+1} = p_{i-1,n+1}+p_{i+1,n+1},
+\]</span>
+la cual junto a <span class="math inline">\(p_{0,n+1} = 0\)</span> y <span class="math inline">\(p_{n+1,n+1}=1\)</span> indica que <span class="math inline">\(p_{i,n+1}=i/(n+1)\)</span> para <span class="math inline">\(i\in[0,n+1]\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-81" class="exercise"><strong>Ejercicio 6.8  </strong></span>Calcula el núcleo de Poisson para <span class="math inline">\(\Omega=[1,n]\times \{0\}\cap \mathbb Z^2\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+</div>
+<div id="caminatas-aleatorias" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Caminatas Aleatorias<a href="el-problema-de-dirichlet.html#caminatas-aleatorias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos ahora un problema que afinará nuestra intuición con respecto a las herramientas que hemos presentado. Volvemos a trabajar en la retícula <span class="math inline">\(\mathbb Z^2\)</span> a pesar de que el modelo es claramente generalizable a otros grafos.</p>
+<p>Un borracho parte de una posición inicial <span class="math inline">\(x\in\mathbb Z^2\)</span> y se mueve con igual probabilidad a cualquiera de sus cuatro posiciones adyacentes. Es decir que si <span class="math inline">\(x_i\)</span> es la posición (aleatoria) del borracho luego de <span class="math inline">\(i\)</span> pasos, tenemos que las <strong>probabilidades de transición</strong> están dadas por
+<span class="math display">\[
+\mathbb P(x_i = y \ | \ x_{i-1} = x) = \begin{cases}
+1/4 \text{ si } y \sim x,\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span></p>
+<p>Dado <span class="math inline">\(\Omega \subseteq\mathbb Z^2\)</span>, sea <span class="math inline">\(\tau\)</span> el número de pasos que toma el borracho para salir de <span class="math inline">\(\Omega\)</span> por primera vez, también conocido como el <strong>tiempo de salida</strong> de la caminata
+<span class="math display">\[
+\tau := \min\{i \geq 0 : x_i \in \mathbb Z^2\setminus \Omega\}.
+\]</span>
+Para nuestro modelo, podemos interpretar <span class="math inline">\(\mathbb Z^2\setminus \Omega\)</span> como la región en la ciudad <span class="math inline">\(\mathbb Z^2\)</span> donde hay ley seca. El borracho pasea en <span class="math inline">\(\Omega\)</span> y una vez que sale de <span class="math inline">\(\Omega\)</span> se queda dormido o lo atrapa la policía.</p>
+<p>Dado <span class="math inline">\(A \subseteq\mathbb Z^2\)</span> (quizás sea la casa del nuestro protagonista) queremos calcular la probabilidad de que el paseo en <span class="math inline">\(\Omega\)</span> termine (felizmente) en <span class="math inline">\(A\)</span> dado que comienza en <span class="math inline">\(x\)</span>, es decir
+<span class="math display">\[
+p(x) := \mathbb P(x_\tau \in A \ | \ x_0 = x).
+\]</span></p>
+<p><img src="drunk-1.png" /></p>
+<p>Si inicialmente <span class="math inline">\(x \in \mathbb Z^2\setminus\Omega\)</span>, tenemos que <span class="math inline">\(x_\tau =x_0=x\)</span> y por lo tanto <span class="math inline">\(p= 1_A\)</span>. Si en cambio <span class="math inline">\(x \in \Omega\)</span>, la probabilidad <span class="math inline">\(p(x)\)</span> puede ser calculada si conocemos los valores de <span class="math inline">\(p(y)\)</span> para <span class="math inline">\(y\sim x\)</span>. Para <span class="math inline">\(y\sim x\)</span> fijo, tenemos que con probabilidad <span class="math inline">\(1/4\)</span> se tiene que <span class="math inline">\(x_1=y\)</span>, y a partir de <span class="math inline">\(y\)</span> tenemos que el paseo en <span class="math inline">\(\Omega\)</span> sale por <span class="math inline">\(A\)</span> con probabilidad <span class="math inline">\(p(y)\)</span>. En otras palabras
+<span class="math display">\[
+p(x) = \frac{1}{4}\sum_{y\sim x}p(y).
+\]</span></p>
+<p>En términos del Laplaciano podemos caracterizar a la probabilidad <span class="math inline">\(p\)</span> como la solución del sistema
+<span class="math display">\[
+\begin{cases}
+\Delta p = 0 \text{ en } \Omega,\\
+p =  1_A \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}.
+\]</span>
+Cuando <span class="math inline">\(A=\{y\}\)</span> conseguimos interpretar al núcleo de Poisson <span class="math inline">\(P_\Omega(x,y) = p(x)\)</span> como la probabilidad de que la caminata que comienza en <span class="math inline">\(x\)</span> termine en <span class="math inline">\(y\)</span>. Esto es una probabilidad de transición para el tiempo aleatorio <span class="math inline">\(\tau\)</span>
+<span class="math display">\[
+P_\Omega(x,y) = \mathbb P(x_\t=y\ | \ x_0=x).
+\]</span>
+La interpretación probabilista de la fórmula de representación para el núcleo de Poisson está dada en cambio por el valor esperado
+<span class="math display">\[
+u(x) = \mathbb E(\varphi(x_\tau) \ | \ x_0=x) \qquad \Leftrightarrow\qquad \begin{cases}
+\Delta u = 0 \text{ en }\Omega,\\
+u=\varphi \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-82" class="exercise"><strong>Ejercicio 6.9  </strong></span>Dos borrachitos se encuentran paseando en la avenida <span class="math inline">\(\Omega = [1,n]\times \{0\} \cap \mathbb Z^2\)</span> con <span class="math inline">\(n\geq 2\)</span>. Uno parte de <span class="math inline">\(x=(1,0)\)</span>, el otro de <span class="math inline">\(y = (n,0)\)</span>, y ambos toman pasos simultáneamente en <span class="math inline">\(\mathbb Z^2\)</span> con igual probabilidad en las cuatro direcciones cardinales. Da una fórmula para la probabilidad <span class="math inline">\(p(n)\)</span> de que se encuentren en <span class="math inline">\(\Omega\)</span> (es decir que ambos coinciden en la misma casilla al mismo tiempo, no vale que se crucen) antes de que alguno de ellos salga de <span class="math inline">\(\Omega\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>Dado <span class="math inline">\(A\subseteq\mathbb Z^2\)</span>, otra variable aleatoria de interés es el número de veces que encontramos <span class="math inline">\(x_i \in A\)</span> para <span class="math inline">\(i &lt; \tau\)</span>, es decir antes de salir de la región <span class="math inline">\(\Omega\)</span>. Esta variable también se conoce como el <strong>tiempo de ocupación</strong> de <span class="math inline">\(A\)</span> y está definida de forma precisa por
+<span class="math display">\[
+N := \sum_{i=0}^{\tau-1}  1_A(x_i).
+\]</span></p>
+<p>El valor esperado en función de la posición inicial de la caminata
+<span class="math display">\[
+n(x) := \mathbb E(N \ | \ x_0=x),
+\]</span>
+también satisface un sistema de ecuaciones lineales
+<span class="math display">\[
+\begin{cases}
+\tfrac{1}{4}\Delta n = - 1_A \text{ en } \Omega,\\
+n = 0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}.
+\]</span></p>
+<p>Por un lado la condición de borde es automática puesto que si <span class="math inline">\(x_0=x\in \mathbb Z^2\setminus\Omega\)</span> entonces como ya está fuera de <span class="math inline">\(\Omega\)</span>, nunca puede visitar a <span class="math inline">\(A\)</span> en su paseo (inexistente) por <span class="math inline">\(\Omega\)</span>. Por otro lado, para <span class="math inline">\(x\in \Omega\)</span>, <span class="math inline">\(n(x)\)</span> se puede obtener a partir de los valores de <span class="math inline">\(n(y)\)</span> para <span class="math inline">\(y\sim x\)</span>. Dado <span class="math inline">\(y\sim x\)</span>, la probabilidad de que <span class="math inline">\(x_1=y\)</span> es un cuarto, y a partir de acá consideramos dos casos:</p>
+<ul>
+<li><p>Si <span class="math inline">\(x\in A\)</span> entonces el tiempo de ocupación partiendo de <span class="math inline">\(x\)</span> es uno más que el tiempo de ocupación partiendo de <span class="math inline">\(y\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(x\in \Omega\setminus A\)</span>, el tiempo de ocupación partiendo de <span class="math inline">\(x\)</span> es el mismo tiempo de ocupación partiendo de <span class="math inline">\(y\)</span>.</p></li>
+</ul>
+<p>Tomando los valores esperados
+<span class="math display">\[
+n(x) =  1_A(x) + \frac{1}{4}\sum_{y\sim x} n(y).
+\]</span>
+Lo cual es equivalente a <span class="math inline">\(\tfrac{1}{4}\Delta n = - 1_A\)</span> en <span class="math inline">\(\Omega\)</span>. Es decir que <span class="math inline">\(n=4G_\Omega( 1_A)\)</span> está dado en términos de la función de Green.</p>
+<p>En términos probabilistas interpretamos la fórmula de representación para la función de Green como,
+<span class="math display">\[
+u(x) = \mathbb E\left(\sum_{i=0}^{\tau-1}\mu(x_i) \ | \ x_0=x\right) \qquad\Leftrightarrow\qquad \begin{cases}
+\frac{1}{4}\Delta u = -\mu \text{ en } \Omega,\\
+u=0 \text{ en } \mathbb Z^2\setminus \Omega.
+\end{cases}.
+\]</span></p>
+<p>Finalmente observamos que la simetría de la función de Green se interpreta como una propiedad de reversibilidad para las caminatas aleatorias. Es decir que el número promedio de veces que una caminata que comienza en <span class="math inline">\(x\)</span> visita a <span class="math inline">\(y\)</span> antes de salir de <span class="math inline">\(\Omega\)</span> (<span class="math inline">\(G_\Omega(x,y)\)</span>) es igual al número promedio de veces que una caminata que comienza en <span class="math inline">\(y\)</span> visita a <span class="math inline">\(x\)</span> antes de salir de <span class="math inline">\(\Omega\)</span> (<span class="math inline">\(G_\Omega(y,x)\)</span>). Esto se debe a que las caminatas de <span class="math inline">\(x\)</span> a <span class="math inline">\(y\)</span> que permanecen en <span class="math inline">\(\Omega\)</span> están en biyección con las caminatas de <span class="math inline">\(y\)</span> a <span class="math inline">\(x\)</span> que permanecen en <span class="math inline">\(\Omega\)</span>, simplemente cambiando la orientación.</p>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>Daremos una prueba rigurosa de este hecho en la Sección <a href="el-problema-de-dirichlet.html#principio-del-mínimo">Principio del Mínimo</a><a href="el-problema-de-dirichlet.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p><strong>Pista:</strong> El problema se puede reducir a verificar que <span class="math inline">\(\Delta u(0,0) = -\Delta u(1,0)\)</span>. La función <span class="math inline">\(u\)</span> parece tener una simetría en el eje <span class="math inline">\(x=1/2\)</span> la cual podría ser demostrada por un resultado de unicidad (Liouville): Las funciones armónicas y acotadas en <span class="math inline">\(\mathbb Z^2\)</span> son únicamente las constantes.<a href="el-problema-de-dirichlet.html#fnref11" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="espectro-del-laplaciano.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-prob_dirchlet.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/06-prob_dirchlet.Rmd",
+"text": null
+},
+"download": ["bookdown_intro.pdf", "bookdown_intro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
