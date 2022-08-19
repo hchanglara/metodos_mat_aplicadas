@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Optimización | Métodos de matemáticas aplicadas</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Optimización | Métodos de matemáticas aplicadas" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Optimización | Métodos de matemáticas aplicadas" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Héctor Andrés Chang-Lara" />
+
+
+<meta name="date" content="2022-08-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="el-problema-de-dirichlet.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Métodos de matemáticas aplicadas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="entramados.html"><a href="entramados.html"><i class="fa fa-check"></i><b>1</b> Entramados</a></li>
+<li class="chapter" data-level="2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html"><i class="fa fa-check"></i><b>2</b> Cálculo discreto</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#gradiente"><i class="fa fa-check"></i><b>2.1</b> Gradiente</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#ley-de-ciclos"><i class="fa fa-check"></i><b>2.1.1</b> Ley de ciclos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#divergencia"><i class="fa fa-check"></i><b>2.2</b> Divergencia</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#fórmula-de-la-divergencia"><i class="fa fa-check"></i><b>2.2.1</b> Fórmula de la divergencia</a></li>
+<li class="chapter" data-level="2.2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#lema-de-poincaré-para-la-divergencia"><i class="fa fa-check"></i><b>2.2.2</b> Lema de Poincaré para la divergencia</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#integración-por-partes"><i class="fa fa-check"></i><b>2.3</b> Integración por partes</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#descomposición-de-helmholtz"><i class="fa fa-check"></i><b>2.3.1</b> Descomposición de Helmholtz</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#laplaciano"><i class="fa fa-check"></i><b>2.4</b> Laplaciano</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dinámica.html"><a href="dinámica.html"><i class="fa fa-check"></i><b>3</b> Dinámica</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dinámica.html"><a href="dinámica.html#transporte"><i class="fa fa-check"></i><b>3.1</b> Transporte</a></li>
+<li class="chapter" data-level="3.2" data-path="dinámica.html"><a href="dinámica.html#difusión"><i class="fa fa-check"></i><b>3.2</b> Difusión</a></li>
+<li class="chapter" data-level="3.3" data-path="dinámica.html"><a href="dinámica.html#oscilación"><i class="fa fa-check"></i><b>3.3</b> Oscilación</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html"><i class="fa fa-check"></i><b>4</b> Implementación del entramado</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#librerías-y-datos"><i class="fa fa-check"></i><b>4.1</b> Librerías y datos</a></li>
+<li class="chapter" data-level="4.2" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#ecuación-diferencial"><i class="fa fa-check"></i><b>4.2</b> Ecuación diferencial</a></li>
+<li class="chapter" data-level="4.3" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#integración-y-graficación"><i class="fa fa-check"></i><b>4.3</b> Integración y graficación</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html"><i class="fa fa-check"></i><b>5</b> Espectro del Laplaciano</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-elíptico"><i class="fa fa-check"></i><b>5.1</b> Problema elíptico</a></li>
+<li class="chapter" data-level="5.2" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-parabólico"><i class="fa fa-check"></i><b>5.2</b> Problema parabólico</a></li>
+<li class="chapter" data-level="5.3" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-hiperbólico"><i class="fa fa-check"></i><b>5.3</b> Problema hiperbólico</a></li>
+<li class="chapter" data-level="5.4" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#nerd-sniping"><i class="fa fa-check"></i><b>5.4</b> Nerd sniping</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html"><i class="fa fa-check"></i><b>6</b> El problema de Dirichlet</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#ley-de-conservación"><i class="fa fa-check"></i><b>6.1</b> Ley de conservación</a></li>
+<li class="chapter" data-level="6.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones"><i class="fa fa-check"></i><b>6.2</b> Existencia y unicidad de soluciones</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#principio-del-mínimo"><i class="fa fa-check"></i><b>6.2.1</b> Principio del mínimo</a></li>
+<li class="chapter" data-level="6.2.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#método-de-balayage"><i class="fa fa-check"></i><b>6.2.2</b> Método de Balayage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#fórmulas-de-representación"><i class="fa fa-check"></i><b>6.3</b> Fórmulas de representación</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#la-función-de-green"><i class="fa fa-check"></i><b>6.3.1</b> La función de Green</a></li>
+<li class="chapter" data-level="6.3.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#el-núcleo-de-poisson"><i class="fa fa-check"></i><b>6.3.2</b> El núcleo de Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#caminatas-aleatorias"><i class="fa fa-check"></i><b>6.4</b> Caminatas Aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="optimización.html"><a href="optimización.html"><i class="fa fa-check"></i><b>7</b> Optimización</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="optimización.html"><a href="optimización.html#métrica-de-sobolev"><i class="fa fa-check"></i><b>7.1</b> Métrica de Sobolev</a></li>
+<li class="chapter" data-level="7.2" data-path="optimización.html"><a href="optimización.html#capacitancia"><i class="fa fa-check"></i><b>7.2</b> Capacitancia</a></li>
+<li class="chapter" data-level="7.3" data-path="optimización.html"><a href="optimización.html#métrica-dual"><i class="fa fa-check"></i><b>7.3</b> Métrica dual</a></li>
+<li class="chapter" data-level="7.4" data-path="optimización.html"><a href="optimización.html#cociente-de-rayleigh"><i class="fa fa-check"></i><b>7.4</b> Cociente de Rayleigh</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos de matemáticas aplicadas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="optimización" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> Optimización<a href="optimización.html#optimización" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Consideremos una vez más el grafo <span class="math inline">\(G=(V,E)\)</span>. Otra perspectiva para el Laplaciano aparece cuando consideramos la <strong>energía de Dirichlet</strong> para una función <span class="math inline">\(u:V\to \mathbb R\)</span>
+<span class="math display">\[
+\mathcal E[u] := \frac{1}{2}\sum_{e\in E} (Du(e))^2.
+\]</span>
+Recordemos que podemos pensar igualmente a <span class="math inline">\(\mathcal E\)</span> como una función de <span class="math inline">\(\mathbb R^{|V|}\)</span> a <span class="math inline">\(\mathbb R\)</span>, y como tal podemos calcular su gradiente en una dada <span class="math inline">\(u\)</span> como un vector de <span class="math inline">\(\mathbb R^{|V|}\)</span> o equivalentemente una función real sobre <span class="math inline">\(V\)</span>. Dado <span class="math inline">\(x\in V\)</span>
+<span class="math display">\[
+D\mathcal E[u](x) = \left.\frac{d}{d\epsilon}\right|_{\epsilon=0}\mathcal E[u+\epsilon 1_{x}] = \sum_{e\in E} Du(e) D 1_{x}(e).
+\]</span></p>
+<p>Dado que
+<span class="math display">\[
+D 1_{x}(e) = \begin{cases}
+1 \text{ si } e_+=x,\\
+-1 \text{ si } e_-=x,\\
+0 \text{ en cualquier otro caso},\\
+\end{cases}
+\]</span>
+llegamos a que
+<span class="math display">\[
+D\mathcal E[u](x) = \sum_{e_+=x} Du(e) - \sum_{e_-=x} Du(e) = -\operatorname{div}(Du)(x) = -\Delta u(x).
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-83" class="exercise"><strong>Ejercicio 7.1  </strong></span>Sea <span class="math inline">\(f:V\to \mathbb R\)</span> y <span class="math inline">\(\mathcal F:\mathbb R^V\to \mathbb R\)</span> tal que
+<span class="math display">\[
+\mathcal F[u] = \mathcal E[u] + \sum_{x\in V} f(x)u(x).
+\]</span>
+Demuestra que <span class="math inline">\(\mathcal F\)</span> es acotada por debajo si y solo si <span class="math inline">\(\sum_{x\in V} f(x)=0\)</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-84" class="exercise"><strong>Ejercicio 7.2  </strong></span>Demuestra que si <span class="math inline">\(\partial_t^2u=\Delta u\)</span> entonces la energía total del sistema definida a continuación permanece constante
+<span class="math display">\[
+E = \underbrace{\frac{1}{2}\sum_{x\in V} (\partial_t u(x))^2}_{\text{Cinética}} + \underbrace{\mathcal E[u]}_{\text{Potencial}}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-85" class="example"><strong>Ejemplo 7.1  </strong></span>Modelamos una imagen en blanco y negro está dada por una función <span class="math inline">\(u:V\to [0,1]\)</span> definida sobre la retícula <span class="math inline">\(V = \mathbb Z^2\cap [1,N]^2\)</span>. El problema de restauración de imágenes consiste en proponer una imagen <span class="math inline">\(u\)</span> que aproxime una dada imagen <span class="math inline">\(f\)</span> que quizás esté contaminada con algún tipo de ruido.</p>
+<p>Por ejemplo, podemos proponer <span class="math inline">\(u\)</span> como aquella que minimiza el funcional
+<span class="math display">\[
+\mathcal F[u] = \frac{1}{2}\sum_{x\in V} (u(x)-f(x))^2+\alpha(Du(x))^2.
+\]</span>
+El primer término penaliza el funcional cuando <span class="math inline">\(u\)</span> se aleja de la señal dada <span class="math inline">\(f\)</span> y se conoce como el término de fidelidad. El segundo término penaliza las oscilaciones de <span class="math inline">\(u\)</span> y se conoce como el término de regularización. El parámetro <span class="math inline">\(\alpha&gt;0\)</span> debe ser ajustado empíricamente para obtener un balance entre la fidelidad de la imagen y la regularización.</p>
+<p>Tenemos entonces la ecuación de punto crítico la cual debe satisfacerse para todo <span class="math inline">\(x\in V\)</span>
+<span class="math display">\[
+0 = D\mathcal F[u](x) = u(x)-f(x) - \alpha\Delta u(x).
+\]</span>
+Observemos que <span class="math inline">\(\Delta\)</span> posee autovalores negativos, esto indica que el operador <span class="math inline">\(I-\alpha\Delta\)</span> tiene autovalores estrictamente positivos, en particular la ecuación <span class="math inline">\(u-\alpha\Delta u=f\)</span> tiene una única solución para <span class="math inline">\(f:V\to \mathbb R\)</span> arbitraria.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-86" class="exercise"><strong>Ejercicio 7.3  </strong></span>El término de penalización dado por la energía de Dirichlet es conveniente al momento de calcular el gradiente, sin embargo en la práctica este difumina los contornos. Una mejor alternativa es usar en término de <strong>variación total</strong>
+<span class="math display">\[
+\mathcal F[u] = \sum_{x\in V} \frac{1}{2}(u(x)-f(x))^2+\alpha|Du(x)|.
+\]</span>
+Calcula las ecuaciones de punto crítico de <span class="math inline">\(\mathcal F\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-87" class="exercise"><strong>Ejercicio 7.4  </strong></span>El término de variación total tiene la desventaja de no ser diferenciable en todos lados. Una alternativa consiste en tomar para <span class="math inline">\(\epsilon&gt;0\)</span> pequeño
+<span class="math display">\[
+\mathcal F[u] = \sum_{x\in V} \frac{1}{2}(u(x)-f(x))^2+\alpha\sqrt{(Du(x))^2+\epsilon^2}.
+\]</span>
+Calcula las ecuaciones de punto crítico de <span class="math inline">\(\mathcal F\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-88" class="example"><strong>Ejemplo 7.2  </strong></span>Un dado conjunto de datos puede estar dado en términos de un grafo <span class="math inline">\(G=(V,E)\)</span> para el cual pensamos que dos vértices adyacentes son de alguna forma semejantes. El propósito es clasificar los vértices de acuerdo a <span class="math inline">\(k\)</span> etiquetas que modelamos usando los vectores canónicos <span class="math inline">\(\{e_1,\ldots,e_k\}\in \mathbb R^k\)</span>. De hecho el problema está planteado en un subconjunto de vértices <span class="math inline">\(\Omega\subseteq V\)</span>, dado que en el complemento las etiquetas vienen predeterminadas por una función <span class="math inline">\(g:V\setminus\Omega\to\{e_1,\ldots,e_k\}\)</span>.</p>
+<p>Una forma de llevar a cabo esta tarea consiste en minimizar el funcional de Dirichlet bajo el dato de borde en <span class="math inline">\(V\setminus \Omega\)</span>
+<span class="math display">\[
+\min\{\mathcal E[u]\ | \ u=g\text{ en } V\setminus \Omega\}.
+\]</span>
+Bajo esta condición <span class="math inline">\(u:V\to \mathbb R^k\)</span> debe ser calculado según
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ en } \Omega,\\
+u=g\text{ en } V\setminus \Omega.
+\end{cases}
+\]</span>
+Dado que la solución <span class="math inline">\(u(x)\)</span> no necesariamente toma valores en <span class="math inline">\(\{e_1,\ldots,e_k\}\)</span>, tomamos la etiqueta para <span class="math inline">\(x\)</span> como el <span class="math inline">\(e_j\)</span> más cercano a <span class="math inline">\(u(x)\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-89" class="exercise"><strong>Ejercicio 7.5  </strong></span>Dado que <span class="math inline">\(u=(u_1,\ldots,u_k)\)</span> satisface
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ en } \Omega,\\
+u=g\text{ en } V\setminus \Omega.
+\end{cases}
+\]</span>
+con <span class="math inline">\(g\)</span> tomando valores en <span class="math inline">\(\{e_1,\ldots,e_k\}\)</span>, demuestra que para todo <span class="math inline">\(x\in V\)</span>
+<span class="math display">\[
+u(x) \in \{y\in [0,1]^k \ | \ y_1+\ldots+y_k=1\}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<div id="métrica-de-sobolev" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Métrica de Sobolev<a href="optimización.html#métrica-de-sobolev" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos para <span class="math inline">\(G = (V,E)\)</span> conexo
+<span class="math display">\[
+\dot H^1 := \left\{u:V\to\mathbb R\ | \ \sum_V u = 0\right\}.
+\]</span>
+Este espacio vectorial admite el producto interno,
+<span class="math display">\[
+\langle u,v\rangle_{\dot H^1} := \sum_{e\in E} Du(e)Dv(e).
+\]</span>
+Recordemos rápidamente las propiedades que verifica para poder ser efectivamente un producto:</p>
+<ul>
+<li><p>Simétrico: <span class="math inline">\(\langle u,v\rangle_{\dot H^1}=\langle v,u\rangle_{\dot H^1}\)</span>,</p></li>
+<li><p>Lineal: <span class="math inline">\(\langle \alpha u+\beta v,w\rangle_{\dot H^1} = \alpha\langle u,w\rangle_{\dot H^1}  +\beta\langle v,w\rangle_{\dot H^1}\)</span>.</p></li>
+<li><p>Positivo: <span class="math inline">\(\|u\|_{\dot H^1}^2 := \langle u,u\rangle_{\dot H^1}\geq 0\)</span></p></li>
+<li><p>No degenerado: <span class="math inline">\(\|u\|_{\dot H^1} = 0\)</span> si y solo si <span class="math inline">\(u=0\)</span>.</p></li>
+</ul>
+<p>De todas estas propiedades, la no degeneración es la más delicada. De <span class="math inline">\(\|u\|_{\dot H^1} = 0\)</span> se deduce que <span class="math inline">\(u\)</span> es constante (<span class="math inline">\(G\)</span> es conexo). Dado que <span class="math inline">\(\sum u=0\)</span> se llega a que necesariamente dicha constante es cero.</p>
+</div>
+<div id="capacitancia" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Capacitancia<a href="optimización.html#capacitancia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dado <span class="math inline">\(\Omega\subseteq V\)</span> con <span class="math inline">\(V\setminus \Omega\neq \emptyset\)</span>, definimos la capacitancia de <span class="math inline">\(\Omega&#39;\subseteq\Omega\)</span> con respecto de <span class="math inline">\(\Omega\)</span> como
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega) := \min\{2\mathcal E[u] \ | \ \text{$u=1$  en $\Omega&#39;$, y $u=0$ en $V\setminus\Omega$}\}.
+\]</span></p>
+<p>Un minimizante <span class="math inline">\(u\)</span> de dicho problema es la función armónica en <span class="math inline">\(\Omega\setminus \Omega&#39;\)</span> que satisface los datos de borde prescritos
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ in } \Omega\setminus \Omega&#39;,\\
+u=0 \text{ on } V\setminus \Omega,\\
+u=1 \text{ on } \Omega&#39;.
+\end{cases}
+\]</span>
+Gracias al teorema de la divergencia<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega) = -\sum_{x\in V} u\Delta u(x) = -\sum_{x\in \Omega&#39;} \Delta u(x) = -\sum_{e\in E} Du(e)n_{\Omega&#39;}(e).
+\]</span>
+En términos de redes eléctricas obtenemos la corriente total que atraviesa la red cuando se mantiene una diferencia potencial de un voltio entre <span class="math inline">\(\Omega&#39;\)</span> y <span class="math inline">\(V\setminus \Omega\)</span>. La resistencia efectiva entre dos nodos distintos <span class="math inline">\(x_0\)</span> y <span class="math inline">\(x_1\)</span> puede ser definida así según
+<span class="math display">\[
+R(x_0,x_1) = \frac{1}{\operatorname{Cap}(\{x_1\}|V\setminus\{x_0\})}.
+\]</span></p>
+<p>Equivalentemente se puede definir la capacitancia en términos de dos desigualdades sobre <span class="math inline">\(\Omega&#39;\)</span> y <span class="math inline">\(V\setminus \Omega\)</span>
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega) = \min\{\mathcal E[u] \ | \ \text{$u\geq 1$  en $\Omega&#39;$, y $u\leq 0$ en $V\setminus\Omega$}\}.
+\]</span>
+Es claro que el lado derecho es menor o igual que el lado izquierdo, dado que el conjunto que considera el mínimo es más grande. Por el otro lado tenemos que para cualquier <span class="math inline">\(u\)</span> tal que <span class="math inline">\(u\geq 1\)</span> en <span class="math inline">\(\Omega&#39;\)</span>, y <span class="math inline">\(u\leq 0\)</span> en <span class="math inline">\(V\setminus\Omega\)</span>, la truncación dada por
+<span class="math display">\[
+v(x) := \max(\min(u(x),1),0) = \begin{cases}
+1 \text{ si } x\in \Omega&#39;,\\
+u(x) \text{ si } x\in \Omega\setminus\Omega&#39;,\\
+0 \text{ si } x\in V\setminus \Omega.
+\end{cases}
+\]</span>
+disminuye la energía de Dirichlet <span class="math inline">\(\mathcal E[v]\leq \mathcal E[u]\)</span>, lo cual concluye la igualdad que habíamos anunciado.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-90" class="exercise"><strong>Ejercicio 7.6  </strong></span>Calcula <span class="math inline">\(\operatorname{Cap}(\{a\}|V\setminus \{b\})\)</span></p>
+<p><img src="capa2.PNG" /></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-91" class="exercise"><strong>Ejercicio 7.7  </strong></span>Demuestra que para <span class="math inline">\(\Omega_1\subseteq\Omega_2\subseteq\Omega_3\subseteq V\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(\operatorname{Cap}(\Omega_1|\Omega_2)= \operatorname{Cap}(V\setminus\Omega_2|V\setminus \Omega_1)\)</span>.</p></li>
+<li><p><span class="math inline">\(\operatorname{Cap}(\Omega_1|\Omega_3) \leq \operatorname{Cap}(\Omega_2|\Omega_3)\)</span>.</p></li>
+<li><p><span class="math inline">\(\operatorname{Cap}(\Omega_1|\Omega_2) \geq \operatorname{Cap}(\Omega_1|\Omega_3)\)</span>.</p></li>
+</ul>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-92" class="exercise"><strong>Ejercicio 7.8  </strong></span>Demuestra que para <span class="math inline">\(\Omega_1,\Omega_2\subseteq\Omega\subseteq V\)</span><a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>:
+<span class="math display">\[
+\operatorname{Cap}(\Omega_1\cup\Omega_2|\Omega) \leq \operatorname{Cap}(\Omega_1|\Omega)+\operatorname{Cap}(\Omega_2|\Omega).
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-93" class="exercise"><strong>Ejercicio 7.9  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>, <span class="math inline">\(u\)</span> la solución de
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ in } \Omega\setminus \Omega&#39;,\\
+u=0 \text{ on } V\setminus \Omega,\\
+u=1 \text{ on } \Omega&#39;.
+\end{cases}
+\]</span>
+y sean <span class="math inline">\(\mu=(\Delta u)_-\)</span> y <span class="math inline">\(\nu=(\Delta u)_+\)</span>. Demuestra que
+<span class="math display">\[
+P_\Omega(\mu)=\nu \qquad \text{ y } \qquad P_{V\setminus \Omega&#39;}(\nu)=\mu.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+</div>
+<div id="métrica-dual" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Métrica dual<a href="optimización.html#métrica-dual" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>De forma dual proponemos el siguiente problema. Decimos que un flujo <span class="math inline">\(i:E\to\mathbb R\)</span> transporta a la distribución (de cargas) <span class="math inline">\(\mu:V\to [0,\infty)\)</span> en <span class="math inline">\(\nu:V\to\mathbb R\)</span> si satisface
+<span class="math display">\[
+\operatorname{div} i = \mu-\nu.
+\]</span>
+Recordemos que tal problema tiene solución si y solo si (y asumiendo <span class="math inline">\(G\)</span> conexo)
+<span class="math display">\[
+\sum_{x\in V}\mu(x) = \sum_{x\in V}\nu(x).
+\]</span></p>
+<p>Dada la energía del flujo <span class="math inline">\(i\)</span> como
+<span class="math display">\[
+\mathcal K[i] := \frac{1}{2}\sum_{e\in E} i(e)^2,
+\]</span>
+nos preguntamos entonces cuál es la menor energía posible que se requiere para transportar a <span class="math inline">\(\mu\)</span> en <span class="math inline">\(\nu\)</span>
+<span class="math display">\[
+\mathcal D^2[\mu,\nu] := \min\{ 2\mathcal K[i] \ | \ \operatorname{div} i = \mu-\nu\}.
+\]</span></p>
+<p>Si <span class="math inline">\(i\)</span> minimiza <span class="math inline">\(\mathcal K\)</span> y <span class="math inline">\(j\)</span> es un flujo tal que <span class="math inline">\(\operatorname{div} j=0\)</span>, entonces
+<span class="math display">\[
+0=\left.\frac{d}{dt}\right|_{t=0}\mathcal K[i+tj] = \sum_{e\in E}i(e)j(e).
+\]</span>
+Es decir que el mínimo <span class="math inline">\(i\)</span> debe ser perpendicular al núcleo de la divergencia. Por la descomposición de Helmholtz debe ser necesariamente un gradiente <span class="math inline">\(i=-Du\)</span> por lo que
+<span class="math display">\[
+\mathcal D^2[\mu,\nu] = 2\mathcal E[u]\text{ para cualquier solución de $\Delta u=\nu-\mu$}.
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-94" class="exercise"><strong>Ejercicio 7.10  </strong></span>Calcula <span class="math inline">\(\mathcal D^2(\mu,\nu)\)</span></p>
+<p><img src="wasser.png" /></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-95" class="exercise"><strong>Ejercicio 7.11  </strong></span>La función <span class="math inline">\(\mathcal D\)</span>, es decir la raíz cuadrada del mínimo de la energía, se conoce como la <strong>distancia dual</strong>. Demuestra que efectivamente satisface los axiomas correspondientes:</p>
+<ul>
+<li><p><span class="math inline">\(\mathcal D(\mu,\nu) = \mathcal D(\nu,\mu)\)</span>,</p></li>
+<li><p><span class="math inline">\(\mathcal D(\mu,\nu) \geq 0\)</span> y la igualdad se cumple exclusivamente si <span class="math inline">\(\mu=\nu\)</span>,</p></li>
+<li><p><span class="math inline">\(\mathcal D(\mu,\nu) \leq \mathcal D(\mu,\omega)+\mathcal D(\omega,\nu)\)</span>.</p></li>
+</ul>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-96" class="exercise"><strong>Ejercicio 7.12  </strong></span>Definimos la norma dual en <span class="math inline">\(\dot H^1\)</span> como
+<span class="math display">\[
+\|u\|_{\dot H^{-1}} := \sup\{ \langle u,v\rangle_{\dot H^1}\ | \ \|v\|_{\dot H^1}=1\}.
+\]</span>
+Demuestra que si <span class="math inline">\(\sum_V \mu = \sum_V\nu\)</span>, entonces
+<span class="math display">\[
+\|\mu-\nu\|_{\dot H^{-1}} = \mathcal D(\mu,\nu).
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<p>Dados <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span> con <span class="math inline">\(\Omega&#39;\)</span> y <span class="math inline">\(V\setminus \Omega\)</span> no triviales consideramos las distribuciones <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\nu\)</span> tales que
+<span class="math display">\[
+\begin{aligned}
+\mathcal M(\Omega&#39;|\Omega) = \{(\mu,\nu):V\to \mathbb R^2\ | \ &amp;\operatorname{spt} \mu \in \Omega&#39;,\\
+&amp;\operatorname{spt}\nu \subseteq V\setminus\Omega,\\
+&amp;\left.\sum_{x\in V}\mu(x) = \sum_{x\in V}\nu(x)=1\right\}.
+\end{aligned}
+\]</span>
+Bajos estas condiciones buscamos minimizar la distancia entre <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\nu\)</span>.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-97" class="theorem"><strong>Teorema 7.1  </strong></span>Para <span class="math inline">\(G\)</span> conexo y finito,
+<span class="math display">\[
+\min_{(\mu,\nu) \in \mathcal M(\Omega&#39;|\Omega)} \mathcal D^2[\mu,\nu] = \frac{1}{\operatorname{Cap}(\Omega&#39;|\Omega)}.
+\]</span></p>
+</div>
+<p>Es decir que el problema de minimización para <span class="math inline">\(\mathcal D^2[\mu,\nu]\)</span> bajo las restricciones <span class="math inline">\((\mu,\nu) \in \mathcal M(\Omega&#39;|\Omega)\)</span> generaliza la noción de resistencia efectiva entre dos conjuntos.</p>
+<div class="proof">
+<p><span id="unlabeled-div-98" class="proof"><em>Demostración</em>. </span>Sean <span class="math inline">\(\mu&#39;,\nu&#39;:V\to [0,\infty)\)</span> tales que
+<span class="math display">\[
+\operatorname{spt}\mu&#39;\subseteq\Omega&#39;, \qquad \operatorname{spt} \nu&#39;\subseteq V\setminus \Omega.
+\]</span>
+Obtenemos de esta forma que
+<span class="math display">\[
+\max_{\mu&#39;,\nu&#39;} \sum_{x\in V} ((1-u)\mu&#39;+u\nu&#39;)(x) = \begin{cases}
+0 \text{ si $u\geq 1$ en $\Omega&#39;$ y $u\leq 0$ en $V\setminus\Omega$,}\\
+\infty \text{ en cualquier otro caso}.
+\end{cases}
+\]</span>
+De modo que sin necesidad de imponer restricciones para <span class="math inline">\(u:V\to\mathbb R\)</span> obtenemos que
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega) = \min_u \max_{\mu&#39;,\nu&#39;} L[u,\mu&#39;,\nu&#39;], \qquad L[u,\mu&#39;,\nu&#39;] := 2\mathcal E[u] + \sum_{x\in V} ((1-u)\mu&#39;+u\nu&#39;)(x).
+\]</span></p>
+<p>Procedemos entonces a analizar el problema dual para el cual sabemos que<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega)\geq \max_{\mu&#39;,\nu&#39;} \mathcal J[\mu&#39;,\nu&#39;], \qquad \mathcal J[\mu&#39;,\nu&#39;] := \min_u L[u,\mu&#39;,\nu&#39;].
+\]</span></p>
+<p>Por un lado vemos que si
+<span class="math display">\[
+\sum_{x\in V}\mu&#39;(x) \neq \sum_{x\in V}\nu&#39;(x)
+\]</span>
+entonces <span class="math inline">\(\mathcal J[\mu&#39;,\nu&#39;] = -\infty\)</span>, dado que para <span class="math inline">\(u=c\)</span> constante podemos hacer <span class="math inline">\(L[u,\mu&#39;,\nu&#39;]\)</span> arbitrariamente negativo
+<span class="math display">\[
+L[c,\mu&#39;,\nu&#39;] = \sum_{x\in V}\mu&#39;(x) + c\sum_{x\in V}(\nu&#39;-\mu&#39;)(x).
+\]</span>
+Asumamos entonces que las sumas son iguales, en cuyo caso la forma cuadrática convexa <span class="math inline">\(u\mapsto L[u,\mu&#39;,\nu&#39;]\)</span> alcanza su mínimo en las soluciones de
+<span class="math display">\[
+2\Delta u = \nu&#39;-\mu&#39;.
+\]</span>
+Estas están bien definidas por la hipótesis para el lado derecho, además dos soluciones cualesquiera difieren por constantes, gracias a la conexidad de <span class="math inline">\(G\)</span>. Por lo tanto
+<span class="math display">\[
+\sum_{x\in V} (\nu&#39;-\mu&#39;)u(x) = 2\sum_{x\in V} u\Delta u(x) = -4\mathcal E[u]
+\]</span>
+y entonces
+<span class="math display">\[
+\mathcal J[\mu&#39;,\nu&#39;] = \sum_{x\in V} \mu&#39;(x)-2\mathcal E[u].
+\]</span></p>
+<p>Denotemos por <span class="math inline">\(M:= \sum_{x\in V} \mu&#39;(x)\)</span> y consideremos las renormalizaciones dadas por <span class="math inline">\(\mu&#39;=M\mu\)</span>, <span class="math inline">\(\nu&#39;=M\nu\)</span> y <span class="math inline">\(2u=Mv\)</span> tales que <span class="math inline">\((\mu,\nu) \in \mathcal M(\Omega&#39;|\Omega)\)</span>, <span class="math inline">\(\Delta v = \nu-\mu\)</span>, y <span class="math inline">\(4\mathcal E[u] = M^2\mathcal E[v]\)</span>. Por lo tanto
+<span class="math display">\[
+\mathcal J[\mu&#39;,\nu&#39;] = M - \frac{M^2}{2} \mathcal E[v]
+\]</span>
+Vemos que <span class="math inline">\(M\)</span> y <span class="math inline">\(v\)</span> son independientes bajo las restricciones dadas. Si maximizamos primero en <span class="math inline">\(M\)</span> obtenemos que <span class="math inline">\(M=1/\mathcal E[v]\)</span> y por lo tanto
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega) \geq \max_{\mu&#39;,\nu&#39;} \mathcal J[\mu&#39;,\nu&#39;] = \max_{\substack{\Delta v = \nu-\mu\\(\mu,\nu)\in \mathcal M(\Omega&#39;|\Omega)}} \frac{1}{\mathcal E[v]} = \max_{(\mu,\nu)\in \mathcal M(\Omega&#39;|\Omega)} \frac{1}{\mathcal D^2[\mu,\nu]}.
+\]</span></p>
+<p>Para concluir la demostración veremos que cuando <span class="math inline">\(u\)</span> es la solución de
+<span class="math display">\[
+\begin{cases}
+\Delta u = 0 \text{ in } \Omega\setminus \Omega&#39;,\\
+u=0 \text{ on } V\setminus \Omega,\\
+u=1 \text{ on } \Omega&#39;,
+\end{cases}
+\]</span>
+y además <span class="math inline">\((\Delta u)_- = M\mu\)</span>, <span class="math inline">\((\Delta u)_+ = M\nu\)</span>, <span class="math inline">\(u=Mv\)</span>, tales que <span class="math inline">\((\mu,\nu)\in \mathcal M(\Omega&#39;|\Omega)\)</span>, entonces
+<span class="math display">\[
+\operatorname{Cap}(\Omega&#39;|\Omega) = 2\mathcal E[u] \overset{?}{=} \frac{1}{2\mathcal E[v]} = \frac{1}{\mathcal D^2[\mu,\nu]}.
+\]</span>
+Esto se debe a la fórmula de integración por partes y la homogeneidad de <span class="math inline">\(\mathcal E\)</span>
+<span class="math display">\[
+2\mathcal E[u] = M = 2M^2\mathcal E[v] \qquad\mathbb Rightarrow\qquad M= \frac{1}{2\mathcal E[v]} \qquad\mathbb Rightarrow\qquad 2\mathcal E[u] = \frac{1}{2\mathcal E[v]}.
+\]</span></p>
+</div>
+<p>En los siguientes ejercicios consideramos para <span class="math inline">\(\Omega\subseteq V\)</span>
+<span class="math display">\[
+\mathcal M(\Omega):= \left\{\mu:V\to [0,1] \ | \ \operatorname{spt}\mu\subseteq\Omega \text{ y } \sum_{x\in V}\mu(x)=1\right\}.
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-99" class="exercise"><strong>Ejercicio 7.13  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>. Demuestra que para <span class="math inline">\(\mu\in \mathcal M(\Omega&#39;)\)</span> se tiene que
+<span class="math display">\[
+\mathcal D(\mu,P_\Omega(\mu)) = \min_{\nu \in \mathcal M(V\setminus \Omega)}\mathcal D(\mu,\nu)
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-100" class="exercise"><strong>Ejercicio 7.14  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>. Demuestra que <span class="math inline">\(T:= P_{V\setminus \Omega&#39;}\circ P_\Omega\)</span> es un mapeo no expansivo <span class="math inline">\(\mathcal M(\Omega&#39;)\)</span> en si mismo con respecto de la métrica de Wasserstein, es decir que
+<span class="math display">\[
+\mathcal D(T(\mu_1),T(\mu_2))\leq \mathcal D(\mu_1,\mu_2).
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+</div>
+<div id="cociente-de-rayleigh" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Cociente de Rayleigh<a href="optimización.html#cociente-de-rayleigh" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sea <span class="math inline">\(A\in \mathbb R^{N\times N}\)</span> simétrica. Sabemos por el teorema espectral que existe una base ortogonal de autovectores de <span class="math inline">\(L\)</span> con autovalores reales. Tendremos en mente aplicar los resultados de esta sección para <span class="math inline">\(A=-L\)</span> para la cual sabemos adicionalmente que sus autovalores son no-negativos.</p>
+<p>La ecuación <span class="math inline">\(A\xi = \lambda\xi\)</span> que determina los autovectores puede pensarse también como una ecuación de punto crítico con restricciones, siendo <span class="math inline">\(\lambda\)</span> el multiplicador de Lagrange. En este caso el gradiente de la función objetivo es <span class="math inline">\(A\xi\)</span>, mientras que el gradiente de la restricción es <span class="math inline">\(\xi\)</span>. Esto quiere decir que la función objetivo puede ser tomada como la forma cuadrática <span class="math inline">\(f(\xi)=A\xi\cdot \xi\)</span>, mientras que la restricción es <span class="math inline">\(g(\xi) = \|\xi\|^2 = \xi\cdot\xi\)</span>.</p>
+<p>A lo largo de esta sección asumimos que <span class="math inline">\(A\in \mathbb R^{N\times N}\)</span> es simétrica y denotamos por <span class="math inline">\(\lambda_0\leq\ldots\leq \lambda_{N-1}\)</span> sus autovalores y <span class="math inline">\(\xi_0,\ldots,\xi_{N-1}\)</span> una base ortogonal de autovectores.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-101" class="exercise"><strong>Ejercicio 7.15  </strong></span>Demuestra que el mínimo de <span class="math inline">\(f(\xi)=A\xi\cdot \xi\)</span> sobre la esfera unitaria es el menor autovalor de <span class="math inline">\(A\)</span> y que los puntos donde se realiza el mínimo general el autoespacio de dicho autovalor.</p>
+<p>¿Sucede algo similar para el problema de maximización?</p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-102" class="exercise"><strong>Ejercicio 7.16  </strong></span>Considera el grafo</p>
+<p><img src="capa2.PNG" /></p>
+<p>Calcula el mínimo y máximo de
+<span class="math display">\[
+\sum_{e\in E} (Du(e))^2
+\]</span>
+sobre todas las funciones <span class="math inline">\(u:V\to \mathbb R\)</span> tales que <span class="math inline">\(\sum_V u^2=1\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-103" class="exercise"><strong>Ejercicio 7.17  </strong></span>Considera el grafo</p>
+<p><img src="capa2.PNG" /></p>
+<p>Calcula el mínimo y máximo de
+<span class="math display">\[
+\sum_{e\in E} (Du(e))^2
+\]</span>
+sobre todas las funciones <span class="math inline">\(u:V\to \mathbb R\)</span> tales que <span class="math inline">\(\sum_V u^2=1\)</span> y <span class="math inline">\(u(A)=u(B)=0\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<p>Una forma alternativa del problema de optimización consiste en tomar el cociente de Rayleigh
+<span class="math display">\[
+R(\xi) := \frac{A\xi \cdot \xi}{\|\xi\|^2},
+\]</span>
+y minimizar o maximizar esta función fuera del origen.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-104" class="exercise"><strong>Ejercicio 7.18  </strong></span>Demuestra que
+<span class="math display">\[
+\lambda_k = \min\{R(\xi)\ | \ \xi \in \operatorname{span}\{\xi_0,\ldots,\xi_{k-1}\}^\perp \setminus \{0\}\}
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="theorem">
+<p><span id="thm:unlabeled-div-105" class="theorem"><strong>Teorema 7.2  (Courant–Fischer–Weyl) </strong></span><span class="math display">\[
+\lambda_k = \max\{\min\{R(\xi)\ | \ \xi \in S\setminus\{0\}\} \ | \ S \text{ es un sub-espacio de $\mathbb R^N$ con $\dim S=N-k$}\}
+\]</span></p>
+</div>
+<p>En otras palabras, dado un sub-espacio <span class="math inline">\(S\)</span> de dimensión <span class="math inline">\(N-k\)</span>, el mínimo de <span class="math inline">\(R\)</span> sobre <span class="math inline">\(S\cap \partial B_1\)</span> es a lo sumo <span class="math inline">\(\lambda_k\)</span>. La igualdad se alcanza cuando <span class="math inline">\(S=\operatorname{span}\{\xi_k,\ldots,\xi_{N-1}\}\)</span>.</p>
+<div class="proof">
+<p><span id="unlabeled-div-106" class="proof"><em>Demostración</em>. </span>Denotemos
+<span class="math display">\[
+\mu_k := \max\{\min\{R(\xi)\ | \ \xi \in S\setminus\{0\}\} \ | \ S \text{ es un sub-espacio de $\mathbb R^N$ con $\dim S=N-k$}\}.
+\]</span></p>
+<p>Para demostrar que <span class="math inline">\(\lambda_k\leq \mu_k\)</span> basta con conseguir un sub-espacio <span class="math inline">\(S\)</span> de dimensión <span class="math inline">\(N-k\)</span> tal que el mínimo de <span class="math inline">\(R\)</span> sobre <span class="math inline">\(S\setminus\{0\}\)</span> es por lo menos <span class="math inline">\(\lambda_k\)</span>.</p>
+<p>Sea <span class="math inline">\(S_{N-k} = \operatorname{span}\{\xi_{k},\ldots,\xi_{N-1}\}\)</span> tal que <span class="math inline">\(\dim S_{N-k} = N-k\)</span>. Por un lado tenemos que para <span class="math inline">\(\xi = \alpha_{k}\xi_{k}+\ldots+\alpha_{N-1}\xi_{N-1}\in S_{N-k}\setminus \{0\}\)</span>
+<span class="math display">\[
+R(\xi) = \frac{\lambda_{k}\alpha_{k}^2+\ldots+\lambda_{N-1}\alpha_{N-1}^2}{\alpha_{k}^2+\ldots+\alpha_{N-1}^2} \geq \lambda_k
+\]</span>
+cuyo mínimo es de hecho <span class="math inline">\(\lambda_{k}\)</span> y se alcanza por ejemplo cuando <span class="math inline">\(\alpha_k=1\)</span> y los demás coeficientes se anulan. Es decir que hemos probado que <span class="math inline">\(\lambda_k \leq \mu_k\)</span>.</p>
+<p>La desigualdad <span class="math inline">\(\lambda_k \geq \mu_k\)</span> quiere decir que para cualquier sub-espacio <span class="math inline">\(S\)</span> de dimensión <span class="math inline">\(N-k\)</span>, existe <span class="math inline">\(\xi \in S\setminus\{0\}\)</span> tal que <span class="math inline">\(R(\xi)\leq \lambda_k\)</span>. Tomemos <span class="math inline">\(\xi = \alpha_0\xi_0+\ldots+\alpha_k\xi_k \in S\setminus\{0\}\)</span>, sabemos que tal vector existe puesto que
+<span class="math display">\[
+\dim S + \dim\operatorname{span}\{\xi_0,\ldots,\xi_k\} = N+1.
+\]</span>
+Luego
+<span class="math display">\[
+R(\xi) = \frac{\lambda_{0}\alpha_{0}^2+\ldots+\lambda_{k}\alpha_{k}^2}{\alpha_{0}^2+\ldots+\alpha_{k}^2} \leq \lambda_k.
+\]</span></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-107" class="exercise"><strong>Ejercicio 7.19  </strong></span>Si <span class="math inline">\(A\leq A&#39;\)</span>, i.e. <span class="math inline">\((A&#39;-A)\)</span> es positiva semi-definida, entonces sus correspondientes autovalores también están ordenados, es decir <span class="math inline">\(\lambda_k\leq \lambda_k&#39;\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-108" class="exercise"><strong>Ejercicio 7.20  </strong></span>Sea <span class="math inline">\(G&#39;\)</span> un sub-grafo de <span class="math inline">\(G\)</span><a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>. Demuestra que para los correspondientes autovalores del Laplaciano se tiene que <span class="math inline">\(\lambda_k&#39;\geq \lambda_k\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución:
+</summary>
+</details>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="12">
+<li id="fn12"><p>Recordemos que
+<span class="math display">\[
+n_{\Omega&#39;}(e) = \begin{cases}
+1 \text{ si $e_-\in \Omega&#39;$ y $e_+\in V\setminus \Omega$},\\
+-1 \text{ si $e_+\in \Omega&#39;$ y $e_-\in V\setminus \Omega$},\\
+0 \text{ en cualquier otro caso}.
+\end{cases}
+\]</span><a href="optimización.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>El minimizante <span class="math inline">\(u\)</span> correspondiente a <span class="math inline">\(\Omega_1\cup\Omega_2\)</span> es puntualmente mayor o igual a <span class="math inline">\(\max(u_1,u_2)\)</span> donde <span class="math inline">\(u_1\)</span> y <span class="math inline">\(u_2\)</span> son los minimizantes para <span class="math inline">\(\Omega_1\)</span> y <span class="math inline">\(\Omega_2\)</span> respectivamente.<a href="optimización.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>En general, <span class="math inline">\(\min_x\max_\lambda L(x,\lambda) \geq \max_\lambda\min_x L(x,\lambda)\)</span>.<a href="optimización.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p><span class="math inline">\(V&#39;\subseteq V\)</span> y <span class="math inline">\(E&#39;\subseteq E\cap V&#39;\times V&#39;\)</span>.<a href="optimización.html#fnref15" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="el-problema-de-dirichlet.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-optimizacion.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/07-optimizacion.Rmd",
+"text": null
+},
+"download": ["bookdown_intro.pdf", "bookdown_intro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

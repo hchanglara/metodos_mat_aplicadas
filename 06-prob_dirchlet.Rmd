@@ -51,12 +51,13 @@ $$
 Esta puede ser demostrada por un argumento inductivo que dejamos de ejercicio.
 
 Volviendo al modelo del barrendero, vemos que si $\mu_i \to \mu_\infty$ entonces $u_i$ también converge a una función $u:\mathbb Z^2\to[0,\infty)$^[Daremos una prueba rigurosa de este hecho en la Sección [Principio del Mínimo](#principio-del-mínimo)] tal que $\tfrac{1}{4}\Delta u = \mu_\infty - \mu_0 = \mu_\infty-\mu$. Si el plan barre a $\Omega$ recuperamos el siguiente sistema de ecuaciones lineales
-\begin{align}\label{eq:lap}
+$$
 \begin{cases}
 -\tfrac{1}{4}\Delta u = -\mu \text{ en } \Omega,\\
 u = 0 \text{ en } \mathbb Z^2\setminus \Omega.
 \end{cases}
-\end{align}
+(\#eq:lap)
+$$
 
 Veamos a grandes rasgos las ideas en la demostración del Teorema \@ref(thm:tma1) a partir de estas construcciones. Si el sistema que satisface $u$ tiene una \underline{única} solución, entonces esta función queda determinada por $\mu$ y $\Omega$ y es independientemente del plan. Usando que $\mu_\infty = \mu + \lim_{i\to\infty} \tfrac{1}{4}\Delta u_i = \mu+\tfrac{1}{4}\Delta u$ vemos que también $\mu_\infty$ es independientemente del plan, lo cual concluiría la demostración.
 
@@ -72,7 +73,7 @@ Asumiendo la estrategia esbozada en esta sección, calcula la distribución fina
 
 ## Existencia y unicidad de soluciones
 
-El principio del mínimo nos permitirá demostrar que el sistema dado por \eqref{eq:lap} no tiene más de una solución. Para problemas lineales con igual número (finito) de ecuaciones e incógnitas, esto equivale a decir que el sistema de hecho siempre tiene solución.
+El principio del mínimo nos permitirá demostrar que el sistema dado por \@ref(eq:lap) no tiene más de una solución. Para problemas lineales con igual número (finito) de ecuaciones e incógnitas, esto equivale a decir que el sistema de hecho siempre tiene solución.
 
 ### Principio del mínimo
 
