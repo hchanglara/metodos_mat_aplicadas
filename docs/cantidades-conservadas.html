@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 Cantidades conservadas | Métodos de matemáticas aplicadas</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 Cantidades conservadas | Métodos de matemáticas aplicadas" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 Cantidades conservadas | Métodos de matemáticas aplicadas" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Héctor Andrés Chang-Lara" />
+
+
+<meta name="date" content="2022-09-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="optimización.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Métodos de matemáticas aplicadas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="part"><span><b>Modelos discretos</b></span></li>
+<li class="chapter" data-level="1" data-path="entramados.html"><a href="entramados.html"><i class="fa fa-check"></i><b>1</b> Entramados</a></li>
+<li class="chapter" data-level="2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html"><i class="fa fa-check"></i><b>2</b> Cálculo discreto</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#gradiente"><i class="fa fa-check"></i><b>2.1</b> Gradiente</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#ley-de-ciclos"><i class="fa fa-check"></i><b>2.1.1</b> Ley de ciclos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#divergencia"><i class="fa fa-check"></i><b>2.2</b> Divergencia</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#fórmula-de-la-divergencia"><i class="fa fa-check"></i><b>2.2.1</b> Fórmula de la divergencia</a></li>
+<li class="chapter" data-level="2.2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#lema-de-poincaré-para-la-divergencia"><i class="fa fa-check"></i><b>2.2.2</b> Lema de Poincaré para la divergencia</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#integración-por-partes"><i class="fa fa-check"></i><b>2.3</b> Integración por partes</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#descomposición-de-helmholtz"><i class="fa fa-check"></i><b>2.3.1</b> Descomposición de Helmholtz</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#laplaciano"><i class="fa fa-check"></i><b>2.4</b> Laplaciano</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dinámica.html"><a href="dinámica.html"><i class="fa fa-check"></i><b>3</b> Dinámica</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dinámica.html"><a href="dinámica.html#transporte"><i class="fa fa-check"></i><b>3.1</b> Transporte</a></li>
+<li class="chapter" data-level="3.2" data-path="dinámica.html"><a href="dinámica.html#difusión"><i class="fa fa-check"></i><b>3.2</b> Difusión</a></li>
+<li class="chapter" data-level="3.3" data-path="dinámica.html"><a href="dinámica.html#oscilación"><i class="fa fa-check"></i><b>3.3</b> Oscilación</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html"><i class="fa fa-check"></i><b>4</b> Implementación del entramado</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#librerías-y-datos"><i class="fa fa-check"></i><b>4.1</b> Librerías y datos</a></li>
+<li class="chapter" data-level="4.2" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#ecuación-diferencial"><i class="fa fa-check"></i><b>4.2</b> Ecuación diferencial</a></li>
+<li class="chapter" data-level="4.3" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#integración-y-graficación"><i class="fa fa-check"></i><b>4.3</b> Integración y graficación</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html"><i class="fa fa-check"></i><b>5</b> Espectro del Laplaciano</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-elíptico"><i class="fa fa-check"></i><b>5.1</b> Problema elíptico</a></li>
+<li class="chapter" data-level="5.2" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-parabólico"><i class="fa fa-check"></i><b>5.2</b> Problema parabólico</a></li>
+<li class="chapter" data-level="5.3" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-hiperbólico"><i class="fa fa-check"></i><b>5.3</b> Problema hiperbólico</a></li>
+<li class="chapter" data-level="5.4" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#nerd-sniping"><i class="fa fa-check"></i><b>5.4</b> Nerd sniping</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html"><i class="fa fa-check"></i><b>6</b> El problema de Dirichlet</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#ley-de-conservación"><i class="fa fa-check"></i><b>6.1</b> Ley de conservación</a></li>
+<li class="chapter" data-level="6.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones"><i class="fa fa-check"></i><b>6.2</b> Existencia y unicidad de soluciones</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#principio-del-mínimo"><i class="fa fa-check"></i><b>6.2.1</b> Principio del mínimo</a></li>
+<li class="chapter" data-level="6.2.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#método-de-balayage"><i class="fa fa-check"></i><b>6.2.2</b> Método de Balayage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#fórmulas-de-representación"><i class="fa fa-check"></i><b>6.3</b> Fórmulas de representación</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#la-función-de-green"><i class="fa fa-check"></i><b>6.3.1</b> La función de Green</a></li>
+<li class="chapter" data-level="6.3.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#el-núcleo-de-poisson"><i class="fa fa-check"></i><b>6.3.2</b> El núcleo de Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#caminatas-aleatorias"><i class="fa fa-check"></i><b>6.4</b> Caminatas Aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="optimización.html"><a href="optimización.html"><i class="fa fa-check"></i><b>7</b> Optimización</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="optimización.html"><a href="optimización.html#métrica-de-sobolev"><i class="fa fa-check"></i><b>7.1</b> Métrica de Sobolev</a></li>
+<li class="chapter" data-level="7.2" data-path="optimización.html"><a href="optimización.html#capacitancia"><i class="fa fa-check"></i><b>7.2</b> Capacitancia</a></li>
+<li class="chapter" data-level="7.3" data-path="optimización.html"><a href="optimización.html#métrica-dual"><i class="fa fa-check"></i><b>7.3</b> Métrica dual</a></li>
+<li class="chapter" data-level="7.4" data-path="optimización.html"><a href="optimización.html#cociente-de-rayleigh"><i class="fa fa-check"></i><b>7.4</b> Cociente de Rayleigh</a></li>
+</ul></li>
+<li class="part"><span><b>Transporte y leyes de conservación</b></span></li>
+<li class="chapter" data-level="8" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html"><i class="fa fa-check"></i><b>8</b> Cantidades conservadas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-homogéneos"><i class="fa fa-check"></i><b>8.1</b> Problemas homogéneos</a></li>
+<li class="chapter" data-level="8.2" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-no-homogéneos"><i class="fa fa-check"></i><b>8.2</b> Problemas no-homogéneos</a></li>
+<li class="chapter" data-level="8.3" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-semi-lineales"><i class="fa fa-check"></i><b>8.3</b> Problemas semi-lineales</a></li>
+<li class="chapter" data-level="8.4" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-cuasi-lineales"><i class="fa fa-check"></i><b>8.4</b> Problemas cuasi-lineales</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos de matemáticas aplicadas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cantidades-conservadas" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Capítulo 8</span> Cantidades conservadas<a href="cantidades-conservadas.html#cantidades-conservadas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="problemas-homogéneos" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Problemas homogéneos<a href="cantidades-conservadas.html#problemas-homogéneos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sea <span class="math inline">\(v:\mathbb R^n\to \mathbb R^n\)</span> un campo vectorial suave y acotado, como tal genera un flujo <span class="math inline">\(\phi:\mathbb R^n\times\mathbb R\to \mathbb R^n\)</span> definido por medio del problema de valores iniciales
+<span class="math display">\[
+\partial_t\phi(x,t) = v(\phi(x,t)), \qquad \phi(x,0)=x.
+\]</span></p>
+<p>Una función <span class="math inline">\(u:\mathbb R^n\to \mathbb R\)</span> se dice que es una <strong>cantidad conservada</strong> de <span class="math inline">\(v\)</span>, si <span class="math inline">\(u\)</span> permanece constante a lo largo del flujo <span class="math inline">\(\phi\)</span>. Es decir
+<span class="math display">\[
+u(\phi(x,t)) = u(x) \qquad \forall \, t\in\mathbb R.
+\]</span>
+Si <span class="math inline">\(u\)</span> es además diferenciable esto equivale a la ecuación parcial lineal de primer orden
+<span class="math display" id="eq:eq1">\[
+v \cdot Du = 0.
+\tag{8.1}
+\]</span></p>
+<p>Por un lado, conocer una cantidad conservada <span class="math inline">\(u\)</span> nos ayuda a resolver las EDOs <span class="math inline">\(x&#39;=v(x)\)</span>, dado que las trayectorias permanecen en los conjuntos de nivel de <span class="math inline">\(u\)</span>. Por otro lado, la EDO asociada a la EDP <a href="cantidades-conservadas.html#eq:eq1">(8.1)</a> se conoce como la <strong>ecuación característica</strong> y nos ayudan a calcular la solución de la EDP dado que <span class="math inline">\(u\)</span> debe permanecer constante a lo largo de estas trayectorias.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-1" class="example"><strong>Ejemplo 8.1  </strong></span>Dado un vector constante <span class="math inline">\(v = (v_1,\ldots,v_n)\in \mathbb R\)</span>, consideremos el problema
+<span class="math display">\[
+v\cdot Du = 0.
+\]</span>
+Este tiene asociada la ecuación característica <span class="math inline">\(x&#39;=v\)</span> (es decir el sistema <span class="math inline">\(x_i&#39;=v_i\)</span>) cuya solución es <span class="math inline">\(x(t)=x_0+tv\)</span>. Dada que cualquier solución de la EDP debe permanecer constante a lo largo de esta trayectoria tenemos que
+<span class="math display">\[
+u(x_0+tv) = u(x_0).
+\]</span>
+Si <span class="math inline">\(u\)</span> estuviese predeterminada en una región <span class="math inline">\(F\subseteq \mathbb R^n\)</span> dada como la función <span class="math inline">\(u_0\)</span>, entonces es conveniente tomar la posición inicial <span class="math inline">\(x_0\)</span> en dicha región. Por ejemplo, si <span class="math inline">\(F = \{x_1=0\}\)</span> y <span class="math inline">\(v=(v_1,\ldots,v_n)\)</span> no es paralelo a <span class="math inline">\(F\)</span>, es decir <span class="math inline">\(v_1\neq0\)</span>, entonces podemos conectar cualquier punto <span class="math inline">\(x=(x_1,\ldots,x_n)\in\mathbb R^n\)</span> con algún punto <span class="math inline">\(x_0=(0,x_{0,2},\ldots,x_{0,n})\in F\)</span> tal que <span class="math inline">\(x_0+tv = x\)</span> y por lo tanto <span class="math inline">\(u(x) = u_0(x_0)\)</span>. En este caso particular podemos simplemente calcular <span class="math inline">\(x_0\)</span> y <span class="math inline">\(t\)</span> y obtener una fórmula explícita para la solución
+<span class="math display">\[
+\begin{aligned}
+tv_1 = x_1 \qquad&amp;\Rightarrow\qquad t=x_1/v_1,\\
+x_{0,i} + tv_i = x_i \text{ si } i\geq 2 \qquad&amp;\Rightarrow\qquad x_{0,i} = x_i - x_1v_i/v_1,\\
+u(x) = u_0(x_0) \qquad&amp;\Rightarrow\qquad u(x) = u_0(0,x_2 - x_1v_2/v_1,\ldots,x_n - x_1v_n/v_1)
+\end{aligned}
+\]</span></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-2" class="exercise"><strong>Ejercicio 8.1  </strong></span>Calcula <span class="math inline">\(u:\mathbb R^2\to \mathbb R\)</span> tal que
+<span class="math display">\[
+\begin{cases}
+y\partial_x u = x\partial_y u \text{ en } \mathbb R^2\setminus\{y=0,x\geq 0\},\\
+u = u_0 \text{ en } \{y=0,x\geq 0\}.
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-3" class="exercise"><strong>Ejercicio 8.2  </strong></span>Explica como se podría extender la teoría al problema de Cauchy donde <span class="math inline">\(u:\mathbb R^n\times[0,\infty)\to \mathbb R\)</span> depende de una variable espacial <span class="math inline">\(x\in\mathbb R^n\)</span> y una temporal <span class="math inline">\(t\in[0,\infty)\)</span> y satisface en cambio el problema de valores iniciales
+<span class="math display">\[
+\begin{cases}
+\partial_t u + v\cdot Du = 0 \text{ en } \mathbb R^n,\\
+u = u_0 \text{ en } \{t= 0\}
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-4" class="example"><strong>Ejemplo 8.2  </strong></span><strong>Ley de conservación de la energía</strong></p>
+<p>Un sistema mecánico se dice <strong>conservativo</strong> si la fuerza es menos el gradiente un potencial <span class="math inline">\(U\)</span>
+<span class="math display">\[
+mv&#39; = -DU(x), \qquad v=x&#39;.
+\]</span>
+La energía del sistema es la suma de la cinética y potencial
+<span class="math display">\[
+E(x,v) = \frac{1}{2}m|v|^2 + U(x).
+\]</span>
+La <strong>ley de la conservación de la energía</strong> dice que la energía total es constante. Comprobémoslo calculando la derivada temporal de <span class="math inline">\(E\)</span>.
+<span class="math display">\[
+\frac{d}{dt}E(x(t),v(t)) = x&#39;\partial_x E + v&#39;\partial_v E=v\cdot DU + \frac{(-DU)}{m}\cdot m v = 0.
+\]</span>
+Dicho de otra forma, la energía total satisface la ecuación <span class="math inline">\((v,-DU/m)\cdot DE=0\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-5" class="exercise"><strong>Ejercicio 8.3  </strong></span>Considera el sistema mecánico de fuerzas centrales,
+<span class="math display">\[
+mx&#39;&#39; = f(|x|)x.
+\]</span>
+Demuestra que el momento angular <span class="math inline">\(L_{ij} = x_ix_j&#39;-x_jx_i&#39;\)</span> es una cantidad conservada del sistema.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-6" class="example"><strong>Ejemplo 8.3  </strong></span>Consideremos el sistema de ecuaciones
+<span class="math display">\[
+x&#39; = f(x,y),\qquad
+y&#39; = g(x,y).
+\]</span>
+La trayectoria del sistema consiste del lugar geométrico trazado por la solución. La ecuación se dice <strong>exacta</strong> si las trayectorias son el conjunto de nivel de una función <span class="math inline">\(u\)</span>, equivalentemente el campo <span class="math inline">\((f,g)\)</span> debe ser perpendicular a <span class="math inline">\((\partial_xu,\partial_y u)\)</span>. Esto sucede en particular si <span class="math inline">\((f,g) = (-\partial_y u,\partial_x u)\)</span> lo cual implica <span class="math inline">\(\operatorname{div}((f,g))= \partial_x f+\partial_y g=0\)</span>. Esta hipótesis no solamente es necesaria, si no también suficiente para encontrar <span class="math inline">\(u\)</span> tal que
+<span class="math display">\[
+g(x,y) = \partial_x u \quad \text{y} \quad -f(x,y) = \partial_y u.
+\]</span></p>
+<p>Veamos que efectivamente <span class="math inline">\(u\)</span> es constante a lo largo de las trayectorias
+<span class="math display">\[
+\frac{d}{dt}u(x(t),y(t)) = x&#39;\partial_xu + y&#39;\partial_yu = f(x,y)g(x,y) - g(x,y)f(x,y) = 0.
+\]</span></p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-7" class="example"><strong>Ejemplo 8.4  </strong></span>Un función <span class="math inline">\(f = (u(x,y),v(x,y)):\mathbb{C}\to\mathbb{C}\)</span> es <strong>holomorfa</strong> si satisface las <strong>ecuaciones de Cauchy-Riemann</strong>
+<span class="math display">\[
+\partial_x u = \partial_y v, \qquad \partial_y u = - \partial_x v.
+\]</span>
+Estas implican que <span class="math inline">\(u\)</span> y <span class="math inline">\(v\)</span> son funciones armónicas
+<span class="math display">\[
+(\partial_x^2+\partial_y^2)u=(\partial_x^2+\partial_y^2)v=0,
+\]</span>
+y adicionalmente sus conjuntos de nivel son ortogonales entre si. Sus gradientes son exactamente rotaciones de 90 grados uno del otro.</p>
+<p>Dada una función armónica <span class="math inline">\(u:\mathbb{C}\to\mathbb R\)</span>, es posible construir una función armónica <span class="math inline">\(v\)</span> tal que <span class="math inline">\(Dv = (-\partial_y u,\partial_x u)\)</span>. Estas se conocen como los conjugados armónico de <span class="math inline">\(u\)</span>. Cualesquiera dos conjugados de la misma función <span class="math inline">\(u\)</span> difieren por una constante.</p>
+<p>Por ejemplo, tomemos la función armónica <span class="math inline">\(u(x,y) = x^2-y^2\)</span>. Debemos así resolver <span class="math inline">\(\partial_x v = 2y\)</span> y <span class="math inline">\(\partial_y v=2x\)</span>. De la primera ecuación obtenemos <span class="math inline">\(v = 2xy+\varphi(y)\)</span> y por lo tanto <span class="math inline">\(2x=2x+C&#39;(y)\)</span> lo cual implica que <span class="math inline">\(C\)</span> es constante. Concluímos así que <span class="math inline">\(v(x,y) = 2xy+C\)</span> es el conjungado armónico de <span class="math inline">\(u\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-8" class="exercise"><strong>Ejercicio 8.4  </strong></span>Calcula el conjugado armónico de las siguientes funciones:</p>
+<ul>
+<li><p><span class="math inline">\(u(x,y) = x^3-3xy^2\)</span>,</p></li>
+<li><p><span class="math inline">\(u(x,y) = e^{x}\cos y\)</span>,</p></li>
+<li><p><span class="math inline">\(u(x,y) = \ln(x^2+y^2)\)</span>.</p></li>
+</ul>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>En general, dado un campo vectorial <span class="math inline">\(v\)</span>, la derivada
+<span class="math display">\[
+D_vu = \partial_tu+ v \cdot Du
+\]</span>
+se conoce como la <strong>derivada material</strong> de <span class="math inline">\(u\)</span> y describe la tasa de cambio de <span class="math inline">\(u\)</span> a lo largo de las trayectorias generadas por <span class="math inline">\(v\)</span>.</p>
+</div>
+<div id="problemas-no-homogéneos" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Problemas no-homogéneos<a href="cantidades-conservadas.html#problemas-no-homogéneos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Puede darse también el caso de que la función <span class="math inline">\(u\)</span> no sea necesariamente constante a lo largo de las trayectorias de la EDO <span class="math inline">\(x&#39;=v(x)\)</span>, pero que sin embargo sus variaciones sean conocidas en función de la posición en la trayectoria.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-9" class="example"><strong>Ejemplo 8.5  </strong></span>Si <span class="math inline">\(u(x_0)\)</span> denota el tiempo que tarda la trayectoria que parte de la posición inicial <span class="math inline">\(x_0\)</span> en llegar a un dado conjunto <span class="math inline">\(F\)</span>, entonces a lo largo de una solución <span class="math inline">\(z(t) := u(x(t))\)</span> tiene derivada igual a <span class="math inline">\(-1\)</span>. Es decir que satisface la ecuación no-homogénea
+<span class="math display">\[
+v\cdot Du = -1.
+\]</span></p>
+</div>
+<hr />
+<p>En general podemos aplicar un razonamiento similar a la ecuación no-homogénea
+<span class="math display" id="eq:eq2">\[
+v\cdot Du = f(x).
+\tag{8.2}
+\]</span>
+La ecuación característica de <a href="cantidades-conservadas.html#eq:eq2">(8.2)</a> sigue siendo <span class="math inline">\(x&#39;=v(x)\)</span>, sin embargo <span class="math inline">\(z(t) = u(x(t))\)</span> ahora no es constante a lo largo de una curva característica. En cambio <span class="math inline">\(z\)</span> satisface <span class="math inline">\(z&#39;=f(x)\)</span>. Podemos decir así que las ecuaciones características están dadas en verdad por un sistema débilmente acoplado
+<span class="math display">\[
+\begin{cases}
+x&#39;= v(x),\\
+z&#39; = f(x).
+\end{cases}
+\]</span></p>
+<p>Se dice que es débilmente acoplado porque por lo menos la ecuación <span class="math inline">\(x&#39;=v(x)\)</span> es independiente de <span class="math inline">\(z\)</span>. Para resolver el sistema uno puede comenzar resolviendo el problema para <span class="math inline">\(x\)</span> y luego substituir este resultado en la ecuación para <span class="math inline">\(z\)</span> la cual se puede resolver por medio de una integración
+<span class="math display">\[
+z(t) = z_0 + \int_{0}^t f(x(s))ds.
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-10" class="exercise"><strong>Ejercicio 8.5  </strong></span>Calcula el tiempo que se toma la curva <span class="math inline">\((x(t),y(t))\)</span> que parte de <span class="math inline">\((x_0,y_0)\)</span> en llegar a <span class="math inline">\(F=\{y=0,x\geq0\}\)</span> si esta se mueve según la ecuación diferencial
+<span class="math display">\[
+x&#39;=-y, \qquad y&#39;=x.
+\]</span>
+Usa esta información para resolver
+<span class="math display">\[
+y\partial_xu-x\partial_yu=1 \text{ en } \mathbb R^2\setminus F,\\
+u=0 \text{ en } F
+\]</span>
+¿Tiene sentido que <span class="math inline">\(u\)</span> sea discontinua en <span class="math inline">\(F\)</span>?</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+<div id="problemas-semi-lineales" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Problemas semi-lineales<a href="cantidades-conservadas.html#problemas-semi-lineales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Generalizando la idea de las ecuaciones no-homogéneas, puede darse el caso de que las variaciones de <span class="math inline">\(z(t) = u(x(t))\)</span> dependan de <span class="math inline">\(x\)</span> y también de la misma <span class="math inline">\(z=u(x)\)</span>. Por ejemplo, la ecuación <span class="math inline">\(z&#39;=-cz\)</span> aparece cuando <span class="math inline">\(z\)</span> representa una ganancia descontada con taza <span class="math inline">\(c\)</span> que se obtiene cuando la trayectoria llega a una dada región <span class="math inline">\(F\)</span>.</p>
+<p>Consideremos la ecuación
+<span class="math display">\[
+v\cdot Du = f(u,x).
+\]</span>
+Se dice que es <strong>semi-lineal</strong> dado que el operador asociado a las derivadas de orden mayor (en este caso uno) es lineal y solamente depende de <span class="math inline">\(x\)</span>, sin embargo el problema puede presentar combinaciones no-lineales en <span class="math inline">\(u\)</span> dadas por <span class="math inline">\(f\)</span>.</p>
+<p>Las ecuaciones características vuelven a ser un sistema débilmente acoplado dado por
+<span class="math display">\[
+\begin{cases}
+x&#39;= v(x),\\
+z&#39; = f(z,x).
+\end{cases}
+\]</span>
+En este caso, también se puede proceder resolviendo primero la ecuación para <span class="math inline">\(x\)</span> y sustituyendo el resultado en la ecuación para <span class="math inline">\(z\)</span>. Sin embargo, el último paso requiere resolver una ecuación no-homogénea para <span class="math inline">\(z\)</span> y no simplemente calcular una integral.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-11" class="exercise"><strong>Ejercicio 8.6  </strong></span>Dado el campo vectorial <span class="math inline">\(v=(ax+by,cx+dy)\)</span> en el plano, resuelve el problema de valores iniciales
+<span class="math display">\[
+\begin{cases}
+\partial_t u + \operatorname{div}(vu) =0 \text{ en }\mathbb R^2\times (0,\infty),\\
+u=u_0 \text{ en } \{t=0\}
+\end{cases}
+\]</span>
+Demuestra que si <span class="math inline">\(\int_{\mathbb R^2}u_0(x,y)dxdy&lt;\infty\)</span>, entonces <span class="math inline">\(m(t) = \int_{\mathbb R^2}u(x,y,t)dxdy\)</span> permanece constante.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+<div id="problemas-cuasi-lineales" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Problemas cuasi-lineales<a href="cantidades-conservadas.html#problemas-cuasi-lineales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finalmente consideramos el caso donde el campo <span class="math inline">\(v\)</span> también depende de <span class="math inline">\(u\)</span>. Esto hace que la EDO y la EDP estén estrechamente acopladas.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-12" class="example"><strong>Ejemplo 8.6  </strong></span>La ecuación de <strong>Burgers</strong> modela la ley de inercia de un fluído (incompresible y de densidad uniforme) con velocidad <span class="math inline">\(u(x,t)\)</span> en la posición <span class="math inline">\(x \in \mathbb R\)</span> y en tiempo <span class="math inline">\(t \in \mathbb R\)</span>. Para decir que el momento es una cantidad conservada a lo largo del flujo usamos que
+<span class="math display">\[
+\partial_t u + u \partial_x u =0.
+\]</span></p>
+</div>
+<hr />
+<p>En el caso general
+<span class="math display">\[
+v(u,x)\cdot Du = f(u,x)
+\]</span>
+decimos que la ecuación es <strong>cuasi-lineal</strong>. Esto quiere decir que el operador asociado a las derivadas de orden mayor es lineal, pero puede depender en este caso de <span class="math inline">\(u\)</span>. Como es de esperarse la ecuación característica es ahora un sistema fuertemente acoplado
+<span class="math display">\[
+\begin{cases}
+x&#39;= v(z,x),\\
+z&#39;=f(z,x).
+\end{cases}
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-13" class="exercise"><strong>Ejercicio 8.7  </strong></span>¿Qué relación guarda la ecuación de Burgers (EDP: <span class="math inline">\(\partial_t u + u \partial_x u =f\)</span>) con la ley de Newton (EDO: <span class="math inline">\(x&#39;&#39; = f\)</span>)?</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>En los casos de las ecuaciones semi-lineales encontramos que las curvas características que se corresponden a la ecuación <span class="math inline">\(x&#39;=v(x)\)</span> fibran el dominio, es decir lo cubren de forma disjunta bajo hipótesis regularidad y crecimiento para el campo vectorial.</p>
+<p>El caso de las ecuaciones características para problemas estrictamente cuasi-lineales, es decir de la forma
+<span class="math display">\[
+\begin{cases}
+x&#39;= v(z,x),\\
+z&#39;=f(z,x),
+\end{cases}
+\]</span>
+es radicalmente distinto. El teorema de unicidad garantiza que las trayectorias son disjuntas, <strong><em>pero en el sistema de coordenadas <span class="math inline">\((x,z)\)</span></em></strong>, las proyecciones en el hiper-plano de las <span class="math inline">\(x\)</span>’s <strong><em>puede tener intersecciones</em></strong>. Esto implica que las soluciones de la EDP pasan a ser funciones multi-valuadas. En la práctica decimos que las soluciones están definidas hasta el primer momento en que ocurre una colisión en las características.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-14" class="exercise"><strong>Ejercicio 8.8  </strong></span>Encuentra el valor más grande posible para <span class="math inline">\(T\)</span> tal que el siguiente problema de valores iniciales tiene solución en el intervalo <span class="math inline">\([0,T)\)</span>
+<span class="math display">\[
+\begin{cases}
+\partial_tu + u\partial_x u = -\sin x \text{ en } \mathbb R\times(0,T)\\
+u=0 \text{ en } \{t=0\}
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="optimización.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-contidades_conservadas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/08-contidades_conservadas.Rmd",
+"text": null
+},
+"download": ["bookdown_intro.pdf", "bookdown_intro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

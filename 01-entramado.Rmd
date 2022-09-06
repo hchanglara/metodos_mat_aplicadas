@@ -1,3 +1,5 @@
+# (PART\*) Modelos discretos {-}
+
 # Entramados
 
 La siguiente figura ilustra cuatro puntos masivos unidos por tres barras de longitudes conocidas $\ell_{01}, \ell_{12}, \ell_{23}$, y masas despreciables. Los extremos etiquetados por $0$ y $3$ tienen posiciones fijas y los nodos intermedios de masas $m_1$ y $m_2$ ocupan posiciones de equilibrio. ¿A partir de cuales ecuaciones se podrían determinar las posiciones $q_i=(x_i,y_i)$ de estos nodos?
