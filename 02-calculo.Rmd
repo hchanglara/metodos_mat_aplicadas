@@ -610,7 +610,7 @@ obtenemos un sistema de ecuaciones lineales con igual número de ecuaciones que 
 :::{.exercise}
 Calcula el potencial eléctrico que se genera en un cubo de resistencias de un Ohm, cuando se conecta una batería de un voltio entre dos nodos opuestos del cubo
 
-![](./cube.png){with=70%}
+![](./cube.png){width=70%}
 :::
 
 <details>
