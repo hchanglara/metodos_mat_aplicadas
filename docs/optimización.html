@@ -269,7 +269,7 @@ D\mathcal E[u](x) = \sum_{e_+=x} Du(e) - \sum_{e_-=x} Du(e) = -\operatorname{div
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-83" class="exercise"><strong>Ejercicio 7.1  </strong></span>Sea <span class="math inline">\(f:V\to \mathbb R\)</span> y <span class="math inline">\(\mathcal F:\mathbb R^V\to \mathbb R\)</span> tal que
+<p><span id="exr:unlabeled-div-84" class="exercise"><strong>Ejercicio 7.1  </strong></span>Sea <span class="math inline">\(f:V\to \mathbb R\)</span> y <span class="math inline">\(\mathcal F:\mathbb R^V\to \mathbb R\)</span> tal que
 <span class="math display">\[
 \mathcal F[u] = \mathcal E[u] + \sum_{x\in V} f(x)u(x).
 \]</span>
@@ -282,7 +282,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-84" class="exercise"><strong>Ejercicio 7.2  </strong></span>Demuestra que si <span class="math inline">\(\partial_t^2u=\Delta u\)</span> entonces la energía total del sistema definida a continuación permanece constante
+<p><span id="exr:unlabeled-div-85" class="exercise"><strong>Ejercicio 7.2  </strong></span>Demuestra que si <span class="math inline">\(\partial_t^2u=\Delta u\)</span> entonces la energía total del sistema definida a continuación permanece constante
 <span class="math display">\[
 E = \underbrace{\frac{1}{2}\sum_{x\in V} (\partial_t u(x))^2}_{\text{Cinética}} + \underbrace{\mathcal E[u]}_{\text{Potencial}}.
 \]</span></p>
@@ -294,7 +294,7 @@ Solución
 </details>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-85" class="example"><strong>Ejemplo 7.1  </strong></span>Modelamos una imagen en blanco y negro está dada por una función <span class="math inline">\(u:V\to [0,1]\)</span> definida sobre la retícula <span class="math inline">\(V = \mathbb Z^2\cap [1,N]^2\)</span>. El problema de restauración de imágenes consiste en proponer una imagen <span class="math inline">\(u\)</span> que aproxime una dada imagen <span class="math inline">\(f\)</span> que quizás esté contaminada con algún tipo de ruido.</p>
+<p><span id="exm:unlabeled-div-86" class="example"><strong>Ejemplo 7.1  </strong></span>Modelamos una imagen en blanco y negro está dada por una función <span class="math inline">\(u:V\to [0,1]\)</span> definida sobre la retícula <span class="math inline">\(V = \mathbb Z^2\cap [1,N]^2\)</span>. El problema de restauración de imágenes consiste en proponer una imagen <span class="math inline">\(u\)</span> que aproxime una dada imagen <span class="math inline">\(f\)</span> que quizás esté contaminada con algún tipo de ruido.</p>
 <p>Por ejemplo, podemos proponer <span class="math inline">\(u\)</span> como aquella que minimiza el funcional
 <span class="math display">\[
 \mathcal F[u] = \frac{1}{2}\sum_{x\in V} (u(x)-f(x))^2+\alpha(Du(x))^2.
@@ -308,7 +308,7 @@ Observemos que <span class="math inline">\(\Delta\)</span> posee autovalores neg
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-86" class="exercise"><strong>Ejercicio 7.3  </strong></span>El término de penalización dado por la energía de Dirichlet es conveniente al momento de calcular el gradiente, sin embargo en la práctica este difumina los contornos. Una mejor alternativa es usar en término de <strong>variación total</strong>
+<p><span id="exr:unlabeled-div-87" class="exercise"><strong>Ejercicio 7.3  </strong></span>El término de penalización dado por la energía de Dirichlet es conveniente al momento de calcular el gradiente, sin embargo en la práctica este difumina los contornos. Una mejor alternativa es usar en término de <strong>variación total</strong>
 <span class="math display">\[
 \mathcal F[u] = \sum_{x\in V} \frac{1}{2}(u(x)-f(x))^2+\alpha|Du(x)|.
 \]</span>
@@ -321,7 +321,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-87" class="exercise"><strong>Ejercicio 7.4  </strong></span>El término de variación total tiene la desventaja de no ser diferenciable en todos lados. Una alternativa consiste en tomar para <span class="math inline">\(\epsilon&gt;0\)</span> pequeño
+<p><span id="exr:unlabeled-div-88" class="exercise"><strong>Ejercicio 7.4  </strong></span>El término de variación total tiene la desventaja de no ser diferenciable en todos lados. Una alternativa consiste en tomar para <span class="math inline">\(\epsilon&gt;0\)</span> pequeño
 <span class="math display">\[
 \mathcal F[u] = \sum_{x\in V} \frac{1}{2}(u(x)-f(x))^2+\alpha\sqrt{(Du(x))^2+\epsilon^2}.
 \]</span>
@@ -334,7 +334,7 @@ Solución
 </details>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-88" class="example"><strong>Ejemplo 7.2  </strong></span>Un dado conjunto de datos puede estar dado en términos de un grafo <span class="math inline">\(G=(V,E)\)</span> para el cual pensamos que dos vértices adyacentes son de alguna forma semejantes. El propósito es clasificar los vértices de acuerdo a <span class="math inline">\(k\)</span> etiquetas que modelamos usando los vectores canónicos <span class="math inline">\(\{e_1,\ldots,e_k\}\in \mathbb R^k\)</span>. De hecho el problema está planteado en un subconjunto de vértices <span class="math inline">\(\Omega\subseteq V\)</span>, dado que en el complemento las etiquetas vienen predeterminadas por una función <span class="math inline">\(g:V\setminus\Omega\to\{e_1,\ldots,e_k\}\)</span>.</p>
+<p><span id="exm:unlabeled-div-89" class="example"><strong>Ejemplo 7.2  </strong></span>Un dado conjunto de datos puede estar dado en términos de un grafo <span class="math inline">\(G=(V,E)\)</span> para el cual pensamos que dos vértices adyacentes son de alguna forma semejantes. El propósito es clasificar los vértices de acuerdo a <span class="math inline">\(k\)</span> etiquetas que modelamos usando los vectores canónicos <span class="math inline">\(\{e_1,\ldots,e_k\}\in \mathbb R^k\)</span>. De hecho el problema está planteado en un subconjunto de vértices <span class="math inline">\(\Omega\subseteq V\)</span>, dado que en el complemento las etiquetas vienen predeterminadas por una función <span class="math inline">\(g:V\setminus\Omega\to\{e_1,\ldots,e_k\}\)</span>.</p>
 <p>Una forma de llevar a cabo esta tarea consiste en minimizar el funcional de Dirichlet bajo el dato de borde en <span class="math inline">\(V\setminus \Omega\)</span>
 <span class="math display">\[
 \min\{\mathcal E[u]\ | \ u=g\text{ en } V\setminus \Omega\}.
@@ -350,7 +350,7 @@ Dado que la solución <span class="math inline">\(u(x)\)</span> no necesariament
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-89" class="exercise"><strong>Ejercicio 7.5  </strong></span>Dado que <span class="math inline">\(u=(u_1,\ldots,u_k)\)</span> satisface
+<p><span id="exr:unlabeled-div-90" class="exercise"><strong>Ejercicio 7.5  </strong></span>Dado que <span class="math inline">\(u=(u_1,\ldots,u_k)\)</span> satisface
 <span class="math display">\[
 \begin{cases}
 \Delta u = 0 \text{ en } \Omega,\\
@@ -400,7 +400,7 @@ u=0 \text{ on } V\setminus \Omega,\\
 u=1 \text{ on } \Omega&#39;.
 \end{cases}
 \]</span>
-Gracias al teorema de la divergencia<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>
+Gracias al teorema de la divergencia<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>
 <span class="math display">\[
 \operatorname{Cap}(\Omega&#39;|\Omega) = -\sum_{x\in V} u\Delta u(x) = -\sum_{x\in \Omega&#39;} \Delta u(x) = -\sum_{e\in E} Du(e)n_{\Omega&#39;}(e).
 \]</span>
@@ -423,7 +423,7 @@ u(x) \text{ si } x\in \Omega\setminus\Omega&#39;,\\
 disminuye la energía de Dirichlet <span class="math inline">\(\mathcal E[v]\leq \mathcal E[u]\)</span>, lo cual concluye la igualdad que habíamos anunciado.</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-90" class="exercise"><strong>Ejercicio 7.6  </strong></span>Calcula <span class="math inline">\(\operatorname{Cap}(\{a\}|V\setminus \{b\})\)</span></p>
+<p><span id="exr:unlabeled-div-91" class="exercise"><strong>Ejercicio 7.6  </strong></span>Calcula <span class="math inline">\(\operatorname{Cap}(\{a\}|V\setminus \{b\})\)</span></p>
 <p><img src="capa2.PNG" /></p>
 </div>
 <details>
@@ -433,7 +433,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-91" class="exercise"><strong>Ejercicio 7.7  </strong></span>Demuestra que para <span class="math inline">\(\Omega_1\subseteq\Omega_2\subseteq\Omega_3\subseteq V\)</span>:</p>
+<p><span id="exr:unlabeled-div-92" class="exercise"><strong>Ejercicio 7.7  </strong></span>Demuestra que para <span class="math inline">\(\Omega_1\subseteq\Omega_2\subseteq\Omega_3\subseteq V\)</span>:</p>
 <ul>
 <li><p><span class="math inline">\(\operatorname{Cap}(\Omega_1|\Omega_2)= \operatorname{Cap}(V\setminus\Omega_2|V\setminus \Omega_1)\)</span>.</p></li>
 <li><p><span class="math inline">\(\operatorname{Cap}(\Omega_1|\Omega_3) \leq \operatorname{Cap}(\Omega_2|\Omega_3)\)</span>.</p></li>
@@ -447,7 +447,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-92" class="exercise"><strong>Ejercicio 7.8  </strong></span>Demuestra que para <span class="math inline">\(\Omega_1,\Omega_2\subseteq\Omega\subseteq V\)</span><a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>:
+<p><span id="exr:unlabeled-div-93" class="exercise"><strong>Ejercicio 7.8  </strong></span>Demuestra que para <span class="math inline">\(\Omega_1,\Omega_2\subseteq\Omega\subseteq V\)</span><a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>:
 <span class="math display">\[
 \operatorname{Cap}(\Omega_1\cup\Omega_2|\Omega) \leq \operatorname{Cap}(\Omega_1|\Omega)+\operatorname{Cap}(\Omega_2|\Omega).
 \]</span></p>
@@ -459,7 +459,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-93" class="exercise"><strong>Ejercicio 7.9  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>, <span class="math inline">\(u\)</span> la solución de
+<p><span id="exr:unlabeled-div-94" class="exercise"><strong>Ejercicio 7.9  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>, <span class="math inline">\(u\)</span> la solución de
 <span class="math display">\[
 \begin{cases}
 \Delta u = 0 \text{ in } \Omega\setminus \Omega&#39;,\\
@@ -506,7 +506,7 @@ Es decir que el mínimo <span class="math inline">\(i\)</span> debe ser perpendi
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-94" class="exercise"><strong>Ejercicio 7.10  </strong></span>Calcula <span class="math inline">\(\mathcal D^2(\mu,\nu)\)</span></p>
+<p><span id="exr:unlabeled-div-95" class="exercise"><strong>Ejercicio 7.10  </strong></span>Calcula <span class="math inline">\(\mathcal D^2(\mu,\nu)\)</span></p>
 <p><img src="wasser.png" /></p>
 </div>
 <details>
@@ -516,7 +516,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-95" class="exercise"><strong>Ejercicio 7.11  </strong></span>La función <span class="math inline">\(\mathcal D\)</span>, es decir la raíz cuadrada del mínimo de la energía, se conoce como la <strong>distancia dual</strong>. Demuestra que efectivamente satisface los axiomas correspondientes:</p>
+<p><span id="exr:unlabeled-div-96" class="exercise"><strong>Ejercicio 7.11  </strong></span>La función <span class="math inline">\(\mathcal D\)</span>, es decir la raíz cuadrada del mínimo de la energía, se conoce como la <strong>distancia dual</strong>. Demuestra que efectivamente satisface los axiomas correspondientes:</p>
 <ul>
 <li><p><span class="math inline">\(\mathcal D(\mu,\nu) = \mathcal D(\nu,\mu)\)</span>,</p></li>
 <li><p><span class="math inline">\(\mathcal D(\mu,\nu) \geq 0\)</span> y la igualdad se cumple exclusivamente si <span class="math inline">\(\mu=\nu\)</span>,</p></li>
@@ -530,7 +530,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-96" class="exercise"><strong>Ejercicio 7.12  </strong></span>Definimos la norma dual en <span class="math inline">\(\dot H^1\)</span> como
+<p><span id="exr:unlabeled-div-97" class="exercise"><strong>Ejercicio 7.12  </strong></span>Definimos la norma dual en <span class="math inline">\(\dot H^1\)</span> como
 <span class="math display">\[
 \|u\|_{\dot H^{-1}} := \sup\{ \langle u,v\rangle_{\dot H^1}\ | \ \|v\|_{\dot H^1}=1\}.
 \]</span>
@@ -555,14 +555,14 @@ Solución:
 \]</span>
 Bajos estas condiciones buscamos minimizar la distancia entre <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\nu\)</span>.</p>
 <div class="theorem">
-<p><span id="thm:unlabeled-div-97" class="theorem"><strong>Teorema 7.1  </strong></span>Para <span class="math inline">\(G\)</span> conexo y finito,
+<p><span id="thm:unlabeled-div-98" class="theorem"><strong>Teorema 7.1  </strong></span>Para <span class="math inline">\(G\)</span> conexo y finito,
 <span class="math display">\[
 \min_{(\mu,\nu) \in \mathcal M(\Omega&#39;|\Omega)} \mathcal D^2[\mu,\nu] = \frac{1}{\operatorname{Cap}(\Omega&#39;|\Omega)}.
 \]</span></p>
 </div>
 <p>Es decir que el problema de minimización para <span class="math inline">\(\mathcal D^2[\mu,\nu]\)</span> bajo las restricciones <span class="math inline">\((\mu,\nu) \in \mathcal M(\Omega&#39;|\Omega)\)</span> generaliza la noción de resistencia efectiva entre dos conjuntos.</p>
 <div class="proof">
-<p><span id="unlabeled-div-98" class="proof"><em>Demostración</em>. </span>Sean <span class="math inline">\(\mu&#39;,\nu&#39;:V\to [0,\infty)\)</span> tales que
+<p><span id="unlabeled-div-99" class="proof"><em>Demostración</em>. </span>Sean <span class="math inline">\(\mu&#39;,\nu&#39;:V\to [0,\infty)\)</span> tales que
 <span class="math display">\[
 \operatorname{spt}\mu&#39;\subseteq\Omega&#39;, \qquad \operatorname{spt} \nu&#39;\subseteq V\setminus \Omega.
 \]</span>
@@ -577,7 +577,7 @@ De modo que sin necesidad de imponer restricciones para <span class="math inline
 <span class="math display">\[
 \operatorname{Cap}(\Omega&#39;|\Omega) = \min_u \max_{\mu&#39;,\nu&#39;} L[u,\mu&#39;,\nu&#39;], \qquad L[u,\mu&#39;,\nu&#39;] := 2\mathcal E[u] + \sum_{x\in V} ((1-u)\mu&#39;+u\nu&#39;)(x).
 \]</span></p>
-<p>Procedemos entonces a analizar el problema dual para el cual sabemos que<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>
+<p>Procedemos entonces a analizar el problema dual para el cual sabemos que<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>
 <span class="math display">\[
 \operatorname{Cap}(\Omega&#39;|\Omega)\geq \max_{\mu&#39;,\nu&#39;} \mathcal J[\mu&#39;,\nu&#39;], \qquad \mathcal J[\mu&#39;,\nu&#39;] := \min_u L[u,\mu&#39;,\nu&#39;].
 \]</span></p>
@@ -632,7 +632,7 @@ Esto se debe a la fórmula de integración por partes y la homogeneidad de <span
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-99" class="exercise"><strong>Ejercicio 7.13  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>. Demuestra que para <span class="math inline">\(\mu\in \mathcal M(\Omega&#39;)\)</span> se tiene que
+<p><span id="exr:unlabeled-div-100" class="exercise"><strong>Ejercicio 7.13  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>. Demuestra que para <span class="math inline">\(\mu\in \mathcal M(\Omega&#39;)\)</span> se tiene que
 <span class="math display">\[
 \mathcal D(\mu,P_\Omega(\mu)) = \min_{\nu \in \mathcal M(V\setminus \Omega)}\mathcal D(\mu,\nu)
 \]</span></p>
@@ -644,7 +644,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-100" class="exercise"><strong>Ejercicio 7.14  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>. Demuestra que <span class="math inline">\(T:= P_{V\setminus \Omega&#39;}\circ P_\Omega\)</span> es un mapeo no expansivo <span class="math inline">\(\mathcal M(\Omega&#39;)\)</span> en si mismo con respecto de la métrica de Wasserstein, es decir que
+<p><span id="exr:unlabeled-div-101" class="exercise"><strong>Ejercicio 7.14  </strong></span>Sea <span class="math inline">\(\Omega&#39;\subseteq\Omega\subseteq V\)</span>. Demuestra que <span class="math inline">\(T:= P_{V\setminus \Omega&#39;}\circ P_\Omega\)</span> es un mapeo no expansivo <span class="math inline">\(\mathcal M(\Omega&#39;)\)</span> en si mismo con respecto de la métrica de Wasserstein, es decir que
 <span class="math display">\[
 \mathcal D(T(\mu_1),T(\mu_2))\leq \mathcal D(\mu_1,\mu_2).
 \]</span></p>
@@ -662,7 +662,7 @@ Solución:
 <p>A lo largo de esta sección asumimos que <span class="math inline">\(A\in \mathbb R^{N\times N}\)</span> es simétrica y denotamos por <span class="math inline">\(\lambda_0\leq\ldots\leq \lambda_{N-1}\)</span> sus autovalores y <span class="math inline">\(\xi_0,\ldots,\xi_{N-1}\)</span> una base ortogonal de autovectores.</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-101" class="exercise"><strong>Ejercicio 7.15  </strong></span>Demuestra que el mínimo de <span class="math inline">\(f(\xi)=A\xi\cdot \xi\)</span> sobre la esfera unitaria es el menor autovalor de <span class="math inline">\(A\)</span> y que los puntos donde se realiza el mínimo general el autoespacio de dicho autovalor.</p>
+<p><span id="exr:unlabeled-div-102" class="exercise"><strong>Ejercicio 7.15  </strong></span>Demuestra que el mínimo de <span class="math inline">\(f(\xi)=A\xi\cdot \xi\)</span> sobre la esfera unitaria es el menor autovalor de <span class="math inline">\(A\)</span> y que los puntos donde se realiza el mínimo general el autoespacio de dicho autovalor.</p>
 <p>¿Sucede algo similar para el problema de maximización?</p>
 </div>
 <details>
@@ -672,7 +672,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-102" class="exercise"><strong>Ejercicio 7.16  </strong></span>Considera el grafo</p>
+<p><span id="exr:unlabeled-div-103" class="exercise"><strong>Ejercicio 7.16  </strong></span>Considera el grafo</p>
 <p><img src="capa2.PNG" /></p>
 <p>Calcula el mínimo y máximo de
 <span class="math display">\[
@@ -687,7 +687,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-103" class="exercise"><strong>Ejercicio 7.17  </strong></span>Considera el grafo</p>
+<p><span id="exr:unlabeled-div-104" class="exercise"><strong>Ejercicio 7.17  </strong></span>Considera el grafo</p>
 <p><img src="capa2.PNG" /></p>
 <p>Calcula el mínimo y máximo de
 <span class="math display">\[
@@ -708,7 +708,7 @@ R(\xi) := \frac{A\xi \cdot \xi}{\|\xi\|^2},
 y minimizar o maximizar esta función fuera del origen.</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-104" class="exercise"><strong>Ejercicio 7.18  </strong></span>Demuestra que
+<p><span id="exr:unlabeled-div-105" class="exercise"><strong>Ejercicio 7.18  </strong></span>Demuestra que
 <span class="math display">\[
 \lambda_k = \min\{R(\xi)\ | \ \xi \in \operatorname{span}\{\xi_0,\ldots,\xi_{k-1}\}^\perp \setminus \{0\}\}
 \]</span></p>
@@ -720,13 +720,13 @@ Solución:
 </details>
 <hr />
 <div class="theorem">
-<p><span id="thm:unlabeled-div-105" class="theorem"><strong>Teorema 7.2  (Courant–Fischer–Weyl) </strong></span><span class="math display">\[
+<p><span id="thm:unlabeled-div-106" class="theorem"><strong>Teorema 7.2  (Courant–Fischer–Weyl) </strong></span><span class="math display">\[
 \lambda_k = \max\{\min\{R(\xi)\ | \ \xi \in S\setminus\{0\}\} \ | \ S \text{ es un sub-espacio de $\mathbb R^N$ con $\dim S=N-k$}\}
 \]</span></p>
 </div>
 <p>En otras palabras, dado un sub-espacio <span class="math inline">\(S\)</span> de dimensión <span class="math inline">\(N-k\)</span>, el mínimo de <span class="math inline">\(R\)</span> sobre <span class="math inline">\(S\cap \partial B_1\)</span> es a lo sumo <span class="math inline">\(\lambda_k\)</span>. La igualdad se alcanza cuando <span class="math inline">\(S=\operatorname{span}\{\xi_k,\ldots,\xi_{N-1}\}\)</span>.</p>
 <div class="proof">
-<p><span id="unlabeled-div-106" class="proof"><em>Demostración</em>. </span>Denotemos
+<p><span id="unlabeled-div-107" class="proof"><em>Demostración</em>. </span>Denotemos
 <span class="math display">\[
 \mu_k := \max\{\min\{R(\xi)\ | \ \xi \in S\setminus\{0\}\} \ | \ S \text{ es un sub-espacio de $\mathbb R^N$ con $\dim S=N-k$}\}.
 \]</span></p>
@@ -747,7 +747,7 @@ R(\xi) = \frac{\lambda_{0}\alpha_{0}^2+\ldots+\lambda_{k}\alpha_{k}^2}{\alpha_{0
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-107" class="exercise"><strong>Ejercicio 7.19  </strong></span>Si <span class="math inline">\(A\leq A&#39;\)</span>, i.e. <span class="math inline">\((A&#39;-A)\)</span> es positiva semi-definida, entonces sus correspondientes autovalores también están ordenados, es decir <span class="math inline">\(\lambda_k\leq \lambda_k&#39;\)</span>.</p>
+<p><span id="exr:unlabeled-div-108" class="exercise"><strong>Ejercicio 7.19  </strong></span>Si <span class="math inline">\(A\leq A&#39;\)</span>, i.e. <span class="math inline">\((A&#39;-A)\)</span> es positiva semi-definida, entonces sus correspondientes autovalores también están ordenados, es decir <span class="math inline">\(\lambda_k\leq \lambda_k&#39;\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -756,7 +756,7 @@ Solución:
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-108" class="exercise"><strong>Ejercicio 7.20  </strong></span>Sea <span class="math inline">\(G&#39;\)</span> un sub-grafo de <span class="math inline">\(G\)</span><a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>. Demuestra que para los correspondientes autovalores del Laplaciano se tiene que <span class="math inline">\(\lambda_k&#39;\geq \lambda_k\)</span>.</p>
+<p><span id="exr:unlabeled-div-109" class="exercise"><strong>Ejercicio 7.20  </strong></span>Sea <span class="math inline">\(G&#39;\)</span> un sub-grafo de <span class="math inline">\(G\)</span><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>. Demuestra que para los correspondientes autovalores del Laplaciano se tiene que <span class="math inline">\(\lambda_k&#39;\geq \lambda_k\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -771,18 +771,18 @@ Solución:
 
 <div class="footnotes">
 <hr />
-<ol start="12">
-<li id="fn12"><p>Recordemos que
+<ol start="13">
+<li id="fn13"><p>Recordemos que
 <span class="math display">\[
 n_{\Omega&#39;}(e) = \begin{cases}
 1 \text{ si $e_-\in \Omega&#39;$ y $e_+\in V\setminus \Omega$},\\
 -1 \text{ si $e_+\in \Omega&#39;$ y $e_-\in V\setminus \Omega$},\\
 0 \text{ en cualquier otro caso}.
 \end{cases}
-\]</span><a href="optimización.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p>El minimizante <span class="math inline">\(u\)</span> correspondiente a <span class="math inline">\(\Omega_1\cup\Omega_2\)</span> es puntualmente mayor o igual a <span class="math inline">\(\max(u_1,u_2)\)</span> donde <span class="math inline">\(u_1\)</span> y <span class="math inline">\(u_2\)</span> son los minimizantes para <span class="math inline">\(\Omega_1\)</span> y <span class="math inline">\(\Omega_2\)</span> respectivamente.<a href="optimización.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p>En general, <span class="math inline">\(\min_x\max_\lambda L(x,\lambda) \geq \max_\lambda\min_x L(x,\lambda)\)</span>.<a href="optimización.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p><span class="math inline">\(V&#39;\subseteq V\)</span> y <span class="math inline">\(E&#39;\subseteq E\cap V&#39;\times V&#39;\)</span>.<a href="optimización.html#fnref15" class="footnote-back">↩︎</a></p></li>
+\]</span><a href="optimización.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>El minimizante <span class="math inline">\(u\)</span> correspondiente a <span class="math inline">\(\Omega_1\cup\Omega_2\)</span> es puntualmente mayor o igual a <span class="math inline">\(\max(u_1,u_2)\)</span> donde <span class="math inline">\(u_1\)</span> y <span class="math inline">\(u_2\)</span> son los minimizantes para <span class="math inline">\(\Omega_1\)</span> y <span class="math inline">\(\Omega_2\)</span> respectivamente.<a href="optimización.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>En general, <span class="math inline">\(\min_x\max_\lambda L(x,\lambda) \geq \max_\lambda\min_x L(x,\lambda)\)</span>.<a href="optimización.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p><span class="math inline">\(V&#39;\subseteq V\)</span> y <span class="math inline">\(E&#39;\subseteq E\cap V&#39;\times V&#39;\)</span>.<a href="optimización.html#fnref16" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

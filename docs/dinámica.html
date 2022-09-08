@@ -281,10 +281,10 @@ plt.clf()
 <span class="math display">\[
 \partial_t u(x,t) = \sum_{e_+=x} f(e,t) - \sum_{e_-=x} f(e,t) = -\operatorname{div} f(x,t).
 \]</span></p>
-<p>Observamos que si en un dado nodo <span class="math inline">\(x\in V\)</span> se tiene que <span class="math inline">\(\operatorname{div} f(x)&gt;0\)</span> entonces <span class="math inline">\(u\)</span> es decreciente. Esto quiere decir que el flujo hace que la densidad se esparza o diverja sobre dicho nodo. De igual forma, si <span class="math inline">\(\operatorname{div} f(x)&lt;0\)</span>, <span class="math inline">\(u\)</span> es creciente y el flujo hace que la densidad en cambio converga en dicho nodo.</p>
+<p>Observamos que si en un dado nodo <span class="math inline">\(x\in V\)</span> se tiene que <span class="math inline">\(\operatorname{div} f(x)&gt;0\)</span> entonces <span class="math inline">\(u\)</span> es decreciente. Esto quiere decir que el flujo hace que la densidad se esparza o diverja sobre dicho nodo. De igual forma, si <span class="math inline">\(\operatorname{div} f(x)&lt;0\)</span>, <span class="math inline">\(u\)</span> es creciente y el flujo hace que la densidad en cambio converja en dicho nodo.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-34" class="example"><strong>Ejemplo 3.1  </strong></span>Consideremos una densidad <span class="math inline">\(u:V\times \mathbb R\to \mathbb R\)</span> transportada por un flujo <span class="math inline">\(f := \mu u^-\)</span> donde <span class="math inline">\(\mu:E\to \mathbb R\)</span> son tazas de movilidad dadas sobre las aristas en el grafo a continuación y recordemos que <span class="math inline">\(u^-(e)=u(e_-)\)</span></p>
+<p><span id="exm:unlabeled-div-35" class="example"><strong>Ejemplo 3.1  </strong></span>Consideremos una densidad <span class="math inline">\(u:V\times \mathbb R\to \mathbb R\)</span> transportada por un flujo <span class="math inline">\(f := \mu u^-\)</span> donde <span class="math inline">\(\mu:E\to \mathbb R\)</span> son tazas de movilidad dadas sobre las aristas en el grafo a continuación y recordemos que <span class="math inline">\(u^-(e)=u(e_-)\)</span></p>
 <p><img src="flow1.png" /></p>
 <p>Comenzando de la distribución de densidades
 <span class="math display">\[
@@ -330,7 +330,7 @@ y obtenemos lo siguiente:</p>
 <p>Adicionalmente podemos considerar modelos donde además del fenómeno de transporte, una o más densidades tienen distintas reacciones en cada uno de los nodos.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-35" class="example"><strong>Ejemplo 3.2  </strong></span>Las funciones <span class="math inline">\(S,I:V\to \mathbb R\)</span> representan poblaciones de individuos susceptibles e infectados para una dada epidemia modelada geográficamente sobre un grafo dirigido <span class="math inline">\(G=(V,E)\)</span>. Cada una de estas poblaciones se mueve sobre las aristas por flujos dados por
+<p><span id="exm:unlabeled-div-36" class="example"><strong>Ejemplo 3.2  </strong></span>Las funciones <span class="math inline">\(S,I:V\to \mathbb R\)</span> representan poblaciones de individuos susceptibles e infectados para una dada epidemia modelada geográficamente sobre un grafo dirigido <span class="math inline">\(G=(V,E)\)</span>. Cada una de estas poblaciones se mueve sobre las aristas por flujos dados por
 <span class="math display">\[
 f_S := \mu_S S^-, \qquad f_I := \mu_I I^-.
 \]</span>
@@ -342,7 +342,7 @@ donde <span class="math inline">\(\mu_S,\mu_I: E\to \mathbb R\)</span> son tazas
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-36" class="exercise"><strong>Ejercicio 3.1  </strong></span>Demuestra que el total de la población susceptible o infectada es una función decreciente.</p>
+<p><span id="exr:unlabeled-div-37" class="exercise"><strong>Ejercicio 3.1  </strong></span>Demuestra que el total de la población susceptible o infectada es una función decreciente.</p>
 </div>
 <details>
 <summary>
@@ -354,7 +354,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-37" class="exercise"><strong>Ejercicio 3.2  </strong></span>Considera una epidemia dada en la siguiente red con los parámetros dados. En las aristas se muestran ciertas tasas de movilidad, para los susceptibles estas deben multiplicarse por <span class="math inline">\(10^{-2}\)</span> y para los infectados por <span class="math inline">\(10^{-4}\)</span>. Implementa numéricamente y grafica las soluciones en el intervalo <span class="math inline">\([0,160]\)</span> con condiciones iniciales
+<p><span id="exr:unlabeled-div-38" class="exercise"><strong>Ejercicio 3.2  </strong></span>Considera una epidemia dada en la siguiente red con los parámetros dados. En las aristas se muestran ciertas tasas de movilidad, para los susceptibles estas deben multiplicarse por <span class="math inline">\(10^{-2}\)</span> y para los infectados por <span class="math inline">\(10^{-4}\)</span>. Implementa numéricamente y grafica las soluciones en el intervalo <span class="math inline">\([0,160]\)</span> con condiciones iniciales
 <span class="math display">\[
 S(0) = (1,1,1,1), \qquad I(0) = (0, 10^{-6},0,0).
 \]</span></p>
@@ -417,7 +417,7 @@ Solución
 <p>Así como vimos en los ejemplos anteriores donde el flujo era proporcional a <span class="math inline">\(u^-\)</span>, en general puede darse el caso de que <span class="math inline">\(f\)</span> esté determinada por alguna otra función de <span class="math inline">\(u\)</span>, esto se conoce como una <strong>ley constitutiva</strong>. Un caso muy común es que <span class="math inline">\(f\)</span> sea proporcional a <span class="math inline">\(-Du\)</span>, en el cual obtenemos un modelo de <strong>difusión</strong>.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-38" class="example"><strong>Ejemplo 3.3  </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo que modela una red de habitaciones en renta y <span class="math inline">\(u:V\times \mathbb R\to\mathbb R\)</span> la población que vive en dicha red. Asumiendo la ley de oferta y demanda, el precio de renta <span class="math inline">\(p=p(x,t)\)</span> de una habitación <span class="math inline">\(x\)</span> en el instante <span class="math inline">\(t\)</span> debe ser proporcional a la demanda, la cual podemos considerar en nuestro caso proporcional a la población que habita dicho nodo, digamos por ejemplo que <span class="math inline">\(p = k_1u\)</span>. La población busca moverse entre nodos adyacentes si percibe que el precio le es favorable, por ejemplo <span class="math inline">\(f=-k_2Dp\)</span>. Llegamos así a la ecuación
+<p><span id="exm:unlabeled-div-39" class="example"><strong>Ejemplo 3.3  </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo que modela una red de habitaciones en renta y <span class="math inline">\(u:V\times \mathbb R\to\mathbb R\)</span> la población que vive en dicha red. Asumiendo la ley de oferta y demanda, el precio de renta <span class="math inline">\(p=p(x,t)\)</span> de una habitación <span class="math inline">\(x\)</span> en el instante <span class="math inline">\(t\)</span> debe ser proporcional a la demanda, la cual podemos considerar en nuestro caso proporcional a la población que habita dicho nodo, digamos por ejemplo que <span class="math inline">\(p = k_1u\)</span>. La población busca moverse entre nodos adyacentes si percibe que el precio le es favorable, por ejemplo <span class="math inline">\(f=-k_2Dp\)</span>. Llegamos así a la ecuación
 <span class="math display">\[
 \partial_t u = -\operatorname{div} f = \operatorname{div}(k_2Dp) = \operatorname{div}(aDu), \qquad a := k_1k_2.
 \]</span></p>
@@ -426,7 +426,7 @@ Solución
 <p>El problema <span class="math inline">\(\partial_t u = \operatorname{div}(aDu)\)</span>, también conocido como la <strong>ecuación de calor</strong> o <strong>difusión</strong>, representa un sistema de EDOs lineales y de primer orden con tantas ecuaciones e incógnitas como la cardinalidad de <span class="math inline">\(V\)</span>.</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-39" class="exercise"><strong>Ejercicio 3.3  </strong></span>Considera una difusión de la forma <span class="math inline">\(\partial_t u = \Delta u\)</span> sobre el siguiente grafo. Calcula <span class="math inline">\(u\)</span> para todo tiempo dadas las condiciones iniciales ilustradas en la figura. ¿Converge la solución a algún punto fijo?</p>
+<p><span id="exr:unlabeled-div-40" class="exercise"><strong>Ejercicio 3.3  </strong></span>Considera una difusión de la forma <span class="math inline">\(\partial_t u = \Delta u\)</span> sobre el siguiente grafo. Calcula <span class="math inline">\(u\)</span> para todo tiempo dadas las condiciones iniciales ilustradas en la figura. ¿Converge la solución a algún punto fijo?</p>
 <p><img src="dif.png" style="width:70.0%" /></p>
 </div>
 <details>
@@ -467,7 +467,7 @@ Observamos que cuando <span class="math inline">\(t\to\infty\)</span> la soluci�
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-40" class="exercise"><strong>Ejercicio 3.4  </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo lineal con 100 vértices
+<p><span id="exr:unlabeled-div-41" class="exercise"><strong>Ejercicio 3.4  </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo lineal con 100 vértices
 <span class="math display">\[
 V=\{1,2,\ldots,100\}, \qquad E = \{(1,2),(2,3),\ldots,(99,100)\}.
 \]</span>
@@ -517,7 +517,7 @@ Solución
 también es común en distintos modelos. Esta se conoce como la <strong>ecuación de onda</strong>.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-41" class="example"><strong>Ejemplo 3.4  </strong></span>Un grafo <span class="math inline">\(G=(V,E)\)</span> modela las conexiones en un sistema de masas <span class="math inline">\(m:V\to (0,\infty)\)</span> unidas por resortes con constantes <span class="math inline">\(k:E\to[0,\infty)\)</span>. Sea <span class="math inline">\(q:V\to \mathbb R^n\)</span> los desplazamientos de las masas a partir de una configuración dada de equilibrio. A partir de la ley de Hooke planteamos el sistema <span class="math inline">\(n\times|V|\)</span> ecuaciones e incógnitas,
+<p><span id="exm:unlabeled-div-42" class="example"><strong>Ejemplo 3.4  </strong></span>Un grafo <span class="math inline">\(G=(V,E)\)</span> modela las conexiones en un sistema de masas <span class="math inline">\(m:V\to (0,\infty)\)</span> unidas por resortes con constantes <span class="math inline">\(k:E\to[0,\infty)\)</span>. Sea <span class="math inline">\(q:V\to \mathbb R^n\)</span> los desplazamientos de las masas a partir de una configuración dada de equilibrio. A partir de la ley de Hooke planteamos el sistema <span class="math inline">\(n\times|V|\)</span> ecuaciones e incógnitas,
 <span class="math display">\[
 m\partial_t^2 q = \operatorname{div}(kDq).
 \]</span></p>
@@ -531,7 +531,7 @@ m\partial_t^2 q = \operatorname{div}(kDq).
 \]</span></p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-42" class="example"><strong>Ejemplo 3.5  </strong></span>El grafo <span class="math inline">\(G=(V,E)\)</span> vuelve a modelar una red de habitaciones en renta, <span class="math inline">\(u:V\times \mathbb R\to\mathbb R\)</span> la población que vive en dicha red y <span class="math inline">\(p:V\times \mathbb R\to\mathbb R\)</span> los precios. Una vez más asumimos que la población se mueve según el flujo <span class="math inline">\(f = -Dp\)</span>. Por otro lado los precios se modifican gradualmente dependiendo de la demanda en relación a los nodos adyacentes.</p>
+<p><span id="exm:unlabeled-div-43" class="example"><strong>Ejemplo 3.5  </strong></span>El grafo <span class="math inline">\(G=(V,E)\)</span> vuelve a modelar una red de habitaciones en renta, <span class="math inline">\(u:V\times \mathbb R\to\mathbb R\)</span> la población que vive en dicha red y <span class="math inline">\(p:V\times \mathbb R\to\mathbb R\)</span> los precios. Una vez más asumimos que la población se mueve según el flujo <span class="math inline">\(f = -Dp\)</span>. Por otro lado los precios se modifican gradualmente dependiendo de la demanda en relación a los nodos adyacentes.</p>
 <p>Esto último puede ser reflejado por ejemplo en la ecuación <span class="math inline">\(\partial_t p = -\Delta u\)</span>, es decir que el precio disminuye si el promedio de la población vecina es mayor la población en el nodo en consideración, con la intención de atraerla.</p>
 <p>En resumen obtenemos el sistema de ecuaciones
 <span class="math display">\[
@@ -544,7 +544,7 @@ Estas implican las ecuaciones de onda desacopladas para el bilaplaciano
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-43" class="exercise"><strong>Ejercicio 3.5  </strong></span>Considera una oscilación de la forma <span class="math inline">\(\partial_t^2 u = -\Delta^2 u\)</span> sobre el siguiente grafo. Calcula <span class="math inline">\(u\)</span> para todo tiempo dadas las condiciones iniciales ilustradas en la figura, partiendo del reposo. Grafica la solución en el intervalo <span class="math inline">\([0,6]\)</span>.</p>
+<p><span id="exr:unlabeled-div-44" class="exercise"><strong>Ejercicio 3.5  </strong></span>Considera una oscilación de la forma <span class="math inline">\(\partial_t^2 u = -\Delta^2 u\)</span> sobre el siguiente grafo. Calcula <span class="math inline">\(u\)</span> para todo tiempo dadas las condiciones iniciales ilustradas en la figura, partiendo del reposo. Grafica la solución en el intervalo <span class="math inline">\([0,6]\)</span>.</p>
 <p><img src="oscila.png" style="width:70.0%" /></p>
 </div>
 <details>

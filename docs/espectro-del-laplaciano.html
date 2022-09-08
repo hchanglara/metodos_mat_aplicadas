@@ -268,6 +268,7 @@ La no-positividad la verificamos tomando <span class="math inline">\(v=u\)</span
 \tag{5.1}
 \]</span></p>
 <p>Gracias al teorema espectral sabemos que <span class="math inline">\(L\)</span> es diagonalizable, sus autovalores son reales no-positivos y además posee una base de autofunciones ortogonales. Denotemos por <span class="math inline">\(\phi_0,\ldots,\phi_{M-1}\)</span> a una base ortogonal con autovalores <span class="math inline">\(-\lambda_0,\ldots,-\lambda_{M-1}\)</span> respectivamente.</p>
+<hr />
 <details>
 <summary>
 <strong>Margen de álgebra lineal:</strong> El teorema espectral
@@ -297,7 +298,7 @@ Finalmente, cuando <span class="math inline">\(L\)</span> se corresponde con una
 <p><strong>Asumiremos además de ahora en adelante que <span class="math inline">\(G\)</span> es conexo y <span class="math inline">\(\phi_0=1\)</span> es la autofunción asociada a <span class="math inline">\(\lambda_0=0\)</span>, siendo los demás autovalores estrictamente negativos (es decir que <span class="math inline">\(\lambda_j&gt;0\)</span> para <span class="math inline">\(j\neq 0\)</span>).</strong></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-44" class="exercise"><strong>Ejercicio 5.1  </strong></span>Demuestra que para cualquier autofunción <span class="math inline">\(\phi_j\)</span> para <span class="math inline">\(j\neq 0\)</span> se tiene que <span class="math inline">\(\phi_j\)</span> cambia de signo. Es decir que ninguno conjuntos <span class="math inline">\(\{\phi_j&gt;0\}\)</span>, <span class="math inline">\(\{\phi_j&lt;0\}\)</span> es vacío.</p>
+<p><span id="exr:unlabeled-div-45" class="exercise"><strong>Ejercicio 5.1  </strong></span>Demuestra que para cualquier autofunción <span class="math inline">\(\phi_j\)</span> para <span class="math inline">\(j\neq 0\)</span> se tiene que <span class="math inline">\(\phi_j\)</span> cambia de signo. Es decir que ninguno conjuntos <span class="math inline">\(\{\phi_j&gt;0\}\)</span>, <span class="math inline">\(\{\phi_j&lt;0\}\)</span> es vacío.</p>
 </div>
 <details>
 <summary>
@@ -318,7 +319,7 @@ tenemos que tomando en ambos lados el producto interno con <span class="math inl
 Los coeficientes <span class="math inline">\(\hat u_j\)</span> se conocen como los <strong>coeficientes de Fourier</strong>.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-45" class="example"><strong>Ejemplo 5.1  </strong></span>Consideremos el grafo cíclico con <span class="math inline">\(M\)</span> vértices los cuales identificamos con los enteros módulo <span class="math inline">\(M\)</span>. En este caso
+<p><span id="exm:unlabeled-div-46" class="example"><strong>Ejemplo 5.1  </strong></span>Consideremos el grafo cíclico con <span class="math inline">\(M\)</span> vértices los cuales identificamos con los enteros módulo <span class="math inline">\(M\)</span>. En este caso
 <span class="math display">\[
 \Delta u(x) = u(x+1) - 2u(x) + u(x-1).
 \]</span>
@@ -326,7 +327,7 @@ Para calcular el espectro de <span class="math inline">\(\Delta\)</span> debemos
 <span class="math display">\[
 \phi(x+1) - 2\phi(x) + \phi(x-1) = -\lambda \phi(x).
 \]</span></p>
-<p>Sean <span class="math inline">\(r_\pm\)</span> las raíces del polinomio característico <span class="math inline">\(p(r) = r^2-(2-\lambda)r+1\)</span>. Tenemos así que<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>
+<p>Sean <span class="math inline">\(r_\pm\)</span> las raíces del polinomio característico <span class="math inline">\(p(r) = r^2-(2-\lambda)r+1\)</span>. Tenemos así que<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>
 <span class="math display">\[
 \phi(x) = A_+r_+^x+A_-r_-^x.
 \]</span>
@@ -353,7 +354,7 @@ M \text{ si } k=l,\\
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-46" class="exercise"><strong>Ejercicio 5.2  </strong></span>Demuestra que a partir de
+<p><span id="exr:unlabeled-div-47" class="exercise"><strong>Ejercicio 5.2  </strong></span>Demuestra que a partir de
 <span class="math display">\[
 \varphi_j(x) := \cos(2\pi j x/M), \qquad \psi_j(x) := \sin(2\pi j x/M)
 \]</span>
@@ -363,10 +364,28 @@ también se puede construir una base ortogonal de autovectores para el ejemplo a
 <summary>
 Solución
 </summary>
+<p><span class="math display">\[
+\begin{aligned}
+(\Delta \varphi_j)(x) &amp;= \cos(2\pi j(x-1)/M)-2\cos(2\pi j x/M)+\cos(2\pi j(x+1)/M),\\
+&amp;= 2(\cos(2\pi j/M)-1)\cos(2\pi j x/M),\\
+&amp;= -\lambda_j \varphi_j(x)
+\end{aligned}
+\]</span>
+De igual forma
+<span class="math display">\[
+\Delta \psi_j = -\lambda_j \psi_j.
+\]</span></p>
+<p>Observamos además que <span class="math inline">\(\varphi_{M-j}=\varphi_j\)</span> y además <span class="math inline">\(\psi_{M-j}=-\psi_j\)</span>.</p>
+<p>Para <span class="math inline">\(M\)</span> par, proponemos entonces tomar <span class="math inline">\(\varphi_0,\varphi_1,\ldots,\varphi_{M/2},\psi_1,\ldots,\psi_{M/2-1}\)</span> como una base. Observa que <span class="math inline">\(\varphi_0(x)=1\)</span> representa las funciones constantes y que hemos evitado deliberadamente tomar <span class="math inline">\(\psi_{M/2}\)</span>, la cual es la función trivial.</p>
+<p>Dado que autovectores con autovalores distintos son ortogonales, basta con verificar que <span class="math inline">\(\varphi_j\)</span> y <span class="math inline">\(\psi_j\)</span> son linealmente independientes para obtener que el conjunto propuesto es una base. Esto se deduce de
+<span class="math display">\[
+\varphi_j(0)=1 \qquad\text{ y }\qquad \psi_j(0)=0.
+\]</span></p>
+Para <span class="math inline">\(M\)</span> impar proponemos en cambio la base <span class="math inline">\(\varphi_0,\varphi_1,\ldots,\varphi_{(M-1)/2},\psi_1,\ldots,\psi_{(M-1)/2}\)</span> como una base. Una vez más basta verificar que <span class="math inline">\(\varphi_j\)</span> y <span class="math inline">\(\psi_j\)</span> son linealmente independientes, lo cual se deduce igualmente de la identidad dada arriba.
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-47" class="exercise"><strong>Ejercicio 5.3  </strong></span>Calcula las normas de <span class="math inline">\(\varphi_j\)</span> y <span class="math inline">\(\psi_{j}\)</span>.</p>
+<p><span id="exr:unlabeled-div-48" class="exercise"><strong>Ejercicio 5.3  </strong></span>Calcula las normas de <span class="math inline">\(\varphi_j\)</span> y <span class="math inline">\(\psi_{j}\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -382,13 +401,30 @@ Solución
 <li><p>Grafo completo,</p></li>
 <li><p>Grafo bipartito completo,</p></li>
 <li><p>Grafo lineal,</p></li>
-<li><p>Grafo producto<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> en términos del espectro de sus factores (que asumimos conocido). Por ejemplo un toro puede verse como el producto de grafos cíclicos.</p></li>
+<li><p>Grafo producto<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> en términos del espectro de sus factores (que asumimos conocido). Por ejemplo un toro puede verse como el producto de grafos cíclicos.</p></li>
 </ul>
 </div>
 <details>
 <summary>
 Solución
 </summary>
+<p><strong>Tetraedro</strong></p>
+<hr />
+<p><strong>Cubo</strong></p>
+<hr />
+<p><strong>Octaedro</strong></p>
+<hr />
+<p><strong>Dodecaedro</strong></p>
+<hr />
+<p><strong>Icosaedro</strong></p>
+<hr />
+<p><strong>Grafo completo</strong></p>
+<hr />
+<p><strong>Grafo bipartito completo</strong></p>
+<hr />
+<p><strong>Grafo lineal</strong></p>
+<hr />
+<p><strong>Grafo producto</strong></p>
 </details>
 <div id="problema-elíptico" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Problema elíptico<a href="espectro-del-laplaciano.html#problema-elíptico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -400,7 +436,7 @@ tenemos que <span class="math inline">\(u = \sum_{j=0}^{|V|-1} \hat u_j\phi_j\)<
 <span class="math display">\[
 -\lambda_j \hat u_j = \hat f_j.
 \]</span></p>
-<p>Recordemos la hipótesis de conexidad para <span class="math inline">\(G\)</span> la cual garantiza que <span class="math inline">\(\lambda_0=0\)</span> es un autovalor simple cuyo autoespacio son las funciones constantes generadas por <span class="math inline">\(\phi_0=1\)</span>. Para <span class="math inline">\(j\neq 0\)</span> tenemos <span class="math inline">\(\lambda_j &gt; 0\)</span> por lo cual <span class="math inline">\(\hat u_j = -\hat f_j/\lambda_j\)</span>. Para <span class="math inline">\(j=0\)</span> tenemos sin embargo que <span class="math inline">\(\lambda_0=0\)</span> en cuyo caso la ecuación tiene solución solamente si se da la condición de ortogonalidad <span class="math inline">\(f\perp \phi_0\)</span>, equivalente a decir que<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+<p>Recordemos la hipótesis de conexidad para <span class="math inline">\(G\)</span> la cual garantiza que <span class="math inline">\(\lambda_0=0\)</span> es un autovalor simple cuyo autoespacio son las funciones constantes generadas por <span class="math inline">\(\phi_0=1\)</span>. Para <span class="math inline">\(j\neq 0\)</span> tenemos <span class="math inline">\(\lambda_j &gt; 0\)</span> por lo cual <span class="math inline">\(\hat u_j = -\hat f_j/\lambda_j\)</span>. Para <span class="math inline">\(j=0\)</span> tenemos sin embargo que <span class="math inline">\(\lambda_0=0\)</span> en cuyo caso la ecuación tiene solución solamente si se da la condición de ortogonalidad <span class="math inline">\(f\perp \phi_0\)</span>, equivalente a decir que<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>
 <span class="math display">\[
 \sum_{x\in V} f(x) = 0.
 \]</span>
@@ -415,7 +451,7 @@ u_p(x) := -\sum_{y\in V} G(x,y)f(y), \qquad G(x,y) := \sum_{j=1}^{|V|-1} \frac{\
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-48" class="exercise"><strong>Ejercicio 5.5  </strong></span>Demuestra que<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>
+<p><span id="exr:unlabeled-div-49" class="exercise"><strong>Ejercicio 5.5  </strong></span>Demuestra que<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>
 <span class="math display">\[
 \Delta_1 G(x,y) = \Delta_2 G(x,y) = \frac{1}{|V|}- 1_y(x)=\frac{1}{|V|}- 1_x(y).
 \]</span></p>
@@ -427,7 +463,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-49" class="exercise"><strong>Ejercicio 5.6  </strong></span>Demuestra que
+<p><span id="exr:unlabeled-div-50" class="exercise"><strong>Ejercicio 5.6  </strong></span>Demuestra que
 <span class="math display">\[
 \sum_{x\in V} G(x,x) = \sum_{j=1}^{|V|-1} \lambda_j^{-1}.
 \]</span></p>
@@ -439,7 +475,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-50" class="exercise"><strong>Ejercicio 5.7  </strong></span>Demuestra que <span class="math inline">\(G\)</span> es independiente de la base de Fourier.</p>
+<p><span id="exr:unlabeled-div-51" class="exercise"><strong>Ejercicio 5.7  </strong></span>Demuestra que <span class="math inline">\(G\)</span> es independiente de la base de Fourier.</p>
 </div>
 <details>
 <summary>
@@ -448,7 +484,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-51" class="exercise"><strong>Ejercicio 5.8  </strong></span>Demuestra que <span class="math inline">\(G(x,y)=G(y,x)\)</span>.</p>
+<p><span id="exr:unlabeled-div-52" class="exercise"><strong>Ejercicio 5.8  </strong></span>Demuestra que <span class="math inline">\(G(x,y)=G(y,x)\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -457,7 +493,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-52" class="exercise"><strong>Ejercicio 5.9  </strong></span>Demuestra que para <span class="math inline">\(x\in[0,M]\)</span>
+<p><span id="exr:unlabeled-div-53" class="exercise"><strong>Ejercicio 5.9  </strong></span>Demuestra que para <span class="math inline">\(x\in[0,M]\)</span>
 <span class="math display">\[
 \sum_{j=1}^{M-1} \frac{e^{2\pi i j x}-1}{\sin^2(\pi j/M)} = 2x(x-M)
 \]</span></p>
@@ -491,7 +527,7 @@ H(x,y,t) := \sum_{j=0}^{|V|-1} \frac{\phi_j(x)\overline{\phi_j(y)}}{\|\phi_j\|^2
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-53" class="exercise"><strong>Ejercicio 5.10  </strong></span>Demuestra que <span class="math inline">\(H(y,x,t) = H(x,y,t)\)</span>.</p>
+<p><span id="exr:unlabeled-div-54" class="exercise"><strong>Ejercicio 5.10  </strong></span>Demuestra que <span class="math inline">\(H(y,x,t) = H(x,y,t)\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -500,7 +536,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-54" class="exercise"><strong>Ejercicio 5.11  </strong></span>Demuestra que <span class="math inline">\(H\)</span> es la solución del problema de valores iniciales
+<p><span id="exr:unlabeled-div-55" class="exercise"><strong>Ejercicio 5.11  </strong></span>Demuestra que <span class="math inline">\(H\)</span> es la solución del problema de valores iniciales
 <span class="math display">\[
 \begin{cases}
 \partial_t H = \Delta_1 H = \Delta_2 H,\\
@@ -516,7 +552,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-55" class="exercise"><strong>Ejercicio 5.12  </strong></span>Sea <span class="math inline">\(u\)</span> tal que <span class="math inline">\(\partial_t u = \Delta u\)</span>. Calcula <span class="math inline">\(\lim_{t\to\infty} u(t)\)</span> en términos de <span class="math inline">\(u(0)\)</span>.</p>
+<p><span id="exr:unlabeled-div-56" class="exercise"><strong>Ejercicio 5.12  </strong></span>Sea <span class="math inline">\(u\)</span> tal que <span class="math inline">\(\partial_t u = \Delta u\)</span>. Calcula <span class="math inline">\(\lim_{t\to\infty} u(t)\)</span> en términos de <span class="math inline">\(u(0)\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -526,7 +562,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-56" class="exercise"><strong>Ejercicio 5.13  </strong></span>Para <span class="math inline">\(G\)</span> conexo demuestra que se da la siguiente expresión asintótica cuando <span class="math inline">\(t\to\infty\)</span>
+<p><span id="exr:unlabeled-div-57" class="exercise"><strong>Ejercicio 5.13  </strong></span>Para <span class="math inline">\(G\)</span> conexo demuestra que se da la siguiente expresión asintótica cuando <span class="math inline">\(t\to\infty\)</span>
 <span class="math display">\[
 \int_0^t H(x,y,s)ds = \frac{t}{|V|} + G(x,y) + O(e^{-\lambda_1 t})
 \]</span></p>
@@ -563,7 +599,7 @@ W_2(x,y,t) &amp;:= \frac{t}{|V|} + \sum_{j=1}^{|V|-1} \frac{\phi_j(x)\overline{\
 \end{align*}\]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-57" class="exercise"><strong>Ejercicio 5.14  </strong></span>(Ley de Stokes) Demuestra que si
+<p><span id="exr:unlabeled-div-58" class="exercise"><strong>Ejercicio 5.14  </strong></span>(Ley de Stokes) Demuestra que si
 <span class="math display">\[
 \begin{cases}
 \partial_t^2u = Lu,\\
@@ -635,7 +671,7 @@ y normas
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-58" class="exercise"><strong>Ejercicio 5.15  </strong></span>Verifica que a partir de las siguientes funciones también se puede formar una base ortogonal del Laplaciano
+<p><span id="exr:unlabeled-div-59" class="exercise"><strong>Ejercicio 5.15  </strong></span>Verifica que a partir de las siguientes funciones también se puede formar una base ortogonal del Laplaciano
 <span class="math display">\[\begin{align*}
 \cos(2\pi kx/N)\cos(2\pi ly/N),\quad \cos(2\pi kx/N)\sin(2\pi ly/N),\quad \sin(2\pi kx/N)\sin(2\pi ly/N).    
 \end{align*}\]</span></p>
@@ -680,7 +716,7 @@ R = \frac{4}{\pi}-\frac{1}{2}
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-59" class="exercise"><strong>Ejercicio 5.16  </strong></span>Sea
+<p><span id="exr:unlabeled-div-60" class="exercise"><strong>Ejercicio 5.16  </strong></span>Sea
 <span class="math display">\[
 R(m,n) = \int_0^\pi\int_0^\pi \frac{\sin^2(mx+ny)}{\sin^2x+\sin^2y}dydx.
 \]</span>
@@ -696,11 +732,11 @@ Solución
 </div>
 <div class="footnotes">
 <hr />
-<ol start="6">
-<li id="fn6"><p>Salvo en el caso de que <span class="math inline">\(r_+=r_-\)</span> que podemos analizar más adelante si hiciese falta… No hará falta.<a href="espectro-del-laplaciano.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p>El producto de <span class="math inline">\(G_1\)</span> y <span class="math inline">\(G_2\)</span> tiene como vértices <span class="math inline">\(V_1\times V_2\)</span> siendo <span class="math inline">\(((x_1,x_2),(y_1,y_2))\)</span> una arista en este grafo si alguna de las siguientes dos condiciones se cumplen: <span class="math inline">\(x_1=y_1\)</span> y <span class="math inline">\((x_2,y_2)\)</span> es una arista en <span class="math inline">\(G_1\)</span>, o bien <span class="math inline">\(x_2=y_2\)</span> y <span class="math inline">\((x_1,y_1)\)</span> es una arista en <span class="math inline">\(G_2\)</span>.<a href="espectro-del-laplaciano.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>También puede verse como consecuencia del Teorema de la divergencia<a href="espectro-del-laplaciano.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p>Como <span class="math inline">\(G\)</span> es una función en <span class="math inline">\(V^2\)</span>, definimos a <span class="math inline">\(\Delta_1\)</span> y <span class="math inline">\(\Delta_2\)</span> como los Laplacianos en la primera o segunda entrada respectivamente.<a href="espectro-del-laplaciano.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<ol start="7">
+<li id="fn7"><p>Salvo en el caso de que <span class="math inline">\(r_+=r_-\)</span> que podemos analizar más adelante si hiciese falta… No hará falta.<a href="espectro-del-laplaciano.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>El producto de <span class="math inline">\(G_1\)</span> y <span class="math inline">\(G_2\)</span> tiene como vértices <span class="math inline">\(V_1\times V_2\)</span> siendo <span class="math inline">\(((x_1,x_2),(y_1,y_2))\)</span> una arista en este grafo si alguna de las siguientes dos condiciones se cumplen: <span class="math inline">\(x_1=y_1\)</span> y <span class="math inline">\((x_2,y_2)\)</span> es una arista en <span class="math inline">\(G_1\)</span>, o bien <span class="math inline">\(x_2=y_2\)</span> y <span class="math inline">\((x_1,y_1)\)</span> es una arista en <span class="math inline">\(G_2\)</span>.<a href="espectro-del-laplaciano.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>También puede verse como consecuencia del Teorema de la divergencia<a href="espectro-del-laplaciano.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>Como <span class="math inline">\(G\)</span> es una función en <span class="math inline">\(V^2\)</span>, definimos a <span class="math inline">\(\Delta_1\)</span> y <span class="math inline">\(\Delta_2\)</span> como los Laplacianos en la primera o segunda entrada respectivamente.<a href="espectro-del-laplaciano.html#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

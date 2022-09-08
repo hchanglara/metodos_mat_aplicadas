@@ -35,7 +35,7 @@ $$
 \partial_t u(x,t) = \sum_{e_+=x} f(e,t) - \sum_{e_-=x} f(e,t) = -\operatorname{div} f(x,t).
 $$
 
-Observamos que si en un dado nodo $x\in V$ se tiene que $\operatorname{div} f(x)>0$ entonces $u$ es decreciente. Esto quiere decir que el flujo hace que la densidad se esparza o diverja sobre  dicho nodo. De igual forma, si $\operatorname{div} f(x)<0$, $u$ es creciente y el flujo hace que la densidad en cambio converga en dicho nodo.
+Observamos que si en un dado nodo $x\in V$ se tiene que $\operatorname{div} f(x)>0$ entonces $u$ es decreciente. Esto quiere decir que el flujo hace que la densidad se esparza o diverja sobre  dicho nodo. De igual forma, si $\operatorname{div} f(x)<0$, $u$ es creciente y el flujo hace que la densidad en cambio converja en dicho nodo.
 
 ---
 

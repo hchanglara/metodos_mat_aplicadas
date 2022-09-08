@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[
 m(t) = \int_{B_r(x_0)}\mu(x,t)dx.
 \]</span>
-Dado que en nuestro modelo, <span class="math inline">\(v\)</span> mueve a la distribución <span class="math inline">\(\mu\)</span> conservando la masa tenemos que la variación de <span class="math inline">\(m\)</span> debe estar determinada por la cantidad neta que entra y sale por la esfera (Figura <a href="leyes-de-conservación.html#fig:cons">9.1</a>). Esta cantidad está determinada por el flujo <span class="math inline">\(f = \mu v\)</span> (flux<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>)
+Dado que en nuestro modelo, <span class="math inline">\(v\)</span> mueve a la distribución <span class="math inline">\(\mu\)</span> conservando la masa tenemos que la variación de <span class="math inline">\(m\)</span> debe estar determinada por la cantidad neta que entra y sale por la esfera (Figura <a href="leyes-de-conservación.html#fig:cons">9.1</a>). Esta cantidad está determinada por el flujo <span class="math inline">\(f = \mu v\)</span> (flux<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>)
 <span class="math display">\[
 m&#39;(t) = -\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dx
 \]</span>
@@ -285,7 +285,7 @@ En conclusión
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-123" class="exercise"><strong>Ejercicio 9.1  </strong></span>Verifica que para <span class="math inline">\(u:\mathbb R^n\to\mathbb R\)</span> de clase <span class="math inline">\(C^2\)</span>,
+<p><span id="exr:unlabeled-div-124" class="exercise"><strong>Ejercicio 9.1  </strong></span>Verifica que para <span class="math inline">\(u:\mathbb R^n\to\mathbb R\)</span> de clase <span class="math inline">\(C^2\)</span>,
 <span class="math display">\[
 \lim_{r\to0^+} \frac{1}{r^2|\partial B_r|}\int_{\partial B_r} (u(x)-u(0))dx = \frac{1}{2n}\Delta u(0).
 \]</span></p>
@@ -298,7 +298,7 @@ Solución
 <div id="teorema-de-transporte" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Teorema de transporte<a href="leyes-de-conservación.html#teorema-de-transporte" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Dicho de otra forma, la ley de conservación dicta que el flujo <span class="math inline">\(\phi_t := \phi(\cdot,t)\)</span> generado por <span class="math inline">\(v\)</span> empuja a la densidad inicial <span class="math inline">\(\mu_0 := \mu(0) := \mu(\cdot,0)\)</span> en la densidad <span class="math inline">\(\mu_t := \mu(t) := \mu(\cdot,t)\)</span>.</p>
-<p>Para ser precisos, definimos que un mapeo <span class="math inline">\(T:\mathbb R^n\to\mathbb R^n\)</span> <strong>empuja</strong><a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> a <span class="math inline">\(\mu_0\)</span> en <span class="math inline">\(\mu_1 =: T_\#\mu_0\)</span> si preserva las medidas según la siguiente identidad (Figura <a href="leyes-de-conservación.html#fig:push">9.2</a>)
+<p>Para ser precisos, definimos que un mapeo <span class="math inline">\(T:\mathbb R^n\to\mathbb R^n\)</span> <strong>empuja</strong><a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> a <span class="math inline">\(\mu_0\)</span> en <span class="math inline">\(\mu_1 =: T_\#\mu_0\)</span> si preserva las medidas según la siguiente identidad (Figura <a href="leyes-de-conservación.html#fig:push">9.2</a>)
 <span class="math display">\[
 \int_{T^{-1}(B_r(y_0))} \mu_0(x)dx = \int_{B_r(y_0)} \mu_1(y)dy \qquad\forall \, B_r(y_0)\subseteq\mathbb R^n.
 \]</span>
@@ -334,7 +334,7 @@ por lo que la expresión que buscamos diferenciar es la composición <span class
 Esto demuestra así la propiedad geométrica anunciada.</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-124" class="exercise"><strong>Ejercicio 9.2  </strong></span>Verifica que para <span class="math inline">\(f:\mathbb R\to\mathbb R\)</span> continua,
+<p><span id="exr:unlabeled-div-125" class="exercise"><strong>Ejercicio 9.2  </strong></span>Verifica que para <span class="math inline">\(f:\mathbb R\to\mathbb R\)</span> continua,
 <span class="math display">\[
 y(t) = \int_0^t f(s)\sin(t-s)ds
 \]</span>
@@ -388,7 +388,7 @@ Para <span class="math inline">\(M(t_0)=M_0\)</span> invertible usamos que <span
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-125" class="exercise"><strong>Ejercicio 9.3  </strong></span>Sea <span class="math inline">\(\phi\)</span> el flujo generado por <span class="math inline">\(v\)</span> y <span class="math inline">\(E_t=\phi_t(E)\)</span> donde <span class="math inline">\(E\subseteq\mathbb R^n\)</span> tiene frontera regular. Demuestra que para <span class="math inline">\(f:\mathbb R^n\times\mathbb R\to\mathbb R\)</span> de clase <span class="math inline">\(C^1\)</span>
+<p><span id="exr:unlabeled-div-126" class="exercise"><strong>Ejercicio 9.3  </strong></span>Sea <span class="math inline">\(\phi\)</span> el flujo generado por <span class="math inline">\(v\)</span> y <span class="math inline">\(E_t=\phi_t(E)\)</span> donde <span class="math inline">\(E\subseteq\mathbb R^n\)</span> tiene frontera regular. Demuestra que para <span class="math inline">\(f:\mathbb R^n\times\mathbb R\to\mathbb R\)</span> de clase <span class="math inline">\(C^1\)</span>
 <span class="math display">\[
 \frac{d}{dt}\int_{E_t}f = \int_{E_t}\partial_t f + \int_{\partial E_t}f(v\cdot n_t),
 \]</span>
@@ -401,7 +401,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-126" class="exercise"><strong>Ejercicio 9.4  </strong></span>Grafica <span class="math inline">\(\mu(\cdot,t)\)</span> para <span class="math inline">\(t\in \{0,0.2,0.4,0.6,0.8,1\}\)</span> si
+<p><span id="exr:unlabeled-div-127" class="exercise"><strong>Ejercicio 9.4  </strong></span>Grafica <span class="math inline">\(\mu(\cdot,t)\)</span> para <span class="math inline">\(t\in \{0,0.2,0.4,0.6,0.8,1\}\)</span> si
 <span class="math display">\[
 \partial_t\mu + \partial_x(x^2\mu) = 0, \qquad \mu(x,0) = \exp(-(x-1)^2)+5\exp(-10(x+2)^2).
 \]</span></p>
@@ -430,7 +430,7 @@ donde <span class="math inline">\(v_m&gt;0\)</span> es la velocidad máxima. La 
 Esto modela el escenario donde los carros pueden estar detenidos inicialmente por un semáforo que luego cambia a tener luz verde.</p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-127" class="exercise"><strong>Ejercicio 9.5  </strong></span>Calcula las soluciones de las ecuaciones características. Observa que existe una región de <span class="math inline">\(\mathbb R\times(0,\infty)\)</span> que no pareciera estar cubierta por las trayectorias. Calcula la cantidad de tiempo que debe esperar un agente inicialmente ubicado en <span class="math inline">\(x_0&lt;0\)</span> para comenzar a moverse (es decir tener velocidad positiva) luego de que el semáforo ha cambiado a verde.</p>
+<p><span id="exr:unlabeled-div-128" class="exercise"><strong>Ejercicio 9.5  </strong></span>Calcula las soluciones de las ecuaciones características. Observa que existe una región de <span class="math inline">\(\mathbb R\times(0,\infty)\)</span> que no pareciera estar cubierta por las trayectorias. Calcula la cantidad de tiempo que debe esperar un agente inicialmente ubicado en <span class="math inline">\(x_0&lt;0\)</span> para comenzar a moverse (es decir tener velocidad positiva) luego de que el semáforo ha cambiado a verde.</p>
 </div>
 <details>
 <summary>
@@ -439,7 +439,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-128" class="exercise"><strong>Ejercicio 9.6  </strong></span>Aproxima la condición inicial por <span class="math inline">\(\mu_\varepsilon(x,0) = \mu_{max} (1/2-\arctan(x/\varepsilon)/\pi)\)</span> (para <span class="math inline">\(\varepsilon&gt;0\)</span>) y observa que este caso el método de las características si permite definir una solución. ¿Qué sucede en el límite cuando <span class="math inline">\(\varepsilon\to0^+\)</span>?</p>
+<p><span id="exr:unlabeled-div-129" class="exercise"><strong>Ejercicio 9.6  </strong></span>Aproxima la condición inicial por <span class="math inline">\(\mu_\varepsilon(x,0) = \mu_{max} (1/2-\arctan(x/\varepsilon)/\pi)\)</span> (para <span class="math inline">\(\varepsilon&gt;0\)</span>) y observa que este caso el método de las características si permite definir una solución. ¿Qué sucede en el límite cuando <span class="math inline">\(\varepsilon\to0^+\)</span>?</p>
 </div>
 <details>
 <summary>
@@ -464,7 +464,7 @@ Como tal describe el transporte de regiones de mayor a menos concentraciones de 
 <span class="math display">\[\partial_t \mu =k \Delta \mu\]</span></p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-129" class="example"><strong>Ejemplo 9.1  </strong></span>Un modelo de quimiotaxis describe la evolución de una densidad de bacterias <span class="math inline">\(\rho\)</span> y una densidad química <span class="math inline">\(\varphi\)</span> que atrae dicha población. Esto puede ser representado por las siguientes ecuaciones
+<p><span id="exm:unlabeled-div-130" class="example"><strong>Ejemplo 9.1  </strong></span>Un modelo de quimiotaxis describe la evolución de una densidad de bacterias <span class="math inline">\(\rho\)</span> y una densidad química <span class="math inline">\(\varphi\)</span> que atrae dicha población. Esto puede ser representado por las siguientes ecuaciones
 <span class="math display">\[
 \begin{aligned}
     &amp;\partial_t \rho+\operatorname{div}(\alpha \rho D \varphi)=0,\\
@@ -475,7 +475,7 @@ Como tal describe el transporte de regiones de mayor a menos concentraciones de 
 </div>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-130" class="example"><strong>Ejemplo 9.2  </strong></span>Recordemos el modelo básico epidemiológico para dos tipos de poblaciones, suseptibles (<span class="math inline">\(S\)</span>) e infectados (<span class="math inline">\(I\)</span>)
+<p><span id="exm:unlabeled-div-131" class="example"><strong>Ejemplo 9.2  </strong></span>Recordemos el modelo básico epidemiológico para dos tipos de poblaciones, suseptibles (<span class="math inline">\(S\)</span>) e infectados (<span class="math inline">\(I\)</span>)
 <span class="math display">\[
 \begin{aligned}
 S&#39;&amp;=-\beta IS\\
@@ -554,7 +554,7 @@ u=\frac{1}{\mu}\int \rho vdv.
 \]</span></p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-131" class="example"><strong>Ejemplo 9.3  </strong></span>Asumamos ahora que las partículas interactúan a pares por medio de una misma fuerza conservativa con potencial <span class="math inline">\(U:\mathbb R^d\to \mathbb R\)</span> de clase <span class="math inline">\(C^1\)</span>. Es decir que la partícula en <span class="math inline">\(y\)</span> de masa unitaria ejerce una fuerza igual a <span class="math inline">\(-DU(x-y)\)</span> sobre una partícula en <span class="math inline">\(x\)</span>, también de masa unitaria.\</p>
+<p><span id="exm:unlabeled-div-132" class="example"><strong>Ejemplo 9.3  </strong></span>Asumamos ahora que las partículas interactúan a pares por medio de una misma fuerza conservativa con potencial <span class="math inline">\(U:\mathbb R^d\to \mathbb R\)</span> de clase <span class="math inline">\(C^1\)</span>. Es decir que la partícula en <span class="math inline">\(y\)</span> de masa unitaria ejerce una fuerza igual a <span class="math inline">\(-DU(x-y)\)</span> sobre una partícula en <span class="math inline">\(x\)</span>, también de masa unitaria.\</p>
 <p>Dada la distribución <span class="math inline">\(\mu\)</span> de partículas, tenemos que por el principio de superposición la aceleración neta sobre la posición <span class="math inline">\(x\)</span> está dada según
 <span class="math display">\[
 a(x) = -\int DU(x-y)\mu(y)dy = -(DU\ast \mu)(x).
@@ -566,7 +566,7 @@ El problema de Liouville en este caso se conoce como la <strong>ecuación de Vla
 </div>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-132" class="example"><strong>Ejemplo 9.4  </strong></span>Para <span class="math inline">\(d=3\)</span> y <span class="math inline">\(U(x) = |x|^{-1}\)</span> estamos modelando las fuerzas gravitatorias y <span class="math inline">\(U\)</span> se conoce como el <strong>potencial de Newton</strong>. En este caso la convolución <span class="math inline">\(U_\mu := U\ast \mu\)</span> es la solución de la ecuación de Poisson <span class="math inline">\(\Delta u = -\mu\)</span> en <span class="math inline">\(\mathbb R^3\)</span> con decaimiento en infinito. Tenemos así las <strong>ecuaciones de Vlasov-Poisson</strong> dadas por
+<p><span id="exm:unlabeled-div-133" class="example"><strong>Ejemplo 9.4  </strong></span>Para <span class="math inline">\(d=3\)</span> y <span class="math inline">\(U(x) = |x|^{-1}\)</span> estamos modelando las fuerzas gravitatorias y <span class="math inline">\(U\)</span> se conoce como el <strong>potencial de Newton</strong>. En este caso la convolución <span class="math inline">\(U_\mu := U\ast \mu\)</span> es la solución de la ecuación de Poisson <span class="math inline">\(\Delta u = -\mu\)</span> en <span class="math inline">\(\mathbb R^3\)</span> con decaimiento en infinito. Tenemos así las <strong>ecuaciones de Vlasov-Poisson</strong> dadas por
 <span class="math display">\[
 \begin{cases}
 \partial_t \rho + v\cdot D_x\rho = D_x u \cdot D_v\rho,\\
@@ -589,7 +589,7 @@ x\\p
 \end{pmatrix}DH.
 \]</span>
 El lado derecho se conoce como el <strong>gradiente simpléctico</strong> de <span class="math inline">\(H\)</span>.</p>
-<p>Las ecuaciones de Liouville para <span class="math inline">\(\rho=\rho(x,p)\)</span><a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> pueden escribirse así en términos de <span class="math inline">\(H\)</span> por medio del <strong>corchete de Poisson</strong> como
+<p>Las ecuaciones de Liouville para <span class="math inline">\(\rho=\rho(x,p)\)</span><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> pueden escribirse así en términos de <span class="math inline">\(H\)</span> por medio del <strong>corchete de Poisson</strong> como
 <span class="math display">\[
 \partial_t \rho + \{H,\rho\} = 0, \qquad \{f,g\} := \begin{pmatrix}
 0&amp;I\\
@@ -598,11 +598,11 @@ El lado derecho se conoce como el <strong>gradiente simpléctico</strong> de <sp
 \]</span></p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-133" class="example"><strong>Ejemplo 9.5  </strong></span>Cuando <span class="math inline">\(\{H,\rho\}=0\)</span> entonces <span class="math inline">\(f\)</span> es una <strong>cantidad conservada del sistema mecánico</strong> dado que el flujo simpléctico generado por <span class="math inline">\(H\)</span> deja a <span class="math inline">\(\rho\)</span> invariante. El <strong>teorema de Noether</strong> establece que esto ocurre si y solo si los flujos generados por los gradientes simplécticos de <span class="math inline">\(H\)</span> y <span class="math inline">\(\rho\)</span> conmutan. Al flujo simpléctico generado por <span class="math inline">\(\rho\)</span> se le conoce así como una <strong>simetría del sistema mecánico</strong>.</p>
+<p><span id="exm:unlabeled-div-134" class="example"><strong>Ejemplo 9.5  </strong></span>Cuando <span class="math inline">\(\{H,\rho\}=0\)</span> entonces <span class="math inline">\(f\)</span> es una <strong>cantidad conservada del sistema mecánico</strong> dado que el flujo simpléctico generado por <span class="math inline">\(H\)</span> deja a <span class="math inline">\(\rho\)</span> invariante. El <strong>teorema de Noether</strong> establece que esto ocurre si y solo si los flujos generados por los gradientes simplécticos de <span class="math inline">\(H\)</span> y <span class="math inline">\(\rho\)</span> conmutan. Al flujo simpléctico generado por <span class="math inline">\(\rho\)</span> se le conoce así como una <strong>simetría del sistema mecánico</strong>.</p>
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-134" class="exercise"><strong>Ejercicio 9.7  </strong></span>Verifica las siguiente propiedades del corchete de Poisson las cuales dan una estructura de álgebra de Lie al espacio de funciones en <span class="math inline">\(\mathbb R^{2N}\)</span>:</p>
+<p><span id="exr:unlabeled-div-135" class="exercise"><strong>Ejercicio 9.7  </strong></span>Verifica las siguiente propiedades del corchete de Poisson las cuales dan una estructura de álgebra de Lie al espacio de funciones en <span class="math inline">\(\mathbb R^{2N}\)</span>:</p>
 <ul>
 <li><p><strong>Anti-simetría:</strong> <span class="math inline">\(\{f,g\}=-\{g,f\}\)</span>,</p></li>
 <li><p><strong>Jacobi (ley del producto):</strong> <span class="math inline">\(\{f,\{g,h\}\} = \{\{f,g\},h\}+\{g,\{f,h\}\}\)</span></p></li>
@@ -615,7 +615,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-135" class="exercise"><strong>Ejercicio 9.8  </strong></span>Verifica las siguientes funciones son cantidades conservadas con respecto de <span class="math inline">\(H\)</span> para <span class="math inline">\(\phi\)</span> y <span class="math inline">\(\psi\)</span> funciones reales de clase <span class="math inline">\(C^1\)</span> arbitrarias:</p>
+<p><span id="exr:unlabeled-div-136" class="exercise"><strong>Ejercicio 9.8  </strong></span>Verifica las siguientes funciones son cantidades conservadas con respecto de <span class="math inline">\(H\)</span> para <span class="math inline">\(\phi\)</span> y <span class="math inline">\(\psi\)</span> funciones reales de clase <span class="math inline">\(C^1\)</span> arbitrarias:</p>
 <ul>
 <li><p><span class="math inline">\(\rho=\phi(H)\)</span>,</p></li>
 <li><p><span class="math inline">\(\rho = \psi(|DH|^2)\)</span>.</p></li>
@@ -665,14 +665,14 @@ por lo que llegamos a la siguiente presentación de las ecuaciones de Euler
 Notemos que el lado izquierdo representa el transporte de la velocidad (multiplicado por la densidad <span class="math inline">\(\mu\)</span>), mientras que en el lado derecho aparecen tres tipos de fuerzas, siendo las dos primeras internas al medio.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-136" class="example"><strong>Ejemplo 9.6  </strong></span>Las <strong>ecuaciones de Euler</strong> resultan cuando complementamos las ecuaciones de conservación de momento con la ley constitutiva <span class="math inline">\(\sigma=0\)</span>, sin forzamento externo. Resultando así el sistema
+<p><span id="exm:unlabeled-div-137" class="example"><strong>Ejemplo 9.6  </strong></span>Las <strong>ecuaciones de Euler</strong> resultan cuando complementamos las ecuaciones de conservación de momento con la ley constitutiva <span class="math inline">\(\sigma=0\)</span>, sin forzamento externo. Resultando así el sistema
 <span class="math display">\[
 \partial_t u+u\cdot Du = -Dp.
 \]</span></p>
 </div>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-137" class="example"><strong>Ejemplo 9.7  </strong></span>Las <strong>ecuaciones de Navier-Stokes</strong> resultan cuando complementamos las ecuaciones de conservación de momento con la ley constitutiva <span class="math inline">\(\sigma=\nu Du\)</span> donde <span class="math inline">\(\nu\)</span> es un coeficiente de viscosidad, sin forzamento externo. Resulta así el sistema
+<p><span id="exm:unlabeled-div-138" class="example"><strong>Ejemplo 9.7  </strong></span>Las <strong>ecuaciones de Navier-Stokes</strong> resultan cuando complementamos las ecuaciones de conservación de momento con la ley constitutiva <span class="math inline">\(\sigma=\nu Du\)</span> donde <span class="math inline">\(\nu\)</span> es un coeficiente de viscosidad, sin forzamento externo. Resulta así el sistema
 <span class="math display">\[
 \partial_t u+u\cdot Du = -Dp + \nu\Delta u.
 \]</span></p>
@@ -684,7 +684,7 @@ Notemos que el lado izquierdo representa el transporte de la velocidad (multipli
 </ul>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-138" class="exercise"><strong>Ejercicio 9.9  </strong></span><strong>Ley de Bernoulli:</strong> Demuestra que si <span class="math inline">\(u\)</span> la ecuación de flujo estacionario
+<p><span id="exr:unlabeled-div-139" class="exercise"><strong>Ejercicio 9.9  </strong></span><strong>Ley de Bernoulli:</strong> Demuestra que si <span class="math inline">\(u\)</span> la ecuación de flujo estacionario
 <span class="math display">\[
 u\cdot Du = -Dp
 \]</span>
@@ -701,7 +701,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-139" class="exercise"><strong>Ejercicio 9.10  </strong></span><strong>Teorema de circulación de Kelvin:</strong> Sea <span class="math inline">\(u\)</span> una solución de
+<p><span id="exr:unlabeled-div-140" class="exercise"><strong>Ejercicio 9.10  </strong></span><strong>Teorema de circulación de Kelvin:</strong> Sea <span class="math inline">\(u\)</span> una solución de
 <span class="math display">\[
 \partial_t u + u \cdot Du = -Dp,
 \]</span>
@@ -729,7 +729,7 @@ Q(\rho)(v) = \int_{\mathbb R^d} k(v&#39;,v)\rho(v&#39;)dv&#39; - \sigma(v)\rho(v
 Si asumimos que <span class="math inline">\(k\)</span> y <span class="math inline">\(\sigma\)</span> son independientes de <span class="math inline">\(\rho\)</span> conseguimos la <strong>ecuación de Boltzmann lineal</strong>.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-140" class="example"><strong>Ejemplo 9.8  </strong></span>La hipótesis de <strong>monocinética</strong>, quiere decir que las velocidades tienen norma constante (digamos <span class="math inline">\(c\)</span>). Bajo la condición de <strong>dispersión isotrópica</strong> tenemos que <span class="math inline">\(k\)</span> es constante y por lo tanto <span class="math inline">\(\sigma=k|\partial B_c|\)</span>. Llegamos así a la ecuación
+<p><span id="exm:unlabeled-div-141" class="example"><strong>Ejemplo 9.8  </strong></span>La hipótesis de <strong>monocinética</strong>, quiere decir que las velocidades tienen norma constante (digamos <span class="math inline">\(c\)</span>). Bajo la condición de <strong>dispersión isotrópica</strong> tenemos que <span class="math inline">\(k\)</span> es constante y por lo tanto <span class="math inline">\(\sigma=k|\partial B_c|\)</span>. Llegamos así a la ecuación
 <span class="math display">\[
 \partial_t \rho + v\cdot D_x\rho = k\int_{\partial B_c} (\rho(v&#39;)-\rho(v))dv&#39;.
 \]</span></p>
@@ -759,7 +759,7 @@ Q(\rho)(v) = \int_{\mathbb R^d}\int_{\partial B_1} (\rho(v&#39;)\rho(v_*&#39;)-\
 modela la tasa de producción de partículas con velocidad <span class="math inline">\(v\)</span> dada la distribución de velocidades dada por <span class="math inline">\(\rho\)</span>.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-141" class="example"><strong>Ejemplo 9.9  </strong></span>Colisiones elásticas…</p>
+<p><span id="exm:unlabeled-div-142" class="example"><strong>Ejemplo 9.9  </strong></span>Colisiones elásticas…</p>
 </div>
 </div>
 <div id="la-jerarquía-de-bogoliubov-born-green-kirkwood-yvon" class="section level3 hasAnchor" number="9.3.4">
@@ -814,11 +814,11 @@ Observemos que <span class="math inline">\(v\)</span> no está necesariamente de
 <p>Dado el campo <span class="math inline">\(v\)</span>, el flujo <span class="math inline">\(\phi\)</span> que este genera, y una densidad inicial <span class="math inline">\(\mu_0\)</span> obtenemos la curva de densidades <span class="math inline">\(\mu_t = (\phi_t)_\#\mu_0\)</span> para la cual <span class="math inline">\(v\)</span> es su velocidad.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-142" class="example"><strong>Ejemplo 9.10  </strong></span>Si <span class="math inline">\(T:\mathbb R^n\to\mathbb R^n\)</span> es un mapeo y <span class="math inline">\(v(x)=T(x)-x\)</span> entonces <span class="math inline">\(\phi_t(x) = (1-t)x+tT(x)\)</span> y <span class="math inline">\(\mu_t(x) = (\phi_t)_\#\mu_0\)</span> puede verse como una interpolación horizontal entre <span class="math inline">\(\mu_0\)</span> y <span class="math inline">\(\mu_1 = T_\#\mu_0\)</span>.</p>
+<p><span id="exm:unlabeled-div-143" class="example"><strong>Ejemplo 9.10  </strong></span>Si <span class="math inline">\(T:\mathbb R^n\to\mathbb R^n\)</span> es un mapeo y <span class="math inline">\(v(x)=T(x)-x\)</span> entonces <span class="math inline">\(\phi_t(x) = (1-t)x+tT(x)\)</span> y <span class="math inline">\(\mu_t(x) = (\phi_t)_\#\mu_0\)</span> puede verse como una interpolación horizontal entre <span class="math inline">\(\mu_0\)</span> y <span class="math inline">\(\mu_1 = T_\#\mu_0\)</span>.</p>
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-143" class="exercise"><strong>Ejercicio 9.11  </strong></span>Calcula una velocidad de las siguientes curvas de Gaussianas en <span class="math inline">\(\mathbb R^n\)</span> en función de <span class="math inline">\(m:\mathbb R\to\mathbb R^n\)</span> y <span class="math inline">\(\sigma:\mathbb R\to(0,\infty)\)</span>:</p>
+<p><span id="exr:unlabeled-div-144" class="exercise"><strong>Ejercicio 9.11  </strong></span>Calcula una velocidad de las siguientes curvas de Gaussianas en <span class="math inline">\(\mathbb R^n\)</span> en función de <span class="math inline">\(m:\mathbb R\to\mathbb R^n\)</span> y <span class="math inline">\(\sigma:\mathbb R\to(0,\infty)\)</span>:</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\mu(x,t) := \exp(-|x-m(t)|^2)\)</span>.</p></li>
 <li><p><span class="math inline">\(\mu(x,t) := \sigma(t)^{-n}\exp(-|x|^2/\sigma(t)^2)\)</span>.</p></li>
@@ -837,7 +837,7 @@ K[\mu] = \frac{1}{2}\int_0^1 \int_{\mathbb R^n} \mu|v|^2 dx dt
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-144" class="exercise"><strong>Ejercicio 9.12  </strong></span>Calcula la energía cinética para cada una de las Gaussianas en el ejercicio anterior, en el intervalo <span class="math inline">\([0,1]\)</span>.</p>
+<p><span id="exr:unlabeled-div-145" class="exercise"><strong>Ejercicio 9.12  </strong></span>Calcula la energía cinética para cada una de las Gaussianas en el ejercicio anterior, en el intervalo <span class="math inline">\([0,1]\)</span>.</p>
 </div>
 <details>
 <summary>
@@ -852,7 +852,7 @@ Solución
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-145" class="exercise"><strong>Ejercicio 9.13  </strong></span>Sea <span class="math inline">\(\mu:\mathbb R^n\times[0,1]\to\mathbb R\)</span> una curva de distribuciones, <span class="math inline">\(\phi:\mathbb R^n\times[0,1]\to\mathbb R^n\)</span> un flujo generado por la velocidad <span class="math inline">\(v\)</span> para <span class="math inline">\(\mu\)</span>, y sea <span class="math inline">\(\bar\phi_t(x) := (1-t)x+t\phi_1(x)\)</span>. Demuestra que para <span class="math inline">\(\bar\mu := (\bar\phi_t)_\#\mu_0\)</span>, cuya velocidad es <span class="math inline">\(\bar v(x) := \phi_1(x)-x\)</span> se tiene que
+<p><span id="exr:unlabeled-div-146" class="exercise"><strong>Ejercicio 9.13  </strong></span>Sea <span class="math inline">\(\mu:\mathbb R^n\times[0,1]\to\mathbb R\)</span> una curva de distribuciones, <span class="math inline">\(\phi:\mathbb R^n\times[0,1]\to\mathbb R^n\)</span> un flujo generado por la velocidad <span class="math inline">\(v\)</span> para <span class="math inline">\(\mu\)</span>, y sea <span class="math inline">\(\bar\phi_t(x) := (1-t)x+t\phi_1(x)\)</span>. Demuestra que para <span class="math inline">\(\bar\mu := (\bar\phi_t)_\#\mu_0\)</span>, cuya velocidad es <span class="math inline">\(\bar v(x) := \phi_1(x)-x\)</span> se tiene que
 <span class="math display">\[
 \int_0^1\int_{\mathbb R^n} \mu|v|^2dxdt \geq \int_0^1\int_{\mathbb R^n} \bar\mu|\bar v|^2dxdt = \int_{\mathbb R^n} |\phi_1(x)-x|^2dx
 \]</span></p>
@@ -875,7 +875,7 @@ Solución
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-146" class="exercise"><strong>Ejercicio 9.14  </strong></span>Calcula <span class="math inline">\(\mathcal W^2(\mu_0,\mu_1)\)</span> para las siguientes distribuciones en <span class="math inline">\(\mathbb R^2\)</span>
+<p><span id="exr:unlabeled-div-147" class="exercise"><strong>Ejercicio 9.14  </strong></span>Calcula <span class="math inline">\(\mathcal W^2(\mu_0,\mu_1)\)</span> para las siguientes distribuciones en <span class="math inline">\(\mathbb R^2\)</span>
 <span class="math display">\[
 \mu_0=\delta_{(0,0)}+\delta_{(0,1)}, \qquad \mu_1=\delta_{(1,0)}+\delta_{(1,1)}.
 \]</span>
@@ -888,7 +888,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-147" class="exercise"><strong>Ejercicio 9.15  </strong></span>Calcula <span class="math inline">\(\mathcal W^2(\mu_0,\mu_1)\)</span> para las siguientes distribuciones en <span class="math inline">\(\mathbb R\)</span>
+<p><span id="exr:unlabeled-div-148" class="exercise"><strong>Ejercicio 9.15  </strong></span>Calcula <span class="math inline">\(\mathcal W^2(\mu_0,\mu_1)\)</span> para las siguientes distribuciones en <span class="math inline">\(\mathbb R\)</span>
 <span class="math display">\[
 \mu_0=\chi_{(0,2)}, \qquad \mu_1=\chi_{(1,3)}.
 \]</span>
@@ -901,7 +901,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-148" class="exercise"><strong>Ejercicio 9.16  </strong></span>Calcula <span class="math inline">\(\mathcal W^2(\mu_0,\mu_1)\)</span> para las siguientes distribuciones en <span class="math inline">\(\mathbb R^n\)</span></p>
+<p><span id="exr:unlabeled-div-149" class="exercise"><strong>Ejercicio 9.16  </strong></span>Calcula <span class="math inline">\(\mathcal W^2(\mu_0,\mu_1)\)</span> para las siguientes distribuciones en <span class="math inline">\(\mathbb R^n\)</span></p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\mu_0(x) = \exp(-|x-m_0|^2)\)</span>, <span class="math inline">\(\mu_1(x) = \exp(-|x-m_1|^2)\)</span>.</p></li>
 <li><p><span class="math inline">\(\mu_0(x) = \sigma_0^{-n}\exp(-|x|^2/\sigma_0^2)\)</span>, <span class="math inline">\(\mu_1(x) = \sigma_1^{-n}\exp(-|x|^2/\sigma_1^2)\)</span>.</p></li>
@@ -946,12 +946,13 @@ Solución
 
 
 
+
 <div class="footnotes">
 <hr />
-<ol start="16">
-<li id="fn16"><p>En inglés se distinguen dos nociones de <em>flujo</em>. <em>Flow</em> se traduce como el flujo <span class="math inline">\(\phi\)</span> dado por la familia de mapeos generados por el campo <span class="math inline">\(v\)</span>. <em>Flux</em> también se traduce como flujo pero se refiere a la cantidad de masa que está atravesando una región en una dirección dada.<a href="leyes-de-conservación.html#fnref16" class="footnote-back">↩︎</a></p></li>
-<li id="fn17"><p>Push-foward<a href="leyes-de-conservación.html#fnref17" class="footnote-back">↩︎</a></p></li>
-<li id="fn18"><p>Este caso es ligeramente distinto puesto que <span class="math inline">\(\rho\)</span> es la distribución de posiciones y momento, no velocidades.<a href="leyes-de-conservación.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<ol start="17">
+<li id="fn17"><p>En inglés se distinguen dos nociones de <em>flujo</em>. <em>Flow</em> se traduce como el flujo <span class="math inline">\(\phi\)</span> dado por la familia de mapeos generados por el campo <span class="math inline">\(v\)</span>. <em>Flux</em> también se traduce como flujo pero se refiere a la cantidad de masa que está atravesando una región en una dirección dada.<a href="leyes-de-conservación.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>Push-foward<a href="leyes-de-conservación.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>Este caso es ligeramente distinto puesto que <span class="math inline">\(\rho\)</span> es la distribución de posiciones y momento, no velocidades.<a href="leyes-de-conservación.html#fnref19" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -2,7 +2,7 @@
 
 En esta sección veremos como poner en práctica los conceptos aprendidos para modelar una red cuadrada sujetada por sus cuatro esquinas. Recordemos que a pesar de que podemos dar una forma explícita de las ecuaciones que se deben resolver, el método de Newton parece ser muy sensible a las condiciones iniciales, por lo que hay que ingeniarse una forma alternativa.
 
-La idea que tenemos en mente es proponer que las conexiones entre nodos elásticas. Con esto proponemos un modelo elástico que gracias a un término de viscosidad podemos llevar al reposo. Con estas configuraciones terminales podemos luego ir haciendo la dureza (stiffness) de los resortes cada vez más y más grande, aproximando así la configuración de equilibrio cuando las barras son rígidas.
+La idea que tenemos en mente es proponer que las conexiones entre nodos son inicialmente elásticas con un mecanismo adicional de amortiguamiento (para poder llevar el sistema al reposo). La configuración términa noe s exactamente la deseada puesto que la deformación del resorte no satisface exactamente la restricción de longitud sobre las aristas. Sin embargo podemos luego ir haciendo la dureza (stiffness) de los resortes cada vez más y más grande, aproximando así la configuración de equilibrio cuando las barras son rígidas.
 
 ## Librerías y datos
 
@@ -54,7 +54,7 @@ $$
 mp'' = \text{gravedad} + \text{tensión} + \text{amortiguación}
 $$
 
-De estos tres tréminos la gravedad y la tensión son fáciles de calcular. Respectivamente son $-mge_z$ y $-\gamma p'$. Asumiendo el sistema internacional de unidades tomamos $g = 9.8$. La dificultad reside ahora en implementar el cálculo de las tensiones.
+De estos tres tréminos la gravedad y la amortiguación son fáciles de calcular. Respectivamente son $-mge_z$ y $-\gamma p'$. Asumiendo el sistema internacional de unidades tomamos $g = 9.8$. La dificultad reside ahora en implementar el cálculo de las tensiones.
 
 Recordemos además que para poder resolver nuestra EDO usando la librería de integración numérica de Scipy (odeint) debemos transformar el sistema a uno de primer orden. Esto significa que las velocidades pasan a ser parte de las incógnitas. Codificamos en la curva $s=s(t)$ las configuraciones de nuestro sistema de la siguiente forma
 $$

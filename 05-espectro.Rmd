@@ -28,6 +28,8 @@ $$
 
 Gracias al teorema espectral sabemos que $L$ es diagonalizable, sus autovalores son reales no-positivos y además posee una base de autofunciones ortogonales. Denotemos por $\phi_0,\ldots,\phi_{M-1}$ a una base ortogonal con autovalores $-\lambda_0,\ldots,-\lambda_{M-1}$ respectivamente.
 
+---
+
 <details>
   <summary>**Margen de álgebra lineal:** El teorema espectral</summary>
   El teorema espectral dice que si $L\in \mathbb R^{N\times N}$ es simétrica, entonces sus autovectores son reales y existe una base ortogonal de autovectores.
@@ -137,6 +139,29 @@ también se puede construir una base ortogonal de autovectores para el ejemplo a
 
 <details>
 <summary>Solución</summary>
+
+$$
+\begin{aligned}
+(\Delta \varphi_j)(x) &= \cos(2\pi j(x-1)/M)-2\cos(2\pi j x/M)+\cos(2\pi j(x+1)/M),\\
+&= 2(\cos(2\pi j/M)-1)\cos(2\pi j x/M),\\
+&= -\lambda_j \varphi_j(x)
+\end{aligned}
+$$
+De igual forma
+$$
+\Delta \psi_j = -\lambda_j \psi_j.
+$$
+
+Observamos además que $\varphi_{M-j}=\varphi_j$ y además $\psi_{M-j}=-\psi_j$. 
+
+Para $M$ par, proponemos entonces tomar $\varphi_0,\varphi_1,\ldots,\varphi_{M/2},\psi_1,\ldots,\psi_{M/2-1}$ como una base. Observa que $\varphi_0(x)=1$ representa las funciones constantes y que hemos evitado deliberadamente tomar $\psi_{M/2}$, la cual es la función trivial.
+
+Dado que autovectores con autovalores distintos son ortogonales, basta con verificar que $\varphi_j$ y $\psi_j$ son linealmente independientes para obtener que el conjunto propuesto es una base. Esto se deduce de 
+$$
+\varphi_j(0)=1 \qquad\text{ y }\qquad \psi_j(0)=0.
+$$
+
+Para $M$ impar proponemos en cambio la base $\varphi_0,\varphi_1,\ldots,\varphi_{(M-1)/2},\psi_1,\ldots,\psi_{(M-1)/2}$ como una base. Una vez más basta verificar que $\varphi_j$ y $\psi_j$ son linealmente independientes, lo cual se deduce igualmente de la identidad dada arriba.
 </details>
 
 ---
@@ -168,6 +193,41 @@ Calcula el espectro del Laplaciano en los siguientes casos:
 
 <details>
 <summary>Solución</summary>
+
+**Tetraedro**
+
+---
+
+**Cubo**
+
+---
+
+**Octaedro**
+
+---
+
+**Dodecaedro**
+
+---
+
+**Icosaedro**
+
+---
+
+**Grafo completo**
+
+---
+
+**Grafo bipartito completo**
+
+---
+
+**Grafo lineal**
+
+---
+
+**Grafo producto**
+
 </details>
 
 ## Problema elíptico

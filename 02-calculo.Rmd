@@ -51,7 +51,7 @@ es la tensión sobre el nodo $e_-$ a lo largo de $e$. A su vez y gracias a la le
 ---
 
 :::{.example}
-Un potencial $u:V\to\mathbb R$ sobre una red de resistencia genera una corriente $i:E\to \mathbb R$ que modelamos usando la ley de Ohm para una dada resistencia $R:E\to (0,\infty)$ (función par). Esto quiere decir que la corriente $i(e)$ que atraviesa una arista $e = (e_-,e_+)$ es proporcional a la diferencia de los potenciales en los extremos de la arista
+Un potencial $u:V\to\mathbb R$ sobre una red de resistencia genera una corriente $i:E\to \mathbb R$ que modelamos usando la ley de Ohm para una dada resistencia $R:E\cup -E \to (0,\infty)$ (función par). Esto quiere decir que la corriente $i(e)$ que atraviesa una arista $e = (e_-,e_+)$ es proporcional a la diferencia de los potenciales en los extremos de la arista
 $$
 i(e) = \frac{u(e_+) - u(e_-)}{R(e)}, \qquad R(e) >0: \text{ Resistencia.}
 $$
@@ -236,7 +236,7 @@ En la siguiente figura se calculó la divergencia de la función dada en las ari
 :::{.example}
 Las ecuaciones de balance para un entramado se escriben en términos de la divergencia de las tensiones sobre los nodos libres como
 $$
-\operatorname{div} T = -mge_y
+\operatorname{div} T = mge_y
 $$
 :::
 
@@ -289,7 +289,7 @@ El campo normal es el gradiente de una dada función ¿Cuál?.
 ---
 
 :::{.theorem name="Fórmula de la divergencia"}
-Sea $G=(V,E)$ un grafo dirigido finito. La divergencia de $f:E\to \mathbb R$ verifica
+Sea $G=(V,E)$ un grafo dirigido finito y $\Omega \ss V$. La divergencia de $f:E\to \mathbb R$ verifica
 \begin{equation}
 \sum_{v\in \Omega} \operatorname{div} f(v) = \sum_{e\in E} f(e)n_\Omega(e)
 (\#eq:div)
@@ -298,11 +298,11 @@ Sea $G=(V,E)$ un grafo dirigido finito. La divergencia de $f:E\to \mathbb R$ ver
 
 De hecho la suma en el lado derecho ocurre en realidad sobre un subconjunto de aristas que podemos definir como el borde de $\partial\Omega$
 $$
-\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap E\setminus \Omega \neq \emptyset\}
+\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap E\setminus \Omega \neq \emptyset\}.
 $$
-es decir las aristas que conectan $\Omega$ con su complemento en cualquier orientación.
+Es decir las aristas que conectan $\Omega$ con su complemento en cualquier orientación.
 
-La cantidad $f(e)n_\Omega(e)$ es positiva cuando $e_-\in \Omega$, $e_+\in V\setminus \Omega$ y $f(e)>0$; o bien cuando $e_-\in V\setminus \Omega$, $e_+\in \Omega$ y $f(e)<0$. En cualquier caso, $f(e)n_\Omega(e)$ se interpreta como la cantidad de masa que escapa de $\Omega$ por medio de $e$. Un razonamiento similar se dá cuando $f(e)n_\Omega(e)$ es negativo para la masa que entra. El balance total nos dice que la masa que se produce o absorbe en $\Omega$ se puede medir de dos formas, sumando las divergencias en $\Omega$ u observando las contribuciones que escapan o entran por las aristas que conectan a $\Omega$ con su complemento $V\setminus \Omega$ en cualquier orientación.
+La cantidad $f(e)n_\Omega(e)$ es positiva cuando $e_-\in \Omega$, $e_+\in V\setminus \Omega$ y $f(e)>0$; o bien cuando $e_-\in V\setminus \Omega$, $e_+\in \Omega$ y $f(e)<0$. En cualquier caso, $f(e)n_\Omega(e)$ se interpreta como el flujo que escapa de $\Omega$ por medio de $e$. Un razonamiento similar se dá cuando $f(e)n_\Omega(e)$ es negativo para el flujo que entra. El balance total nos dice que la masa que se produce o absorbe en $\Omega$ se puede medir de dos formas, sumando las divergencias en $\Omega$ u observando las contribuciones que escapan o entran por las aristas que conectan a $\Omega$ con su complemento $V\setminus \Omega$ en cualquier orientación.
 
 :::{.proof}
 Sean $1_\pm:V\times E\to \mathbb R$ definidas según
@@ -316,7 +316,7 @@ En particular usaremos que
 $$
 \sum_{v\in \Omega} 1_\pm(v,e) = \begin{cases}
 1 \text{ si } e_\pm \in \Omega,\\
-0 \text{ encualquier otro caso}
+0 \text{ en cualquier otro caso}
 \end{cases}
 $$
 
@@ -364,7 +364,7 @@ $$
 :::
 
 :::{.proof}
-Tomemos un nodo arbitrario $x_0\in V$ y consideremos inductivamente caminos no orientados que vayan conectando a $x_0$ con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un **árbol generador** del grafo con raíz en el nodo $x_0$, en otras palabras un sub-grafo $T_0 := (V_0=V,E_0\subseteq E)$ libre de ciclos y conexo. Fijamos $f=0$ en las aristas de $E\setminus E_0$ y en los demás ajustaremos $f$ para que satisfaga la ecuación dada.
+Tomemos un nodo arbitrario $x_0\in V$ y consideremos inductivamente caminos no orientados que vayan conectando a $x_0$ con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un [**árbol generador**](https://en.wikipedia.org/wiki/Spanning_tree) del grafo con raíz en el nodo $x_0$^[En otras palabras un sub-grafo $T_0 := (V_0=V,E_0\subseteq E)$ libre de ciclos y conexo]. Fijamos $f=0$ en las aristas de $E\setminus E_0$ y en los demás ajustaremos $f$ para que satisfaga la ecuación dada.
 
 En la siguiente construcción estaremos definiendo a $f:E\cup-E\to \mathbb R$ como una función impar.
 
@@ -384,6 +384,8 @@ Una vez terminado este algoritmo garantizamos que $\operatorname{div} f=\mu$ se 
 :::
 
 Notemos que si $x_0,\ldots,x_k=x_0$ es un dado ciclo del grafo, entonces si tomamos $f=1$ en las aristas del ciclo y cero por fuera de estas, obtenemos una solución de $\operatorname{div} f=0$. De hecho, todas las soluciones homogéneas se obtienen por superposiciones de este ejemplo. El núcleo de la divergencia es un espacio vectorial generado por los ciclos independientes del grafo y su dimensión es un importante invariante topológico conocido como el **primer número de Betti**.
+
+---
 
 :::{.exercise}
 Calcula los flujos $f:E\to \mathbb R$ tal que $\operatorname{div} f=\mu$ para la función $\mu$ dada sobre los nodos del siguiente grafo.
@@ -421,6 +423,17 @@ Calcula los flujos $f:E\to \mathbb R$ tal que $\operatorname{div} f=\mu$ para la
 </details>
 
 ---
+
+:::{.exercise}
+El primer número de Betti de $G=(V,E)$ es igual a $|E|-|V|+C$ donde $C$ es el número de componentes conexas.
+:::
+
+<details>
+  <summary>Solución</summary>
+  Asumamos sin pérdida de generalidad que $G$ es conexo, es decir $C=1$, y en el caso general podemos aplicar el siguiente razonamiento a cada componente conexa de $G$.
+  
+  Un árbol generador $T=(V,E_0)$ de $G$ tiene $|V|-1$ aristas. Por definición, cualquier arista en $E\sm E_0$ cierra un ciclo en $G$ y genera las soluciones triviales del problema $\div f=0$.
+</details>
 
 ## Integración por partes
 
@@ -496,7 +509,7 @@ En particular, si $u=1$ recuperamos la fórmula de la divergencia \@ref(eq:div).
   <summary>**Margen de cálculo:** Integración por partes</summary>
 La fórmula de integración por partes nos dice que dado un subconjunto $\Omega \subset\mathbb R^n$ con frontera localmente de clase $C^1$ a trozos, un campo *vectorial* $v\in C^1(\overline{\Omega}\to\mathbb R^n)$, y un campo *escalar* $u\in C^1(\overline{\Omega}\to\mathbb R^n)$ entonces
 $$
-\int_\Omega u \operatorname{div} v = \int_{\partial \Omega} u v\cdot n - \int_\Omega Du\cdot v
+\int_\Omega u \operatorname{div} v = \int_{\partial \Omega} u (v\cdot n) - \int_\Omega Du\cdot v
 $$
 donde $n$ es el vector normal exterior a $\Omega$.
 </details>
@@ -518,6 +531,8 @@ $$
 y como corolario $Du \perp g$.
 
 En términos físicos, cualquier flujo se descompone en una parte que preserva la masa ($g$) y en un flujo gradiente ($Du$).
+
+---
 
 <details>
   <summary>**Margen de álgebra lineal:** El teorema fundamental de álgebra lineal</summary>
@@ -622,6 +637,7 @@ Calcula el potencial eléctrico que se genera en un cubo de resistencias de un O
   6\alpha -9\beta = 0
   \end{cases} \qquad\Rightarrow\qquad \alpha = \frac{3}{5}, \qquad \beta = \frac{2}{5}.
   $$
+  Finalmente es inmediato verificar que con estos valores se obtiene una solución satisfactoria. Más adelante veremos que las soluciones de estos sistemas siempre son únicas ([inyectividad del Laplaciano](#existencia-y-unicidad-de-soluciones)).
 </details>
 
 ---

@@ -285,7 +285,7 @@ es la tensión sobre el nodo <span class="math inline">\(e_-\)</span> a lo largo
 </div>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-5" class="example"><strong>Ejemplo 2.2  </strong></span>Un potencial <span class="math inline">\(u:V\to\mathbb R\)</span> sobre una red de resistencia genera una corriente <span class="math inline">\(i:E\to \mathbb R\)</span> que modelamos usando la ley de Ohm para una dada resistencia <span class="math inline">\(R:E\to (0,\infty)\)</span> (función par). Esto quiere decir que la corriente <span class="math inline">\(i(e)\)</span> que atraviesa una arista <span class="math inline">\(e = (e_-,e_+)\)</span> es proporcional a la diferencia de los potenciales en los extremos de la arista
+<p><span id="exm:unlabeled-div-5" class="example"><strong>Ejemplo 2.2  </strong></span>Un potencial <span class="math inline">\(u:V\to\mathbb R\)</span> sobre una red de resistencia genera una corriente <span class="math inline">\(i:E\to \mathbb R\)</span> que modelamos usando la ley de Ohm para una dada resistencia <span class="math inline">\(R:E\cup -E \to (0,\infty)\)</span> (función par). Esto quiere decir que la corriente <span class="math inline">\(i(e)\)</span> que atraviesa una arista <span class="math inline">\(e = (e_-,e_+)\)</span> es proporcional a la diferencia de los potenciales en los extremos de la arista
 <span class="math display">\[
 i(e) = \frac{u(e_+) - u(e_-)}{R(e)}, \qquad R(e) &gt;0: \text{ Resistencia.}
 \]</span></p>
@@ -441,7 +441,7 @@ En general, <span class="math inline">\(u\)</span> tiene el gradiente prescrito 
 <div class="example">
 <p><span id="exm:unlabeled-div-16" class="example"><strong>Ejemplo 2.4  </strong></span>Las ecuaciones de balance para un entramado se escriben en términos de la divergencia de las tensiones sobre los nodos libres como
 <span class="math display">\[
-\operatorname{div} T = -mge_y
+\operatorname{div} T = mge_y
 \]</span></p>
 </div>
 <hr />
@@ -486,7 +486,7 @@ Solución
 </details>
 <hr />
 <div class="theorem">
-<p><span id="thm:unlabeled-div-19" class="theorem"><strong>Teorema 2.2  (Fórmula de la divergencia) </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo dirigido finito. La divergencia de <span class="math inline">\(f:E\to \mathbb R\)</span> verifica
+<p><span id="thm:unlabeled-div-19" class="theorem"><strong>Teorema 2.2  (Fórmula de la divergencia) </strong></span>Sea <span class="math inline">\(G=(V,E)\)</span> un grafo dirigido finito y <span class="math inline">\(\Omega \ss V\)</span>. La divergencia de <span class="math inline">\(f:E\to \mathbb R\)</span> verifica
 <span class="math display" id="eq:div">\[\begin{equation}
 \sum_{v\in \Omega} \operatorname{div} f(v) = \sum_{e\in E} f(e)n_\Omega(e)
 \tag{2.1}
@@ -494,10 +494,10 @@ Solución
 </div>
 <p>De hecho la suma en el lado derecho ocurre en realidad sobre un subconjunto de aristas que podemos definir como el borde de <span class="math inline">\(\partial\Omega\)</span>
 <span class="math display">\[
-\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap E\setminus \Omega \neq \emptyset\}
+\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap E\setminus \Omega \neq \emptyset\}.
 \]</span>
-es decir las aristas que conectan <span class="math inline">\(\Omega\)</span> con su complemento en cualquier orientación.</p>
-<p>La cantidad <span class="math inline">\(f(e)n_\Omega(e)\)</span> es positiva cuando <span class="math inline">\(e_-\in \Omega\)</span>, <span class="math inline">\(e_+\in V\setminus \Omega\)</span> y <span class="math inline">\(f(e)&gt;0\)</span>; o bien cuando <span class="math inline">\(e_-\in V\setminus \Omega\)</span>, <span class="math inline">\(e_+\in \Omega\)</span> y <span class="math inline">\(f(e)&lt;0\)</span>. En cualquier caso, <span class="math inline">\(f(e)n_\Omega(e)\)</span> se interpreta como la cantidad de masa que escapa de <span class="math inline">\(\Omega\)</span> por medio de <span class="math inline">\(e\)</span>. Un razonamiento similar se dá cuando <span class="math inline">\(f(e)n_\Omega(e)\)</span> es negativo para la masa que entra. El balance total nos dice que la masa que se produce o absorbe en <span class="math inline">\(\Omega\)</span> se puede medir de dos formas, sumando las divergencias en <span class="math inline">\(\Omega\)</span> u observando las contribuciones que escapan o entran por las aristas que conectan a <span class="math inline">\(\Omega\)</span> con su complemento <span class="math inline">\(V\setminus \Omega\)</span> en cualquier orientación.</p>
+Es decir las aristas que conectan <span class="math inline">\(\Omega\)</span> con su complemento en cualquier orientación.</p>
+<p>La cantidad <span class="math inline">\(f(e)n_\Omega(e)\)</span> es positiva cuando <span class="math inline">\(e_-\in \Omega\)</span>, <span class="math inline">\(e_+\in V\setminus \Omega\)</span> y <span class="math inline">\(f(e)&gt;0\)</span>; o bien cuando <span class="math inline">\(e_-\in V\setminus \Omega\)</span>, <span class="math inline">\(e_+\in \Omega\)</span> y <span class="math inline">\(f(e)&lt;0\)</span>. En cualquier caso, <span class="math inline">\(f(e)n_\Omega(e)\)</span> se interpreta como el flujo que escapa de <span class="math inline">\(\Omega\)</span> por medio de <span class="math inline">\(e\)</span>. Un razonamiento similar se dá cuando <span class="math inline">\(f(e)n_\Omega(e)\)</span> es negativo para el flujo que entra. El balance total nos dice que la masa que se produce o absorbe en <span class="math inline">\(\Omega\)</span> se puede medir de dos formas, sumando las divergencias en <span class="math inline">\(\Omega\)</span> u observando las contribuciones que escapan o entran por las aristas que conectan a <span class="math inline">\(\Omega\)</span> con su complemento <span class="math inline">\(V\setminus \Omega\)</span> en cualquier orientación.</p>
 <div class="proof">
 <p><span id="unlabeled-div-20" class="proof"><em>Demostración</em>. </span>Sean <span class="math inline">\(1_\pm:V\times E\to \mathbb R\)</span> definidas según
 <span class="math display">\[
@@ -510,7 +510,7 @@ En particular usaremos que
 <span class="math display">\[
 \sum_{v\in \Omega} 1_\pm(v,e) = \begin{cases}
 1 \text{ si } e_\pm \in \Omega,\\
-0 \text{ encualquier otro caso}
+0 \text{ en cualquier otro caso}
 \end{cases}
 \]</span></p>
 <p>Tenemos así que
@@ -555,7 +555,7 @@ existe por lo menos una solución <span class="math inline">\(f:E\to\mathbb R\)<
 \]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-22" class="proof"><em>Demostración</em>. </span>Tomemos un nodo arbitrario <span class="math inline">\(x_0\in V\)</span> y consideremos inductivamente caminos no orientados que vayan conectando a <span class="math inline">\(x_0\)</span> con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un <strong>árbol generador</strong> del grafo con raíz en el nodo <span class="math inline">\(x_0\)</span>, en otras palabras un sub-grafo <span class="math inline">\(T_0 := (V_0=V,E_0\subseteq E)\)</span> libre de ciclos y conexo. Fijamos <span class="math inline">\(f=0\)</span> en las aristas de <span class="math inline">\(E\setminus E_0\)</span> y en los demás ajustaremos <span class="math inline">\(f\)</span> para que satisfaga la ecuación dada.</p>
+<p><span id="unlabeled-div-22" class="proof"><em>Demostración</em>. </span>Tomemos un nodo arbitrario <span class="math inline">\(x_0\in V\)</span> y consideremos inductivamente caminos no orientados que vayan conectando a <span class="math inline">\(x_0\)</span> con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un <a href="https://en.wikipedia.org/wiki/Spanning_tree"><strong>árbol generador</strong></a> del grafo con raíz en el nodo <span class="math inline">\(x_0\)</span><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Fijamos <span class="math inline">\(f=0\)</span> en las aristas de <span class="math inline">\(E\setminus E_0\)</span> y en los demás ajustaremos <span class="math inline">\(f\)</span> para que satisfaga la ecuación dada.</p>
 <p>En la siguiente construcción estaremos definiendo a <span class="math inline">\(f:E\cup-E\to \mathbb R\)</span> como una función impar.</p>
 <p>La idea consiste en ir podando las ramas del árbol a medida que asignamos <span class="math inline">\(f\)</span> convenientemente. Si <span class="math inline">\(|V_0|=1\)</span> el problema sería trivial, asumamos así que <span class="math inline">\(|V_0|&gt;1\)</span>. En el primer paso tomamos una hoja de <span class="math inline">\(T_0\)</span>, es decir un <span class="math inline">\(x\in V_0\)</span> con un único nodo <span class="math inline">\(y \sim_{T_0} x\)</span>. Declaramos así <span class="math inline">\(f(x,y) = \mu(x)\)</span> de modo que se tiene que <span class="math inline">\(\operatorname{div}f(x) = \mu(x)\)</span> (<span class="math inline">\(f\)</span> es distinto de cero en a lo sumo una arista en esta suma). Una vez declarado <span class="math inline">\(f\)</span> en la arista <span class="math inline">\(e=(x,y)\)</span> procedemos a considerar el árbol <span class="math inline">\(T_1 = (V_0\setminus \{x\},E_1:=E_0\setminus \{(x,y),(y,x)\})\)</span>.</p>
 <p>Asumamos de forma inductiva que luego de <span class="math inline">\(k\)</span> pasos contamos con los árboles
@@ -570,6 +570,7 @@ Claramente esta construcción garantiza que las hipótesis inductivas se siguen 
 <p>Una vez terminado este algoritmo garantizamos que <span class="math inline">\(\operatorname{div} f=\mu\)</span> se cumple en <span class="math inline">\(V\setminus \{x_0\}\)</span> (la raíz del árbol). Como última observación tenemos que la ecuación también debe cumplirse en <span class="math inline">\(x_0\)</span> gracias a que <span class="math inline">\(\sum_{x\in V} \operatorname{div} f(x)=\sum_{x\in V} \mu(x)=0\)</span>.</p>
 </div>
 <p>Notemos que si <span class="math inline">\(x_0,\ldots,x_k=x_0\)</span> es un dado ciclo del grafo, entonces si tomamos <span class="math inline">\(f=1\)</span> en las aristas del ciclo y cero por fuera de estas, obtenemos una solución de <span class="math inline">\(\operatorname{div} f=0\)</span>. De hecho, todas las soluciones homogéneas se obtienen por superposiciones de este ejemplo. El núcleo de la divergencia es un espacio vectorial generado por los ciclos independientes del grafo y su dimensión es un importante invariante topológico conocido como el <strong>primer número de Betti</strong>.</p>
+<hr />
 <div class="exercise">
 <p><span id="exr:unlabeled-div-23" class="exercise"><strong>Ejercicio 2.6  </strong></span>Calcula los flujos <span class="math inline">\(f:E\to \mathbb R\)</span> tal que <span class="math inline">\(\operatorname{div} f=\mu\)</span> para la función <span class="math inline">\(\mu\)</span> dada sobre los nodos del siguiente grafo.</p>
 <p><img src="div2.png" style="width:70.0%" /></p>
@@ -603,6 +604,16 @@ Dos soluciones linealmente independientes se obtienen por ejemplo de los ciclos 
 Si usamos la reducción de Gauss-Jordan podemos verificar que esta es además una base de las soluciones homogéneas.
 </details>
 <hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-24" class="exercise"><strong>Ejercicio 2.7  </strong></span>El primer número de Betti de <span class="math inline">\(G=(V,E)\)</span> es igual a <span class="math inline">\(|E|-|V|+C\)</span> donde <span class="math inline">\(C\)</span> es el número de componentes conexas.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+<p>Asumamos sin pérdida de generalidad que <span class="math inline">\(G\)</span> es conexo, es decir <span class="math inline">\(C=1\)</span>, y en el caso general podemos aplicar el siguiente razonamiento a cada componente conexa de <span class="math inline">\(G\)</span>.</p>
+Un árbol generador <span class="math inline">\(T=(V,E_0)\)</span> de <span class="math inline">\(G\)</span> tiene <span class="math inline">\(|V|-1\)</span> aristas. Por definición, cualquier arista en <span class="math inline">\(E\sm E_0\)</span> cierra un ciclo en <span class="math inline">\(G\)</span> y genera las soluciones triviales del problema <span class="math inline">\(\div f=0\)</span>.
+</details>
 </div>
 </div>
 <div id="integración-por-partes" class="section level2 hasAnchor" number="2.3">
@@ -630,7 +641,7 @@ Descubrimos de esta forma que <span class="math inline">\(D^T = -\operatorname{d
 \]</span></p>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-24" class="exercise"><strong>Ejercicio 2.7  </strong></span>Calcula las matrices asociadas con el gradiente y la divergencia para el siguiente grafo</p>
+<p><span id="exr:unlabeled-div-25" class="exercise"><strong>Ejercicio 2.8  </strong></span>Calcula las matrices asociadas con el gradiente y la divergencia para el siguiente grafo</p>
 <p><img src="k3.png" style="width:70.0%" /></p>
 </div>
 <details>
@@ -654,7 +665,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-25" class="exercise"><strong>Ejercicio 2.8  </strong></span>Demuestra la fórmula de integración por partes sobre un dominio <span class="math inline">\(\Omega \subseteq V\)</span>
+<p><span id="exr:unlabeled-div-26" class="exercise"><strong>Ejercicio 2.9  </strong></span>Demuestra la fórmula de integración por partes sobre un dominio <span class="math inline">\(\Omega \subseteq V\)</span>
 <span class="math display" id="eq:ipv">\[\begin{equation}
 \sum_{\Omega} u\operatorname{div}f = \sum_{E} u^-fn_\Omega - \sum_{e_+\in \Omega} fDu.
 \tag{2.2}
@@ -674,7 +685,7 @@ Basta con usar que <span class="math inline">\(Dv\cdot f = - v\cdot \operatornam
 </summary>
 La fórmula de integración por partes nos dice que dado un subconjunto <span class="math inline">\(\Omega \subset\mathbb R^n\)</span> con frontera localmente de clase <span class="math inline">\(C^1\)</span> a trozos, un campo <em>vectorial</em> <span class="math inline">\(v\in C^1(\overline{\Omega}\to\mathbb R^n)\)</span>, y un campo <em>escalar</em> <span class="math inline">\(u\in C^1(\overline{\Omega}\to\mathbb R^n)\)</span> entonces
 <span class="math display">\[
-\int_\Omega u \operatorname{div} v = \int_{\partial \Omega} u v\cdot n - \int_\Omega Du\cdot v
+\int_\Omega u \operatorname{div} v = \int_{\partial \Omega} u (v\cdot n) - \int_\Omega Du\cdot v
 \]</span>
 donde <span class="math inline">\(n\)</span> es el vector normal exterior a <span class="math inline">\(\Omega\)</span>.
 </details>
@@ -684,7 +695,7 @@ donde <span class="math inline">\(n\)</span> es el vector normal exterior a <spa
 <span class="math display">\[
 \mathbb R^{|E|} = D(\mathbb R^{|V|}) + \ker(\operatorname{div}).
 \]</span>
-también conocida como la <strong>descomposición de Helmholtz</strong>. Es decir que cualquier <span class="math inline">\(f:E\to\mathbb R\)</span> puede escribirse de forma <em>única</em><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> como
+también conocida como la <strong>descomposición de Helmholtz</strong>. Es decir que cualquier <span class="math inline">\(f:E\to\mathbb R\)</span> puede escribirse de forma <em>única</em><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> como
 <span class="math display">\[
 f = Du + g
 \]</span>
@@ -694,6 +705,7 @@ tal que
 \]</span>
 y como corolario <span class="math inline">\(Du \perp g\)</span>.</p>
 <p>En términos físicos, cualquier flujo se descompone en una parte que preserva la masa (<span class="math inline">\(g\)</span>) y en un flujo gradiente (<span class="math inline">\(Du\)</span>).</p>
+<hr />
 <details>
 <summary>
 <strong>Margen de álgebra lineal:</strong> El teorema fundamental de álgebra lineal
@@ -706,7 +718,7 @@ Si <span class="math inline">\(x \perp A(\mathbb R^M)\)</span> entonces <span cl
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-26" class="exercise"><strong>Ejercicio 2.9  </strong></span>Calcula la descomposición de Helmholtz para el siguiente flujo</p>
+<p><span id="exr:unlabeled-div-27" class="exercise"><strong>Ejercicio 2.10  </strong></span>Calcula la descomposición de Helmholtz para el siguiente flujo</p>
 <p><img src="helmhotz.png" style="width:70.0%" /></p>
 </div>
 <details>
@@ -722,7 +734,7 @@ u(A)+u(B)-3u(C)+u(D)=-7,\\
 u(B)+u(C)-2u(D)=0.
 \end{cases}
 \]</span>
-Las soluciones homogéneas del sistema son los potenciales constantes<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Ajustando esta constante de forma que <span class="math inline">\(u(A)=0\)</span> obtenemos un sistema que podemos resolver numéricamente</p>
+Las soluciones homogéneas del sistema son los potenciales constantes<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. Ajustando esta constante de forma que <span class="math inline">\(u(A)=0\)</span> obtenemos un sistema que podemos resolver numéricamente</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="cálculo-discreto.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="cálculo-discreto.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="cálculo-discreto.html#cb2-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[ <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
@@ -746,7 +758,7 @@ Las soluciones homogéneas del sistema son los potenciales constantes<a href="#f
 <h2><span class="header-section-number">2.4</span> Laplaciano<a href="cálculo-discreto.html#laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El Laplaciano es un operador diferencial que se construye aplicando sucesivamente el gradiente y la divergencia. Es decir que mide la producción de masa del gradiente. Además, luego de una manipulación algebraica, observamos que es proporcional a la diferencia entre el promedio en los vértices adyacentes y el valor en el centro.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-27" class="definition"><strong>Definición 2.5  </strong></span>Dado <span class="math inline">\(u: V \to \mathbb R\)</span>, el Laplaciano <span class="math inline">\(\Delta u: V \to \mathbb R\)</span> se define tal que
+<p><span id="def:unlabeled-div-28" class="definition"><strong>Definición 2.5  </strong></span>Dado <span class="math inline">\(u: V \to \mathbb R\)</span>, el Laplaciano <span class="math inline">\(\Delta u: V \to \mathbb R\)</span> se define tal que
 <span class="math display">\[
 \Delta u(v) = \operatorname{div}(D u)(v) = \sum_{w \sim v} (u(w)-u(v)).
 \]</span>
@@ -756,7 +768,7 @@ donde <span class="math inline">\(w \sim v\)</span> si existe una arista que une
 <p>Cuando <span class="math inline">\(u: V \to \mathbb R\)</span> es un potencial tal que <span class="math inline">\(\Delta u=0\)</span> en <span class="math inline">\(\Omega \subseteq V\)</span>, decimos que <span class="math inline">\(u\)</span> es una función <strong>armónica</strong> sobre <span class="math inline">\(\Omega\)</span>.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-28" class="example"><strong>Ejemplo 2.6  </strong></span>Considera una red eléctrica con resistencias de un Ohm (<span class="math inline">\(R(e)=1\)</span>) la cual modelamos como una grafo dirigido de forma arbitraria. Una batería de un voltio entre dos nodos <span class="math inline">\(v_+,v_-\in V\)</span> genera un potencial eléctrico <span class="math inline">\(u:V\to \mathbb R\)</span> que se puede determinar a partir de la ley de Ohm y la ley de Kirchhoff.</p>
+<p><span id="exm:unlabeled-div-29" class="example"><strong>Ejemplo 2.6  </strong></span>Considera una red eléctrica con resistencias de un Ohm (<span class="math inline">\(R(e)=1\)</span>) la cual modelamos como una grafo dirigido de forma arbitraria. Una batería de un voltio entre dos nodos <span class="math inline">\(v_+,v_-\in V\)</span> genera un potencial eléctrico <span class="math inline">\(u:V\to \mathbb R\)</span> que se puede determinar a partir de la ley de Ohm y la ley de Kirchhoff.</p>
 <p>Según la ley de Ohm tenemos que la corriente se calcula según
 <span class="math display">\[
 i=Du.
@@ -773,24 +785,25 @@ obtenemos un sistema de ecuaciones lineales con igual número de ecuaciones que 
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-29" class="exercise"><strong>Ejercicio 2.10  </strong></span>Calcula el potencial eléctrico que se genera en un cubo de resistencias de un Ohm, cuando se conecta una batería de un voltio entre dos nodos opuestos del cubo</p>
+<p><span id="exr:unlabeled-div-30" class="exercise"><strong>Ejercicio 2.11  </strong></span>Calcula el potencial eléctrico que se genera en un cubo de resistencias de un Ohm, cuando se conecta una batería de un voltio entre dos nodos opuestos del cubo</p>
 <p><img src="cube.png" style="width:70.0%" /></p>
 </div>
 <details>
 <summary>
 Solución
 </summary>
-Asumamos sin pérdida de generalidad que se conecta la bateria de los nodos <span class="math inline">\(A\)</span> a <span class="math inline">\(D\)</span> tal que <span class="math inline">\(v(A)=1\)</span> y <span class="math inline">\(v(D)=0\)</span>. Tenemos un sistema de ecuaciones lineales de dimensiones 6 por 6. De existir una única solución<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> observamos que por simetría se debe cumplir que <span class="math inline">\(v(B)=v(F)=v(H)=\alpha\)</span> (los nodos adyacentes a <span class="math inline">\(A\)</span>) y <span class="math inline">\(v(C)=v(E)=v(G)=\beta\)</span> (los nodos adyacentes a <span class="math inline">\(E\)</span>). Esto reduce el sistema a uno de 2 por 2
+Asumamos sin pérdida de generalidad que se conecta la bateria de los nodos <span class="math inline">\(A\)</span> a <span class="math inline">\(D\)</span> tal que <span class="math inline">\(v(A)=1\)</span> y <span class="math inline">\(v(D)=0\)</span>. Tenemos un sistema de ecuaciones lineales de dimensiones 6 por 6. De existir una única solución<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> observamos que por simetría se debe cumplir que <span class="math inline">\(v(B)=v(F)=v(H)=\alpha\)</span> (los nodos adyacentes a <span class="math inline">\(A\)</span>) y <span class="math inline">\(v(C)=v(E)=v(G)=\beta\)</span> (los nodos adyacentes a <span class="math inline">\(E\)</span>). Esto reduce el sistema a uno de 2 por 2
 <span class="math display">\[
   \begin{cases}
   -9\alpha+6\beta = -3,\\
   6\alpha -9\beta = 0
   \end{cases} \qquad\Rightarrow\qquad \alpha = \frac{3}{5}, \qquad \beta = \frac{2}{5}.
   \]</span>
+Finalmente es inmediato verificar que con estos valores se obtiene una solución satisfactoria. Más adelante veremos que las soluciones de estos sistemas siempre son únicas (<a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones">inyectividad del Laplaciano</a>).
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-30" class="exercise"><strong>Ejercicio 2.11  </strong></span>Calcula la matriz asociada al Laplaciano para el grafo a continuación</p>
+<p><span id="exr:unlabeled-div-31" class="exercise"><strong>Ejercicio 2.12  </strong></span>Calcula la matriz asociada al Laplaciano para el grafo a continuación</p>
 <p><img src="k3.png" style="width:70.0%" /></p>
 </div>
 <details>
@@ -819,7 +832,7 @@ Solución
 </details>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-31" class="exercise"><strong>Ejercicio 2.12  </strong></span>Da un análogo discreto para la fórmula de Green
+<p><span id="exr:unlabeled-div-32" class="exercise"><strong>Ejercicio 2.13  </strong></span>Da un análogo discreto para la fórmula de Green
 <span class="math display">\[
 \int_\Omega (u_1\Delta u_2 - u_2\Delta u_1) = \int_{\partial\Omega} (u_1Du_2 - u_2 Du_1)\cdot n
 \]</span></p>
@@ -841,7 +854,7 @@ Por lo tanto al tomar la resta se cancelan el segundo término a la deracha qued
 <p>En general podemos añadir una operación intermedia entre el gradiente y la divergencia. Esto genera operadores con características similares al Laplaciano.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-32" class="example"><strong>Ejemplo 2.7  </strong></span>Considera ahora una red eléctrica con resistencias variables. La ley de Ohm consiste en tomar el gradiente del potencial y luego dividir por las resistencias para obtener la corriente. Al recíproco de la resistencia también se le conoce como la capacitancia y puede ser más conveniente de usar en este ejemplo. En este caso las ecuaciones de balance para el potencial eléctrico tienen la forma
+<p><span id="exm:unlabeled-div-33" class="example"><strong>Ejemplo 2.7  </strong></span>Considera ahora una red eléctrica con resistencias variables. La ley de Ohm consiste en tomar el gradiente del potencial y luego dividir por las resistencias para obtener la corriente. Al recíproco de la resistencia también se le conoce como la capacitancia y puede ser más conveniente de usar en este ejemplo. En este caso las ecuaciones de balance para el potencial eléctrico tienen la forma
 <span class="math display">\[
 \operatorname{div} (CDu) = 0 \qquad C = 1/R : \text{Capacitancia}
 \]</span>
@@ -876,7 +889,7 @@ Por lo tanto al tomar la resta se cancelan el segundo término a la deracha qued
 </div>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-33" class="example"><strong>Ejemplo 2.8  </strong></span>Las ecuaciones de balance en los <a href="entramados.html#entramados">entramados</a> se implementan en tres pasos:</p>
+<p><span id="exm:unlabeled-div-34" class="example"><strong>Ejemplo 2.8  </strong></span>Las ecuaciones de balance en los <a href="entramados.html#entramados">entramados</a> se implementan en tres pasos:</p>
 <ol style="list-style-type: decimal">
 <li><p>Se toman las posiciones relativas entre nodos adyacentes, es decir el gradiente de las posiciones <span class="math inline">\(q:V\to\mathbb R^2\)</span>.</p></li>
 <li><p>Se forman las tensiones a partir de las posiciones relativas y los multiplicadores <span class="math inline">\(\lambda:E\to \mathbb R\)</span>.</p></li>
@@ -895,9 +908,10 @@ A diferencia de los problemas de redes eléctricas, tanto <span class="math inli
 <hr />
 <ol start="2">
 <li id="fn2"><p>es decir que cualquier ciclo puede ser deformado continuamente a un punto. Por ejemplo, si <span class="math inline">\(n=2\)</span> dice que <span class="math inline">\(\Omega\)</span> no tiene hoyos.<a href="cálculo-discreto.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Dado <span class="math inline">\(f:E\to \mathbb R\)</span>, el potencial <span class="math inline">\(u\)</span> no es único pero su gradiente <span class="math inline">\(Du\)</span> sí.<a href="cálculo-discreto.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Esto puede verificarse de la reducción de Gauss-Jordan en este caso, y además será demostrado con mayor generalidad.<a href="cálculo-discreto.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>Una vez más, esto puede chequearse a mano o con una herramienta numérica.<a href="cálculo-discreto.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>En otras palabras un sub-grafo <span class="math inline">\(T_0 := (V_0=V,E_0\subseteq E)\)</span> libre de ciclos y conexo<a href="cálculo-discreto.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Dado <span class="math inline">\(f:E\to \mathbb R\)</span>, el potencial <span class="math inline">\(u\)</span> no es único pero su gradiente <span class="math inline">\(Du\)</span> sí.<a href="cálculo-discreto.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Esto puede verificarse de la reducción de Gauss-Jordan en este caso, y además será demostrado con mayor generalidad.<a href="cálculo-discreto.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Una vez más, esto puede chequearse a mano o con una herramienta numérica.<a href="cálculo-discreto.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
