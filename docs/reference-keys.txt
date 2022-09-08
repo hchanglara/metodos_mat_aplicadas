@@ -110,10 +110,10 @@ exr:unlabeled-div-112
 exm:unlabeled-div-113
 exr:unlabeled-div-114
 exm:unlabeled-div-115
-exm:unlabeled-div-116
-exr:unlabeled-div-117
-exm:unlabeled-div-118
 eq:eq2
+exm:unlabeled-div-116
+exm:unlabeled-div-117
+exr:unlabeled-div-118
 exr:unlabeled-div-119
 exr:unlabeled-div-120
 exm:unlabeled-div-121
@@ -187,6 +187,7 @@ métrica-dual
 cociente-de-rayleigh
 cantidades-conservadas
 problemas-homogéneos
+el-teorema-de-frobenius
 problemas-no-homogéneos
 problemas-semi-lineales
 problemas-cuasi-lineales

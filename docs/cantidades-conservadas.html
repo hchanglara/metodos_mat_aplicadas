@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2022-09-07" />
+<meta name="date" content="2022-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,7 +206,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>Transporte y leyes de conservación</b></span></li>
 <li class="chapter" data-level="8" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html"><i class="fa fa-check"></i><b>8</b> Cantidades conservadas</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-homogéneos"><i class="fa fa-check"></i><b>8.1</b> Problemas homogéneos</a></li>
+<li class="chapter" data-level="8.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-homogéneos"><i class="fa fa-check"></i><b>8.1</b> Problemas homogéneos</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#el-teorema-de-frobenius"><i class="fa fa-check"></i><b>8.1.1</b> El teorema de Frobenius</a></li>
+</ul></li>
 <li class="chapter" data-level="8.2" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-no-homogéneos"><i class="fa fa-check"></i><b>8.2</b> Problemas no-homogéneos</a></li>
 <li class="chapter" data-level="8.3" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-semi-lineales"><i class="fa fa-check"></i><b>8.3</b> Problemas semi-lineales</a></li>
 <li class="chapter" data-level="8.4" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-cuasi-lineales"><i class="fa fa-check"></i><b>8.4</b> Problemas cuasi-lineales</a></li>
@@ -296,6 +299,22 @@ u = u_0 \text{ en } \{y=0,x\geq 0\}.
 <summary>
 Solución
 </summary>
+<p><strong>EDO característica</strong>
+<span class="math display">\[
+x&#39;=y, \qquad y&#39;=-x
+\]</span></p>
+<p><strong>Flujo característico</strong>
+<span class="math display">\[
+x(t) = x_0 \cos t + y_0 \sin t, \qquad y(t) = - x_0 \sin t + y_0\cos t
+\]</span></p>
+<p><strong>Condición de borde:</strong> <span class="math inline">\(t=0\)</span>, <span class="math inline">\(y_0=0\)</span>, y <span class="math inline">\(x_0&gt;0\)</span>
+<span class="math display">\[
+u(x_0 \cos t + y_0 \sin t,- x_0 \sin t + y_0\cos t) = u_0(x_0)
+\]</span></p>
+<strong>Invertimos:</strong> <span class="math inline">\((x,y)=x_0 \cos t + y_0 \sin t,- x_0 \sin t + y_0\cos t\)</span> tal que en <span class="math inline">\(t=0\)</span>, <span class="math inline">\(x_0 \cos t + y_0 \sin t,- x_0 \sin t + y_0\cos t = (x_0,0) \in \{y=0,x\geq 0\}\)</span>. Por lo tanto <span class="math inline">\(x_0=\sqrt{x^2+y^2}\)</span>, <span class="math inline">\(y_0=0\)</span>, y
+<span class="math display">\[
+u(x,y) = u_0(\sqrt{x^2+y^2})
+\]</span>
 </details>
 <hr />
 <div class="exercise">
@@ -311,6 +330,10 @@ u = u_0 \text{ en } \{t= 0\}
 <summary>
 Solución
 </summary>
+Consideramos a <span class="math inline">\(t=x_0\)</span> como una variable adicional, es decir tomamos el espacio de fase extendido. Por lo tanto
+<span class="math display">\[
+\partial_t u + v\cdot Du = (1,v)\cdot(\partial_t u,Du) = (1,v)D_{x_0,x_1,\ldots,x_n}u.
+\]</span>
 </details>
 <hr />
 <div class="example">
@@ -341,64 +364,47 @@ Demuestra que el momento angular <span class="math inline">\(L_{ij} = x_ix_j&#39
 <summary>
 Solución
 </summary>
+Sea <span class="math inline">\(v_i=x_i&#39;\)</span>. Tenemos así <span class="math inline">\(L_{ij} = x_iv_j-x_jv_i\)</span> y el sistema de primer orden
+<span class="math display">\[
+x&#39;=v, \qquad v&#39;=\frac{1}{m}f(|x|)x.
+\]</span>
+Basta ver entonces que la siguiente derivada se anula
+<span class="math display">\[
+\begin{aligned}
+(v,\frac{1}{m}f(|x|)x)\cdot (D_xL_{ij},D_vL_{ij}) &amp;= \sum_{k=1}^n v_k\partial_{x_k}L_{ij}+\frac{1}{m}f_k(|x|)x_k\partial_{v_k}L_{ij},\\
+&amp;= v_iv_j-v_jv_i + \frac{1}{m}f_i(|x|)(x_ix_j-x_jx_i),\\
+&amp;= 0.
+\end{aligned}
+\]</span>
 </details>
-<hr />
-<div class="example">
-<p><span id="exm:unlabeled-div-115" class="example"><strong>Ejemplo 8.3  </strong></span>Consideremos el sistema de ecuaciones
-<span class="math display">\[
-x&#39; = f(x,y),\qquad
-y&#39; = g(x,y).
-\]</span>
-La trayectoria del sistema consiste del lugar geométrico trazado por la solución. La ecuación se dice <strong>exacta</strong> si las trayectorias son el conjunto de nivel de una función <span class="math inline">\(u\)</span>, equivalentemente el campo <span class="math inline">\((f,g)\)</span> debe ser perpendicular a <span class="math inline">\((\partial_xu,\partial_y u)\)</span>. Esto sucede en particular si <span class="math inline">\((f,g) = (-\partial_y u,\partial_x u)\)</span> lo cual implica <span class="math inline">\(\operatorname{div}((f,g))= \partial_x f+\partial_y g=0\)</span>. Esta hipótesis no solamente es necesaria, si no también suficiente para encontrar <span class="math inline">\(u\)</span> tal que
-<span class="math display">\[
-g(x,y) = \partial_x u \quad \text{y} \quad -f(x,y) = \partial_y u.
-\]</span></p>
-<p>Veamos que efectivamente <span class="math inline">\(u\)</span> es constante a lo largo de las trayectorias
-<span class="math display">\[
-\frac{d}{dt}u(x(t),y(t)) = x&#39;\partial_xu + y&#39;\partial_yu = f(x,y)g(x,y) - g(x,y)f(x,y) = 0.
-\]</span></p>
-</div>
-<hr />
-<div class="example">
-<p><span id="exm:unlabeled-div-116" class="example"><strong>Ejemplo 8.4  </strong></span>Un función <span class="math inline">\(f = (u(x,y),v(x,y)):\mathbb{C}\to\mathbb{C}\)</span> es <strong>holomorfa</strong> si satisface las <strong>ecuaciones de Cauchy-Riemann</strong>
-<span class="math display">\[
-\partial_x u = \partial_y v, \qquad \partial_y u = - \partial_x v.
-\]</span>
-Estas implican que <span class="math inline">\(u\)</span> y <span class="math inline">\(v\)</span> son funciones armónicas
-<span class="math display">\[
-(\partial_x^2+\partial_y^2)u=(\partial_x^2+\partial_y^2)v=0,
-\]</span>
-y adicionalmente sus conjuntos de nivel son ortogonales entre si. Sus gradientes son exactamente rotaciones de 90 grados uno del otro.</p>
-<p>Dada una función armónica <span class="math inline">\(u:\mathbb{C}\to\mathbb R\)</span>, es posible construir una función armónica <span class="math inline">\(v\)</span> tal que <span class="math inline">\(Dv = (-\partial_y u,\partial_x u)\)</span>. Estas se conocen como los conjugados armónico de <span class="math inline">\(u\)</span>. Cualesquiera dos conjugados de la misma función <span class="math inline">\(u\)</span> difieren por una constante.</p>
-<p>Por ejemplo, tomemos la función armónica <span class="math inline">\(u(x,y) = x^2-y^2\)</span>. Debemos así resolver <span class="math inline">\(\partial_x v = 2y\)</span> y <span class="math inline">\(\partial_y v=2x\)</span>. De la primera ecuación obtenemos <span class="math inline">\(v = 2xy+\varphi(y)\)</span> y por lo tanto <span class="math inline">\(2x=2x+C&#39;(y)\)</span> lo cual implica que <span class="math inline">\(C\)</span> es constante. Concluímos así que <span class="math inline">\(v(x,y) = 2xy+C\)</span> es el conjungado armónico de <span class="math inline">\(u\)</span>.</p>
-</div>
-<hr />
-<div class="exercise">
-<p><span id="exr:unlabeled-div-117" class="exercise"><strong>Ejercicio 8.4  </strong></span>Calcula el conjugado armónico de las siguientes funciones:</p>
-<ul>
-<li><p><span class="math inline">\(u(x,y) = x^3-3xy^2\)</span>,</p></li>
-<li><p><span class="math inline">\(u(x,y) = e^{x}\cos y\)</span>,</p></li>
-<li><p><span class="math inline">\(u(x,y) = \ln(x^2+y^2)\)</span>.</p></li>
-</ul>
-</div>
-<details>
-<summary>
-Solución
-</summary>
-</details>
-<hr />
 <p>En general, dado un campo vectorial <span class="math inline">\(v\)</span>, la derivada
 <span class="math display">\[
 D_vu = \partial_tu+ v \cdot Du
 \]</span>
 se conoce como la <strong>derivada material</strong> de <span class="math inline">\(u\)</span> y describe la tasa de cambio de <span class="math inline">\(u\)</span> a lo largo de las trayectorias generadas por <span class="math inline">\(v\)</span>.</p>
+<p>Geométricamente, la ecuación <span class="math inline">\(v\cdot Du=0\)</span> quiere decir que las curvas de nivel de <span class="math inline">\(u\)</span> deben ser perpendiculares al campo <span class="math inline">\(v\)</span> en todo punto. En otras palabras, <span class="math inline">\(v\)</span> es paralelo a los conjuntos de nivel de <span class="math inline">\(u\)</span>.</p>
+<p><img src="conj_nivel_perp.png" style="width:70.0%" /></p>
+<div id="el-teorema-de-frobenius" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> El teorema de Frobenius<a href="cantidades-conservadas.html#el-teorema-de-frobenius" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podemos también considerar sistemas de ecuaciones homogéneas de primer orden. Es decir, dados <span class="math inline">\(k\)</span> campos <span class="math inline">\(v^{(1)},\ldots,v^{(k)}:\mathbb R^n\to\mathbb R^n\)</span>, buscamos una función <span class="math inline">\(u:\mathbb R^n\)</span> que satisfaga simultáneamente
+<span class="math display">\[
+v^{(j)}\cdot Du = 0.
+\]</span>
+Es decir que cada uno de los vectores <span class="math inline">\(v^{(j)}\)</span> son tangentes a los conjuntos de nivel de <span class="math inline">\(u\)</span>. Cuando los campos son linealmente independientes, tenemos que estos asocian en cada punto un sub-espacio de dimensión <span class="math inline">\(k\)</span> que estos generan, esto se conoce como una <strong>distribución</strong>. Geométricamente, el sistema de EDPs quiere decir que los planos tangentes de los conjuntos de nivel de <span class="math inline">\(u\)</span> contienen a la distribución dada por los campos <span class="math inline">\(v^{(1)},\ldots,v^{(k)}\)</span>.</p>
+<p>Si el sistema tiene solución entonces necesariamente se debe cumplir que
+<span class="math display">\[
+[v^{(i)},v^{(j)}] := \sum_{k=1}^n (v^{(i)}\cdot Dv^{(j)}_k-v^{(j)}\cdot Dv^{(i)}_k)e_k \perp Du
+\]</span>
+Esto implica en particular que (a menos de que <span class="math inline">\(u\)</span> sea constante, lo cual es la solución trivial), <span class="math inline">\(\{v^{(i)}\}_{i=1}^k\cup\{v^{(ij)}\}_{i,j=1}^k\)</span> genera a lo sumo un espacio de dimensión <span class="math inline">\(n-1\)</span>.</p>
+<p>En general, el <a href="https://en.wikipedia.org/wiki/Frobenius_theorem_(differential_topology)">Teorema de Frobenius</a> nos permite dar condiciones necesarias y suficientes para encontrar la solución general del sistema homogéneo.</p>
+</div>
 </div>
 <div id="problemas-no-homogéneos" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Problemas no-homogéneos<a href="cantidades-conservadas.html#problemas-no-homogéneos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Puede darse también el caso de que la función <span class="math inline">\(u\)</span> no sea necesariamente constante a lo largo de las trayectorias de la EDO <span class="math inline">\(x&#39;=v(x)\)</span>, pero que sin embargo sus variaciones sean conocidas en función de la posición en la trayectoria.</p>
 <hr />
 <div class="example">
-<p><span id="exm:unlabeled-div-118" class="example"><strong>Ejemplo 8.5  </strong></span>Si <span class="math inline">\(u(x_0)\)</span> denota el tiempo que tarda la trayectoria que parte de la posición inicial <span class="math inline">\(x_0\)</span> en llegar a un dado conjunto <span class="math inline">\(F\)</span>, entonces a lo largo de una solución <span class="math inline">\(z(t) := u(x(t))\)</span> tiene derivada igual a <span class="math inline">\(-1\)</span>. Es decir que satisface la ecuación no-homogénea
+<p><span id="exm:unlabeled-div-115" class="example"><strong>Ejemplo 8.3  </strong></span>Si <span class="math inline">\(u(x_0)\)</span> denota el tiempo que tarda la trayectoria que parte de la posición inicial <span class="math inline">\(x_0\)</span> en llegar a un dado conjunto <span class="math inline">\(F\)</span>, entonces a lo largo de una solución <span class="math inline">\(z(t) := u(x(t))\)</span> tiene derivada igual a <span class="math inline">\(-1\)</span>. Es decir que satisface la ecuación no-homogénea
 <span class="math display">\[
 v\cdot Du = -1.
 \]</span></p>
@@ -420,6 +426,51 @@ z&#39; = f(x).
 <span class="math display">\[
 z(t) = z_0 + \int_{0}^t f(x(s))ds.
 \]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-116" class="example"><strong>Ejemplo 8.4  </strong></span>Consideremos el sistema de ecuaciones
+<span class="math display">\[
+x&#39; = f(x,y),\qquad
+y&#39; = g(x,y).
+\]</span>
+La trayectoria del sistema consiste del lugar geométrico trazado por la solución. La ecuación se dice <strong>exacta</strong> si las trayectorias son el conjunto de nivel de una función <span class="math inline">\(u\)</span>, equivalentemente el campo <span class="math inline">\((f,g)\)</span> debe ser perpendicular a <span class="math inline">\((\partial_xu,\partial_y u)\)</span>. Esto sucede en particular si <span class="math inline">\((f,g) = (-\partial_y u,\partial_x u)\)</span> lo cual implica <span class="math inline">\(\operatorname{div}((f,g))= \partial_x f+\partial_y g=0\)</span>. Esta hipótesis no solamente es necesaria, si no también suficiente (<a href="cálculo-discreto.html#ley-de-ciclos">Poincaré</a>) para encontrar <span class="math inline">\(u\)</span> tal que
+<span class="math display">\[
+g(x,y) = \partial_x u \quad \text{y} \quad -f(x,y) = \partial_y u.
+\]</span></p>
+<p>Veamos que efectivamente <span class="math inline">\(u\)</span> es constante a lo largo de las trayectorias
+<span class="math display">\[
+\frac{d}{dt}u(x(t),y(t)) = x&#39;\partial_xu + y&#39;\partial_yu = f(x,y)g(x,y) - g(x,y)f(x,y) = 0.
+\]</span></p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-117" class="example"><strong>Ejemplo 8.5  </strong></span>Un función <span class="math inline">\(f = (u(x,y),v(x,y)):\mathbb{C}\to\mathbb{C}\)</span> es <strong>holomorfa</strong> si satisface las <strong>ecuaciones de Cauchy-Riemann</strong>
+<span class="math display">\[
+\partial_x u = \partial_y v, \qquad \partial_y u = - \partial_x v.
+\]</span>
+Estas implican que <span class="math inline">\(u\)</span> y <span class="math inline">\(v\)</span> son funciones armónicas
+<span class="math display">\[
+(\partial_x^2+\partial_y^2)u=(\partial_x^2+\partial_y^2)v=0,
+\]</span>
+y adicionalmente sus conjuntos de nivel son ortogonales entre si. Sus gradientes son exactamente rotaciones de 90 grados uno del otro.</p>
+<p>Dada una función armónica <span class="math inline">\(u:\mathbb{C}\to\mathbb R\)</span>, es posible construir una función armónica <span class="math inline">\(v\)</span> tal que <span class="math inline">\(Dv = (-\partial_y u,\partial_x u)\)</span>. Estas se conocen como los conjugados armónico de <span class="math inline">\(u\)</span>. Cualesquiera dos conjugados de la misma función <span class="math inline">\(u\)</span> difieren por una constante.</p>
+<p>Por ejemplo, tomemos la función armónica <span class="math inline">\(u(x,y) = x^2-y^2\)</span>. Debemos así resolver <span class="math inline">\(\partial_x v = 2y\)</span> y <span class="math inline">\(\partial_y v=2x\)</span>. De la primera ecuación obtenemos <span class="math inline">\(v = 2xy+\varphi(y)\)</span> y por lo tanto <span class="math inline">\(2x=2x+C&#39;(y)\)</span> lo cual implica que <span class="math inline">\(C\)</span> es constante. Concluímos así que <span class="math inline">\(v(x,y) = 2xy+C\)</span> es el conjungado armónico de <span class="math inline">\(u\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-118" class="exercise"><strong>Ejercicio 8.4  </strong></span>Calcula el conjugado armónico de las siguientes funciones:</p>
+<ul>
+<li><p><span class="math inline">\(u(x,y) = x^3-3xy^2\)</span>,</p></li>
+<li><p><span class="math inline">\(u(x,y) = e^{x}\cos y\)</span>,</p></li>
+<li><p><span class="math inline">\(u(x,y) = \ln(x^2+y^2)\)</span>.</p></li>
+</ul>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
 <hr />
 <div class="exercise">
 <p><span id="exr:unlabeled-div-119" class="exercise"><strong>Ejercicio 8.5  </strong></span>Calcula el tiempo que se toma la curva <span class="math inline">\((x(t),y(t))\)</span> que parte de <span class="math inline">\((x_0,y_0)\)</span> en llegar a <span class="math inline">\(F=\{y=0,x\geq0\}\)</span> si esta se mueve según la ecuación diferencial

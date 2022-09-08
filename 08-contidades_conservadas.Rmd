@@ -56,6 +56,25 @@ $$
 
 <details>
 <summary>Solución</summary>
+**EDO característica**
+$$
+x'=y, \qquad y'=-x
+$$
+
+**Flujo característico**
+$$
+x(t) = x_0 \cos t + y_0 \sin t, \qquad y(t) = - x_0 \sin t + y_0\cos t
+$$
+
+**Condición de borde:** $t=0$, $y_0=0$, y $x_0>0$
+$$
+u(x_0 \cos t + y_0 \sin t,- x_0 \sin t + y_0\cos t) = u_0(x_0)
+$$
+
+**Invertimos:** $(x,y)=x_0 \cos t + y_0 \sin t,- x_0 \sin t + y_0\cos t$ tal que en $t=0$, $x_0 \cos t + y_0 \sin t,- x_0 \sin t + y_0\cos t = (x_0,0) \in \{y=0,x\geq 0\}$. Por lo tanto $x_0=\sqrt{x^2+y^2}$, $y_0=0$, y
+$$
+u(x,y) = u_0(\sqrt{x^2+y^2})
+$$
 </details>
 
 ---
@@ -72,6 +91,10 @@ $$
 
 <details>
 <summary>Solución</summary>
+Consideramos a $t=x_0$ como una variable adicional, es decir tomamos el espacio de fase extendido. Por lo tanto
+$$
+\partial_t u + v\cdot Du = (1,v)\cdot(\partial_t u,Du) = (1,v)D_{x_0,x_1,\ldots,x_n}u.
+$$
 </details>
 
 ---
@@ -106,7 +129,78 @@ Demuestra que el momento angular $L_{ij} = x_ix_j'-x_jx_i'$ es una cantidad cons
 
 <details>
 <summary>Solución</summary>
+Sea $v_i=x_i'$. Tenemos así $L_{ij} = x_iv_j-x_jv_i$ y el sistema de primer orden
+$$
+x'=v, \qquad v'=\frac{1}{m}f(|x|)x.
+$$
+Basta ver entonces que la siguiente derivada se anula
+$$
+\begin{aligned}
+(v,\frac{1}{m}f(|x|)x)\cdot (D_xL_{ij},D_vL_{ij}) &= \sum_{k=1}^n v_k\partial_{x_k}L_{ij}+\frac{1}{m}f_k(|x|)x_k\partial_{v_k}L_{ij},\\
+&= v_iv_j-v_jv_i + \frac{1}{m}f_i(|x|)(x_ix_j-x_jx_i),\\
+&= 0.
+\end{aligned}
+$$
 </details>
+
+En general, dado un campo vectorial $v$, la derivada
+$$
+D_vu = \partial_tu+ v \cdot Du
+$$
+se conoce como la **derivada material** de $u$ y describe la tasa de cambio de $u$ a lo largo de las trayectorias generadas por $v$.
+
+Geométricamente, la ecuación $v\cdot Du=0$ quiere decir que las curvas de nivel de $u$ deben ser perpendiculares al campo $v$ en todo punto. En otras palabras, $v$ es paralelo a los conjuntos de nivel de $u$.
+
+![](conj_nivel_perp.png){width=70%}
+
+### El teorema de Frobenius
+
+Podemos también considerar sistemas de ecuaciones homogéneas de primer orden. Es decir, dados $k$ campos $v^{(1)},\ldots,v^{(k)}:\mathbb R^n\to\mathbb R^n$, buscamos una función $u:\mathbb R^n$ que satisfaga simultáneamente
+$$
+v^{(j)}\cdot Du = 0.
+$$
+Es decir que cada uno de los vectores $v^{(j)}$ son tangentes a los conjuntos de nivel de $u$. Cuando los campos son linealmente independientes, tenemos que estos asocian en cada punto un sub-espacio de dimensión $k$ que estos generan, esto se conoce como una **distribución**. Geométricamente, el sistema de EDPs quiere decir que los planos tangentes de los conjuntos de nivel de $u$ contienen a la distribución dada por los campos $v^{(1)},\ldots,v^{(k)}$.
+
+Si el sistema tiene solución entonces necesariamente se debe cumplir que
+$$
+[v^{(i)},v^{(j)}] := \sum_{k=1}^n (v^{(i)}\cdot Dv^{(j)}_k-v^{(j)}\cdot Dv^{(i)}_k)e_k \perp Du
+$$
+Esto implica en particular que (a menos de que $u$ sea constante, lo cual es la solución trivial), $\{v^{(i)}\}_{i=1}^k\cup\{v^{(ij)}\}_{i,j=1}^k$ genera a lo sumo un espacio de dimensión $n-1$.
+
+En general, el [Teorema de Frobenius](https://en.wikipedia.org/wiki/Frobenius_theorem_(differential_topology)) nos permite dar condiciones necesarias y suficientes para encontrar la solución general del sistema homogéneo.
+
+## Problemas no-homogéneos
+
+Puede darse también el caso de que la función $u$ no sea necesariamente constante a lo largo de las trayectorias de la EDO $x'=v(x)$, pero que sin embargo sus variaciones sean conocidas en función de la posición en la trayectoria.
+
+---
+
+:::{.example}
+Si $u(x_0)$ denota el tiempo que tarda la trayectoria que parte de la posición inicial $x_0$ en llegar a un dado conjunto $F$, entonces a lo largo de una solución $z(t) := u(x(t))$ tiene derivada igual a $-1$. Es decir que satisface la ecuación no-homogénea
+$$
+v\cdot Du = -1.
+$$
+:::
+
+---
+
+En general podemos aplicar un razonamiento similar a la ecuación no-homogénea
+$$
+v\cdot Du = f(x).
+(\#eq:eq2)
+$$
+La ecuación característica de \@ref(eq:eq2) sigue siendo $x'=v(x)$, sin embargo $z(t) = u(x(t))$ ahora no es constante a lo largo de una curva característica. En cambio $z$ satisface $z'=f(x)$. Podemos decir así que las ecuaciones características están dadas en verdad por un sistema débilmente acoplado
+$$
+\begin{cases}
+x'= v(x),\\
+z' = f(x).
+\end{cases}
+$$
+
+Se dice que es débilmente acoplado porque por lo menos la ecuación $x'=v(x)$ es independiente de $z$. Para resolver el sistema uno puede comenzar resolviendo el problema para $x$ y luego substituir este resultado en la ecuación para $z$ la cual se puede resolver por medio de una integración
+$$
+z(t) = z_0 + \int_{0}^t f(x(s))ds.
+$$
 
 ---
 
@@ -116,7 +210,7 @@ $$
 x' = f(x,y),\qquad
 y' = g(x,y).
 $$
-La trayectoria del sistema consiste del lugar geométrico trazado por la solución. La ecuación se dice **exacta** si las trayectorias son el conjunto de nivel de una función $u$, equivalentemente el campo $(f,g)$ debe ser perpendicular a $(\partial_xu,\partial_y u)$. Esto sucede en particular si $(f,g) = (-\partial_y u,\partial_x u)$ lo cual implica $\operatorname{div}((f,g))= \partial_x f+\partial_y g=0$. Esta hipótesis no solamente es necesaria, si no también suficiente para encontrar $u$ tal que
+La trayectoria del sistema consiste del lugar geométrico trazado por la solución. La ecuación se dice **exacta** si las trayectorias son el conjunto de nivel de una función $u$, equivalentemente el campo $(f,g)$ debe ser perpendicular a $(\partial_xu,\partial_y u)$. Esto sucede en particular si $(f,g) = (-\partial_y u,\partial_x u)$ lo cual implica $\operatorname{div}((f,g))= \partial_x f+\partial_y g=0$. Esta hipótesis no solamente es necesaria, si no también suficiente ([Poincaré](#ley-de-ciclos)) para encontrar $u$ tal que
 $$
 g(x,y) = \partial_x u \quad \text{y} \quad -f(x,y) = \partial_y u.
 $$
@@ -162,45 +256,6 @@ Calcula el conjugado armónico de las siguientes funciones:
 </details>
 
 ---
-
-En general, dado un campo vectorial $v$, la derivada
-$$
-D_vu = \partial_tu+ v \cdot Du
-$$
-se conoce como la **derivada material** de $u$ y describe la tasa de cambio de $u$ a lo largo de las trayectorias generadas por $v$.
-
-## Problemas no-homogéneos
-
-Puede darse también el caso de que la función $u$ no sea necesariamente constante a lo largo de las trayectorias de la EDO $x'=v(x)$, pero que sin embargo sus variaciones sean conocidas en función de la posición en la trayectoria.
-
----
-
-:::{.example}
-Si $u(x_0)$ denota el tiempo que tarda la trayectoria que parte de la posición inicial $x_0$ en llegar a un dado conjunto $F$, entonces a lo largo de una solución $z(t) := u(x(t))$ tiene derivada igual a $-1$. Es decir que satisface la ecuación no-homogénea
-$$
-v\cdot Du = -1.
-$$
-:::
-
----
-
-En general podemos aplicar un razonamiento similar a la ecuación no-homogénea
-$$
-v\cdot Du = f(x).
-(\#eq:eq2)
-$$
-La ecuación característica de \@ref(eq:eq2) sigue siendo $x'=v(x)$, sin embargo $z(t) = u(x(t))$ ahora no es constante a lo largo de una curva característica. En cambio $z$ satisface $z'=f(x)$. Podemos decir así que las ecuaciones características están dadas en verdad por un sistema débilmente acoplado
-$$
-\begin{cases}
-x'= v(x),\\
-z' = f(x).
-\end{cases}
-$$
-
-Se dice que es débilmente acoplado porque por lo menos la ecuación $x'=v(x)$ es independiente de $z$. Para resolver el sistema uno puede comenzar resolviendo el problema para $x$ y luego substituir este resultado en la ecuación para $z$ la cual se puede resolver por medio de una integración
-$$
-z(t) = z_0 + \int_{0}^t f(x(s))ds.
-$$
 
 ---
 
