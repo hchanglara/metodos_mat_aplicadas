@@ -1,0 +1,4 @@
+# (PART\*) Métodos espectrales {-}
+
+# Caso unidimensional
+

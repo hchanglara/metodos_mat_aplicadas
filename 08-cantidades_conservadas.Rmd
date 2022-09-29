@@ -632,7 +632,7 @@ $$
 \bar x(0) = x(0).
 \end{cases}
 $$
-El teorema de existencia y unicidad local se aplica en este caso garantizando que $\bar x$ está bien definida. Veremos que $\bar x=x$ en el intervalo maximal $I$. Esto implicaría que $I=\mathbb R$. De hecho sabemos que $I$ es un intervalo abierto gracias al teorema de existencia y unicidad local. Por otro lado, y asumiendo que ya se demostró $\bar x = x$ en $I$, tendríamos que si $I=(a,b)$ con $b<\infty$, podemos entonces plantear el PVI a partir de $t=b$ con dato dado por $x(b)$,
+El teorema de existencia y unicidad local se aplica en este caso garantizando que $\bar x$ está bien definida. Veremos que $\bar x=x$ en el intervalo maximal $I$. Esto implicaría que $I=\mathbb R$. Si asumimos por contradicción que $b := \sup I<\infty$ podemos entonces plantear el PVI a partir de $t=b$ con dato dado por $x(b)$,
 $$
 \begin{cases}
 y' = v(u(y),y),\\
@@ -641,13 +641,22 @@ y(0) = x(b).
 $$
 Esta solución se puede usar para extender a $\bar x$ más allá de $t=b$ lo cual contradice que $I$ haya sido el intervalo maximal, con $b<\infty$.
 
-Sea $\bar z=u(\bar x)$ también definida sobre $I$ y de clase $C^1$. Veamos que $(x,z)$ y $(\bar x,\bar z)$ satisfacen el mismo problema de valores iniciales. Por el teorema de unicidad esto implicaría que son necesariamente iguales.
+Sea $\bar z:=u(\bar x)$ también definida sobre $I$ y de clase $C^1$. Veamos que $(x,z)$ y $(\bar x,\bar z)$ satisfacen el mismo problema de valores iniciales. Por el teorema de unicidad esto implicaría que son necesariamente iguales.
 
 Para las condiciones iniciales tenemos que $\bar x(0)=x(0)$ por definición y $\bar z(0) = u(\bar x(0)) = u(x(0)) = z(0)$ por hipótesis del teorema.
 
-
-
-
+La ecuación para $\bar x$ se escribe en términos de $\bar z$ como
+$$
+\bar x'= v(u(\bar x),\bar x) = v(\bar z,\bar x).
+$$
+Mientras que la ecuación para $\bar z$ se escribe a partir de la condición para $u$ usando la regla de la cadena
+$$
+\bar z' = \bar x'\cdot Du(\bar x) = f(u(\bar x),\bar x) = f(\bar z,\bar x).
+$$
+Gracias a esto hemos comprobado que $(x,z)$ y $(\bar x,\bar z)$ satisfacen el mismo problema de valores iniciales. Gracias al teorema de unicidad de soluciones 
+$$
+u(x(t)) = u(\bar x(t)) = \bar z(t) = z(t).
+$$
 :::
 
 ---
@@ -664,4 +673,54 @@ $$
 
 <details>
 <summary>Solución</summary>
+Las ecuaciones características son
+$$
+x' = z, \qquad z' = -\sin x \qquad \Rightarrow \qquad x''=-\sin x \quad \text{(péndulo)}
+$$
+El problema entonces es equivalente a encontrar la primera colisión para un péndulo donde se consideran todos los posibles ángulos de partida ($x$) a partir del reposo ($z(0) = 0$). Es decir, dado que $\phi = \phi(x,t)$ es tal que
+$$
+\partial_t^2\phi = -\sin(\phi), \qquad \phi(x,0)=x, \qquad \partial_t\phi(x,0)=0,
+$$
+encontrar el mayor valor de $T$ tal que si $t \in (0, T)$, entonces $\phi_t := \phi(\cdot, t)$ es una biyección. Basta en verdad entender cuando $\phi_t$ es una inyección, nótese que para todo $t \in \mathbb R$ y $k \in \mathbb Z$, $\phi_t(k\pi) = k\pi$ y además $\phi_t$ es continua, por lo tanto, es automáticamente sobreyectiva gracias al teorema del valor intermedio.
+
+Una posible colisión se obtiene por ejemplo cuando tomamos posiciones iniciales $x_1 \in (0,\pi)$ y $-x_1$, de modo que estas chocan en el origen (y también chocan con la trayectoria estacionaria en el origen). Veamos que efectivamente este es el primer tipo de colisión que encontramos.
+
+Fijemos $x_0 \in [0,\pi)$ y calculemos el tiempo $T_{x_0}(x_1)$ que toma una partícula que comienza en $x_1 \in (x_0,\pi]$ (en reposo) en alcanzar la posición $x_0$. De la ley de conservación de energía $\tfrac{1}{2}(x')^2-\cos x=-\cos x_1$ y usando separación de variables obtenemos
+que
+$$
+T(x_0,x_1) :=  \frac{1}{\sqrt 2}\int_{x_0}^{x_1} \frac{dx}{\sqrt{\cos x-\cos x_1}}
+$$
+La singularidad en $x=x_1$ es integrable gracias a que la fracción alrededor de dicho punto se encuentra dominada por un múltiplo de $1/\sqrt{x_1-x}$, una singularidad integrable.
+
+Veamos que $T(x_0,\cdot) : (x_0, \pi] \to \mathbb R$ es una función estrictamente creciente. Para ello calcularemos algunas derivadas
+$$
+\sqrt 2\partial_{x_0} T(x_0,x_1)=\frac{-1}{\sqrt{\cos x_0-\cos x_1}}, \qquad 2\sqrt 2\partial_{x_1}\partial_{x_0} T(x_0,x_1)=\frac{\sin x_1}{(\cos x_0-\cos x_1)^{3/2}}>0.
+$$
+Por lo tanto al integrar con respecto a $x_0$ deducimos que
+$$
+\partial_{x_1}T(x_0,x_1) \geq \partial_{x_1}T(0,x_1).
+$$
+Hemos reducido el análisis al caso $x_0=0$, en cuyo caso
+$$
+\begin{aligned}
+\sqrt 2T(0,x_1) &= \int_0^{1} \frac{x_1d\xi}{\cos(x_1\xi)-\cos x_1},\\
+2\sqrt 2\partial_{x_1}T(0,x_1) &= \int_0^{1} \frac{2\cos(x_1\xi)+x_1\xi\sin(x_1\xi)-(2\cos(x_1)+x_1\sin(x_1))}{(\cos(x_1\xi)-\cos x_1)^2}d\xi
+\end{aligned}
+$$
+Basta entonces verificar que el integrando es positivo, o equivalentemente que $x\mapsto 2\cos x+ x\sin x$ es una función decreciente en $[0,\pi]$. Una vez más calculando una derivada
+$$
+(2\cos x+x\sin x)'=-\sin x+x\cos x\overset{?}{<} \qquad\Leftrightarrow \qquad x<\tan x.
+$$
+
+Obtenemos así que la primera colisión debe ocurrir en el origen y que el $T$ deseado en el enunciado es justamente
+$$
+T = \inf_{x_1\in(0,\pi]} T(0,x_1) = \lim_{\varepsilon\to 0^+} T(0,\varepsilon) = \lim_{\varepsilon\to 0^+} \int_{0}^{\varepsilon} \frac{dx}{\sqrt{2(\cos x-\cos \varepsilon)}}.
+$$
+La segunda igualdad se obtiene de la monotonía de $T(0,\cdot)$. Heurísticamente este valor se debe corresponder con un cuarto de la oscilación del péndulo lineal ($\pi/2$) que se obtiene al linearizar la ecuación en el punto estacionario $x = 0$.
+
+Usando la expansión de Taylor para $x \in (0, \varepsilon)$ alrededor de $0$
+$$
+\int_{0}^{\varepsilon} \frac{dx}{\sqrt{2(\cos x-\cos \varepsilon)}} = \int_{0}^{\varepsilon} \frac{dx}{\sqrt{\varepsilon^2-x^2+o(\varepsilon^2)}} = \int_{0}^1 \frac{dx}{\sqrt{1-x^2+o(1)}} = \frac{\pi}{2}+o(1).
+$$
+En conclusión $T = \pi/2$.
 </details>

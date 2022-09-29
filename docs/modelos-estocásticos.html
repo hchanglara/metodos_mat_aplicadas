@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 11 Modelos estocásticos | Métodos de matemáticas aplicadas</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 11 Modelos estocásticos | Métodos de matemáticas aplicadas" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 11 Modelos estocásticos | Métodos de matemáticas aplicadas" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Héctor Andrés Chang-Lara" />
+
+
+<meta name="date" content="2022-09-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="soluciones-débiles.html"/>
+<link rel="next" href="caso-unidimensional.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Métodos de matemáticas aplicadas</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="part"><span><b>Modelos discretos</b></span></li>
+<li class="chapter" data-level="1" data-path="entramados.html"><a href="entramados.html"><i class="fa fa-check"></i><b>1</b> Entramados</a></li>
+<li class="chapter" data-level="2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html"><i class="fa fa-check"></i><b>2</b> Cálculo discreto</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#gradiente"><i class="fa fa-check"></i><b>2.1</b> Gradiente</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#ley-de-ciclos"><i class="fa fa-check"></i><b>2.1.1</b> Ley de ciclos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#divergencia"><i class="fa fa-check"></i><b>2.2</b> Divergencia</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#fórmula-de-la-divergencia"><i class="fa fa-check"></i><b>2.2.1</b> Fórmula de la divergencia</a></li>
+<li class="chapter" data-level="2.2.2" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#lema-de-poincaré-para-la-divergencia"><i class="fa fa-check"></i><b>2.2.2</b> Lema de Poincaré para la divergencia</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#integración-por-partes"><i class="fa fa-check"></i><b>2.3</b> Integración por partes</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#descomposición-de-helmholtz"><i class="fa fa-check"></i><b>2.3.1</b> Descomposición de Helmholtz</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="cálculo-discreto.html"><a href="cálculo-discreto.html#laplaciano"><i class="fa fa-check"></i><b>2.4</b> Laplaciano</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dinámica.html"><a href="dinámica.html"><i class="fa fa-check"></i><b>3</b> Dinámica</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dinámica.html"><a href="dinámica.html#transporte"><i class="fa fa-check"></i><b>3.1</b> Transporte</a></li>
+<li class="chapter" data-level="3.2" data-path="dinámica.html"><a href="dinámica.html#difusión"><i class="fa fa-check"></i><b>3.2</b> Difusión</a></li>
+<li class="chapter" data-level="3.3" data-path="dinámica.html"><a href="dinámica.html#oscilación"><i class="fa fa-check"></i><b>3.3</b> Oscilación</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html"><i class="fa fa-check"></i><b>4</b> Implementación del entramado</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#librerías-y-datos"><i class="fa fa-check"></i><b>4.1</b> Librerías y datos</a></li>
+<li class="chapter" data-level="4.2" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#ecuación-diferencial"><i class="fa fa-check"></i><b>4.2</b> Ecuación diferencial</a></li>
+<li class="chapter" data-level="4.3" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#integración-y-graficación"><i class="fa fa-check"></i><b>4.3</b> Integración y graficación</a></li>
+<li class="chapter" data-level="4.4" data-path="implementación-del-entramado.html"><a href="implementación-del-entramado.html#incremento-en-la-rigidez-de-los-resortes"><i class="fa fa-check"></i><b>4.4</b> Incremento en la rigidez de los resortes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html"><i class="fa fa-check"></i><b>5</b> Espectro del Laplaciano</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-elíptico"><i class="fa fa-check"></i><b>5.1</b> Problema elíptico</a></li>
+<li class="chapter" data-level="5.2" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-parabólico"><i class="fa fa-check"></i><b>5.2</b> Problema parabólico</a></li>
+<li class="chapter" data-level="5.3" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#problema-hiperbólico"><i class="fa fa-check"></i><b>5.3</b> Problema hiperbólico</a></li>
+<li class="chapter" data-level="5.4" data-path="espectro-del-laplaciano.html"><a href="espectro-del-laplaciano.html#nerd-sniping"><i class="fa fa-check"></i><b>5.4</b> Nerd sniping</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html"><i class="fa fa-check"></i><b>6</b> El problema de Dirichlet</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#ley-de-conservación"><i class="fa fa-check"></i><b>6.1</b> Ley de conservación</a></li>
+<li class="chapter" data-level="6.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#existencia-y-unicidad-de-soluciones"><i class="fa fa-check"></i><b>6.2</b> Existencia y unicidad de soluciones</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#principio-del-mínimo"><i class="fa fa-check"></i><b>6.2.1</b> Principio del mínimo</a></li>
+<li class="chapter" data-level="6.2.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#método-de-balayage"><i class="fa fa-check"></i><b>6.2.2</b> Método de Balayage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#fórmulas-de-representación"><i class="fa fa-check"></i><b>6.3</b> Fórmulas de representación</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#la-función-de-green"><i class="fa fa-check"></i><b>6.3.1</b> La función de Green</a></li>
+<li class="chapter" data-level="6.3.2" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#el-núcleo-de-poisson"><i class="fa fa-check"></i><b>6.3.2</b> El núcleo de Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="el-problema-de-dirichlet.html"><a href="el-problema-de-dirichlet.html#caminatas-aleatorias"><i class="fa fa-check"></i><b>6.4</b> Caminatas Aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="optimización.html"><a href="optimización.html"><i class="fa fa-check"></i><b>7</b> Optimización</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="optimización.html"><a href="optimización.html#métrica-de-sobolev"><i class="fa fa-check"></i><b>7.1</b> Métrica de Sobolev</a></li>
+<li class="chapter" data-level="7.2" data-path="optimización.html"><a href="optimización.html#capacitancia"><i class="fa fa-check"></i><b>7.2</b> Capacitancia</a></li>
+<li class="chapter" data-level="7.3" data-path="optimización.html"><a href="optimización.html#métrica-dual"><i class="fa fa-check"></i><b>7.3</b> Métrica dual</a></li>
+<li class="chapter" data-level="7.4" data-path="optimización.html"><a href="optimización.html#cociente-de-rayleigh"><i class="fa fa-check"></i><b>7.4</b> Cociente de Rayleigh</a></li>
+</ul></li>
+<li class="part"><span><b>Transporte y leyes de conservación</b></span></li>
+<li class="chapter" data-level="8" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html"><i class="fa fa-check"></i><b>8</b> Cantidades conservadas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-homogéneos"><i class="fa fa-check"></i><b>8.1</b> Problemas homogéneos</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#leyes-de-conservación-en-mecánica"><i class="fa fa-check"></i><b>8.1.1</b> Leyes de conservación en mecánica</a></li>
+<li class="chapter" data-level="8.1.2" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#ecuaciones-exactas-y-conjugados-armónicos"><i class="fa fa-check"></i><b>8.1.2</b> Ecuaciones exactas y conjugados armónicos</a></li>
+<li class="chapter" data-level="8.1.3" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#el-teorema-de-frobenius"><i class="fa fa-check"></i><b>8.1.3</b> El teorema de Frobenius</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-no-homogéneos"><i class="fa fa-check"></i><b>8.2</b> Problemas no-homogéneos</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#sistemas-lineales-no-homogéneos"><i class="fa fa-check"></i><b>8.2.1</b> Sistemas lineales no homogéneos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-semi-lineales"><i class="fa fa-check"></i><b>8.3</b> Problemas semi-lineales</a></li>
+<li class="chapter" data-level="8.4" data-path="cantidades-conservadas.html"><a href="cantidades-conservadas.html#problemas-cuasi-lineales"><i class="fa fa-check"></i><b>8.4</b> Problemas cuasi-lineales</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html"><i class="fa fa-check"></i><b>9</b> Leyes de conservación</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#teorema-de-transporte"><i class="fa fa-check"></i><b>9.1</b> Teorema de transporte</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#ecuación-de-tráfico"><i class="fa fa-check"></i><b>9.1.1</b> Ecuación de tráfico</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#reacción-y-difusión"><i class="fa fa-check"></i><b>9.2</b> Reacción y difusión</a></li>
+<li class="chapter" data-level="9.3" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#mecánica-de-medios-continuos"><i class="fa fa-check"></i><b>9.3</b> Mecánica de medios continuos</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#ecuación-de-liouville-y-conservación-de-masa"><i class="fa fa-check"></i><b>9.3.1</b> Ecuación de Liouville y conservación de masa</a></li>
+<li class="chapter" data-level="9.3.2" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#conservación-del-momento"><i class="fa fa-check"></i><b>9.3.2</b> Conservación del momento</a></li>
+<li class="chapter" data-level="9.3.3" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#teoría-cinética"><i class="fa fa-check"></i><b>9.3.3</b> Teoría cinética</a></li>
+<li class="chapter" data-level="9.3.4" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#la-jerarquía-de-bogoliubov-born-green-kirkwood-yvon"><i class="fa fa-check"></i><b>9.3.4</b> La jerarquía de Bogoliubov-Born-Green-Kirkwood-Yvon</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#ecuaciones-de-maxwell"><i class="fa fa-check"></i><b>9.4</b> Ecuaciones de Maxwell</a></li>
+<li class="chapter" data-level="9.5" data-path="leyes-de-conservación.html"><a href="leyes-de-conservación.html#distancia-de-wasserstein"><i class="fa fa-check"></i><b>9.5</b> Distancia de Wasserstein</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="soluciones-débiles.html"><a href="soluciones-débiles.html"><i class="fa fa-check"></i><b>10</b> Soluciones débiles</a></li>
+<li class="chapter" data-level="11" data-path="modelos-estocásticos.html"><a href="modelos-estocásticos.html"><i class="fa fa-check"></i><b>11</b> Modelos estocásticos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="modelos-estocásticos.html"><a href="modelos-estocásticos.html#el-movimiento-browniano"><i class="fa fa-check"></i><b>11.1</b> El movimiento Browniano</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="modelos-estocásticos.html"><a href="modelos-estocásticos.html#deducción-via-la-aproximación-de-stirling"><i class="fa fa-check"></i><b>11.1.1</b> Deducción via la aproximación de Stirling</a></li>
+<li class="chapter" data-level="11.1.2" data-path="modelos-estocásticos.html"><a href="modelos-estocásticos.html#propiedades-del-movimiento-browniano"><i class="fa fa-check"></i><b>11.1.2</b> Propiedades del movimiento Browniano</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="modelos-estocásticos.html"><a href="modelos-estocásticos.html#martingalas"><i class="fa fa-check"></i><b>11.2</b> Martingalas</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="modelos-estocásticos.html"><a href="modelos-estocásticos.html#problemas-de-frontera-y-tiempo-de-salida"><i class="fa fa-check"></i><b>11.2.1</b> Problemas de frontera y tiempo de salida</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Métodos espectrales</b></span></li>
+<li class="chapter" data-level="12" data-path="caso-unidimensional.html"><a href="caso-unidimensional.html"><i class="fa fa-check"></i><b>12</b> Caso unidimensional</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos de matemáticas aplicadas</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos-estocásticos" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Capítulo 11</span> Modelos estocásticos<a href="modelos-estocásticos.html#modelos-estocásticos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Las ecuaciones diferenciales estocásticas son una extensión de las ecuaciones diferenciales ordinarias. Desde el punto de vista de la modelación de fenómenos naturales estas son inevitables dado los distintos grados de incertidumbre en los modelos y mediciones.</p>
+<p>Sin ir a profundidad en el análisis de estas ecuaciones quisiéramos dar una breve muestra de la interacción de estas con las ecuaciones de transporte y difusión. En ejemplo fundamental a tener el mente es el <strong>movimiento Browniano en <span class="math inline">\(\mathbb R^n\)</span></strong>, el cual podemos describir como la familia aleatoria de curvas continuas que se pueden obtener como un cierto límite de caminatas aleatorias.</p>
+<div id="el-movimiento-browniano" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> El movimiento Browniano<a href="modelos-estocásticos.html#el-movimiento-browniano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Buscamos entender el comportamiento asintótico de una caminata aleatoria en la retícula <span class="math inline">\(\varepsilon \mathbb Z^d\)</span> la cual avanza en instantes de duración <span class="math inline">\(\tau&gt;0\)</span>. Esperamos así construir el movimiento Browniano bajo ciertas condiciones para <span class="math inline">\(\varepsilon\)</span> y <span class="math inline">\(\tau\)</span> cuando estos parámetros tienden a cero.</p>
+<p>Dada una sucesión de variables aleatorias <span class="math inline">\(\{X_n\}\)</span> independientes y uniformemente distribuidas en las <span class="math inline">\(2d\)</span> direcciones canónicas <span class="math inline">\(\{\pm e_j\}\)</span> definimos la caminata aleatoria
+<span class="math display">\[
+t \in \tau\mathbb Z \mapsto S_t^{\varepsilon ,\tau} := \varepsilon \sum_{j=1}^{t/\tau} X_j \in \varepsilon  \mathbb Z^d.
+\]</span>
+Cuando <span class="math inline">\(\varepsilon =\tau=1\)</span> denotamos <span class="math inline">\(S_n = S_n^{1,1}\)</span>.</p>
+<p><img src="mb.png" style="width:70.0%" /></p>
+<p>Tengamos en cuenta que <span class="math inline">\(\mathbb E(S_n) = 0\)</span> y <span class="math inline">\(\mathbb E(S_n^2) = n\mathbb E(X_1^2) = n\)</span>. Gracias al <a href="https://en.wikipedia.org/wiki/Central_limit_theorem"><strong>teorema del límite central</strong></a> tenemos que cuando <span class="math inline">\(n\to\infty\)</span>
+<span class="math display">\[
+\mathbb P(S_n/\sqrt{n} \in \Omega) \to \frac{1}{(2\pi)^{d/2}}\int_\Omega e^{-|x|^2/2}dx
+\]</span>
+Equivalentemente, tenemos que para <span class="math inline">\(f:\mathbb R^d\to \mathbb R\)</span>
+<span class="math display">\[
+\mathbb E(f(S_n/\sqrt{n})) \to \frac{1}{(2\pi)^{d/2}}\int f(x)e^{-|x|^2/2}dx.
+\]</span></p>
+<p>Como consecuencia obtenemos que para cualquier <span class="math inline">\(t&gt;0\)</span>, si tomamos <span class="math inline">\(\tau = t/n\)</span> y <span class="math inline">\(\varepsilon =\sqrt{\tau}\)</span>, entonces gracias a un cambio de variables
+<span class="math display">\[
+\begin{aligned}
+\mathbb P(S_t^{\varepsilon ,\tau} \in \Omega) &amp;= \mathbb P(n^{-1/2}S_{n} \in t^{-1/2}\Omega)\\
+&amp;\to \frac{1}{(2\pi)^{d/2}}\int_{t^{-1/2}\Omega} e^{-|x|^2/2}dx\\ &amp;\overset{y = t^{1/2}x}{=} \frac{1}{(2\pi t)^{d/2}}\int_{\Omega} e^{-|y|^2/(2t)}dy.
+\end{aligned}
+\]</span></p>
+<div id="deducción-via-la-aproximación-de-stirling" class="section level3 hasAnchor" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> Deducción via la aproximación de Stirling<a href="modelos-estocásticos.html#deducción-via-la-aproximación-de-stirling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Presentaremos una alternativa analítica al cálculo de la distribución anterior en <span class="math inline">\(d=1\)</span>.</p>
+<p>En este caso tenemos que una caminata que comienza en <span class="math inline">\(S_0=0\)</span> luego de <span class="math inline">\(2n\)</span> pasos debe pertenecer al conjunto de números pares entre <span class="math inline">\(-2n\)</span> y <span class="math inline">\(2n\)</span>. Para cualquier <span class="math inline">\(i \in [-n,n]\)</span>, existen <span class="math inline">\(\binom{2n}{n+i}\)</span> caminos de <span class="math inline">\(0\)</span> a <span class="math inline">\(2i\)</span>. Estos los podemos contar teniendo en cuenta que de las <span class="math inline">\(2n\)</span> direcciones que deben ser fijadas, exactamente <span class="math inline">\(n+i\)</span> deben ser en la dirección de <span class="math inline">\(0\)</span> a <span class="math inline">\(i\)</span>. En conclusión
+<span class="math display">\[
+\mathbb P(S_{2n} = 2i) = 2^{-2n}\binom{2n}{n+i}.
+\]</span></p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-155" class="exercise"><strong>Ejercicio 11.1  </strong></span>Verifica y da una interpretación combinatoria/probabilista de la identidad
+<span class="math display">\[
+\sum_{j\in\mathbb Z} \binom{2m}{m+j}\binom{2n}{n+i-j} = \binom{2(m+n)}{m+n+i}.
+\]</span></p>
+</div>
+<details>
+<summary>
+<strong>Solucion</strong>
+</summary>
+Los caminos de <span class="math inline">\(0\)</span> a <span class="math inline">\(2i\)</span> de tamaño <span class="math inline">\(2(m+n)\)</span> se pueden contar como los caminos de <span class="math inline">\(0\)</span> a <span class="math inline">\(2i\)</span> de tamaño <span class="math inline">\(2m\)</span> deguido de los caminos de <span class="math inline">\(2i\)</span> a <span class="math inline">\(2(i+j)\)</span> de tamaño <span class="math inline">\(2n\)</span>, siendo estos últimos equivalentes a los caminos de <span class="math inline">\(0\)</span> a <span class="math inline">\(2j\)</span> de tamaño <span class="math inline">\(2n\)</span>.
+</details>
+<hr />
+<p>La idea a partir de ahora consiste en obtener una aproximación asintótica de <span class="math inline">\(n!\)</span>. Comenzamos transformado al producto en suma aplicando el logaritmo. Esto nos permite aproximar usando integrales de la siguiente forma</p>
+<p><img src="log.PNG" style="width:70.0%" /></p>
+<p>Por la monotonía y concavidad del logaritmo podemos comparar la integral con la suma de Riemann que resulta de la ley del trapecio
+<span class="math display">\[
+n\ln n - n+1 = \int_1^n\ln xdx \geq \sum_{i=1}^{n-1}\frac{\ln(i+1)+\ln i}{2} = \ln n! -\frac{\ln n}{2}
+\]</span>
+es decir que tomando exponenciales de ambos lados nos queda que
+<span class="math display">\[
+n^{n+1/2}e^{1-n} \geq n!.
+\]</span></p>
+<details>
+<summary>
+<strong>Margen de cálculo</strong>
+</summary>
+<p>Podemos calcular la integral del logaritmo a partir de la integral de la exponencial como en la siguiente figura (a.k.a. integración por partes):</p>
+<img src="intlog.PNG" style="width:70.0%" />
+</details>
+<p>Para calcular una cota por abajo para <span class="math inline">\(n!\)</span> debemos acotar por arriba los errores que se van acumulando de la aproximación poligonal de la integral. Definimos así
+<span class="math display">\[
+E_i = \int_i^{i+1} \ln xdx - \frac{\ln(i+1)+\ln i}{2}
+\]</span>
+Es decir que
+<span class="math display">\[
+n! = n^{n+1/2}e^{1-n-\sum_{i=1}^{n-1}E_i}.
+\]</span></p>
+<p>Para estimar <span class="math inline">\(E_i\)</span> usamos la concavidad, sobrestimando así al logaritmo por la recta tangente en <span class="math inline">\((i,\ln i)\)</span></p>
+<p><img src="area.PNG" style="width:70.0%" /></p>
+<p>Por lo que usando la propiedad telescópica de la suma
+<span class="math display">\[
+2\sum_{i=1}^{n-1} E_i \leq \sum_{i=1}^n \frac{1}{i} - \ln n
+\]</span>
+Finalmente comparamos el lado derecho a partir de la integral de <span class="math inline">\(1/x\)</span>, la cual define al logaritmo.</p>
+<p><img src="int1x.PNG" style="width:70.0%" /></p>
+<p>Por lo tanto <span class="math inline">\(\sum_{i=1}^n E_i \leq \tfrac{1}{2}\)</span> y
+<span class="math display">\[
+\frac{n!}{n^{n+1/2}e^{-n}} \in [1,e] \qquad \Rightarrow \qquad n! \sim n^{n+1/2}e^{-n}
+\]</span>
+Más adelante veremos que de hecho <span class="math inline">\(n!/(n^{n+1/2}e^{-n})\)</span> converge a <span class="math inline">\(\sqrt{2\pi}\)</span> cuando <span class="math inline">\(n\to\infty\)</span>, también conocida como la <strong>fórmula de Stirling</strong>.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-156" class="exercise"><strong>Ejercicio 11.2  </strong></span>Estima el número de dígitos de <span class="math inline">\(100!\)</span>.</p>
+</div>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<span class="math display">\[
+\log_{10}100! \in \log_{10}(100^{100.5}e^{-100}) + (0,\log_{10}e) = 201 - \log_{10}e(100,99) = (157,159).
+\]</span>
+Por lo tanto debe tener exactamente 158 dígitos.
+</details>
+<hr />
+<p>Retomemos el objetivo de aproximar la distribución de la caminata aleatoria en <span class="math inline">\(\mathbb Z\)</span>
+<span class="math display">\[
+\begin{aligned}
+&amp;\mathbb P(S_{2n}/\sqrt{2n} \in [a,b]) = 2^{-2n}\sum_{\{i\in\mathbb Z \ | \ 2i/\sqrt{2n} \in [a,b]\}}\binom{2n}{n+i}
+\end{aligned}
+\]</span>
+En las siguientes manipulaciones asuremos la fórmula de Stirling y otras aproximaciones conocidas de la exponencial. El argumento puede hacerse de manera rigurosa si tomamos cuidado en ver que distintos límites son uniformes, lo cual no será la prioridad en esta presentación y dejamos como ejercicio para aquellos estudiantes que ya hayan llevado el curso de análisis.</p>
+<p>Tomando <span class="math inline">\(x = \delta i \in \delta\mathbb Z \cap [a,b]\)</span> con <span class="math inline">\(\delta=2/\sqrt{2n}\)</span> obtenemos la siguiente suma de Riemann a partir de la fórmula de Stirling
+<span class="math display">\[
+\begin{aligned}
+&amp;\sim \sum_{x \in \delta\mathbb Z \cap [a,b]}\left(1-\frac{x^2/2}{n}\right)^{-n}\left(\left(1+\frac{x}{\sqrt{2n}}\right)^{\sqrt{2n}}\right)^{-x/2}\left(\left(1-\frac{x}{\sqrt{2n}}\right)^{\sqrt{2n}}\right)^{x/2}\delta
+\end{aligned}
+\]</span>
+Usando que <span class="math inline">\((1+x/m)^m \to e^x\)</span> cuando <span class="math inline">\(m\to\infty\)</span>
+<span class="math display">\[
+\lim_{n\to \infty} \mathbb P(S_{2n}/\sqrt{2n} \in [a,b]) \sim \int_a^b e^{-x^2/2}dx
+\]</span>
+En particular, usando que <span class="math inline">\(\int_{-\infty}^\infty e^{-x^2/2}dx = \sqrt{2\pi}\)</span> podemos conjeturar que si el límite de <span class="math inline">\(\frac{n!}{n^{n+1/2}e^{-n}}\)</span> existe cuando <span class="math inline">\(n\to\infty\)</span>, entonces debe ser igual a <span class="math inline">\(\sqrt{2\pi}\)</span>.</p>
+<details>
+<summary>
+<strong>Margen de cálculo</strong>
+</summary>
+<span class="math inline">\(I = \int_{-\infty}^\infty e^{-x^2}dx\)</span> puede ser calculado llevando la integral a dos dimensiones y usando coordenadas polares
+<span class="math display">\[
+I^2 = \int_{\mathbb R^2} e^{-x^2-y^2}dxdy = 2\pi\int_0^\infty e^{-r^2}rdr = -\pi e^{-r^2}|_0^{\infty} = \pi
+\]</span>
+</details>
+<div id="fórmula-de-stirling-más-fina" class="section level4 hasAnchor" number="11.1.1.1">
+<h4><span class="header-section-number">11.1.1.1</span> Fórmula de Stirling (más fina)<a href="modelos-estocásticos.html#fórmula-de-stirling-más-fina" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Vamos a demostrar que <span class="math inline">\(\frac{n!}{n^{n+1/2}e^{-n}} \to \sqrt{2\pi}\)</span> cuando <span class="math inline">\(n\to\infty\)</span>. Comenzamos con la siguiente identidad para el factorial que puede ser demostrada por un argumento inductivo usando integración por partes
+<span class="math display">\[
+n! = \int_0^\infty x^ne^{-x}dx = \int_0^\infty \exp(n\ln x-x)dx.
+\]</span>
+Centrando la integral alrededor del punto donde el integrando se maximiza <span class="math inline">\(x_{max} = n\)</span>
+<span class="math display">\[
+\frac{n!}{n^ne^{-n}} = \int_{-n}^\infty \exp(n\ln(1+x/n)-x)dx.
+\]</span>
+Tomando el cambio de variables <span class="math inline">\(x=\sqrt{n}y\)</span> obtenemos el factor <span class="math inline">\(\sqrt{n}\)</span> que nos hace falta en el denominador del lado izquierdo
+<span class="math display">\[
+\frac{n!}{n^{n+1/2}e^{-n}} = \int_{-\sqrt n}^\infty \exp(n\ln(1+y/\sqrt{n})-\sqrt{n}y)dy.
+\]</span>
+Considerando la aproximación de Taylor alrededor de <span class="math inline">\(y=0\)</span> en el exponente
+<span class="math display">\[
+n\ln(1+y/\sqrt{n})-\sqrt{n}y = -y^2/2+ n\int_0^y \frac{(y-t)^2}{(\sqrt{n}+t)^3}dt = -y^2/2 + O(n^{-1/2})
+\]</span>
+es decir que, de poder intercambiar el límite con la integral nos quedaría que
+<span class="math display">\[
+\lim_{n\to\infty}\frac{n!}{n^{n+1/2}e^{-n}} = \int_{-\infty}^\infty \exp(-y^2/2)dy = \sqrt{2\pi}.
+\]</span></p>
+<p>Para justificar este último paso basta con mayorizar el integrando por una función integrable. Dado que
+<span class="math display">\[
+n\ln(1+y/\sqrt{n})-\sqrt{n}y = -\int_0^y \frac{y-t}{(1+t/\sqrt{n})^2}dt
+\]</span>
+Si <span class="math inline">\(y \in [-\sqrt n,0]\)</span> se tiene que
+<span class="math display">\[
+-\int_0^y \frac{y-t}{(1+t/\sqrt{n})^2}dt = -\int_y^0 \frac{t-y}{(1+t/\sqrt{n})^2}dt \leq -\int_y^0 (t-y) dt = -y^2/2
+\]</span>
+Si en cambio <span class="math inline">\(y\geq 1\)</span> entonces
+<span class="math display">\[
+-\int_0^y \frac{y-t}{(1+t/\sqrt{n})^2}dt \leq -y/2\int_0^{1/2} \frac{dt}{(1+t)^2} = -cy
+\]</span>
+Es decir que el integrando queda mayorizado por
+<span class="math display">\[
+\exp(n\ln(1+y/\sqrt{n})-\sqrt{n}y) \leq M(y) = \begin{cases}
+e^{-y^2/2} \text{ si } y\leq 0\\
+1 \text{ si } y \in (0,1)\\
+e^{-cy} \text{ si } y \geq 1
+\end{cases}
+\]</span>
+en cuyo caso es fácil verificar que <span class="math inline">\(\int_{-\infty}^\infty M(y)dy &lt;\infty\)</span> partiendo la integral en tres partes.</p>
+<details>
+<summary>
+<strong>Margen de análisis</strong>
+</summary>
+<p>Para la integral de Riemann usualmente debemos demostrar que una sucesión de funciones converge uniformemente para poder intercambiar el límite y la integral. Es decir que el error global
+<span class="math display">\[
+\max_{x\in\mathbb R} |f_n(x)-f(x)| \to 0 \text{ cuando } n\to\infty.
+\]</span>
+La integral de Lebesgue, la cual extiende la integral de Riemann, es más flexible en este sentido. En particular podemos intercambiar el límite y la integral si tenemos convergencia puntual (<span class="math inline">\(f_n(x)\to f(x)\)</span> para cada <span class="math inline">\(x\)</span>) y adicionalmente controlamos las colas horizontales (comportamiento asintótico cuando <span class="math inline">\(|x|\to\infty\)</span>) y verticales (asíntotas verticales). Este control podemos ejercerlo por medio de una función integrable que mayorice la sucesión. Para ser precisos tenemos el siguiente teorema</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-157" class="theorem"><strong>Teorema 11.1  (Convergencia dominada) </strong></span>Sea <span class="math inline">\(f_n:\mathbb R\to\mathbb R\)</span> una sucesión de funciones que converge puntualmente a <span class="math inline">\(f(x)\)</span>. Si existe <span class="math inline">\(M:\mathbb R\to[0,\infty)\)</span> tal que <span class="math inline">\(\int_\mathbb R M(x)dx&lt;\infty\)</span> y <span class="math inline">\(|f_n(x)|\leq M(x)\)</span> entonces
+<span class="math display">\[
+\lim_{n\to\infty}\int_\mathbb R f_n(x)dx = \int_\mathbb R f(x)dx.
+\]</span></p>
+</div>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-158" class="exercise"><strong>Ejercicio 11.3  </strong></span>Demuestra que para <span class="math inline">\(n\geq 1\)</span>
+<span class="math display">\[
+1 &lt; \frac{n!}{n^{n+1/2}e^n\sqrt{2\pi}} &lt; e^{-n/12}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+</div>
+</div>
+<div id="propiedades-del-movimiento-browniano" class="section level3 hasAnchor" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> Propiedades del movimiento Browniano<a href="modelos-estocásticos.html#propiedades-del-movimiento-browniano" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ya hemos visto que la distribución de la caminata aleatoria tiene el siguiente comportamiento asintótico. Para <span class="math inline">\(t&gt;0\)</span> fijo y dado <span class="math inline">\(\tau=t\varepsilon ^2\to 0\)</span>
+<span class="math display">\[
+\mathbb P(S^{\varepsilon ,\tau}_t \in \Omega) \xrightarrow[\varepsilon \searrow0]{} \frac{1}{(2\pi t)^{d/2}}\int_\Omega e^{-|x|^2/(2t)}dx
+\]</span>
+Es posible demostrar que existe un proceso estocástico con trayectorias continua que hereda las características principales de la caminata aleatoria.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-159" class="definition"><strong>Definición 11.1  </strong></span>Decimos que el proceso estocástico <span class="math inline">\(B_t \in \mathbb R^d\)</span> es un <strong>movimiento Browniano</strong> si:</p>
+<ul>
+<li><p><strong>Continuidad:</strong> La curva <span class="math inline">\(t\mapsto B_t\)</span> es continua casi seguramente.</p></li>
+<li><p><strong>Distribución:</strong> Para <span class="math inline">\(t&gt;t_0\)</span>
+<span class="math display">\[
+\mathbb P(B_t \in dx \ | \ B_{t_0}\sim \mu) = \frac{1}{(2\pi (t-t_0))^{d/2}}\int_{\mathbb R^d} e^{-|x-y|^2/(2(t-t_0))}\mu(y)dy
+\]</span></p></li>
+<li><p><strong>Independencia:</strong> Dados <span class="math inline">\(t_0&lt;t_1&lt;t_2&lt;t_3\)</span>. Los incrementos <span class="math inline">\((B_{t_1}-B_{t_0})\)</span> y <span class="math inline">\((B_{t_3}-B_{t_2})\)</span> son independientes.</p></li>
+</ul>
+</div>
+<p>Definimos el <strong>núcleo del calor</strong> como
+<span class="math display">\[
+H_t(x) := \frac{1}{(2\pi t)^{d/2}}\int_{\mathbb R^d} e^{-|x|^2/(2t)}.
+\]</span></p>
+<details>
+<summary>
+<strong>Margen de cálculo</strong>
+</summary>
+Siendo una distribución de probabilidad tenemos que <span class="math inline">\(\int_{\mathbb R^d}H_tdx = 1\)</span>. Verifiquemos una vez más esta identidad analíticamente usando la fórmula de Fubini y un cambio de variables
+<span class="math display">\[
+\int_{\mathbb R^d} e^{-|x|^2/(2t)}dx = \left(\sqrt{2t}\int_{-\infty}^\infty e^{-u^2}du\right)^d = (2\pi t)^{d/2}.
+\]</span>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-160" class="exercise"><strong>Ejercicio 11.4  </strong></span>Verifica y da una interpretación probabilista de la siguiente identidad para <span class="math inline">\(0&lt;t_1&lt;t_2\)</span>
+<span class="math display">\[
+H_{t_2} =  H_{t_2-t_1}\ast H_{t_1}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+</div>
+</div>
+<div id="martingalas" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Martingalas<a href="modelos-estocásticos.html#martingalas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Iremos progresivamente revelando las analogías y enfatizando las diferencias entre conceptos deterministas y aleatorios. Comencemos por la noción de dinámica. En el sentido determinista esta está dictada por la ley de evolución impuesta por el campo vectorial, en cada instante hemos determinado hacia donde se dirige el proceso. En el sentido estocástico buscamos dar una noción rigurosa de cuando la evolución aleatoria de un proceso depende exclusivamente de su configuración presente.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-161" class="definition"><strong>Definición 11.2  </strong></span>Sea <span class="math inline">\((\Omega,\mathcal F,\mathbb P)\)</span> un espacio de probabilidad.</p>
+<p>Una <strong>filtración</strong> <span class="math inline">\(\{\mathcal F_t\}\)</span> es una familia creciente de <span class="math inline">\(\sigma\)</span>-álgebras de <span class="math inline">\(\mathcal F\)</span>.</p>
+<p>Sea <span class="math inline">\((S,\mathcal S)\)</span> un espacio de medida (posibles estados). Un proceso estocástico <span class="math inline">\(X(t):\Omega\to S\)</span> <strong>adaptado</strong> a <span class="math inline">\(\{\mathcal F_t\}\)</span> es una colección de variables aleatorias tal que para cada <span class="math inline">\(t\)</span>, <span class="math inline">\(X(t)\)</span> es <span class="math inline">\(\mathcal F_t\)</span>-medible.</p>
+</div>
+<details>
+<summary>
+<strong>Margen de probabilidad</strong>
+</summary>
+<p>Una <span class="math inline">\(\sigma\)</span>-álgebra de <span class="math inline">\(\Omega\)</span> es una familia de sub-conjuntos <span class="math inline">\(\mathcal F\)</span> de <span class="math inline">\(\Omega\)</span> tales que</p>
+<ul>
+<li><p><span class="math inline">\(\emptyset \in \mathcal F\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(E\in \mathcal F\)</span> entonces <span class="math inline">\(\Omega\setminus E\in \mathcal F\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(E_1, E_2,\ldots \in \mathcal F\)</span> entonces <span class="math inline">\(E_1\cup E_2\cup\ldots \in \mathcal F\)</span>.</p></li>
+</ul>
+<p>Una función <span class="math inline">\(X:\Omega\to S\)</span> es <span class="math inline">\(\mathcal F\)</span>-medible si para cualquier medible en <span class="math inline">\(E\in \mathcal S\)</span> (<span class="math inline">\(\sigma\)</span>-álgebra para <span class="math inline">\(S\)</span>) se tiene que <span class="math inline">\(X^{-1}(E) \in \mathcal F\)</span>.</p>
+La función <span class="math inline">\(\mathbb P:\mathcal F\to [0,1]\)</span> es una medida de probabilidad si además de ser medible es aditiva, es decir que si <span class="math inline">\(E_1, E_2,\ldots \in\mathcal F\)</span> son disjuntos, entonces
+<span class="math display">\[
+\mathbb P(E_1\cup E_2\cup\ldots ) = \mathbb P(E_1)+ \mathbb P(E_2)+\ldots
+\]</span>
+</details>
+<p>La filtración juega el rol de la información recolectada hasta un dado tiempo. El hecho de que <span class="math inline">\(X(t)\)</span> sea <span class="math inline">\(\mathcal F_t\)</span>-medible informalmente quiere decir que para todo <span class="math inline">\(s\leq t\)</span>, el valor de <span class="math inline">\(X(s)\)</span> es conocido o revelado en tiempo <span class="math inline">\(t\)</span>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-162" class="definition"><strong>Definición 11.3  </strong></span>El proceso <span class="math inline">\(X(t):\Omega\to S\)</span> adaptado a <span class="math inline">\(\{\mathcal F_t\}\)</span> satisface la <strong>propiedad de Markov</strong> si para <span class="math inline">\(t_0\leq t\)</span> y <span class="math inline">\(E\subseteq\mathcal S\)</span>
+<span class="math display">\[
+\mathbb P[X(t)\in E \ | \ \mathcal{F}_{t_0}] = \mathbb P[X(t)\in E \ | \ X(t_0)].
+\]</span></p>
+</div>
+<p>La identidad en la definición anterior representa la <strong>probabilidad de transición</strong>, es decir, dado que el proceso ha sido revelado hasta tiempo <span class="math inline">\(t_0\)</span>, cuál es la probabilidad de que <span class="math inline">\(X(t)\in E\)</span>. La propiedad de Markov dice así que esto depende solamente del estado del proceso en tiempo <span class="math inline">\(t_0\)</span>, cualquier otra información es irrelevante. Enfatizamos que esta idea substituye la caracterización de un sistema dinámico determinista donde la evolución está dada por un campo vectorial en cada instante y no de la trayectoria pasada.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-163" class="example"><strong>Ejemplo 11.1  </strong></span>La independencia de los incrementos en un movimiento Browniano implica la propiedad de Markov.</p>
+</div>
+<hr />
+<p>Recordemos que una función <span class="math inline">\(\rho:\mathbb R^d\times \mathbb R\to\mathbb R\)</span> se dice que es una cantidad conservada con respecto al campo <span class="math inline">\(v:\mathbb R^d\to\mathbb R^d\)</span> si permanece constante a lo largo del flujo que este genera, es deir que si <span class="math inline">\(x=x(t)\)</span> satisface <span class="math inline">\(x&#39;= v(x)\)</span> entonces
+<span class="math display">\[
+z(t):= \rho(x(t),t) \text{ es constante}.
+\]</span>
+Equivalentemente si <span class="math inline">\(\rho\)</span> es de clase <span class="math inline">\(C^1\)</span> entonces satisface la ecuación de transporte
+<span class="math display">\[
+\partial_t \rho + v\cdot D\rho = 0.
+\]</span></p>
+<p>Cuando la dinámica está dada en términos de un proceso aleatorio, pedir que <span class="math inline">\(z(t)\)</span> sea constante es muy restrictivo. En cambio requerimos que esta cantidad sea <em>condicionalmente constante</em>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-164" class="definition"><strong>Definición 11.4  </strong></span>El proceso <span class="math inline">\(z(t):\Omega\to \mathbb R\)</span> adaptado a <span class="math inline">\(\mathcal F_t\)</span> se dice una <strong>martingala</strong> si es integrable y para <span class="math inline">\(t_0\leq t\)</span>
+<span class="math display">\[
+\mathbb E[z(t) \ | \ \mathcal{F}_{t_0}] = z(t_0).
+\]</span></p>
+</div>
+<p>Esta última identidad indica que una vez revelada la información hasta un cierto tiempo <span class="math inline">\(t_0\)</span>, cualquier predicción futura permanece centrada en (el valor conocido) <span class="math inline">\(z(t_0)\)</span>.</p>
+<details>
+<summary>
+<strong>Margen de probabilidad</strong>
+</summary>
+<p>Dada una variable aleatoria <span class="math inline">\(X\)</span> integrable y una <span class="math inline">\(\sigma\)</span>-álgebra <span class="math inline">\(\mathcal G \subseteq\mathcal F\)</span>, definimos la <strong>esperanza condicional</strong> <span class="math inline">\(\mathbb E[X \ | \ \mathcal G]\)</span> como una variable aleatoria adaptada a <span class="math inline">\(\mathcal G\)</span> tal que para todo <span class="math inline">\(E\in \mathcal G\)</span>
+<span class="math display">\[
+\mathbb P(\mathbb E[X \ | \ \mathcal G] \in E) = \mathbb P(X \in E).
+\]</span>
+Cuando <span class="math inline">\(\mathcal G\)</span> es la <span class="math inline">\(\sigma\)</span>-álgebra generada por una variable aleatoria <span class="math inline">\(Y\)</span><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> escribimos <span class="math inline">\(\mathbb E[X\ | \ Y] = \mathbb E[X \ | \ \mathcal G]\)</span>.</p>
+La existencia de la esperanza condicional (bajo ciertas hipótesis sobre el espacio de probabilidad) es una consecuencia del <a href="https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem"><strong>teorema de Radon-Nikodym</strong></a>.
+</details>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-165" class="example"><strong>Ejemplo 11.2  </strong></span>Sea <span class="math inline">\(z\)</span> una variable aleatoria integrable y <span class="math inline">\(\{\mathcal F_t\}\)</span> una filtración. La esperanza condicional <span class="math inline">\(z(t) = \mathbb E[z\ | \ \mathcal F_t]\)</span> es una martingala que modela un proceso donde se va revelando progresivamente información de la variable <span class="math inline">\(z\)</span>.</p>
+</div>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-166" class="example"><strong>Ejemplo 11.3  </strong></span>Sean <span class="math inline">\(z&#39;(t)\in \mathbb R^d\)</span> variables aleatorias independientes, adaptadas a la filtración <span class="math inline">\(\{\mathcal F_t\}\)</span>, integrables, con trayectorias integrables y centradas en cero (i.e. <span class="math inline">\(\mathbb E[z&#39;(t)]=0\)</span>). Entonces
+<span class="math display">\[
+z(t) := \int_0^t z&#39;(s)ds \text{ es una martingala.}
+\]</span></p>
+</div>
+<hr />
+<p>Las martingalas tienen por definición la propiedad de Markov (<span class="math inline">\(\mathbb E[z(t)\ | \ \mathcal F_{t_0}] = z(t_0) = \mathbb E[z(t)\ | \ z(t_0)]\)</span>). Una diferencia que salta a la vista entre ambas definiciones fue haber tomado variables en espacios de estados generales para la propiedad de Markov y los reales para las martingalas. Aún si estos espacios de llegada coinciden en las definiciones estas no son equivalentes.</p>
+<p>La propiedad de Markov debe pensarse en términos de que la dinámica aleatoria está determinada en cada instante (análoga a tener una EDO en el caso determinista). La propiedad de martingala es una versión relajada de una cantidad conservada. Mientras que la martingala preserva la esperanza, un proceso que satisface la propiedad de Markov puede variar su esperanza (puede tener deriva no trivial).</p>
+<p>El siguiente resultado apunta a establecer un análogo del método de las características para el movimiento Browniano.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-167" class="theorem"><strong>Teorema 11.2  </strong></span>Sea <span class="math inline">\(B_t\)</span> un movimiento Browniano en <span class="math inline">\(\mathbb R^d\)</span> adaptado a <span class="math inline">\(\mathcal F_t\)</span> y <span class="math inline">\(u:\mathbb R^d\to\mathbb R\)</span> suave y con soporte compacto. La composición <span class="math inline">\(u(B_t)\)</span> es una martingala si y solo si <span class="math inline">\(u\)</span> es armónica.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-168" class="proof"><em>Demostración</em>. </span>Asumamos primero que la composición es una martingala. Dado <span class="math inline">\(0&lt;dt\ll 1\)</span> y <span class="math inline">\(x=B_t\)</span>
+<span class="math display">\[
+\begin{aligned}
+0&amp;=\mathbb E[z(t+dt)-z(t)\ | \ \mathcal F_{t}]\\
+&amp;= \frac{1}{(2\pi dt)^{d/2}}\int_{\mathbb R^d} (u(y)-u(x))e^{-|y-x|^2/(2dt)}dy\\
+&amp;= \frac{1}{(2\pi)^{d/2}}\int_{\mathbb R^d} (u(x+\sqrt{dt}\xi)-u(x))e^{-|\xi|^2/2}d\xi,\\
+&amp;= \frac{dt}{2(2\pi)^{d/2}}\int_{\mathbb R^d} \frac{u(x+\sqrt{dt}\xi)-2u(x)+u(x-\sqrt{dt}\xi)}{dt}e^{-|\xi|^2/2}d\xi
+\end{aligned}
+\]</span>
+Dado que el integrando converge puntualmente a <span class="math inline">\(D^2u(x)\xi\cdot \xi e^{-|\xi|^2/2}\)</span> y <span class="math inline">\(u\)</span> es de soporte compacto, deducimos en el límite cuando <span class="math inline">\(dt\to0\)</span> que
+<span class="math display">\[
+0 = \sum_{i,j=1}^d \partial_{ij}u(x)\int_{\mathbb R^d} \xi_i\xi_je^{-|\xi|^2/2}d\xi = \Delta u(x) \frac{|\partial B_1|}{d}\int_0^\infty r^{d+1}e^{-r^2/2}dr.
+\]</span>
+Por lo que se deduce que <span class="math inline">\(u\)</span> es necesariamente armónica.</p>
+<p>En la otra dirección usamos que <span class="math inline">\(u\)</span> satisface la propiedad del valor medio
+<span class="math display">\[
+\frac{d}{dr} \int_{\partial B_1} u(x+r\theta)d\theta = \int_{\partial B_1} \theta \cdot Du(x+r\theta)d\theta = \int_{B_1} \Delta u(x+r\theta)d\theta = 0.
+\]</span>
+Por lo tanto el promedio de <span class="math inline">\(u\)</span> sobre <span class="math inline">\(\partial B_r(x)\)</span> es constante en <span class="math inline">\(r\)</span> y necesariamente igual a <span class="math inline">\(u(x)\)</span>. Esto implica que también
+<span class="math display">\[
+\frac{1}{(2\pi dt)^{d/2}}\int_{\mathbb R^d} (u(y)-u(x))e^{-|y-x|^2/(2dt)}dy = 0
+\]</span>
+lo cual ya hemos visto es equivalente a la identidad de martingala para <span class="math inline">\(u(B_t)\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-169" class="exercise"><strong>Ejercicio 11.5  </strong></span>Sea <span class="math inline">\(B_t\)</span> un movimiento Browniano en <span class="math inline">\(\mathbb R^d\)</span> adaptado a <span class="math inline">\(\mathcal F_t\)</span> y <span class="math inline">\(u:\mathbb R^d\times \mathbb R\to\mathbb R\)</span> suave. Justifica que bajo una hipótesis de crecimiento como en el ejemplo anterior y uniforme en tiempo, la composición <span class="math inline">\(u(B_t,t)\)</span> es una martingala si y solo si u satisface la ecuación de calor (backwards)
+<span class="math display">\[
+\partial_t u + \frac{1}{2}\Delta u=0.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>Para el problema de valores finales con <span class="math inline">\(u(\cdot,T) = g\)</span> dado, tenemos que potencialmente la siguiente fórmula de representación da la solución buscada
+<span class="math display">\[
+\begin{aligned}
+u(x,t) &amp;= \mathbb E[g(B_T)\ | \ B_t=x]\\
+&amp;= (H_{T-t}\ast g)(x),\\
+&amp;= \frac{1}{(2\pi (T-t))^{d/2}}\int_{\mathbb R^d} g(y)e^{-|y-x|^2/(2(T-t))}dy.
+\end{aligned}
+\]</span>
+Para verificar esto solamente hace falta corroborar el siguiente resultado.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-170" class="theorem"><strong>Teorema 11.3  </strong></span>Si <span class="math inline">\(g \in C_b(\mathbb R^d)\)</span> (continua y acotada) entonces
+<span class="math display">\[
+\frac{1}{(2\pi \tau)^{d/2}}\int_{\mathbb R^d} g(y)e^{-|y-x|^2/(2\tau)}dy \xrightarrow[\tau\searrow0]{} g(x)
+\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-171" class="proof"><em>Demostración</em>. </span>Dado que las distribuciones integran a uno y usando la desigualdad triangular
+<span class="math display">\[
+\left|\frac{1}{(2\pi \tau)^{d/2}}\int_{\mathbb R^d} g(y)e^{-|y-x|^2/(2\tau)}dy - g(x)\right| \leq \int_{\mathbb R^d} |g(y)-g(x)|\frac{e^{-|y-x|^2/(2\tau)}}{(2\pi \tau)^{d/2}}dy
+\]</span>
+De modo que basta con demostrar que el lado derecho tiende a cero. Nótese que el integrando tiende puntualmente a cero, sin embargo no es directo cual función lo mayoriza para poder aplicar el teorema de convergencia dominada. Identificamos de cualquier forma que la región más delicada ocurre alrededor de <span class="math inline">\(y=x\)</span>.</p>
+<p>Alrededor de <span class="math inline">\(x\)</span> usamos la continuidad de <span class="math inline">\(g\)</span>. Dado <span class="math inline">\(\varepsilon &gt;0\)</span> existe <span class="math inline">\(\delta\in(0,1)\)</span> tal que para <span class="math inline">\(y\in B_\delta(x)\)</span>
+<span class="math display">\[
+|g(y)-g(x)|\leq \varepsilon
+\]</span>
+Por lo tanto
+<span class="math display">\[
+\begin{aligned}
+\int_{\mathbb R^d} |g(y)-g(x)|\frac{e^{-|y-x|^2/(2\tau)}}{(2\pi \tau)^{d/2}}dy &amp;= \int_{B_\delta(x)} +  \int_{\mathbb R^d\setminus B_\delta(x)}\leq \varepsilon  + 2\|g\|_\infty\int_{\mathbb R^d\setminus B_\delta(x)}
+\end{aligned}
+\]</span>
+Finalmente para el segundo término tenemos que
+<span class="math display">\[
+\int_{\mathbb R^d\setminus B_\delta(x)}\frac{e^{-|y-x|^2/(2\tau)}}{(2\pi \tau)^{d/2}}dy = \int_{\mathbb R^d} 1_{\mathbb R^d\setminus B_{\delta/\sqrt{\tau}}}(z)\frac{e^{-|z|^2/2}}{(2\pi)^{d/2}}dz \to 0
+\]</span>
+gracias al teorema de convergencia dominada puesto que podemos mayorizar por <span class="math inline">\(\frac{e^{-|z|^2/2}}{(2\pi)^{d/2}}\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-172" class="exercise"><strong>Ejercicio 11.6  </strong></span>Verifica que
+<span class="math display">\[
+\int_{-\infty}^\infty \sin(y)e^{-(x-y)^2/2}dy = \frac{\sqrt{2\pi}}{e}\sin(\sqrt{2}x)
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-173" class="exercise"><strong>Ejercicio 11.7  </strong></span>Verifica que
+<span class="math display">\[
+\int_{\mathbb R^d}|y|^2e^{-|y|^2/2}dy = d(2\pi)^{d/2}
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<details>
+<summary>
+<strong>Margen de cálculo</strong>
+</summary>
+<p>Se define la función <strong>Gamma</strong> para <span class="math inline">\(x&gt;0\)</span> como
+<span class="math display">\[
+\Gamma(x) = \int_0^\infty t^{x-1}e^{-t}dt
+\]</span>
+En particular <span class="math inline">\(\Gamma(n) = (n-1)!\)</span> para <span class="math inline">\(n\in \N\)</span>.</p>
+Esta función encuentra aplicaciones por ejemplo en la fórmula general para el <strong>volumen de la bola en <span class="math inline">\(d\)</span> dimensiones</strong>
+<span class="math display">\[
+|B_1| = \frac{\pi^{d/2}}{\Gamma(d/2+1)}\sim \frac{1}{\sqrt{d\pi}}\left(\frac{2\pi e}{d}\right)^{d/2}, \qquad |\partial B_1|= d|B_1| = \frac{2\pi^{d/2}}{\Gamma(d/2)}\sim \sqrt{\frac{d}{2\pi e}}(\pi d)^{1/(2d)}.
+\]</span>
+Hay muchas formas de demostrar estas fórmulas, por ejemplo en
+. El resultado previo también nos da una forma alternativa dado que
+<span class="math display">\[
+\begin{aligned}
+d(2\pi)^{d/2} &amp;= \int_{\mathbb R^d}|z|^2 e^{-|z|^2/2}dz,\\
+&amp;= |\partial B_1|\int_0^\infty r^de^{-r^2/2}rdr,\\
+&amp;= 2^{d/2}|\partial B_1|\int_0^\infty u^{d/2}e^{-u}du,\\
+&amp;= 2^{d/2}|\partial B_1|\Gamma(d/2+1)
+\end{aligned}
+\]</span>
+Por lo que
+<span class="math display">\[
+\Gamma(d/2+1) = \frac{d\pi^{d/2}}{|\p B_1|} = \frac{\pi^{d/2}}{|B_1|}.
+\]</span>
+Un dato curioso es que <span class="math inline">\(d\mapsto |B_1^d|\)</span> es una función que alcanza su máximo en dimensión <span class="math inline">\(d=5\)</span> para luego tener un decaimiento más rápido que exponencial.
+</details>
+<p>El siguiente resultado es natural cuando el proceso <span class="math inline">\(X(t)\)</span> tiene una derivada bien definida, sin embargo para procesos aleatorios estas trayectorias están muy lejos de ser diferenciables. De hecho el movimiento Browniano no es diferenciable en un conjunto de medida total. El cálculo de Itô fue diseñado con el objetivo de dar un sentido riguroso al siguiente teorema.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-174" class="theorem"><strong>Teorema 11.4  (Fórmula de Dynkin) </strong></span>Supongamos que <span class="math inline">\(B_t\)</span> es un movimiento Browniano, <span class="math inline">\(f:\mathbb R^d\times \mathbb R\to\mathbb R\)</span> es continua y <span class="math inline">\(u\)</span> satisface
+<span class="math display">\[
+\partial_tu +\frac{1}{2}\Delta u= f.
+\]</span>
+Entonces
+<span class="math display">\[
+z(t) := u(B_t,t)-\int_{t_0}^t f(B_s,s)ds \text{ es una martingala}.
+\]</span></p>
+</div>
+<p>En particular, dado <span class="math inline">\(u(\cdot,T) = g\)</span>, obtenemos a partir de <span class="math inline">\(\mathbb E(z(T)) = \mathbb E(z(t))\)</span> la fórmula de representación para <span class="math inline">\(t_0=t&lt;T\)</span>
+<span class="math display">\[
+\begin{aligned}
+    u(x,t) &amp;= \mathbb E\left(g(B_T) - \int_t^T f(B_s,s)ds\ | \ B_t=x\right),\\
+    &amp;= (H_{T-t}\ast g)(x) - \int_t^T (H_{s-t}\ast f(s,\cdot))(x)ds\\
+    &amp;= \frac{1}{(2\pi (T-t))^{d/2}}\int_{\mathbb R^d} g(y)e^{-|y-x|^2/(2(T-t))}dy\\
+    &amp;- \int_t^T\frac{1}{(2\pi (s-t))^{d/2}}\int_{\mathbb R^d} f(y,s)e^{-|y-x|^2/(2(s-t))}dyds.
+\end{aligned}
+\]</span></p>
+<details>
+<summary>
+<strong>Margen de ecuaciones diferenciales ordinarias</strong>
+</summary>
+El hecho de que la solución particular, reflejada en el segundo término, se calcule a su vez tomando una convolución con el núcleo del calor se conoce como la <strong>fórmula de Duhamel</strong>. La fórmula que hemos presentado generaliza la fórmula de representación de soluciones a sistemas lineales con coeficientes constantes
+<span class="math display">\[
+\begin{cases}
+y&#39;= Ay+f,\\
+y(t_0) =y_0
+\end{cases}\qquad\Leftrightarrow\qquad y(t) =e^{A(t-t_0)}y_0+\int_{t_0}^t e^{A(t-s)}f(s)ds
+\]</span>
+En el caso de la ecuación de calor <span class="math inline">\(A \sim -\frac{1}{2}\Delta\)</span> y $e^{At} H_{T-t}$.
+</details>
+<div id="problemas-de-frontera-y-tiempo-de-salida" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Problemas de frontera y tiempo de salida<a href="modelos-estocásticos.html#problemas-de-frontera-y-tiempo-de-salida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dado un dominio <span class="math inline">\(\Omega\subseteq\mathbb R^d\)</span> abierto y acotado con <span class="math inline">\(\partial\Omega\)</span> Lipschitz definimos el tiempo de salida de un Browniano que comienza en <span class="math inline">\(x\)</span> como
+<span class="math display">\[
+\tau_\Omega := \inf\{t &gt; 0 \ | \ B_t \in \mathbb R^d\setminus \Omega\}.
+\]</span></p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-175" class="theorem"><strong>Teorema 11.5  </strong></span>Sea <span class="math inline">\(\Omega\)</span> abierto, acotado, con <span class="math inline">\(\partial\Omega\)</span> Lipschitz y <span class="math inline">\(g\in C(\partial\Omega)\)</span>. Entonces
+<span class="math display">\[
+u(x) = \mathbb E[g(B_{\tau_\Omega})\ | \ B_0=x]
+\]</span>
+es la solución del problema de Dirichlet
+<span class="math display">\[
+\begin{cases}
+\Delta u =0 \text{ en } \Omega,\\
+u=g \text{ en } \partial\Omega.
+\end{cases}
+\]</span></p>
+</div>
+<p>El mapeo <span class="math inline">\(g\in C(\partial\Omega)\to \mathbb E[g(X(\tau_\Omega)) \ | \ B_0=x]\)</span> es lineal y por el teorema de Riesz define una medida en <span class="math inline">\(\partial\Omega\)</span> para cada <span class="math inline">\(x\in \Omega\)</span>. Estas se conocen como las <strong>medidas armónicas</strong>. Para <span class="math inline">\(\partial\Omega\)</span> Lipschitz estas medidas son absolutamente continuas con respecto de la medida de Hausdorff y su correspondiente densidad <span class="math inline">\(P_\Omega(x,y)\)</span> se conoce como el <strong>núcleo de Poisson</strong>. Es decir que la fórmula de representación se escribe como la siguiente generalización de la fórmula del valor medio
+<span class="math display">\[
+u(x) = \int_{\partial\Omega} g(y)P_\Omega(x,y)dy.
+\]</span></p>
+<p>En términos probabilistas, <span class="math inline">\(P_\Omega(x,y)\)</span> es la densidad de la probabilidad de que el movimiento Browniano que parte de <span class="math inline">\(x\)</span> salga de <span class="math inline">\(\partial\Omega\)</span> por <span class="math inline">\(y\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-176" class="example"><strong>Ejemplo 11.4  </strong></span>Para <span class="math inline">\(\Omega=[0,1]\subseteq\mathbb R\)</span> tenemos que <span class="math inline">\(P_\Omega(1,y)\)</span> se calcula resolviendo la ecuación <span class="math inline">\(u&#39;&#39;=0\)</span> con datos <span class="math inline">\(u(0)=0\)</span> y <span class="math inline">\(u(1)=1\)</span>. A partir de acá obtenemos <span class="math inline">\(y=u(y)=P_\Omega(1,y)\)</span>.</p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-177" class="exercise"><strong>Ejercicio 11.8  </strong></span>Calcula <span class="math inline">\(P_\Omega(0,y)\)</span> para <span class="math inline">\(\Omega=[0,1]\subseteq\mathbb R\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>En los siguientes tres ejercicios proponemos algunos cálculos en relación al núcleo de Poisson de la bola. La deducción de esta identidad usando el método de las imágenes se encuentra por ejemplo en el libro de Evans .</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-178" class="exercise"><strong>Ejercicio 11.9  </strong></span>Cuando <span class="math inline">\(\Omega = B_r\)</span> es la bola de radio <span class="math inline">\(r\)</span> se tiene que
+<span class="math display">\[
+P_\Omega(x,y) = c\frac{r^2-|x|^2}{|x-y|^d}.
+\]</span>
+Demuestra que <span class="math inline">\(c=r/|\partial B_r|\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-179" class="exercise"><strong>Ejercicio 11.10  </strong></span>Demuestra que para cualquier <span class="math inline">\(x \in B_1\)</span>
+<span class="math display">\[
+\int_{\partial B_1}\frac{dy}{|x-y|^d} = \frac{|\partial B_1|}{1-|x|^2}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-180" class="exercise"><strong>Ejercicio 11.11  </strong></span>Demuestra que para cualquier <span class="math inline">\(g \in C(\partial B_1)\)</span> y <span class="math inline">\(x_0\in\partial B_1\)</span>
+<span class="math display">\[
+\lim_{x\in B_1\to x_0}\frac{1-|x|^2}{|\partial B_1|}\int_{\partial B_1}\frac{g(y)}{|x-y|^d}dy = g(x_0).
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-181" class="exercise"><strong>Ejercicio 11.12  </strong></span>Sea <span class="math inline">\(g\in C_0(\Omega)\)</span>. Argumenta por qué para <span class="math inline">\(t&lt;T\)</span>
+<span class="math display">\[
+u(x,t) = \mathbb E[g(B_{\min(\tau_\Omega,T)}) \ | \ B_t=x]
+\]</span>
+debe ser la solución de
+<span class="math display">\[
+\begin{cases}
+\partial_t u + \frac{1}{2}\Delta u =0 \text{ en } \Omega\times (-\infty,T),\\
+u=0 \text{ en } \partial\Omega\times  (-\infty,T),\\
+u=g \text{ en } \Omega\times\{T\}.
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>El ejercicio anterior define para cada <span class="math inline">\(x\in \Omega\)</span> y <span class="math inline">\(t&lt;T\)</span> el funcional lineal <span class="math inline">\(g\mapsto u(x,t)\)</span> y con él una medida. Esta es una vez más absolutamente continua con respecto a la medida de Lebesgue y su densidad <span class="math inline">\(H_{\Omega,T}(x,\cdot,t)\)</span> se conoce como el núcleo del calor en <span class="math inline">\(\Omega\)</span>. Tenemos así una fórmula de representación
+<span class="math display">\[
+u(x,t) = \int_{\Omega} g(y)H_{\Omega,T}(x,y,t)dy
+\]</span>
+para la solución del problema de Dirichlet.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-182" class="exercise"><strong>Ejercicio 11.13  </strong></span>Justifica por qué <span class="math inline">\(H_{\Omega,T}(x,y,t) = H_{\Omega,0}(x,y,t-T)\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<p>De ahora en adelante denotamos <span class="math inline">\(H_\Omega = H_{\Omega,0}\)</span>.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-183" class="exercise"><strong>Ejercicio 11.14  </strong></span>Justifica por qué para <span class="math inline">\(t&lt;0\)</span> y <span class="math inline">\(\Omega&#39;\subseteq\Omega\)</span>,
+<span class="math display">\[
+\int_{\Omega&#39;} H_{\Omega}(x,y,t)dy = \mathbb P(B_0 \in \Omega&#39; \text{ y }\tau_\Omega&gt;0 \ | \ B_t=x).
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-184" class="exercise"><strong>Ejercicio 11.15  </strong></span>Justifica por qué <span class="math inline">\(H_{\Omega,T}(x,y,t) = H_{\Omega,T}(y,x,t)\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-185" class="exercise"><strong>Ejercicio 11.16  </strong></span>Justifica por qué
+<span class="math display">\[
+H_{\Omega,T}(x,y,t)  \leq \frac{1}{(2\pi (T-t))^{d/2}}e^{-|y-x|^2/(2(T-t))}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="theorem">
+<p><span id="thm:unlabeled-div-186" class="theorem"><strong>Teorema 11.6  </strong></span>Sea <span class="math inline">\(\Omega\)</span> abierto, acotado y con <span class="math inline">\(\partial\Omega\)</span> Lipschitz. Entonces
+<span class="math display">\[
+u(x) = \frac{1}{2}\mathbb E\left(\int_0^\tau f(B_s)ds \ | \ B_0=x\right)
+\]</span>
+satisface el problema de Dirchlet
+<span class="math display">\[
+\begin{cases}
+-\Delta u = f \text{ en }\Omega,\\
+u=0 \text{ en } \partial\Omega.
+\end{cases}
+\]</span></p>
+</div>
+<p>Una vez más, para cada <span class="math inline">\(x\in\Omega\)</span> el funcional lineal <span class="math inline">\(f\mapsto u(x)\)</span> define una función <span class="math inline">\(G_\Omega(x,\cdot)\)</span> con soporte en la clausura de <span class="math inline">\(\Omega\)</span> conocida como la <strong>función de Green</strong>. Cuando <span class="math inline">\(f = \mathbbm 1_{\Omega&#39;}\)</span> con <span class="math inline">\(\Omega&#39;\subseteq\Omega\)</span> interpretamos a <span class="math inline">\(\int_{\Omega&#39;}G_\Omega(x,y)dy\)</span> como (la mitad de) el tiempo que ocupa un movimiento Browniano en <span class="math inline">\(\Omega&#39;\)</span> antes de salir de <span class="math inline">\(\Omega\)</span> y dado que comienza <span class="math inline">\(x\)</span>.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-187" class="example"><strong>Ejemplo 11.5  </strong></span>Para <span class="math inline">\(\Omega=[0,1]\subseteq\mathbb R\)</span> y <span class="math inline">\(f\in C((0,1))\)</span> tenemos que las soluciones de <span class="math inline">\(-u&#39;&#39;=f\)</span> con dato inicial <span class="math inline">\(u(0)=0\)</span> toman la forma
+<span class="math display">\[
+u(x) = ax-\int_0^x f(y)(x-y)dy.
+\]</span>
+Para garantizar <span class="math inline">\(u(1)=0\)</span> tomamos
+<span class="math display">\[
+a=\int_0^1 f(y)(1-y)dy \qquad\Rightarrow\qquad u(x) = \int_0^1 f(y)(x(1-y)-(x-y)_+)dy
+\]</span>
+Por lo tanto
+<span class="math display">\[
+G_\Omega(x,y) = x(1-y)-(x-y)_+ = \min(x,y) - xy.
+\]</span></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-188" class="exercise"><strong>Ejercicio 11.17  </strong></span>Justifica por qué ha debería ser cierto que en general <span class="math inline">\(G_\Omega(x,y) = G_\Omega(y,x)\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-189" class="exercise"><strong>Ejercicio 11.18  </strong></span>Sea <span class="math inline">\(\Omega=B_r\)</span>, la bola de radio <span class="math inline">\(r\)</span>, y <span class="math inline">\(\tau\)</span> el tiempo de salida del Browniano. Justifica por qué
+<span class="math display">\[
+\mathbb E[\tau \ | \ B_0=x] = \frac{1}{d}(r^2-|x|^2)_+.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-190" class="exercise"><strong>Ejercicio 11.19  </strong></span>Demuestra que si <span class="math inline">\(\Omega\subseteq B_r\)</span> y <span class="math inline">\(u \in C^2(\Omega)\cap C_0(\Omega)\)</span> entonces se tiene la siguiente estimación (conocida como el principio del máximo)
+<span class="math display">\[
+\|u\|_{L^\infty(\Omega)} \leq \frac{r^2}{2d}\|\Delta u\|_{L^\infty(\Omega)}.
+\]</span></p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-191" class="exercise"><strong>Ejercicio 11.20  </strong></span>Calcula <span class="math inline">\(G_\Omega(0,y)\)</span> para <span class="math inline">\(\Omega=B_r\)</span> y analiza el comportamiento cuando <span class="math inline">\(r\to\infty\)</span>.</p>
+</div>
+<details>
+<summary>
+Solución
+</summary>
+</details>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="21">
+<li id="fn21"><p>Es decir la <span class="math inline">\(\sigma\)</span>-ágebra más pequeña que contiene <span class="math inline">\(\{Y\in E\}\)</span> para todo <span class="math inline">\(E\)</span> medible en el rango de <span class="math inline">\(Y\)</span>.<a href="modelos-estocásticos.html#fnref21" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="soluciones-débiles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="caso-unidimensional.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-modelos_estocasticos.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/11-modelos_estocasticos.Rmd",
+"text": null
+},
+"download": ["bookdown_intro.pdf", "bookdown_intro.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

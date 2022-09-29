@@ -2,7 +2,7 @@
 
 En esta sección veremos como poner en práctica los conceptos aprendidos para modelar una red cuadrada sujetada por sus cuatro esquinas. Recordemos que a pesar de que podemos dar una forma explícita de las ecuaciones que se deben resolver, el método de Newton parece ser muy sensible a las condiciones iniciales, por lo que hay que ingeniarse una forma alternativa.
 
-La idea que tenemos en mente es proponer que las conexiones entre nodos son inicialmente elásticas con un mecanismo adicional de amortiguamiento (para poder llevar el sistema al reposo). La configuración términa noe s exactamente la deseada puesto que la deformación del resorte no satisface exactamente la restricción de longitud sobre las aristas. Sin embargo podemos luego ir haciendo la dureza (stiffness) de los resortes cada vez más y más grande, aproximando así la configuración de equilibrio cuando las barras son rígidas.
+La idea que tenemos en mente es proponer que las conexiones entre nodos son inicialmente elásticas con un mecanismo adicional de amortiguamiento (para poder llevar el sistema al reposo). La configuración final en este caso no es exactamente la deseada puesto que la deformación del resorte no satisface exactamente la restricción de longitud sobre las aristas. Sin embargo podemos luego ir haciendo la dureza (stiffness) de los resortes cada vez más y más grande, aproximando así la configuración de equilibrio cuando las barras son rígidas.
 
 ## Librerías y datos
 
@@ -109,19 +109,25 @@ t = np.linspace(0,10,2000)
 sol = odeint(dsdt,s0,t)
 ```
 
-Visualización del último instante
+Visualización de los instantes $t\in \{0.05j\ | \ j\in\{0,1,\ldots,10\}\}$
 
 ```{python}
-fig = plt.figure()
-ax = plt.axes(projection='3d')
-ax.axes.set_xlim3d(left=0, right=1);
-ax.axes.set_ylim3d(bottom=0, top=1);
-ax.axes.set_zlim3d(bottom=-1, top=0);
-ax.view_init(60, 80);
+fig = plt.figure(figsize=(90, 15))
 
-sol_fin = sol[-1,:]
-pos = np.reshape(sol_fin[:3*N**2],(3,N**2)).T
-for i in range(N):
-  ax.plot3D(pos[i*N:(i+1)*N,0], pos[i*N:(i+1)*N:,1], pos[i*N:(i+1)*N,2],'bo-')
-  ax.plot3D(pos[i:N**2:N,0], pos[i:N**2:N,1], pos[i:N**2:N,2],'b-')
+for j in range(10):
+  ax = fig.add_subplot(1, 10, j+1, projection='3d')
+  ax.axes.set_xlim3d(left=0, right=1);
+  ax.axes.set_ylim3d(bottom=0, top=1);
+  ax.axes.set_zlim3d(bottom=-1, top=0);
+
+  sol_fin = sol[30*j,:]
+  pos = np.reshape(sol_fin[:3*N**2],(3,N**2)).T
+  for i in range(N):
+    ax.plot3D(pos[i*N:(i+1)*N,0], pos[i*N:(i+1)*N:,1], pos[i*N:(i+1)*N,2],'bo-')
+    ax.plot3D(pos[i:N**2:N,0], pos[i:N**2:N,1], pos[i:N**2:N,2],'b-')
+
+plt.show()
 ```
+
+## Incremento en la rigidez de los resortes
+

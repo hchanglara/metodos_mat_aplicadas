@@ -289,7 +289,7 @@ El campo normal es el gradiente de una dada función ¿Cuál?.
 ---
 
 :::{.theorem name="Fórmula de la divergencia"}
-Sea $G=(V,E)$ un grafo dirigido finito y $\Omega \ss V$. La divergencia de $f:E\to \mathbb R$ verifica
+Sea $G=(V,E)$ un grafo dirigido finito y $\Omega \subseteq V$. La divergencia de $f:E\to \mathbb R$ verifica
 \begin{equation}
 \sum_{v\in \Omega} \operatorname{div} f(v) = \sum_{e\in E} f(e)n_\Omega(e)
 (\#eq:div)
@@ -432,7 +432,7 @@ El primer número de Betti de $G=(V,E)$ es igual a $|E|-|V|+C$ donde $C$ es el n
   <summary>Solución</summary>
   Asumamos sin pérdida de generalidad que $G$ es conexo, es decir $C=1$, y en el caso general podemos aplicar el siguiente razonamiento a cada componente conexa de $G$.
   
-  Un árbol generador $T=(V,E_0)$ de $G$ tiene $|V|-1$ aristas. Por definición, cualquier arista en $E\sm E_0$ cierra un ciclo en $G$ y genera las soluciones triviales del problema $\div f=0$.
+  Un árbol generador $T=(V,E_0)$ de $G$ tiene $|V|-1$ aristas. Por definición, cualquier arista en $E\setminus E_0$ cierra un ciclo en $G$ y genera las soluciones triviales del problema $\operatorname{div} f=0$.
 </details>
 
 ## Integración por partes
@@ -506,7 +506,7 @@ En particular, si $u=1$ recuperamos la fórmula de la divergencia \@ref(eq:div).
 ---
 
 <details>
-  <summary>**Margen de cálculo:** Integración por partes</summary>
+  <summary>**Margen de cálculo:** Integración por partes en $\mathbb R^n$</summary>
 La fórmula de integración por partes nos dice que dado un subconjunto $\Omega \subset\mathbb R^n$ con frontera localmente de clase $C^1$ a trozos, un campo *vectorial* $v\in C^1(\overline{\Omega}\to\mathbb R^n)$, y un campo *escalar* $u\in C^1(\overline{\Omega}\to\mathbb R^n)$ entonces
 $$
 \int_\Omega u \operatorname{div} v = \int_{\partial \Omega} u (v\cdot n) - \int_\Omega Du\cdot v

@@ -10,28 +10,30 @@ m(t) = \int_{B_r(x_0)}\mu(x,t)dx.
 $$
 Dado que en nuestro modelo, $v$ mueve a la distribución $\mu$ conservando la masa tenemos que la variación de $m$ debe estar determinada por la cantidad neta que entra y sale por la esfera (Figura \@ref(fig:cons)). Esta cantidad está determinada por el flujo $f = \mu v$ (flux^[En inglés se distinguen dos nociones de *flujo*. *Flow* se traduce como el flujo $\phi$ dado por la familia de mapeos generados por el campo $v$. *Flux* también se traduce como flujo pero se refiere a la cantidad de masa que está atravesando una región en una dirección dada.])
 $$
-m'(t) = -\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dx
+m'(t) = -\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dS(x)
 $$
 Es decir que
 $$
-\int_{B_r(x_0)}\partial_t\mu(x,t)dx + \int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dx = 0.
+\int_{B_r(x_0)}\partial_t\mu(x,t)dx + \int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dS(x) = 0.
 $$
 
 ![(#fig:cons) Ley de conservación](cons.png){width=70%}
 
 A partir de esta identidad podemos apelar al teorema de la divergencia o usar la expansión de Taylor para llegar al siguiente resultado cuando $r\to0^+$. Procedamos con la segunda estrategia, un poco más larga pero más elemental a su vez. Tenemos que
-\begin{align*}
-\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dx &= \frac{1}{r}\int_{\partial B_r(x_0)} \sum_{i=1}^n (x-x_0)_i\left(f_i(x_0) +\sum_{j=1}^n \partial_j f_i(x_0)(x-x_0)_j + o(r)\right) dx,\\
-&= \frac{1}{r}\sum_{i,j=1}^n \partial_jf_i(x_0) \int_{\partial B_r(x_0)} (x-x_0)_i(x-x_0)_j dx + o(r^{n}),\\
-&= r^{n}\sum_{i,j=1}^n \partial_jf_i(x_0) \int_{\partial B_1} \theta_i\theta_jd\theta + o(r^{n})
-\end{align*}
-Hemos usado que la integral $\int_{\partial B_r(x_0)} (x-x_0)_idx = 0$ dada la simetría impar del integrando. Las integrales cuadráticas también tienen simetría impar cuando $i\neq j$ y por lo tanto vuelven a cancelarse. Para el caso $i=j$ en cambio tenemos que
 $$
-\int_{\partial B_1} \theta_1^2d\theta = \ldots = \int_{\partial B_1} \theta_n^2d\theta = \frac{1}{n}\int_{\partial B_1} (\theta_1^2 + \ldots+\theta_n^2)d\theta = \frac{|\partial B_1|}{n} = |B_1|.
+\begin{aligned}
+\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dS(x) &= \frac{1}{r}\int_{\partial B_r(x_0)} \sum_{i=1}^n (x-x_0)_i\left(f_i(x_0) +\sum_{j=1}^n \partial_j f_i(x_0)(x-x_0)_j + o(r)\right) dS(x),\\
+&= \frac{1}{r}\sum_{i,j=1}^n \partial_jf_i(x_0) \int_{\partial B_r(x_0)} (x-x_0)_i(x-x_0)_j dS(x) + o(r^{n}),\\
+&= r^{n}\sum_{i,j=1}^n \partial_jf_i(x_0) \int_{\partial B_1} \theta_i\theta_jdS(\theta) + o(r^{n})
+\end{aligned}
+$$
+Hemos usado que la integral $\int_{\partial B_r(x_0)} (x-x_0)_idS(x) = 0$ dada la simetría impar del integrando. Las integrales cuadráticas también tienen simetría impar cuando $i\neq j$ y por lo tanto vuelven a cancelarse. Para el caso $i=j$ en cambio tenemos que
+$$
+\int_{\partial B_1} \theta_1^2dS(\theta) = \ldots = \int_{\partial B_1} \theta_n^2dS(\theta) = \frac{1}{n}\int_{\partial B_1} (\theta_1^2 + \ldots+\theta_n^2)dS(\theta) = \frac{|\partial B_1|}{n} = |B_1|.
 $$
 En conclusión
 $$
-\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dx = |B_r|\operatorname{div} f(x_0) + o(r^{n}).
+\int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dS(x) = |B_r|\operatorname{div} f(x_0) + o(r^{n}).
 $$
 
 Volviendo a la ley de conservación de masa obtenemos que dividiendo por $|B_r|$ y tomando el límite $r\to0^+$
@@ -44,12 +46,26 @@ $$
 :::{.exercise}
 Verifica que para $u:\mathbb R^n\to\mathbb R$ de clase $C^2$,
 $$
-\lim_{r\to0^+} \frac{1}{r^2|\partial B_r|}\int_{\partial B_r} (u(x)-u(0))dx = \frac{1}{2n}\Delta u(0).
+\lim_{r\to0^+} \frac{1}{r^2|\partial B_r|}\int_{\partial B_r} (u(x)-u(0))dS(x) = \frac{1}{2n}\Delta u(0).
 $$
 :::
 
 <details>
 <summary>Solución</summary>
+Usando la expansión de Taylor de segundo orden alrededor del origen
+$$
+\begin{aligned}
+\int_{\partial B_r} (u(x)-u(0))dS(x) &= \int_{\partial B_r} \left(Du(0)\cdot x+\frac{1}{2} x\cdot D^2u(0)x + o(r^2)\right)dS(x),\\
+&= \sum_{i,j=1}^n \partial_{ij}u(0)\int_{\partial B_r} x_ix_jdS(x) + o(r^{n+1}),\\
+&= \sum_{i=1}^n \partial_{i}^2u(0)\int_{\partial B_r} x_i^2dS(x) + o(r^{n+1}),\\
+&= \Delta u(0)r^{n+1}\int_{\partial B_1} x_i^2dS(x) + o(r^{n+1}),\\
+&= \Delta u(0)\frac{r^{n+1}|\partial B_1|}{n} + o(r^{n+1}).
+\end{aligned}
+$$
+Al igual que ante usamos las simetrías imperes para cancelar algunas integrales y el hecho que
+$$
+\int_{\partial B_1} x_i^2dS(x) = \frac{|\partial B_1|}{n}.
+$$
 </details>
 
 ## Teorema de transporte
@@ -82,11 +98,10 @@ entonces $(\nu\circ T)\det DT = \mu$.
 \end{minipage}}
 \end{center}
 
-Nuestro objetivo en esta sección consiste así en demostrar que si $\mu$ satisface la ley de conservación $\mu_t$ y $\phi$ es el flujo generado por $v$, entonces
+Nuestro objetivo en esta sección consiste así en demostrar que si $\phi$ es el flujo generado por $v$, y $\mu$ satisface la ley de conservación $\partial_t \mu + \operatorname{div}(\mu v)=0$ entonces necesariamente se cumple que
 $$
 \mu(\phi_t(x),t)\det(D\phi_t) = \mu(x,0).
 $$
-
 
 El escenario en una dimensión es una ilustrativa aplicación de la regla de la cadena en varias variables.
 
@@ -121,6 +136,12 @@ es una solución particular de la ecuación $y'' + y = f$.
 
 <details>
 <summary>Solución</summary>
+$$
+\begin{aligned}
+y'(t) &= f(t)\sin 0 + \int_0^t f(s)\cos(t-s)ds = \int_0^t f(s)\cos(t-s)ds,\\
+y''(t) &= f(t)\cos 0 - \int_0^t f(s)\sin(t-s)ds = f(t) - y(t).
+\end{aligned}
+$$
 </details>
 
 ---
@@ -133,7 +154,7 @@ Usando ahora la identidad para la derivada del determinante
 $$
 (\ln \det M(t))' = \operatorname{tr}(M(t)^{-1}M'(t)) 
 $$
-obtenemos que\footnote{$D\phi_t^{-1} D\partial_t\phi = D\phi_t^{-1} D\phi_t Dv = Dv$}
+obtenemos que\footnote{$D\phi_t^{-1} D\partial_t\phi = D\phi_t^{-1}  Dv D\phi_t$ de modo que para la traza $\operatorname{tr}(D\phi_t^{-1} D\partial_t\phi) = \operatorname{tr}(Dv) = \operatorname{div}v$.}
 $$
 \begin{aligned}
 \frac{d}{dt}[(\mu_t\circ\phi_t)\det D\phi_t] &= (\partial_t\mu+v\cdot D\mu+\mu \operatorname{div} v)\det D\phi_t\\
@@ -151,7 +172,7 @@ con lo cual concluimos $\mu_t = (\phi_t)_\#\mu_0$.
 
 <details>
 <summary>**Margen de cálculo**</summary>
-La derivada logarítmica del determinante o el teorema de Liouville. El determinante es una función multilineal en las columnas, como tal satisface la regla del producto (misma demostración)
+La derivada logarítmica del determinante o la **[identidad de Jacobi](https://en.wikipedia.org/wiki/Jacobi%27s_formula)**. El determinante es una función multilineal en las columnas, como tal satisface la regla del producto (misma demostración)
 $$
 \frac{d}{dt}\det (m_1(t),\ldots,m_n(t)) = \det (m_1'(t),\ldots,m_n(t)) +
  \ldots + \det (m_1(t),\ldots,m_n'(t))
@@ -164,6 +185,10 @@ $$
 Para $M(t_0)=M_0$ invertible usamos que $M(t) = M_0 N(t)$ tal que
 $$
 \left.\frac{d}{dt}\right|_{t=t_0}\det (m_1(t),\ldots,m_n(t)) = \det(M_0) \operatorname{tr} N'(t_0) = \det(M_0) \operatorname{tr} (M_0^{-1}M'(t_0)).
+$$
+Si en cambio $M(t)$ no es invertible la fórmula se escribe en términos de la matriz de cofactores
+$$
+(\det M(t))' = \operatorname{tr}(\operatorname{cof}M(t)^{T}M'(t)).
 $$
 </details>
 
@@ -179,6 +204,15 @@ donde $n_t$ es el vector normal exterior de $E_t$
 
 <details>
 <summary>Solución</summary>
+Por la fórmula de cambio de variables
+$$
+\begin{aligned}
+\frac{d}{dt}\int_{E_t}f &= \frac{d}{dt}\int_{E}f(\phi_t(x),t)det(D\phi_t)dx,\\
+&= \int_{E}(\partial_t f + v\cdot Df + f\operatorname{div}v)\det(D\phi_t)dx,\\
+&= \int_{E_t} (\partial_t f + \operatorname{div}(fv))dx,\\
+&= \int_{E_t}\partial_t f + \int_{\partial E_t}f(v\cdot n_t).      
+\end{aligned}
+$$
 </details>
 
 ---
@@ -192,9 +226,29 @@ $$
 
 <details>
 <summary>Solución</summary>
+La curva característica a partir de $x'=x^2$ está dada por
+$$
+\phi(x_0,t)= \frac{x_0}{1-x_0t}.
+$$
+(Definida para $t<1/x_0$ si $x_0>0$ y en todo $t>0$ si $x_0\leq 0$).
+
+La inversa para cada $t$ se despega como
+$$
+\phi_t^{-1}(x,t) = \frac{x}{1+xt}, \qquad D(\phi_t^{-1})(x,t) = \frac{1}{(1+xt)^2}.
+$$
+Por lo tanto
+$$
+\mu(x,t) = \begin{cases}
+\frac{\mu_0(x/(1+xt))}{(1+xt)^2} \text{ si } x\geq -1/t,\\
+0 \text{ si } x<-1/t
+\end{cases}
+$$
+La condición para $x<-1/t$ se ha impuesto para que la solución sea consistente con el límite de $\mu_0$ cuando $x\to -\infty$ y para que adicionalmente la solución no "agregue densidad desde infinito a la solución". El código a continuación ilustra las distintas soluciones:
+
+<iframe src="https://www.geogebra.org/graphing/xnszrh7n?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
 </details>
 
----
+### Ecuación de tráfico
 
 Un modelo razonable para el tráfico en una dimensión consiste en considerar que el flujo está dado por $f(\mu) = \mu v(\mu)$ y que la velocidad es una función con la siguiente características: Es no-negativa y decreciente. Es decir que los agentes se mueven de izquierda a derecha y que a mayor densidad, menor la velocidad y viceversa. Si $\mu$ toma valores en el intervalo $[0,\mu_{max}]$ tenemos por ejemplo el modelo logístico
 $$
@@ -212,7 +266,7 @@ $$
 0 \text{ si } x\geq0
 \end{cases}
 $$
-Esto modela el escenario donde los carros pueden estar detenidos inicialmente por un semáforo que luego cambia a tener luz verde.
+Esto modela el escenario donde los carros pueden estar detenidos inicialmente (a la izquierda del cero) por un semáforo que en el instante $t=0$ empieza a tener luz verde.
 
 ---
 
@@ -222,6 +276,18 @@ Calcula las soluciones de las ecuaciones características. Observa que existe un
 
 <details>
 <summary>Solución</summary>
+Expandiendo la divergencia
+$$
+\partial_t \mu + v_{max}(1-2\mu/\mu_{max})\partial_x\mu=0.
+$$
+Obtenemos las características
+$$
+x'= v_{max}(1-2z/\mu_{max}), \qquad z'=0, \qquad\Rightarrow\qquad x(t) = \begin{cases}
+x_0+v_{max}t \text{ si } x_0>0,\\
+x_0-v_{max}t \text{ si } x_0<0.
+\end{cases}
+$$
+Un auto inicialmente en $x_0<0$ debe esperar por lo menos $t=-x_0/v_{max}$ unidades de tiempo antes de comenzar a moverse.
 </details>
 
 ---
