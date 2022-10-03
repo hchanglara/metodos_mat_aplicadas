@@ -253,9 +253,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>Métodos espectrales</b></span></li>
 <li class="chapter" data-level="12" data-path="espectro.html"><a href="espectro.html"><i class="fa fa-check"></i><b>12</b> Espectro</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="espectro.html"><a href="espectro.html#casos-unidimensionales-para-el-laplaciano"><i class="fa fa-check"></i><b>12.1</b> Casos unidimensionales para el Laplaciano</a>
+<li class="chapter" data-level="12.1" data-path="espectro.html"><a href="espectro.html#resolución-de-distintos-problemas-usando-el-espectro"><i class="fa fa-check"></i><b>12.1</b> Resolución de distintos problemas usando el espectro</a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="espectro.html"><a href="espectro.html#segmento"><i class="fa fa-check"></i><b>12.1.1</b> Segmento</a></li>
+<li class="chapter" data-level="12.1.1" data-path="espectro.html"><a href="espectro.html#inversa"><i class="fa fa-check"></i><b>12.1.1</b> Inversa</a></li>
+<li class="chapter" data-level="12.1.2" data-path="espectro.html"><a href="espectro.html#exponencial"><i class="fa fa-check"></i><b>12.1.2</b> Exponencial</a></li>
+<li class="chapter" data-level="12.1.3" data-path="espectro.html"><a href="espectro.html#funciones-trigonométricas"><i class="fa fa-check"></i><b>12.1.3</b> Funciones trigonométricas</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="espectro.html"><a href="espectro.html#casos-unidimensionales-para-el-laplaciano"><i class="fa fa-check"></i><b>12.2</b> Casos unidimensionales para el Laplaciano</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="espectro.html"><a href="espectro.html#segmento"><i class="fa fa-check"></i><b>12.2.1</b> Segmento</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -281,7 +287,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="espectro" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number">Capítulo 12</span> Espectro<a href="espectro.html#espectro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo <a href="espectro-del-laplaciano.html#espectro-del-laplaciano">discreto</a>. Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction] por Elias Stein y Rami Shakarchi] para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.</p>
+<div id="resolución-de-distintos-problemas-usando-el-espectro" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Resolución de distintos problemas usando el espectro<a href="espectro.html#resolución-de-distintos-problemas-usando-el-espectro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Por fijar algunas ideas tomemos un operador lineal <span class="math inline">\(A:V\to V\)</span> con autovectores ortogonales <span class="math inline">\(\{\xi_k\}\)</span> (respecto a algún producto interno o hermitiano <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>) y sus correspondientes autovalores <span class="math inline">\(\{\lambda_k\}\)</span>.</p>
+<div id="inversa" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Inversa<a href="espectro.html#inversa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para la ecuación <span class="math inline">\(Ax=b\)</span> tenemos que si <span class="math inline">\(b = \sum_k \hat b_k\xi_k\)</span> y cero no es un autovalor de <span class="math inline">\(A\)</span>, entonces podemos encontrar una solución de la forma <span class="math inline">\(x = \sum_k \hat x_k\xi_k\)</span> igualando los coeficientes al substituir estas expresiones en la ecuación
 <span class="math display">\[
 \sum_k \hat b_k\xi_k = b = Ax= \sum_k \hat x_k A\xi_k = \sum_k \hat x_k \lambda_k\xi_k \qquad\Rightarrow\qquad \hat x_k = \frac{\hat b_k}{\lambda_k}.
@@ -292,13 +302,16 @@ Para calcular <span class="math inline">\(\hat b_k\)</span> usamos la ortogonali
 \]</span>
 Sintetizando esta información para la solución obtenemos que<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
 <span class="math display">\[
-x = \sum_k \frac{\langle b, \xi_k\rangle}{\lambda_k\|\xi_k\|^2}\xi_k = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2} b.
+x = \sum_k \frac{1}{\lambda_k}\frac{\langle b, \xi_k\rangle}{\|\xi_k\|^2}\xi_k = \sum_k \frac{1}{\lambda_k}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} b.
 \]</span>
 En particular, si <span class="math inline">\(\{\xi_k\}\)</span> genera el espacio vectorial encontramos que <span class="math inline">\(A\)</span> es invertible y
 <span class="math display">\[
-A^{-1} = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2}.
+A^{-1} = \sum_k \frac{1}{\lambda_k}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 \]</span>
 Para el problema Dirichlet con dato de borde cero, el inverso del Laplaciano se conoce como la <strong>función de Green</strong>.</p>
+</div>
+<div id="exponencial" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Exponencial<a href="espectro.html#exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En el caso del sistema lineal de EDOs con coeficientes constantes <span class="math inline">\(x&#39;=Ax+f(t)\)</span> tenemos que según la teoría de EDOs lineales
 <span class="math display">\[
 x(t) = \exp(At)x(0)+\int_0^t \exp(A(t-s))f(s)ds.
@@ -315,28 +328,60 @@ Descubrimos así que
 <span class="math display">\[
 \exp(At) = \sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 \]</span>
-Para el Laplaciano esta exponencial se conoce como el <strong>núcleo del calor</strong>. Observamos que en este caso no hizo falta asumir que cero no es un autovalor.</p>
+Observamos que en este caso no hizo falta asumir que cero no es un autovalor.</p>
+<p>Para el Laplaciano esta exponencial se conoce como el <strong>núcleo del calor</strong>. Recordemos que los autovalores del Laplaciano en el caso discreto eran menores o iguales a cero, y anticipamos que lo misomo ocurre en el caso continuo. Es decir que para las soluciones de la ecuación del calor obtenemos decaimiento exponencial de cada uno de los términos en la serie (a menos que cero sea un autovalor).</p>
+</div>
+<div id="funciones-trigonométricas" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> Funciones trigonométricas<a href="espectro.html#funciones-trigonométricas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finalmente en el caso de la ecuación de segundo orden <span class="math inline">\(x&#39;&#39; = Ax+f(t)\)</span> tenemos que
 <span class="math display">\[
-x(t) = \cos(At)x(0) + \operatorname{sinc}(At)x&#39;(0) + \int_0^t \operatorname{sinc}(A(t-s))f(s)ds.
+x(t) = \cos(At)x(0) + t\operatorname{sinc}(At)x&#39;(0) + \int_0^t (t-s)\operatorname{sinc}(A(t-s))f(s)ds.
 \]</span>
 Donde al igual que con la exponencial podemos definir las funciones exponenciales a partir de sus series de Taylor alrededor del cero
 <span class="math display">\[
-\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) = \int_0^t \cos(As)ds+I.
+\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!}(At)^{2k}.
 \]</span>
-(Si <span class="math inline">\(A\)</span> es invertible <span class="math inline">\(\operatorname{sinc}(At) = \sin(At)A^{-1}\)</span>).</p>
+(Si <span class="math inline">\(A\)</span> es invertible <span class="math inline">\(t\operatorname{sinc}(At) = \sin(At)A^{-1}\)</span>). Como es de esperarse se satisfacen las identidades trigonométricas usuales, por ejemplo
+<span class="math display">\[
+\frac{d}{dt}\cos(At) = -A^2 t \operatorname{sinc}(At), \qquad \frac{d}{dt}(t\operatorname{sinc}(At)) = \cos(At).
+\]</span></p>
 <p>Al igual que antes podemos dar fórmulas para <span class="math inline">\(\cos(At)\)</span> y <span class="math inline">\(\operatorname{sinc}(At)\)</span> cuando <span class="math inline">\(A\)</span> tiene una base ortogonal de autovectores
 <span class="math display">\[
 \cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 \]</span></p>
-<div id="casos-unidimensionales-para-el-laplaciano" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Casos unidimensionales para el Laplaciano<a href="espectro.html#casos-unidimensionales-para-el-laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="segmento" class="section level3 hasAnchor" number="12.1.1">
-<h3><span class="header-section-number">12.1.1</span> Segmento<a href="espectro.html#segmento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sea <span class="math inline">\([0,L]\)</span> un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos <span class="math inline">\(0\)</span> y <span class="math inline">\(L\)</span>. Es decir
+<hr />
+<details>
+<summary>
+Margen de análisis
+</summary>
+Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo <span class="math inline">\(t\in \mathbb R\)</span>. Para la convergencia absoluta podemos usar cualquier norma en el espacio de matrices (todas producen la misma topología). Sin embargo, desde el punto de vista algebraico conviene usar la norma de operador
+<span class="math display">\[
+\|A\| := \sup_{\|x\|=1} \|Ax\|.
+\]</span>
+Además de las propiedades de la norma (positividad, homogeneidad y la desigualdad triangular) esta norma satisface las desigualdades de Cauchy-Schwarz
+<span class="math display">\[
+\|Ax\|\leq \|A\|\|x\|, \qquad \|AB\|\leq \|A\|\|B\|.
+\]</span>
+Por lo tanto se tiene que la convergencia absoluta de una serie dada de matrices, digamos
+<span class="math display">\[
+\sum_{k=0}^\infty a_k A^k,
+\]</span>
+se deduce de la convergencia de la serie de números reales positivos en el lado derecho de la siguiente expresión
+<span class="math display">\[
+\sum_{k=0}^\infty \|a_k A^k\| \leq \sum_{k=0}^\infty |a_k| \|A\|^k.
+\]</span>
+En particular, para las matrices exponenciales o trigonométricas la serie en el lado derecho se acota en términos de una serie exponencial real.
+</details>
+</div>
+</div>
+<div id="casos-unidimensionales-para-el-laplaciano" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Casos unidimensionales para el Laplaciano<a href="espectro.html#casos-unidimensionales-para-el-laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="segmento" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Segmento<a href="espectro.html#segmento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sea <span class="math inline">\((0,L)\)</span> un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos <span class="math inline">\(0\)</span> y <span class="math inline">\(L\)</span>. Es decir
 <span class="math display">\[
 \begin{cases}
-\phi&#39;&#39;= -\lambda \phi \text{ en } [0,L],\\
+\phi&#39;&#39;= -\lambda \phi \text{ en } (0,L),\\
 \phi = 0 \text{ en } \{0,L\}.
 \end{cases}
 \]</span></p>
@@ -375,24 +420,50 @@ Una posible solución se obtiene usando la identidad trigonométrica
 Otra solución se obtiene integrando por partes (dos veces).
 </details>
 <hr />
-<p>No solamente son las funciones <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> linealmente independientes, estas también generan las funciones sobre <span class="math inline">\([0,L]\)</span>. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma <span class="math inline">\(\sum_{k=1}^\infty a_k\phi_k\)</span>. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.</p>
-<div id="función-de-green" class="section level4 hasAnchor" number="12.1.1.1">
-<h4><span class="header-section-number">12.1.1.1</span> Función de Green<a href="espectro.html#función-de-green" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Dado <span class="math inline">\(f:[0,L]\to \mathbb R\)</span>, buscamos una fórmula para la solución de
+<p>No solamente son las funciones <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> linealmente independientes, estas también generan las funciones sobre <span class="math inline">\((0,L)\)</span>. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma <span class="math inline">\(\sum_{k=1}^\infty a_k\phi_k\)</span>. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.</p>
+<div id="función-de-green" class="section level4 hasAnchor" number="12.2.1.1">
+<h4><span class="header-section-number">12.2.1.1</span> Función de Green<a href="espectro.html#función-de-green" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Dado <span class="math inline">\(f:(0,L)\to \mathbb R\)</span>, buscamos una fórmula para la solución de
 <span class="math display">\[
 \begin{cases}
-u&#39;&#39;=f\text{ en }[0,L],\\
+u&#39;&#39;=f\text{ en }(0,L),\\
 u(0)=u(L)=0.
 \end{cases}
 \]</span>
 Gracias a la diagonalización que ya conocemos para este problema tenemos que
 <span class="math display">\[
-u(x) = -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x) = -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy = \int_0^L G(x,y)f(y)dy
+\begin{aligned}
+u(x) &amp;= -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x),\\
+&amp;= -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy,\\
+&amp;= \int_0^L G(x,y)f(y)dy
+\end{aligned}
 \]</span>
-donde <span class="math inline">\(G\)</span> es la función de Green para <span class="math inline">\([0,L]\)</span>
+donde <span class="math inline">\(G\)</span> es la función de Green para <span class="math inline">\((0,L)\)</span>
 <span class="math display">\[
 G(x,y) := -\frac{2L}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}.
 \]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-193" class="example"><strong>Ejemplo 12.1  </strong></span>Consideremos el problema
+<span class="math display">\[
+\begin{cases}
+u&#39;&#39;=1 \text{ en } [0,1],\\
+u(0)=u(1)=0.
+\end{cases}
+\]</span>
+Para calcular <span class="math inline">\(u\)</span> como una serie de senos debemos primero calcular la serie de senos de la función constante <span class="math inline">\(1\)</span>
+<span class="math display">\[
+\hat f_k = \frac{1}{2}\int_0^1 \sin(k\pi x)dx = \begin{cases}
+0 \text{ si } k\equiv 0 \, (\text{mod 2}),\\
+4/(k\pi) \text{ si } k\equiv 1 \, (\text{mod 2}).
+\end{cases}
+\]</span>
+Por lo tanto
+<span class="math display">\[
+u(x) =-\sum_{k=1}^\infty \frac{\hat f_k}{\lambda_k}\sin(k\pi x)=-\frac{4}{\pi^3}\sum_{k=1}^\infty \frac{\sin(k\pi x)}{k^3}.
+\]</span></p>
+</div>
+<hr />
 <p>Una alternativa más elemental que tenemos para resolver este problema es integrar <span class="math inline">\(u&#39;&#39;=f\)</span> dos veces. Primero
 <span class="math display">\[
 u&#39;(x) = u&#39;(0) + \int_0^x f(y)dy.
@@ -416,7 +487,30 @@ x-z-\frac{x}{L}(L-z)\text{ si } z\in[0,x],\\
 -\frac{x}{L}(L-z)\text{ si } z\in[x,L].
 \end{cases}
 \]</span></p>
-<p>Cuando graficamos esta función notamos que es continua y afín a trozos.</p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-194" class="example"><strong>Ejemplo 12.2  </strong></span>Consideremos una vez más el problema
+<span class="math display">\[
+\begin{cases}
+u&#39;&#39;=1 \text{ en } [0,1],\\
+u(0)=u(1)=0.
+\end{cases}
+\]</span>
+Integrando un par de veces encontramos que
+<span class="math display">\[
+u(x) = \frac{x(x-1)}{2}.
+\]</span>
+Gracias al ejemplo previo obtenemos la curiosa identidad
+<span class="math display">\[
+\sum_{k=1}^\infty \frac{\sin(k\pi x)}{(k\pi)^3} = \frac{x(1-x)}{8}.
+\]</span>
+Para <span class="math inline">\(x=1/2\)</span> tendríamos que
+<span class="math display">\[
+\sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)^3} = \frac{\pi^3}{32}.
+\]</span></p>
+</div>
+<hr />
+<p>Cuando graficamos la función <span class="math inline">\(G(x,\cdot)\)</span> notamos que es continua y afín a trozos.</p>
 <iframe src="https://www.geogebra.org/graphing/xk4yrywc?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0">
 </iframe>
 <p>Observemos que además la diferencia entre las dos pendientes es siempre uno, lo cual sirve para descomponer a <span class="math inline">\(G\)</span> como <span class="math inline">\(|z-x|/2\)</span> más una función afín para que se cumplan que <span class="math inline">\(G(x,0)=G(x,L)=0\)</span>. Es decir
@@ -431,6 +525,34 @@ En particular, si <span class="math inline">\(x=y=1/2\)</span> recuperamos la id
 <span class="math display">\[
 \sum_{k=0}^\infty \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}.
 \]</span></p>
+</div>
+<div id="núcleo-del-calor" class="section level4 hasAnchor" number="12.2.1.2">
+<h4><span class="header-section-number">12.2.1.2</span> Núcleo del calor<a href="espectro.html#núcleo-del-calor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En este caso no tenemos una fórmula cerrada para el núcleo dado por la siguiente serie
+<span class="math display">\[
+H(x,t,y) := \frac{2}{L}\sum_{k=1}^\infty e^{-(k\pi/L)^2t}\sin(k\pi x/L)\sin(k\pi y/L).
+\]</span>
+Recordemos que a partir de <span class="math inline">\(H\)</span> calculamos las soluciones de
+<span class="math display">\[
+\begin{cases}
+\partial_t u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L].
+\end{cases}
+\]</span>
+usando la fórmula de representación
+<span class="math display">\[
+u(x,t) = \int_0^L H(x,t,y)u_0(y)dy.
+\]</span></p>
+<p>Una hermosa introducción a estas ideas está presentada en el siguiente video de 3 Blue 1 Brown:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ToIXSwZ1pJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div class="example">
+<p><span id="exm:unlabeled-div-195" class="example"><strong>Ejemplo 12.3  </strong></span>Usando que <span class="math inline">\(u(x,t)=x(1-x)-2t\)</span> satisface la ecuación de calor en <span class="math inline">\((0,1)\)</span> con dato de borde cero, y la serie de senos para la condición inicial <span class="math inline">\(x(1-x)\)</span> de un ejemplo previo, tenemos que
+<span class="math display">\[
+\sum_{k=1}^\infty \frac{e^{-(k\pi)^2t}}{(k\pi)^3}\sin(k\pi x) = \frac{x(1-x)-2t}{16}.
+\]</span></p>
+</div>
 
 </div>
 </div>

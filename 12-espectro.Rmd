@@ -4,7 +4,11 @@
 
 Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo [discreto](#espectro-del-laplaciano). Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction] por Elias Stein y Rami Shakarchi] para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.
 
+## Resolución de distintos problemas usando el espectro
+
 Por fijar algunas ideas tomemos un operador lineal $A:V\to V$ con autovectores ortogonales $\{\xi_k\}$ (respecto a algún producto interno o hermitiano $\langle\cdot,\cdot\rangle$) y sus correspondientes autovalores $\{\lambda_k\}$.
+
+### Inversa
 
 Para la ecuación $Ax=b$ tenemos que si $b = \sum_k \hat b_k\xi_k$ y cero no es un autovalor de $A$, entonces podemos encontrar una solución de la forma $x = \sum_k \hat x_k\xi_k$ igualando los coeficientes al substituir estas expresiones en la ecuación
 $$
@@ -16,13 +20,15 @@ $$
 $$
 Sintetizando esta información para la solución obtenemos que^[Dados dos vectores $a$ y $b$ en un espacio vectorial $V$ con producto interno $\langle\cdot,\cdot\rangle$, definimos $a\otimes b: V\to V$ como $(a\otimes b)(v) = \langle b,v\rangle a$. Si $V=\mathbb R^n$ con el producto punto entonces $a\otimes b$ se identifica con la matriz con componentes $a_ib_j$ en la fila $i$, columna $j$.]
 $$
-x = \sum_k \frac{\langle b, \xi_k\rangle}{\lambda_k\|\xi_k\|^2}\xi_k = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2} b.
+x = \sum_k \frac{1}{\lambda_k}\frac{\langle b, \xi_k\rangle}{\|\xi_k\|^2}\xi_k = \sum_k \frac{1}{\lambda_k}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} b.
 $$
 En particular, si $\{\xi_k\}$ genera el espacio vectorial encontramos que $A$ es invertible y
 $$
-A^{-1} = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2}.
+A^{-1} = \sum_k \frac{1}{\lambda_k}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 $$
 Para el problema Dirichlet con dato de borde cero, el inverso del Laplaciano se conoce como la **función de Green**.
+
+### Exponencial
 
 En el caso del sistema lineal de EDOs con coeficientes constantes $x'=Ax+f(t)$ tenemos que según la teoría de EDOs lineales
 $$
@@ -40,31 +46,61 @@ Descubrimos así que
 $$
 \exp(At) = \sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 $$
-Para el Laplaciano esta exponencial se conoce como el **núcleo del calor**. Observamos que en este caso no hizo falta asumir que cero no es un autovalor.
+Observamos que en este caso no hizo falta asumir que cero no es un autovalor.
+
+Para el Laplaciano esta exponencial se conoce como el **núcleo del calor**. Recordemos que los autovalores del Laplaciano en el caso discreto eran menores o iguales a cero, y anticipamos que lo misomo ocurre en el caso continuo. Es decir que para las soluciones de la ecuación del calor obtenemos decaimiento exponencial de cada uno de los términos en la serie (a menos que cero sea un autovalor).
+
+### Funciones trigonométricas
 
 Finalmente en el caso de la ecuación de segundo orden $x'' = Ax+f(t)$ tenemos que
 $$
-x(t) = \cos(At)x(0) + \operatorname{sinc}(At)x'(0) + \int_0^t \operatorname{sinc}(A(t-s))f(s)ds.
+x(t) = \cos(At)x(0) + t\operatorname{sinc}(At)x'(0) + \int_0^t (t-s)\operatorname{sinc}(A(t-s))f(s)ds.
 $$
 Donde al igual que con la exponencial podemos definir las funciones exponenciales a partir de sus series de Taylor alrededor del cero
 $$
-\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) = \int_0^t \cos(As)ds+I.
+\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!}(At)^{2k}.
 $$
-(Si $A$ es invertible $\operatorname{sinc}(At) = \sin(At)A^{-1}$).
+(Si $A$ es invertible $t\operatorname{sinc}(At) = \sin(At)A^{-1}$). Como es de esperarse se satisfacen las identidades trigonométricas usuales, por ejemplo
+$$
+\frac{d}{dt}\cos(At) = -A^2 t \operatorname{sinc}(At), \qquad \frac{d}{dt}(t\operatorname{sinc}(At)) = \cos(At).
+$$
 
 Al igual que antes podemos dar fórmulas para $\cos(At)$ y $\operatorname{sinc}(At)$ cuando $A$ tiene una base ortogonal de autovectores
 $$
 \cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 $$
 
+---
+
+<details>
+<summary>Margen de análisis</summary>
+Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo $t\in \mathbb R$. Para la convergencia absoluta podemos usar cualquier norma en el espacio de matrices (todas producen la misma topología). Sin embargo, desde el punto de vista algebraico conviene usar la norma de operador
+$$
+\|A\| := \sup_{\|x\|=1} \|Ax\|.
+$$
+Además de las propiedades de la norma (positividad, homogeneidad y la desigualdad triangular) esta norma satisface las desigualdades de Cauchy-Schwarz
+$$
+\|Ax\|\leq \|A\|\|x\|, \qquad \|AB\|\leq \|A\|\|B\|.
+$$
+Por lo tanto se tiene que la convergencia absoluta de una serie dada de matrices, digamos
+$$
+\sum_{k=0}^\infty a_k A^k,
+$$
+se deduce de la convergencia de la serie de números reales positivos en el lado derecho de la siguiente expresión
+$$
+\sum_{k=0}^\infty \|a_k A^k\| \leq \sum_{k=0}^\infty |a_k| \|A\|^k.
+$$
+En particular, para las matrices exponenciales o trigonométricas la serie en el lado derecho se acota en términos de una serie exponencial real.
+</details>
+
 ## Casos unidimensionales para el Laplaciano
 
 ### Segmento
 
-Sea $[0,L]$ un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos $0$ y $L$. Es decir
+Sea $(0,L)$ un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos $0$ y $L$. Es decir
 $$
 \begin{cases}
-\phi''= -\lambda \phi \text{ en } [0,L],\\
+\phi''= -\lambda \phi \text{ en } (0,L),\\
 \phi = 0 \text{ en } \{0,L\}.
 \end{cases}
 $$
@@ -107,25 +143,54 @@ Otra solución se obtiene integrando por partes (dos veces).
 
 ---
 
-No solamente son las funciones $\{\phi_k\}_{k\geq1}$ linealmente independientes, estas también generan las funciones sobre $[0,L]$. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma $\sum_{k=1}^\infty a_k\phi_k$. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.
+No solamente son las funciones $\{\phi_k\}_{k\geq1}$ linealmente independientes, estas también generan las funciones sobre $(0,L)$. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma $\sum_{k=1}^\infty a_k\phi_k$. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.
 
 #### Función de Green
 
-Dado $f:[0,L]\to \mathbb R$, buscamos una fórmula para la solución de
+Dado $f:(0,L)\to \mathbb R$, buscamos una fórmula para la solución de
 $$
 \begin{cases}
-u''=f\text{ en }[0,L],\\
+u''=f\text{ en }(0,L),\\
 u(0)=u(L)=0.
 \end{cases}
 $$
 Gracias a la diagonalización que ya conocemos para este problema tenemos que
 $$
-u(x) = -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x) = -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy = \int_0^L G(x,y)f(y)dy
+\begin{aligned}
+u(x) &= -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x),\\
+&= -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy,\\
+&= \int_0^L G(x,y)f(y)dy
+\end{aligned}
 $$
-donde $G$ es la función de Green para $[0,L]$
+donde $G$ es la función de Green para $(0,L)$
 $$
 G(x,y) := -\frac{2L}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}.
 $$
+
+---
+
+:::{.example}
+Consideremos el problema
+$$
+\begin{cases}
+u''=1 \text{ en } [0,1],\\
+u(0)=u(1)=0.
+\end{cases}
+$$
+Para calcular $u$ como una serie de senos debemos primero calcular la serie de senos de la función constante $1$
+$$
+\hat f_k = \frac{1}{2}\int_0^1 \sin(k\pi x)dx = \begin{cases}
+0 \text{ si } k\equiv 0 \, (\text{mod 2}),\\
+4/(k\pi) \text{ si } k\equiv 1 \, (\text{mod 2}).
+\end{cases}
+$$
+Por lo tanto
+$$
+u(x) =-\sum_{k=1}^\infty \frac{\hat f_k}{\lambda_k}\sin(k\pi x)=-\frac{4}{\pi^3}\sum_{k=1}^\infty \frac{\sin(k\pi x)}{k^3}.
+$$
+:::
+
+---
 
 Una alternativa más elemental que tenemos para resolver este problema es integrar $u''=f$ dos veces. Primero
 $$
@@ -151,7 +216,33 @@ x-z-\frac{x}{L}(L-z)\text{ si } z\in[0,x],\\
 \end{cases}
 $$
 
-Cuando graficamos esta función notamos que es continua y afín a trozos.
+---
+
+:::{.example}
+Consideremos una vez más el problema
+$$
+\begin{cases}
+u''=1 \text{ en } [0,1],\\
+u(0)=u(1)=0.
+\end{cases}
+$$
+Integrando un par de veces encontramos que
+$$
+u(x) = \frac{x(x-1)}{2}.
+$$
+Gracias al ejemplo previo obtenemos la curiosa identidad
+$$
+\sum_{k=1}^\infty \frac{\sin(k\pi x)}{(k\pi)^3} = \frac{x(1-x)}{8}.
+$$
+Para $x=1/2$ tendríamos que
+$$
+\sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)^3} = \frac{\pi^3}{32}.
+$$
+:::
+
+---
+
+Cuando graficamos la función $G(x,\cdot)$ notamos que es continua y afín a trozos.
 
 <iframe src="https://www.geogebra.org/graphing/xk4yrywc?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
 
@@ -168,3 +259,33 @@ En particular, si $x=y=1/2$ recuperamos la identidad de Euler
 $$
 \sum_{k=0}^\infty \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}.
 $$
+
+#### Núcleo del calor
+
+En este caso no tenemos una fórmula cerrada para el núcleo dado por la siguiente serie
+$$
+H(x,t,y) := \frac{2}{L}\sum_{k=1}^\infty e^{-(k\pi/L)^2t}\sin(k\pi x/L)\sin(k\pi y/L).
+$$
+Recordemos que a partir de $H$ calculamos las soluciones de
+$$
+\begin{cases}
+\partial_t u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L].
+\end{cases}
+$$
+usando la fórmula de representación
+$$
+u(x,t) = \int_0^L H(x,t,y)u_0(y)dy.
+$$
+
+Una hermosa introducción a estas ideas está presentada en el siguiente video de 3 Blue 1 Brown:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ToIXSwZ1pJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+:::{.example}
+Usando que $u(x,t)=x(1-x)-2t$ satisface la ecuación de calor en $(0,1)$ con dato de borde cero, y la serie de senos para la condición inicial $x(1-x)$ de un ejemplo previo, tenemos que
+$$
+\sum_{k=1}^\infty \frac{e^{-(k\pi)^2t}}{(k\pi)^3}\sin(k\pi x) = \frac{x(1-x)-2t}{16}.
+$$
+:::

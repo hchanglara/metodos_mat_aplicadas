@@ -188,6 +188,9 @@ exr:unlabeled-div-189
 exr:unlabeled-div-190
 exr:unlabeled-div-191
 exr:unlabeled-div-192
+exm:unlabeled-div-193
+exm:unlabeled-div-194
+exm:unlabeled-div-195
 entramados
 cálculo-discreto
 gradiente
@@ -255,6 +258,11 @@ propiedades-del-movimiento-browniano
 martingalas
 problemas-de-frontera-y-tiempo-de-salida
 espectro
+resolución-de-distintos-problemas-usando-el-espectro
+inversa
+exponencial
+funciones-trigonométricas
 casos-unidimensionales-para-el-laplaciano
 segmento
 función-de-green
+núcleo-del-calor

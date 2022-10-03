@@ -120,8 +120,7 @@ plt.show()
 
 Estas ideas son fácilmente generalizables a configuraciones lineales con más nodos. En el límite se obtiene el *problema de la catenaria*. También podemos considerar estructuras más complejas, por ejemplo un pañuelo sujeto por las esquinas. Para poder dar una generalización de estos modelos presentamos en la siguiente sección algunas nociones básicas de teoría de grafos. Una referencia entretenida con aplicaciones en arquitectura está en el siguiente enlace:
 
-
-![[Diseñar estructuras... ¿sin cálculos? 🤔 La magia de la CATENARIA](https://youtu.be/KXP_kPPc7LY)](./0.jpg){width=70%}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KXP_kPPc7LY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
