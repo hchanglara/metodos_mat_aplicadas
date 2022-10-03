@@ -187,6 +187,7 @@ exr:unlabeled-div-188
 exr:unlabeled-div-189
 exr:unlabeled-div-190
 exr:unlabeled-div-191
+exr:unlabeled-div-192
 entramados
 cálculo-discreto
 gradiente
@@ -253,4 +254,7 @@ fórmula-de-stirling-más-fina
 propiedades-del-movimiento-browniano
 martingalas
 problemas-de-frontera-y-tiempo-de-salida
-caso-unidimensional
+espectro
+casos-unidimensionales-para-el-laplaciano
+segmento
+función-de-green

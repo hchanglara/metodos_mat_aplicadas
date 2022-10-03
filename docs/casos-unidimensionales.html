@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas</title>
+  <title>Capítulo 13 Casos unidimensionales | Métodos de matemáticas aplicadas</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta property="og:title" content="Capítulo 13 Casos unidimensionales | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta name="twitter:title" content="Capítulo 13 Casos unidimensionales | Métodos de matemáticas aplicadas" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="leyes-de-conservación.html"/>
-<link rel="next" href="modelos-estocásticos.html"/>
+<link rel="prev" href="ideas-generales.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -60,70 +60,6 @@ set in the _output.yml file.</p>" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -251,11 +187,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Métodos espectrales</b></span></li>
-<li class="chapter" data-level="12" data-path="espectro.html"><a href="espectro.html"><i class="fa fa-check"></i><b>12</b> Espectro</a>
+<li class="chapter" data-level="12" data-path="ideas-generales.html"><a href="ideas-generales.html"><i class="fa fa-check"></i><b>12</b> Ideas generales</a></li>
+<li class="chapter" data-level="13" data-path="casos-unidimensionales.html"><a href="casos-unidimensionales.html"><i class="fa fa-check"></i><b>13</b> Casos unidimensionales</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="espectro.html"><a href="espectro.html#casos-unidimensionales-para-el-laplaciano"><i class="fa fa-check"></i><b>12.1</b> Casos unidimensionales para el Laplaciano</a>
+<li class="chapter" data-level="13.1" data-path="casos-unidimensionales.html"><a href="casos-unidimensionales.html#segmento"><i class="fa fa-check"></i><b>13.1</b> Segmento</a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="espectro.html"><a href="espectro.html#segmento"><i class="fa fa-check"></i><b>12.1.1</b> Segmento</a></li>
+<li class="chapter" data-level="13.1.1" data-path="casos-unidimensionales.html"><a href="casos-unidimensionales.html#función-de-green"><i class="fa fa-check"></i><b>13.1.1</b> Función de Green</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -278,17 +215,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="soluciones-débiles" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Soluciones débiles<a href="soluciones-débiles.html#soluciones-débiles" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="casos-unidimensionales" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Capítulo 13</span> Casos unidimensionales<a href="casos-unidimensionales.html#casos-unidimensionales" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="segmento" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Segmento<a href="casos-unidimensionales.html#segmento" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sea <span class="math inline">\([0,L]\)</span> un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos <span class="math inline">\(0\)</span> y <span class="math inline">\(L\)</span>. Es decir
+<span class="math display">\[
+\begin{cases}
+\phi&#39;&#39;= -\lambda \phi \text{ en } [0,L],\\
+\phi = 0 \text{ en } \{0,L\}.
+\end{cases}
+\]</span></p>
+<p>De la ecuación obtenemos que
+<span class="math display">\[
+\phi(x) = \begin{cases}
+A_+e^{\sqrt{-\lambda} x}+A_-e^{-\sqrt{-\lambda} x} \text{ si }\lambda &lt;0,\\
+A_++A_-x \text{ si }\lambda =0,\\
+A_+\cos(\sqrt{\lambda}x)+A_-\sin(\sqrt{\lambda}x) \text{ si }\lambda &gt;0.
+\end{cases}
+\]</span>
+De estas opciones solamente la tercera permite que se satisfaga <span class="math inline">\(\phi(0)=\phi(L)=0\)</span> cuando <span class="math inline">\(\phi\)</span> es un múltiplo de <span class="math inline">\(\sin(\pi k x/L)\)</span>. Definimos así
+<span class="math display">\[
+\phi_k(x) = \sin\left(\frac{\pi k}{L}x\right), \qquad \lambda_k = \left(\frac{\pi k}{L}\right)^2,
+\]</span>
+tal que <span class="math inline">\(\phi_k&#39;&#39;=-\lambda_k\phi_k\)</span>.
+Observamos además que <span class="math inline">\(\lambda_k = \lambda_{-k} &gt; 0\)</span> para <span class="math inline">\(k\geq 1\)</span>, <span class="math inline">\(\lambda_0=0\)</span>, y <span class="math inline">\(\phi_{-k}=-\phi_k\)</span>. Es decir que existe por lo menos chance de que <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> sean una base. De hecho son linealmente independientes gracias a la siguiente observación de ortogonalidad.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-1" class="exercise"><strong>Ejercicio 13.1  </strong></span>Demuestra que las funciones <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> satisfacen
+<span class="math display">\[
+\int_0^L \phi_k\phi_j = \begin{cases}
+0 \text{ si } k\neq j,\\
+L/2 \text{ si } k=j.
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+Una posible solución se obtiene usando la identidad trigonométrica
+<span class="math display">\[
+2\sin\alpha\sin\beta = \cos(\alpha-\beta)-\cos(\alpha+\beta).
+\]</span>
+Otra solución se obtiene integrando por partes (dos veces).
+</details>
+<hr />
+<p>No solamente son las funciones <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> linealmente independientes, estas también generan las funciones sobre <span class="math inline">\([0,L]\)</span>. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma <span class="math inline">\(\sum_{k=1}^\infty a_k\phi_k\)</span>. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.</p>
+<div id="función-de-green" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> Función de Green<a href="casos-unidimensionales.html#función-de-green" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dado <span class="math inline">\(f:[0,L]\to \mathbb R\)</span>, buscamos una fórmula para la solución de
+<span class="math display">\[
+\begin{cases}
+u&#39;&#39;=f\text{ en }[0,L],\\
+u(0)=u(L)=0.
+\end{cases}
+\]</span>
+Gracias a la diagonalización que ya conocemos para este problema tenemos que
+<span class="math display">\[
+u(x) = -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x) = -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x)\sin(\pi ky)}{k^2}\right)f(y)dy = \int_0^L G(x,y)f(y)dy
+\]</span>
+donde <span class="math inline">\(G\)</span> es la función de Green para <span class="math inline">\([0,L]\)</span>
+<span class="math display">\[
+G(x,y) := -\frac{2L}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x)\sin(\pi ky)}{k^2}.
+\]</span></p>
+<p>Una alternativa más elemental que tenemos para resolver este problema es integrar <span class="math inline">\(u&#39;&#39;=f\)</span> dos veces. Primero
+<span class="math display">\[
+u&#39;(x) = u&#39;(0) + \int_0^x f(y)dy.
+\]</span>
+Luego y usando que <span class="math inline">\(u(0)=0\)</span>,
+<span class="math display">\[
+u(x) = u&#39;(0)x + \int_0^x \int_0^y f(z)dzdy = u&#39;(0)x + \int_0^x \int_z^x f(z)dydz= u&#39;(0)x + \int_0^x f(z)(x-z)dz.
+\]</span>
+Usando que <span class="math inline">\(u(L)=0\)</span> descubrimos que
+<span class="math display">\[
+u&#39;(0) = -\frac{1}{L}\int_0^L f(z)(L-z)dz,
+\]</span>
+por lo que,
+<span class="math display">\[
+u(x) = \int_0^x f(z)(x-z)dz - \frac{x}{L}\int_0^L f(z)(L-z)dz = \int_0^L f(z) G(x,z)dz,
+\]</span>
+donde
+<span class="math display">\[
+G(x,z) = \begin{cases}
+x-z-\frac{x}{L}(L-z)\text{ si } z\in[0,x],\\
+-\frac{x}{L}(L-z)\text{ si } z\in[x,L].
+\end{cases}
+\]</span></p>
+<p>Cuando graficamos esta función notamos que es continua y afín a trozos
+<iframe src="https://www.geogebra.org/graphing/xk4yrywc?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe></p>
 
 </div>
+</div>
+</div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="leyes-de-conservación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos-estocásticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ideas-generales.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -319,7 +351,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-soluciones_debiles.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-espectro.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -327,7 +359,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/10-soluciones_debiles.Rmd",
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/12-espectro.Rmd",
 "text": null
 },
 "download": ["bookdown_intro.pdf", "bookdown_intro.epub"],

@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas</title>
+  <title>Capítulo 12 Espectro | Métodos de matemáticas aplicadas</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta property="og:title" content="Capítulo 12 Espectro | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta name="twitter:title" content="Capítulo 12 Espectro | Métodos de matemáticas aplicadas" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="leyes-de-conservación.html"/>
-<link rel="next" href="modelos-estocásticos.html"/>
+<link rel="prev" href="modelos-estocásticos.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -278,17 +278,211 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="soluciones-débiles" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Soluciones débiles<a href="soluciones-débiles.html#soluciones-débiles" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="espectro" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Capítulo 12</span> Espectro<a href="espectro.html#espectro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo <a href="espectro-del-laplaciano.html#espectro-del-laplaciano">discreto</a>. Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction] por Elias Stein y Rami Shakarchi] para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.</p>
+<p>Por fijar algunas ideas tomemos un operador lineal <span class="math inline">\(A:V\to V\)</span> con autovectores ortogonales <span class="math inline">\(\{\xi_k\}\)</span> (respecto a algún producto interno o hermitiano <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>) y sus correspondientes autovalores <span class="math inline">\(\{\lambda_k\}\)</span>.</p>
+<p>Para la ecuación <span class="math inline">\(Ax=b\)</span> tenemos que si <span class="math inline">\(b = \sum_k \hat b_k\xi_k\)</span> y cero no es un autovalor de <span class="math inline">\(A\)</span>, entonces podemos encontrar una solución de la forma <span class="math inline">\(x = \sum_k \hat x_k\xi_k\)</span> igualando los coeficientes al substituir estas expresiones en la ecuación
+<span class="math display">\[
+\sum_k \hat b_k\xi_k = b = Ax= \sum_k \hat x_k A\xi_k = \sum_k \hat x_k \lambda_k\xi_k \qquad\Rightarrow\qquad \hat x_k = \frac{\hat b_k}{\lambda_k}.
+\]</span>
+Para calcular <span class="math inline">\(\hat b_k\)</span> usamos la ortogonalidad de los autovectores, de forma que la tomar el producto punto de <span class="math inline">\(\xi_j\)</span> y <span class="math inline">\(b = \sum_k \hat b_k\xi_k\)</span> obtenemos la formula para los coeficientes de Fourier
+<span class="math display">\[
+\hat b_j = \frac{\langle b, \xi_j\rangle}{\|\xi_j\|^2}.
+\]</span>
+Sintetizando esta información para la solución obtenemos que<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
+<span class="math display">\[
+x = \sum_k \frac{\langle b, \xi_k\rangle}{\lambda_k\|\xi_k\|^2}\xi_k = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2} b.
+\]</span>
+En particular, si <span class="math inline">\(\{\xi_k\}\)</span> genera el espacio vectorial encontramos que <span class="math inline">\(A\)</span> es invertible y
+<span class="math display">\[
+A^{-1} = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2}.
+\]</span>
+Para el problema Dirichlet con dato de borde cero, el inverso del Laplaciano se conoce como la <strong>función de Green</strong>.</p>
+<p>En el caso del sistema lineal de EDOs con coeficientes constantes <span class="math inline">\(x&#39;=Ax+f(t)\)</span> tenemos que según la teoría de EDOs lineales
+<span class="math display">\[
+x(t) = \exp(At)x(0)+\int_0^t \exp(A(t-s))f(s)ds.
+\]</span>
+Para calcular el resultado de aplicar la exponencial a un vector dado, es decir <span class="math inline">\(y(t) = \exp(At)y(0)\)</span>, procedemos con un análisis similar a partir de una descomposición <span class="math inline">\(y(t) = \sum_k \hat y_k(t)\xi_k\)</span>. La idea es que <span class="math inline">\(y&#39;=Ay\)</span> se diagonaliza en la base de autovectores
+<span class="math display">\[
+\sum_k \hat y_k&#39;(t)\xi_k = \sum_k \lambda_k\hat y_k(t)\xi_k \qquad \Rightarrow\qquad \hat y_k&#39; = \lambda_k\hat y_k \qquad \Rightarrow\qquad \hat y_k(t) = e^{\lambda_k t}\hat y_k(0)
+\]</span>
+Sintetizando en
+<span class="math display">\[
+\exp(At)y(0) = y(t) = \sum_k \hat y_k(t)\xi_k = \sum_k e^{\lambda_k t}\hat y_k(0)\xi_k = \sum_k e^{\lambda_k t}\frac{\langle y(0),\xi_k\rangle}{\|\xi_k\|^2}\xi_k = \left(\sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} \right)y(0).
+\]</span>
+Descubrimos así que
+<span class="math display">\[
+\exp(At) = \sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+\]</span>
+Para el Laplaciano esta exponencial se conoce como el <strong>núcleo del calor</strong>. Observamos que en este caso no hizo falta asumir que cero no es un autovalor.</p>
+<p>Finalmente en el caso de la ecuación de segundo orden <span class="math inline">\(x&#39;&#39; = Ax+f(t)\)</span> tenemos que
+<span class="math display">\[
+x(t) = \cos(At)x(0) + \operatorname{sinc}(At)x&#39;(0) + \int_0^t \operatorname{sinc}(A(t-s))f(s)ds.
+\]</span>
+Donde al igual que con la exponencial podemos definir las funciones exponenciales a partir de sus series de Taylor alrededor del cero
+<span class="math display">\[
+\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) = \int_0^t \cos(As)ds+I.
+\]</span>
+(Si <span class="math inline">\(A\)</span> es invertible <span class="math inline">\(\operatorname{sinc}(At) = \sin(At)A^{-1}\)</span>).</p>
+<p>Al igual que antes podemos dar fórmulas para <span class="math inline">\(\cos(At)\)</span> y <span class="math inline">\(\operatorname{sinc}(At)\)</span> cuando <span class="math inline">\(A\)</span> tiene una base ortogonal de autovectores
+<span class="math display">\[
+\cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+\]</span></p>
+<div id="casos-unidimensionales-para-el-laplaciano" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Casos unidimensionales para el Laplaciano<a href="espectro.html#casos-unidimensionales-para-el-laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="segmento" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Segmento<a href="espectro.html#segmento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sea <span class="math inline">\([0,L]\)</span> un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos <span class="math inline">\(0\)</span> y <span class="math inline">\(L\)</span>. Es decir
+<span class="math display">\[
+\begin{cases}
+\phi&#39;&#39;= -\lambda \phi \text{ en } [0,L],\\
+\phi = 0 \text{ en } \{0,L\}.
+\end{cases}
+\]</span></p>
+<p>De la ecuación obtenemos que
+<span class="math display">\[
+\phi(x) = \begin{cases}
+A_+e^{\sqrt{-\lambda} x}+A_-e^{-\sqrt{-\lambda} x} \text{ si }\lambda &lt;0,\\
+A_++A_-x \text{ si }\lambda =0,\\
+A_+\cos(\sqrt{\lambda}x)+A_-\sin(\sqrt{\lambda}x) \text{ si }\lambda &gt;0.
+\end{cases}
+\]</span>
+De estas opciones solamente la tercera permite que se satisfaga <span class="math inline">\(\phi(0)=\phi(L)=0\)</span> cuando <span class="math inline">\(\phi\)</span> es un múltiplo de <span class="math inline">\(\sin(\pi k x/L)\)</span>. Definimos así
+<span class="math display">\[
+\phi_k(x) = \sin\left(\frac{\pi k}{L}x\right), \qquad \lambda_k = \left(\frac{\pi k}{L}\right)^2,
+\]</span>
+tal que <span class="math inline">\(\phi_k&#39;&#39;=-\lambda_k\phi_k\)</span>.
+Observamos además que <span class="math inline">\(\lambda_k = \lambda_{-k} &gt; 0\)</span> para <span class="math inline">\(k\geq 1\)</span>, <span class="math inline">\(\lambda_0=0\)</span>, y <span class="math inline">\(\phi_{-k}=-\phi_k\)</span>. Es decir que existe por lo menos chance de que <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> sean una base. De hecho son linealmente independientes gracias a la siguiente observación de ortogonalidad.</p>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-192" class="exercise"><strong>Ejercicio 12.1  </strong></span>Demuestra que las funciones <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> satisfacen
+<span class="math display">\[
+\int_0^L \phi_k\phi_j = \begin{cases}
+0 \text{ si } k\neq j,\\
+L/2 \text{ si } k=j.
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+Una posible solución se obtiene usando la identidad trigonométrica
+<span class="math display">\[
+2\sin\alpha\sin\beta = \cos(\alpha-\beta)-\cos(\alpha+\beta).
+\]</span>
+Otra solución se obtiene integrando por partes (dos veces).
+</details>
+<hr />
+<p>No solamente son las funciones <span class="math inline">\(\{\phi_k\}_{k\geq1}\)</span> linealmente independientes, estas también generan las funciones sobre <span class="math inline">\([0,L]\)</span>. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma <span class="math inline">\(\sum_{k=1}^\infty a_k\phi_k\)</span>. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.</p>
+<div id="función-de-green" class="section level4 hasAnchor" number="12.1.1.1">
+<h4><span class="header-section-number">12.1.1.1</span> Función de Green<a href="espectro.html#función-de-green" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Dado <span class="math inline">\(f:[0,L]\to \mathbb R\)</span>, buscamos una fórmula para la solución de
+<span class="math display">\[
+\begin{cases}
+u&#39;&#39;=f\text{ en }[0,L],\\
+u(0)=u(L)=0.
+\end{cases}
+\]</span>
+Gracias a la diagonalización que ya conocemos para este problema tenemos que
+<span class="math display">\[
+u(x) = -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x) = -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy = \int_0^L G(x,y)f(y)dy
+\]</span>
+donde <span class="math inline">\(G\)</span> es la función de Green para <span class="math inline">\([0,L]\)</span>
+<span class="math display">\[
+G(x,y) := -\frac{2L}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}.
+\]</span></p>
+<p>Una alternativa más elemental que tenemos para resolver este problema es integrar <span class="math inline">\(u&#39;&#39;=f\)</span> dos veces. Primero
+<span class="math display">\[
+u&#39;(x) = u&#39;(0) + \int_0^x f(y)dy.
+\]</span>
+Luego y usando que <span class="math inline">\(u(0)=0\)</span>,
+<span class="math display">\[
+u(x) = u&#39;(0)x + \int_0^x \int_0^y f(z)dzdy = u&#39;(0)x + \int_0^x \int_z^x f(z)dydz= u&#39;(0)x + \int_0^x f(z)(x-z)dz.
+\]</span>
+Usando que <span class="math inline">\(u(L)=0\)</span> descubrimos que
+<span class="math display">\[
+u&#39;(0) = -\frac{1}{L}\int_0^L f(z)(L-z)dz,
+\]</span>
+por lo que,
+<span class="math display">\[
+u(x) = \int_0^x f(z)(x-z)dz - \frac{x}{L}\int_0^L f(z)(L-z)dz = \int_0^L f(z) G(x,z)dz,
+\]</span>
+donde
+<span class="math display">\[
+G(x,z) = \begin{cases}
+x-z-\frac{x}{L}(L-z)\text{ si } z\in[0,x],\\
+-\frac{x}{L}(L-z)\text{ si } z\in[x,L].
+\end{cases}
+\]</span></p>
+<p>Cuando graficamos esta función notamos que es continua y afín a trozos.</p>
+<iframe src="https://www.geogebra.org/graphing/xk4yrywc?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0">
+</iframe>
+<p>Observemos que además la diferencia entre las dos pendientes es siempre uno, lo cual sirve para descomponer a <span class="math inline">\(G\)</span> como <span class="math inline">\(|z-x|/2\)</span> más una función afín para que se cumplan que <span class="math inline">\(G(x,0)=G(x,L)=0\)</span>. Es decir
+<span class="math display">\[
+G(x,z) = \frac{1}{2}|z-x| - \left(\frac{L-z}{2L}x+\frac{z}{2L}(L-x)\right) = \frac{L|z-x|-(L-z)x-z(L-x)}{2L}.
+\]</span></p>
+<p>Ahora que finalmente tenemos dos expresiones para la función de Green deducimos una curiosa identidad (<span class="math inline">\(L=1\)</span>, <span class="math inline">\(x,y\in[0,1]\)</span>)
+<span class="math display">\[
+\frac{1}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x)\sin(\pi ky)}{k^2} = \frac{(1-y)x+y(1-x)-|y-x|}{4}.
+\]</span>
+En particular, si <span class="math inline">\(x=y=1/2\)</span> recuperamos la identidad de Euler
+<span class="math display">\[
+\sum_{k=0}^\infty \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}.
+\]</span></p>
 
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="22">
+<li id="fn22"><p>Dados dos vectores <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> en un espacio vectorial <span class="math inline">\(V\)</span> con producto interno <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>, definimos <span class="math inline">\(a\otimes b: V\to V\)</span> como <span class="math inline">\((a\otimes b)(v) = \langle b,v\rangle a\)</span>. Si <span class="math inline">\(V=\mathbb R^n\)</span> con el producto punto entonces <span class="math inline">\(a\otimes b\)</span> se identifica con la matriz con componentes <span class="math inline">\(a_ib_j\)</span> en la fila <span class="math inline">\(i\)</span>, columna <span class="math inline">\(j\)</span>.<a href="espectro.html#fnref22" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="leyes-de-conservación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos-estocásticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos-estocásticos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -319,7 +513,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-soluciones_debiles.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-espectro.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -327,7 +521,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/10-soluciones_debiles.Rmd",
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/12-espectro.Rmd",
 "text": null
 },
 "download": ["bookdown_intro.pdf", "bookdown_intro.epub"],

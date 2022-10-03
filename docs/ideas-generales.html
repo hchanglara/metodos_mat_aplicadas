@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas</title>
+  <title>Capítulo 12 Ideas generales | Métodos de matemáticas aplicadas</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta property="og:title" content="Capítulo 12 Ideas generales | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta name="twitter:title" content="Capítulo 12 Ideas generales | Métodos de matemáticas aplicadas" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="leyes-de-conservación.html"/>
-<link rel="next" href="modelos-estocásticos.html"/>
+<link rel="prev" href="modelos-estocásticos.html"/>
+<link rel="next" href="casos-unidimensionales.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -60,70 +60,6 @@ set in the _output.yml file.</p>" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -251,11 +187,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Métodos espectrales</b></span></li>
-<li class="chapter" data-level="12" data-path="espectro.html"><a href="espectro.html"><i class="fa fa-check"></i><b>12</b> Espectro</a>
+<li class="chapter" data-level="12" data-path="ideas-generales.html"><a href="ideas-generales.html"><i class="fa fa-check"></i><b>12</b> Ideas generales</a></li>
+<li class="chapter" data-level="13" data-path="casos-unidimensionales.html"><a href="casos-unidimensionales.html"><i class="fa fa-check"></i><b>13</b> Casos unidimensionales</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="espectro.html"><a href="espectro.html#casos-unidimensionales-para-el-laplaciano"><i class="fa fa-check"></i><b>12.1</b> Casos unidimensionales para el Laplaciano</a>
+<li class="chapter" data-level="13.1" data-path="casos-unidimensionales.html"><a href="casos-unidimensionales.html#segmento"><i class="fa fa-check"></i><b>13.1</b> Segmento</a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="espectro.html"><a href="espectro.html#segmento"><i class="fa fa-check"></i><b>12.1.1</b> Segmento</a></li>
+<li class="chapter" data-level="13.1.1" data-path="casos-unidimensionales.html"><a href="casos-unidimensionales.html#función-de-green"><i class="fa fa-check"></i><b>13.1.1</b> Función de Green</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -278,17 +215,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="soluciones-débiles" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Soluciones débiles<a href="soluciones-débiles.html#soluciones-débiles" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="ideas-generales" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Capítulo 12</span> Ideas generales<a href="ideas-generales.html#ideas-generales" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo <a href="espectro-del-laplaciano.html#espectro-del-laplaciano">discreto</a>. Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction] por Elias Stein y Rami Shakarchi] para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.</p>
+<p>Por fijar algunas ideas tomemos un operador lineal <span class="math inline">\(A:V\to V\)</span> con autovectores ortogonales <span class="math inline">\(\{\xi_k\}\)</span> (respecto a algún producto interno o hermitiano <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>) y sus correspondientes autovalores <span class="math inline">\(\{\lambda_k\}\)</span>.</p>
+<p>Para la ecuación <span class="math inline">\(Ax=b\)</span> tenemos que si <span class="math inline">\(b = \sum_k \hat b_k\xi_k\)</span> y cero no es un autovalor de <span class="math inline">\(A\)</span>, entonces podemos encontrar una solución de la forma <span class="math inline">\(x = \sum_k \hat x_k\xi_k\)</span> igualando los coeficientes al substituir estas expresiones en la ecuación
+<span class="math display">\[
+\sum_k \hat b_k\xi_k = b = Ax= \sum_k \hat x_k A\xi_k = \sum_k \hat x_k \lambda_k\xi_k \qquad\Rightarrow\qquad \hat x_k = \frac{\hat b_k}{\lambda_k}.
+\]</span>
+Para calcular <span class="math inline">\(\hat b_k\)</span> usamos la ortogonalidad de los autovectores, de forma que la tomar el producto punto de <span class="math inline">\(\xi_j\)</span> y <span class="math inline">\(b = \sum_k \hat b_k\xi_k\)</span> obtenemos la formula para los coeficientes de Fourier
+<span class="math display">\[
+\hat b_j = \frac{\langle b, \xi_j\rangle}{\|\xi_j\|^2}.
+\]</span>
+Sintetizando esta información para la solución obtenemos que<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+<span class="math display">\[
+x = \sum_k \frac{\langle b, \xi_k\rangle}{\lambda_k\|\xi_k\|^2}\xi_k = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2} b.
+\]</span>
+En particular, si <span class="math inline">\(\{\xi_k\}\)</span> genera el espacio vectorial encontramos que <span class="math inline">\(A\)</span> es invertible y
+<span class="math display">\[
+A^{-1} = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2}.
+\]</span>
+Para el problema Dirichlet con dato de borde cero, el inverso del Laplaciano se conoce como la <strong>función de Green</strong>.</p>
+<p>En el caso del sistema lineal de EDOs con coeficientes constantes <span class="math inline">\(x&#39;=Ax+f(t)\)</span> tenemos que según la teoría de EDOs lineales
+<span class="math display">\[
+x(t) = \exp(At)x(0)+\int_0^t \exp(A(t-s))f(s)ds.
+\]</span>
+Para calcular el resultado de aplicar la exponencial a un vector dado, es decir <span class="math inline">\(y(t) = \exp(At)y(0)\)</span>, procedemos con un análisis similar a partir de una descomposición <span class="math inline">\(y(t) = \sum_k \hat y_k(t)\xi_k\)</span>. La idea es que <span class="math inline">\(y&#39;=Ay\)</span> se diagonaliza en la base de autovectores
+<span class="math display">\[
+\sum_k \hat y_k&#39;(t)\xi_k = \sum_k \lambda_k\hat y_k(t)\xi_k \qquad \Rightarrow\qquad \hat y_k&#39; = \lambda_k\hat y_k \qquad \Rightarrow\qquad \hat y_k(t) = e^{\lambda_k t}\hat y_k(0)
+\]</span>
+Sintetizando en
+<span class="math display">\[
+\exp(At)y(0) = y(t) = \sum_k \hat y_k(t)\xi_k = \sum_k e^{\lambda_k t}\hat y_k(0)\xi_k = \sum_k e^{\lambda_k t}\frac{\langle y(0),\xi_k\rangle}{\|\xi_k\|^2}\xi_k = \left(\sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} \right)y(0).
+\]</span>
+Descubrimos así que
+<span class="math display">\[
+\exp(At) = \sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+\]</span>
+Para el Laplaciano esta exponencial se conoce como el <strong>núcleo del calor</strong>. Observamos que en este caso no hizo falta asumir que cero no es un autovalor.</p>
+<p>Finalmente en el caso de la ecuación de segundo orden <span class="math inline">\(x&#39;&#39; = Ax+f(t)\)</span> tenemos que
+<span class="math display">\[
+x(t) = \cos(At)x(0) + \operatorname{sinc}(At)x&#39;(0) + \int_0^t \operatorname{sinc}(A(t-s))f(s)ds.
+\]</span>
+Donde al igual que con la exponencial podemos definir las funciones exponenciales a partir de sus series de Taylor alrededor del cero
+<span class="math display">\[
+\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) = \int_0^t \cos(As)ds+I.
+\]</span>
+(Si <span class="math inline">\(A\)</span> es invertible <span class="math inline">\(\operatorname{sinc}(At) = \sin(At)A^{-1}\)</span>).</p>
+<p>Al igual que antes podemos dar fórmulas para <span class="math inline">\(\cos(At)\)</span> y <span class="math inline">\(\operatorname{sinc}(At)\)</span> cuando <span class="math inline">\(A\)</span> tiene una base ortogonal de autovectores
+<span class="math display">\[
+\cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+\]</span></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Dados dos vectores <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> en un espacio vectorial <span class="math inline">\(V\)</span> con producto interno <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>, definimos <span class="math inline">\(a\otimes b: V\to V\)</span> como <span class="math inline">\((a\otimes b)(v) = \langle b,v\rangle a\)</span>. Si <span class="math inline">\(V=\mathbb R^n\)</span> con el producto punto entonces <span class="math inline">\(a\otimes b\)</span> se identifica con la matriz con componentes <span class="math inline">\(a_ib_j\)</span> en la fila <span class="math inline">\(i\)</span>, columna <span class="math inline">\(j\)</span>.<a href="ideas-generales.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="leyes-de-conservación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos-estocásticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos-estocásticos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="casos-unidimensionales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -319,7 +310,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-soluciones_debiles.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-espectro.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -327,7 +318,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/10-soluciones_debiles.Rmd",
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/12-espectro.Rmd",
 "text": null
 },
 "download": ["bookdown_intro.pdf", "bookdown_intro.epub"],

@@ -1,4 +1,170 @@
 # (PART\*) Métodos espectrales {-}
 
-# Caso unidimensional
+# Espectro
 
+Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo [discreto](#espectro-del-laplaciano). Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction] por Elias Stein y Rami Shakarchi] para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.
+
+Por fijar algunas ideas tomemos un operador lineal $A:V\to V$ con autovectores ortogonales $\{\xi_k\}$ (respecto a algún producto interno o hermitiano $\langle\cdot,\cdot\rangle$) y sus correspondientes autovalores $\{\lambda_k\}$.
+
+Para la ecuación $Ax=b$ tenemos que si $b = \sum_k \hat b_k\xi_k$ y cero no es un autovalor de $A$, entonces podemos encontrar una solución de la forma $x = \sum_k \hat x_k\xi_k$ igualando los coeficientes al substituir estas expresiones en la ecuación
+$$
+\sum_k \hat b_k\xi_k = b = Ax= \sum_k \hat x_k A\xi_k = \sum_k \hat x_k \lambda_k\xi_k \qquad\Rightarrow\qquad \hat x_k = \frac{\hat b_k}{\lambda_k}.
+$$
+Para calcular $\hat b_k$ usamos la ortogonalidad de los autovectores, de forma que la tomar el producto punto de $\xi_j$ y $b = \sum_k \hat b_k\xi_k$ obtenemos la formula para los coeficientes de Fourier
+$$
+\hat b_j = \frac{\langle b, \xi_j\rangle}{\|\xi_j\|^2}.
+$$
+Sintetizando esta información para la solución obtenemos que^[Dados dos vectores $a$ y $b$ en un espacio vectorial $V$ con producto interno $\langle\cdot,\cdot\rangle$, definimos $a\otimes b: V\to V$ como $(a\otimes b)(v) = \langle b,v\rangle a$. Si $V=\mathbb R^n$ con el producto punto entonces $a\otimes b$ se identifica con la matriz con componentes $a_ib_j$ en la fila $i$, columna $j$.]
+$$
+x = \sum_k \frac{\langle b, \xi_k\rangle}{\lambda_k\|\xi_k\|^2}\xi_k = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2} b.
+$$
+En particular, si $\{\xi_k\}$ genera el espacio vectorial encontramos que $A$ es invertible y
+$$
+A^{-1} = \sum_k \frac{\xi_k\otimes \xi_k}{\lambda_k\|\xi_k\|^2}.
+$$
+Para el problema Dirichlet con dato de borde cero, el inverso del Laplaciano se conoce como la **función de Green**.
+
+En el caso del sistema lineal de EDOs con coeficientes constantes $x'=Ax+f(t)$ tenemos que según la teoría de EDOs lineales
+$$
+x(t) = \exp(At)x(0)+\int_0^t \exp(A(t-s))f(s)ds.
+$$
+Para calcular el resultado de aplicar la exponencial a un vector dado, es decir $y(t) = \exp(At)y(0)$, procedemos con un análisis similar a partir de una descomposición $y(t) = \sum_k \hat y_k(t)\xi_k$. La idea es que $y'=Ay$ se diagonaliza en la base de autovectores
+$$
+\sum_k \hat y_k'(t)\xi_k = \sum_k \lambda_k\hat y_k(t)\xi_k \qquad \Rightarrow\qquad \hat y_k' = \lambda_k\hat y_k \qquad \Rightarrow\qquad \hat y_k(t) = e^{\lambda_k t}\hat y_k(0)
+$$
+Sintetizando en
+$$
+\exp(At)y(0) = y(t) = \sum_k \hat y_k(t)\xi_k = \sum_k e^{\lambda_k t}\hat y_k(0)\xi_k = \sum_k e^{\lambda_k t}\frac{\langle y(0),\xi_k\rangle}{\|\xi_k\|^2}\xi_k = \left(\sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} \right)y(0).
+$$
+Descubrimos así que
+$$
+\exp(At) = \sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+$$
+Para el Laplaciano esta exponencial se conoce como el **núcleo del calor**. Observamos que en este caso no hizo falta asumir que cero no es un autovalor.
+
+Finalmente en el caso de la ecuación de segundo orden $x'' = Ax+f(t)$ tenemos que
+$$
+x(t) = \cos(At)x(0) + \operatorname{sinc}(At)x'(0) + \int_0^t \operatorname{sinc}(A(t-s))f(s)ds.
+$$
+Donde al igual que con la exponencial podemos definir las funciones exponenciales a partir de sus series de Taylor alrededor del cero
+$$
+\cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) = \int_0^t \cos(As)ds+I.
+$$
+(Si $A$ es invertible $\operatorname{sinc}(At) = \sin(At)A^{-1}$).
+
+Al igual que antes podemos dar fórmulas para $\cos(At)$ y $\operatorname{sinc}(At)$ cuando $A$ tiene una base ortogonal de autovectores
+$$
+\cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+$$
+
+## Casos unidimensionales para el Laplaciano
+
+### Segmento
+
+Sea $[0,L]$ un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos $0$ y $L$. Es decir
+$$
+\begin{cases}
+\phi''= -\lambda \phi \text{ en } [0,L],\\
+\phi = 0 \text{ en } \{0,L\}.
+\end{cases}
+$$
+
+De la ecuación obtenemos que
+$$
+\phi(x) = \begin{cases}
+A_+e^{\sqrt{-\lambda} x}+A_-e^{-\sqrt{-\lambda} x} \text{ si }\lambda <0,\\
+A_++A_-x \text{ si }\lambda =0,\\
+A_+\cos(\sqrt{\lambda}x)+A_-\sin(\sqrt{\lambda}x) \text{ si }\lambda >0.
+\end{cases}
+$$
+De estas opciones solamente la tercera permite que se satisfaga $\phi(0)=\phi(L)=0$ cuando $\phi$ es un múltiplo de $\sin(\pi k x/L)$. Definimos así
+$$
+\phi_k(x) = \sin\left(\frac{\pi k}{L}x\right), \qquad \lambda_k = \left(\frac{\pi k}{L}\right)^2,
+$$
+tal que $\phi_k''=-\lambda_k\phi_k$. 
+Observamos además que $\lambda_k = \lambda_{-k} > 0$ para $k\geq 1$, $\lambda_0=0$, y $\phi_{-k}=-\phi_k$. Es decir que existe por lo menos chance de que $\{\phi_k\}_{k\geq1}$ sean una base. De hecho son linealmente independientes gracias a la siguiente observación de ortogonalidad.
+
+---
+
+:::{.exercise}
+Demuestra que las funciones $\{\phi_k\}_{k\geq1}$ satisfacen
+$$
+\int_0^L \phi_k\phi_j = \begin{cases}
+0 \text{ si } k\neq j,\\
+L/2 \text{ si } k=j.
+\end{cases}
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+Una posible solución se obtiene usando la identidad trigonométrica
+$$
+2\sin\alpha\sin\beta = \cos(\alpha-\beta)-\cos(\alpha+\beta).
+$$
+Otra solución se obtiene integrando por partes (dos veces).
+</details>
+
+---
+
+No solamente son las funciones $\{\phi_k\}_{k\geq1}$ linealmente independientes, estas también generan las funciones sobre $[0,L]$. Para dar sentido a esta afirmación es necesario dar una noción de convergencia para series de la forma $\sum_{k=1}^\infty a_k\phi_k$. Esto lo haremos más adelante y de momento asumiremos a las series como sumas formales.
+
+#### Función de Green
+
+Dado $f:[0,L]\to \mathbb R$, buscamos una fórmula para la solución de
+$$
+\begin{cases}
+u''=f\text{ en }[0,L],\\
+u(0)=u(L)=0.
+\end{cases}
+$$
+Gracias a la diagonalización que ya conocemos para este problema tenemos que
+$$
+u(x) = -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x) = -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy = \int_0^L G(x,y)f(y)dy
+$$
+donde $G$ es la función de Green para $[0,L]$
+$$
+G(x,y) := -\frac{2L}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}.
+$$
+
+Una alternativa más elemental que tenemos para resolver este problema es integrar $u''=f$ dos veces. Primero
+$$
+u'(x) = u'(0) + \int_0^x f(y)dy.
+$$
+Luego y usando que $u(0)=0$,
+$$
+u(x) = u'(0)x + \int_0^x \int_0^y f(z)dzdy = u'(0)x + \int_0^x \int_z^x f(z)dydz= u'(0)x + \int_0^x f(z)(x-z)dz.
+$$
+Usando que $u(L)=0$ descubrimos que
+$$
+u'(0) = -\frac{1}{L}\int_0^L f(z)(L-z)dz,
+$$
+por lo que,
+$$
+u(x) = \int_0^x f(z)(x-z)dz - \frac{x}{L}\int_0^L f(z)(L-z)dz = \int_0^L f(z) G(x,z)dz,
+$$
+donde
+$$
+G(x,z) = \begin{cases}
+x-z-\frac{x}{L}(L-z)\text{ si } z\in[0,x],\\
+-\frac{x}{L}(L-z)\text{ si } z\in[x,L].
+\end{cases}
+$$
+
+Cuando graficamos esta función notamos que es continua y afín a trozos.
+
+<iframe src="https://www.geogebra.org/graphing/xk4yrywc?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+
+Observemos que además la diferencia entre las dos pendientes es siempre uno, lo cual sirve para descomponer a $G$ como $|z-x|/2$ más una función afín para que se cumplan que $G(x,0)=G(x,L)=0$. Es decir
+$$
+G(x,z) = \frac{1}{2}|z-x| - \left(\frac{L-z}{2L}x+\frac{z}{2L}(L-x)\right) = \frac{L|z-x|-(L-z)x-z(L-x)}{2L}.
+$$
+
+Ahora que finalmente tenemos dos expresiones para la función de Green deducimos una curiosa identidad ($L=1$, $x,y\in[0,1]$)
+$$
+\frac{1}{\pi^2}\sum_{k=1}^\infty\frac{\sin(\pi k x)\sin(\pi ky)}{k^2} = \frac{(1-y)x+y(1-x)-|y-x|}{4}.
+$$
+En particular, si $x=y=1/2$ recuperamos la identidad de Euler
+$$
+\sum_{k=0}^\infty \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}.
+$$
