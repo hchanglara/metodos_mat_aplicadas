@@ -18,7 +18,7 @@ Para calcular $\hat b_k$ usamos la ortogonalidad de los autovectores, de forma q
 $$
 \hat b_j = \frac{\langle b, \xi_j\rangle}{\|\xi_j\|^2}.
 $$
-Sintetizando esta información para la solución obtenemos que^[Dados dos vectores $a$ y $b$ en un espacio vectorial $V$ con producto interno $\langle\cdot,\cdot\rangle$, definimos $a\otimes b: V\to V$ como $(a\otimes b)(v) = \langle b,v\rangle a$. Si $V=\mathbb R^n$ con el producto punto entonces $a\otimes b$ se identifica con la matriz con componentes $a_ib_j$ en la fila $i$, columna $j$.]
+Sintetizando esta información para la solución obtenemos que^[Dados dos vectores $a$ y $b$ en un espacio vectorial $V$ con producto interno $\langle\cdot,\cdot\rangle$, definimos $a\otimes b: V\to V$ como $(a\otimes b)(v) = \langle v,b\rangle a$. Si $V=\mathbb R^n$ con el producto punto entonces $a\otimes b$ se identifica con la matriz con componentes $a_ib_j$ en la fila $i$, columna $j$. En el caso particular donde $a=b=\xi\neq 0$ tenemos que $\xi\otimes\xi/\|\xi\|^2$ es la proyección ortogonal sobre la recta generada por $\xi$.]
 $$
 x = \sum_k \frac{1}{\lambda_k}\frac{\langle b, \xi_k\rangle}{\|\xi_k\|^2}\xi_k = \sum_k \frac{1}{\lambda_k}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} b.
 $$
@@ -70,11 +70,32 @@ $$
 \cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 $$
 
+### Cálculo funcional
+
+En general podemos definir para ciertas funciones su efecto en un operador lineal usando la descomposición espectral. Formalmente tenemos una combinación de distintas proyecciones ortogonales sobre los autovectores de $A$
+$$
+f(A) := \sum_k f(\lambda_k) \frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+$$
+Si $f$ tiene una serie de potencias absolutamente convergente en la recta real (el caso de la exponencial y las funciones trigonométricas),
+$$
+f(x) = \sum_{k=0}^\infty f_kx^k,
+$$
+entonces podemos definir $f(A)$ equivalentemente usando la serie
+$$
+f(A) = \sum_{k=0}^\infty f_kA^k.
+$$
+Gracias a la convergencia absoluta de $f(x)$ tenemos la convergencia absoluta de $f(A)$ con respecto a la norma de operador
+$$
+\sum_{k=0}^\infty \|f_kA^k\| \leq 
+\sum_{k=0}^\infty |f_k|\|A\|^k < \infty.
+$$
+Por lo tanto estas series pueden ser diferenciadas, integradas, y multiplicadas tal como si fueran polinomios. A partir de acá se deducen distintas identidades para las exponenciales o funciones trigonométricas actuando sobre operadores.
+
 ---
 
 <details>
 <summary>Margen de análisis</summary>
-Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo $t\in \mathbb R$. Para la convergencia absoluta podemos usar cualquier norma en el espacio de matrices (todas producen la misma topología). Sin embargo, desde el punto de vista algebraico conviene usar la norma de operador
+Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo $t\in \mathbb R$. La norma que usamos en este caso es conocida como la **norma de operador**
 $$
 \|A\| := \sup_{\|x\|=1} \|Ax\|.
 $$
@@ -82,20 +103,11 @@ Además de las propiedades de la norma (positividad, homogeneidad y la desiguald
 $$
 \|Ax\|\leq \|A\|\|x\|, \qquad \|AB\|\leq \|A\|\|B\|.
 $$
-Por lo tanto se tiene que la convergencia absoluta de una serie dada de matrices, digamos
-$$
-\sum_{k=0}^\infty a_k A^k,
-$$
-se deduce de la convergencia de la serie de números reales positivos en el lado derecho de la siguiente expresión
-$$
-\sum_{k=0}^\infty \|a_k A^k\| \leq \sum_{k=0}^\infty |a_k| \|A\|^k.
-$$
-En particular, para las matrices exponenciales o trigonométricas la serie en el lado derecho se acota en términos de una serie exponencial real.
 </details>
 
 ## Casos unidimensionales para el Laplaciano
 
-### Segmento
+### Segmento con dato de borde cero
 
 Sea $(0,L)$ un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos $0$ y $L$. Es decir
 $$
@@ -289,3 +301,95 @@ $$
 \sum_{k=1}^\infty \frac{e^{-(k\pi)^2t}}{(k\pi)^3}\sin(k\pi x) = \frac{x(1-x)-2t}{16}.
 $$
 :::
+
+#### Ecuación de onda
+
+En este caso tampoco contamos con una fórmula cerrada para el núcleo
+$$
+C(x,t,y) := \frac{2}{L} \sum_{k=1}^\infty \cos(k\pi t/L)\sin(k\pi x/L)\sin(k\pi y/L).
+$$
+Recordemos que a partir de $C$ calculamos las soluciones de
+$$
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = 0 \text{ para } x \in [0,L].
+\end{cases}
+$$
+usando la fórmula de representación
+$$
+u(x,t) = \int_0^L C(x,t,y)u_0(y)dy.
+$$
+
+Si en cambio tenemos a la mano el problema
+$$
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = 0 \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = v_0(x) \text{ para } x \in [0,L].
+\end{cases}
+$$
+entonces
+$$
+u(x,t) = \int_0^L S(x,t,y)v_0(y)dy, \qquad S(x,t,y) := \int_0^t C(x,s,y)ds = \frac{2}{L}\sum_{k=1}^\infty \frac{\sin(k \pi t/L)}{k\pi}\sin(k\pi x)\sin(k\pi y).
+$$
+
+En el caso un poco más general
+$$
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = v_0(x) \text{ para } x \in [0,L].
+\end{cases}
+$$
+usamos la superposición
+$$
+u(x,t) = \int_0^L W(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dsdy.
+$$
+
+---
+
+:::{.exercise}
+Calcula la fórmula de representación para el problema de onda no homogéneo
+$$
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u +f(x,t) \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = v_0(x) \text{ para } x \in [0,L].
+\end{cases}
+$$
+en términos de los núcleos $C$ y $S$.
+
+<details>
+<summary>**Solución**</summary>
+$$
+u(x,t) = \int_0^L C(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dy + \int_0^t \int_0^L S(x,t-s,y)f(y,s)dyds
+$$
+</details>
+
+### Circunferencia o funciones periódicas
+
+Las autofunciones periódicas de la ecuación $\phi''=-\lambda \phi$ en $\mathbb R/2L\mathbb Z$ toman necesariamente la forma
+$$
+\phi_k(x) := e^{ik\pi x/L}.
+$$
+El autovalor asociado es así
+$$
+-\lambda_k = -\left(\frac{k\pi}{L}\right)^2.
+$$
+
+Tenemos la relación de ortogonalidad
+$$
+\int_{-L}^L \phi_k(x)\overline{\phi_j(x)}dx = \int_{-L}^L e^{i(k-j)\pi x}dx =\begin{cases}
+0 \text{ si } k\neq j,\\
+2L \text{ si } k=j.
+\end{cases}
+$$
+Por lo tanto tenemos la siugiente fórmula para los coeficientes de Fourier
+$$
+\hat f_k := \frac{\langle f,\phi_k\rangle}{\|\phi_k\|^2} = \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi x}dx.
+$$

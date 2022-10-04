@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -258,10 +258,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.1" data-path="espectro.html"><a href="espectro.html#inversa"><i class="fa fa-check"></i><b>12.1.1</b> Inversa</a></li>
 <li class="chapter" data-level="12.1.2" data-path="espectro.html"><a href="espectro.html#exponencial"><i class="fa fa-check"></i><b>12.1.2</b> Exponencial</a></li>
 <li class="chapter" data-level="12.1.3" data-path="espectro.html"><a href="espectro.html#funciones-trigonométricas"><i class="fa fa-check"></i><b>12.1.3</b> Funciones trigonométricas</a></li>
+<li class="chapter" data-level="12.1.4" data-path="espectro.html"><a href="espectro.html#cálculo-funcional"><i class="fa fa-check"></i><b>12.1.4</b> Cálculo funcional</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="espectro.html"><a href="espectro.html#casos-unidimensionales-para-el-laplaciano"><i class="fa fa-check"></i><b>12.2</b> Casos unidimensionales para el Laplaciano</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="espectro.html"><a href="espectro.html#segmento"><i class="fa fa-check"></i><b>12.2.1</b> Segmento</a></li>
+<li class="chapter" data-level="12.2.1" data-path="espectro.html"><a href="espectro.html#segmento-con-dato-de-borde-cero"><i class="fa fa-check"></i><b>12.2.1</b> Segmento con dato de borde cero</a></li>
+<li class="chapter" data-level="12.2.2" data-path="espectro.html"><a href="espectro.html#circunferencia-o-funciones-periódicas"><i class="fa fa-check"></i><b>12.2.2</b> Circunferencia o funciones periódicas</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -349,12 +351,33 @@ Donde al igual que con la exponencial podemos definir las funciones exponenciale
 <span class="math display">\[
 \cos(At) = \sum_k \cos(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}, \qquad \operatorname{sinc}(At) = \sum_k \operatorname{sinc}(\lambda_k t)\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
 \]</span></p>
+</div>
+<div id="cálculo-funcional" class="section level3 hasAnchor" number="12.1.4">
+<h3><span class="header-section-number">12.1.4</span> Cálculo funcional<a href="espectro.html#cálculo-funcional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En general podemos definir para ciertas funciones su efecto en un operador lineal usando la descomposición espectral. Formalmente tenemos una combinación de distintas proyecciones ortogonales sobre los autovectores de <span class="math inline">\(A\)</span>
+<span class="math display">\[
+f(A) := \sum_k f(\lambda_k) \frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2}.
+\]</span>
+Si <span class="math inline">\(f\)</span> tiene una serie de potencias absolutamente convergente en la recta real (el caso de la exponencial y las funciones trigonométricas),
+<span class="math display">\[
+f(x) = \sum_{k=0}^\infty f_kx^k,
+\]</span>
+entonces podemos definir <span class="math inline">\(f(A)\)</span> equivalentemente usando la serie
+<span class="math display">\[
+f(A) = \sum_{k=0}^\infty f_kA^k.
+\]</span>
+Gracias a la convergencia absoluta de <span class="math inline">\(f(x)\)</span> tenemos la convergencia absoluta de <span class="math inline">\(f(A)\)</span> con respecto a la norma de operador
+<span class="math display">\[
+\sum_{k=0}^\infty \|f_kA^k\| \leq
+\sum_{k=0}^\infty |f_k|\|A\|^k &lt; \infty.
+\]</span>
+Por lo tanto estas series pueden ser diferenciadas, integradas, y multiplicadas tal como si fueran polinomios. A partir de acá se deducen distintas identidades para las exponenciales o funciones trigonométricas actuando sobre operadores.</p>
 <hr />
 <details>
 <summary>
 Margen de análisis
 </summary>
-Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo <span class="math inline">\(t\in \mathbb R\)</span>. Para la convergencia absoluta podemos usar cualquier norma en el espacio de matrices (todas producen la misma topología). Sin embargo, desde el punto de vista algebraico conviene usar la norma de operador
+Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo <span class="math inline">\(t\in \mathbb R\)</span>. La norma que usamos en este caso es conocida como la <strong>norma de operador</strong>
 <span class="math display">\[
 \|A\| := \sup_{\|x\|=1} \|Ax\|.
 \]</span>
@@ -362,22 +385,13 @@ Además de las propiedades de la norma (positividad, homogeneidad y la desiguald
 <span class="math display">\[
 \|Ax\|\leq \|A\|\|x\|, \qquad \|AB\|\leq \|A\|\|B\|.
 \]</span>
-Por lo tanto se tiene que la convergencia absoluta de una serie dada de matrices, digamos
-<span class="math display">\[
-\sum_{k=0}^\infty a_k A^k,
-\]</span>
-se deduce de la convergencia de la serie de números reales positivos en el lado derecho de la siguiente expresión
-<span class="math display">\[
-\sum_{k=0}^\infty \|a_k A^k\| \leq \sum_{k=0}^\infty |a_k| \|A\|^k.
-\]</span>
-En particular, para las matrices exponenciales o trigonométricas la serie en el lado derecho se acota en términos de una serie exponencial real.
 </details>
 </div>
 </div>
 <div id="casos-unidimensionales-para-el-laplaciano" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Casos unidimensionales para el Laplaciano<a href="espectro.html#casos-unidimensionales-para-el-laplaciano" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="segmento" class="section level3 hasAnchor" number="12.2.1">
-<h3><span class="header-section-number">12.2.1</span> Segmento<a href="espectro.html#segmento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="segmento-con-dato-de-borde-cero" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Segmento con dato de borde cero<a href="espectro.html#segmento-con-dato-de-borde-cero" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sea <span class="math inline">\((0,L)\)</span> un segmento de la recta real. Buscamos diagonalizar el Laplaciano, es decir la segunda derivada, bajo la restricción de que las autofunciones se anuulan en los extremos <span class="math inline">\(0\)</span> y <span class="math inline">\(L\)</span>. Es decir
 <span class="math display">\[
 \begin{cases}
@@ -553,8 +567,96 @@ u(x,t) = \int_0^L H(x,t,y)u_0(y)dy.
 \sum_{k=1}^\infty \frac{e^{-(k\pi)^2t}}{(k\pi)^3}\sin(k\pi x) = \frac{x(1-x)-2t}{16}.
 \]</span></p>
 </div>
-
 </div>
+<div id="ecuación-de-onda" class="section level4 hasAnchor" number="12.2.1.3">
+<h4><span class="header-section-number">12.2.1.3</span> Ecuación de onda<a href="espectro.html#ecuación-de-onda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En este caso tampoco contamos con una fórmula cerrada para el núcleo
+<span class="math display">\[
+C(x,t,y) := \frac{2}{L} \sum_{k=1}^\infty \cos(k\pi t/L)\sin(k\pi x/L)\sin(k\pi y/L).
+\]</span>
+Recordemos que a partir de <span class="math inline">\(C\)</span> calculamos las soluciones de
+<span class="math display">\[
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = 0 \text{ para } x \in [0,L].
+\end{cases}
+\]</span>
+usando la fórmula de representación
+<span class="math display">\[
+u(x,t) = \int_0^L C(x,t,y)u_0(y)dy.
+\]</span></p>
+<p>Si en cambio tenemos a la mano el problema
+<span class="math display">\[
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = 0 \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = v_0(x) \text{ para } x \in [0,L].
+\end{cases}
+\]</span>
+entonces
+<span class="math display">\[
+u(x,t) = \int_0^L S(x,t,y)v_0(y)dy, \qquad S(x,t,y) := \int_0^t C(x,s,y)ds = \frac{2}{L}\sum_{k=1}^\infty \frac{\sin(k \pi t/L)}{k\pi}\sin(k\pi x)\sin(k\pi y).
+\]</span></p>
+<p>En el caso un poco más general
+<span class="math display">\[
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = v_0(x) \text{ para } x \in [0,L].
+\end{cases}
+\]</span>
+usamos la superposición
+<span class="math display">\[
+u(x,t) = \int_0^L W(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dsdy.
+\]</span></p>
+<hr />
+<p>:::{.exercise}
+Calcula la fórmula de representación para el problema de onda no homogéneo
+<span class="math display">\[
+\begin{cases}
+\partial_t^2 u = \partial_x^2 u +f(x,t) \text{ en } (0,L)\times(0,\infty),\\
+u(0,t)=u(L,t)=0 \text{ para } t \geq 0,\\
+u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
+\partial_t u(x,0) = v_0(x) \text{ para } x \in [0,L].
+\end{cases}
+\]</span>
+en términos de los núcleos <span class="math inline">\(C\)</span> y <span class="math inline">\(S\)</span>.</p>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<span class="math display">\[
+u(x,t) = \int_0^L C(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dy + \int_0^t \int_0^L S(x,t-s,y)f(y,s)dyds
+\]</span>
+</details>
+</div>
+</div>
+<div id="circunferencia-o-funciones-periódicas" class="section level3 hasAnchor" number="12.2.2">
+<h3><span class="header-section-number">12.2.2</span> Circunferencia o funciones periódicas<a href="espectro.html#circunferencia-o-funciones-periódicas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Las autofunciones periódicas de la ecuación <span class="math inline">\(\phi&#39;&#39;=-\lambda \phi\)</span> en <span class="math inline">\(\mathbb R/2L\mathbb Z\)</span> toman necesariamente la forma
+<span class="math display">\[
+\phi_k(x) := e^{ik\pi x/L}.
+\]</span>
+El autovalor asociado es así
+<span class="math display">\[
+-\lambda_k = -\left(\frac{k\pi}{L}\right)^2.
+\]</span></p>
+<p>Tenemos la relación de ortogonalidad
+<span class="math display">\[
+\int_{-L}^L \phi_k(x)\overline{\phi_j(x)}dx = \int_{-L}^L e^{i(k-j)\pi x}dx =\begin{cases}
+0 \text{ si } k\neq j,\\
+2L \text{ si } k=j.
+\end{cases}
+\]</span>
+Por lo tanto tenemos la siugiente fórmula para los coeficientes de Fourier
+<span class="math display">\[
+\hat f_k := \frac{\langle f,\phi_k\rangle}{\|\phi_k\|^2} = \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi x}dx.
+\]</span></p>
+
 </div>
 </div>
 </div>
@@ -595,7 +697,7 @@ u(x,t) = \int_0^L H(x,t,y)u_0(y)dy.
 <div class="footnotes">
 <hr />
 <ol start="22">
-<li id="fn22"><p>Dados dos vectores <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> en un espacio vectorial <span class="math inline">\(V\)</span> con producto interno <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>, definimos <span class="math inline">\(a\otimes b: V\to V\)</span> como <span class="math inline">\((a\otimes b)(v) = \langle b,v\rangle a\)</span>. Si <span class="math inline">\(V=\mathbb R^n\)</span> con el producto punto entonces <span class="math inline">\(a\otimes b\)</span> se identifica con la matriz con componentes <span class="math inline">\(a_ib_j\)</span> en la fila <span class="math inline">\(i\)</span>, columna <span class="math inline">\(j\)</span>.<a href="espectro.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>Dados dos vectores <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> en un espacio vectorial <span class="math inline">\(V\)</span> con producto interno <span class="math inline">\(\langle\cdot,\cdot\rangle\)</span>, definimos <span class="math inline">\(a\otimes b: V\to V\)</span> como <span class="math inline">\((a\otimes b)(v) = \langle v,b\rangle a\)</span>. Si <span class="math inline">\(V=\mathbb R^n\)</span> con el producto punto entonces <span class="math inline">\(a\otimes b\)</span> se identifica con la matriz con componentes <span class="math inline">\(a_ib_j\)</span> en la fila <span class="math inline">\(i\)</span>, columna <span class="math inline">\(j\)</span>. En el caso particular donde <span class="math inline">\(a=b=\xi\neq 0\)</span> tenemos que <span class="math inline">\(\xi\otimes\xi/\|\xi\|^2\)</span> es la proyección ortogonal sobre la recta generada por <span class="math inline">\(\xi\)</span>.<a href="espectro.html#fnref22" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

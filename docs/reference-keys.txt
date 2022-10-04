@@ -262,7 +262,10 @@ resolución-de-distintos-problemas-usando-el-espectro
 inversa
 exponencial
 funciones-trigonométricas
+cálculo-funcional
 casos-unidimensionales-para-el-laplaciano
-segmento
+segmento-con-dato-de-borde-cero
 función-de-green
 núcleo-del-calor
+ecuación-de-onda
+circunferencia-o-funciones-periódicas
