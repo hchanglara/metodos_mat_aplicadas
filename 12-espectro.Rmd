@@ -2,11 +2,13 @@
 
 # Espectro
 
-Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo [discreto](#espectro-del-laplaciano). Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction] por Elias Stein y Rami Shakarchi] para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.
+Cualesquiera de las tres ecuaciones funcdamentales para el Laplaciano (Poisson, difusión y onda) pueden ser resueltas si conocemos una descomposición de los datos en términos de autofunciones del Laplaciano. La teoría extiende las ideas ya expuestas en el capítulo [discreto](#espectro-del-laplaciano). Las justificaciones rigurosas en esta dirección fueron las que motivaron la teoría de análisis de Fourier y el análisis moderno en los siglos diecinueve y veinte. Recomendamos la introducción de [Fourier Analysis: An Introduction](https://press.princeton.edu/books/hardcover/9780691113845/fourier-analysis) por Elias Stein y Rami Shakarchi para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xWMCgg57MiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Resolución de distintos problemas usando el espectro
 
-Por fijar algunas ideas tomemos un operador lineal $A:V\to V$ con autovectores ortogonales $\{\xi_k\}$ (respecto a algún producto interno o hermitiano $\langle\cdot,\cdot\rangle$) y sus correspondientes autovalores $\{\lambda_k\}$.
+Por fijar algunas ideas tomemos un operador lineal $A:V\to V$ con una base de autovectores ortogonales $\{\xi_k\}$ (respecto a algún producto interno o hermitiano $\langle\cdot,\cdot\rangle$) y sus correspondientes autovalores serán denotados por $\{\lambda_k\}$.
 
 ### Inversa
 
@@ -14,7 +16,7 @@ Para la ecuación $Ax=b$ tenemos que si $b = \sum_k \hat b_k\xi_k$ y cero no es 
 $$
 \sum_k \hat b_k\xi_k = b = Ax= \sum_k \hat x_k A\xi_k = \sum_k \hat x_k \lambda_k\xi_k \qquad\Rightarrow\qquad \hat x_k = \frac{\hat b_k}{\lambda_k}.
 $$
-Para calcular $\hat b_k$ usamos la ortogonalidad de los autovectores, de forma que la tomar el producto punto de $\xi_j$ y $b = \sum_k \hat b_k\xi_k$ obtenemos la formula para los coeficientes de Fourier
+Para calcular $\hat b_k$ usamos la ortogonalidad de los autovectores, de forma que la tomar el producto punto de $\xi_j$ y $b = \sum_k \hat b_k\xi_k$ obtenemos la fórmula para los coeficientes de Fourier
 $$
 \hat b_j = \frac{\langle b, \xi_j\rangle}{\|\xi_j\|^2}.
 $$
@@ -40,7 +42,13 @@ $$
 $$
 Sintetizando en
 $$
-\exp(At)y(0) = y(t) = \sum_k \hat y_k(t)\xi_k = \sum_k e^{\lambda_k t}\hat y_k(0)\xi_k = \sum_k e^{\lambda_k t}\frac{\langle y(0),\xi_k\rangle}{\|\xi_k\|^2}\xi_k = \left(\sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} \right)y(0).
+\begin{aligned}
+\exp(At)y(0) &= y(t),\\
+&= \sum_k \hat y_k(t)\xi_k,\\
+&= \sum_k e^{\lambda_k t}\hat y_k(0)\xi_k,\\
+&= \sum_k e^{\lambda_k t}\frac{\langle y(0),\xi_k\rangle}{\|\xi_k\|^2}\xi_k,\\
+&= \left(\sum_k e^{\lambda_k t}\frac{\xi_k\otimes \xi_k}{\|\xi_k\|^2} \right)y(0).
+\end{aligned}
 $$
 Descubrimos así que
 $$
@@ -48,7 +56,7 @@ $$
 $$
 Observamos que en este caso no hizo falta asumir que cero no es un autovalor.
 
-Para el Laplaciano esta exponencial se conoce como el **núcleo del calor**. Recordemos que los autovalores del Laplaciano en el caso discreto eran menores o iguales a cero, y anticipamos que lo misomo ocurre en el caso continuo. Es decir que para las soluciones de la ecuación del calor obtenemos decaimiento exponencial de cada uno de los términos en la serie (a menos que cero sea un autovalor).
+Para el Laplaciano esta exponencial se conoce como el **núcleo del calor**. Recordemos que los autovalores del Laplaciano en el caso discreto eran menores o iguales a cero, y anticipamos que lo mismo ocurre en el caso continuo. Es decir que para las soluciones de la ecuación del calor obtenemos decaimiento exponencial de cada uno de los términos en la serie (a menos que cero sea un autovalor).
 
 ### Funciones trigonométricas
 
@@ -60,7 +68,7 @@ Donde al igual que con la exponencial podemos definir las funciones exponenciale
 $$
 \cos(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!}(At)^{2k}, \qquad \operatorname{sinc}(At) := \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!}(At)^{2k}.
 $$
-(Si $A$ es invertible $t\operatorname{sinc}(At) = \sin(At)A^{-1}$). Como es de esperarse se satisfacen las identidades trigonométricas usuales, por ejemplo
+(Si $At$ es invertible $\operatorname{sinc}(At) = \sin(At)(At)^{-1}$). Como es de esperarse se satisfacen las identidades trigonométricas usuales, por ejemplo
 $$
 \frac{d}{dt}\cos(At) = -A^2 t \operatorname{sinc}(At), \qquad \frac{d}{dt}(t\operatorname{sinc}(At)) = \cos(At).
 $$
@@ -80,30 +88,16 @@ Si $f$ tiene una serie de potencias absolutamente convergente en la recta real (
 $$
 f(x) = \sum_{k=0}^\infty f_kx^k,
 $$
-entonces podemos definir $f(A)$ equivalentemente usando la serie
+entonces podemos definir $f(A)$ equivalentemente usando la misma serie
 $$
 f(A) = \sum_{k=0}^\infty f_kA^k.
 $$
-Gracias a la convergencia absoluta de $f(x)$ tenemos la convergencia absoluta de $f(A)$ con respecto a la norma de operador
+Gracias a la convergencia absoluta de $f(x)$ tenemos la convergencia absoluta de $f(A)$ con respecto a la [**norma de operador**](https://en.wikipedia.org/wiki/Operator_norm)
 $$
 \sum_{k=0}^\infty \|f_kA^k\| \leq 
 \sum_{k=0}^\infty |f_k|\|A\|^k < \infty.
 $$
 Por lo tanto estas series pueden ser diferenciadas, integradas, y multiplicadas tal como si fueran polinomios. A partir de acá se deducen distintas identidades para las exponenciales o funciones trigonométricas actuando sobre operadores.
-
----
-
-<details>
-<summary>Margen de análisis</summary>
-Para justificar estas identidades basta usar que las series convergen de forma absoluta para todo $t\in \mathbb R$. La norma que usamos en este caso es conocida como la **norma de operador**
-$$
-\|A\| := \sup_{\|x\|=1} \|Ax\|.
-$$
-Además de las propiedades de la norma (positividad, homogeneidad y la desigualdad triangular) esta norma satisface las desigualdades de Cauchy-Schwarz
-$$
-\|Ax\|\leq \|A\|\|x\|, \qquad \|AB\|\leq \|A\|\|B\|.
-$$
-</details>
 
 ## Casos unidimensionales para el Laplaciano
 
@@ -113,7 +107,7 @@ Sea $(0,L)$ un segmento de la recta real. Buscamos diagonalizar el Laplaciano, e
 $$
 \begin{cases}
 \phi''= -\lambda \phi \text{ en } (0,L),\\
-\phi = 0 \text{ en } \{0,L\}.
+\phi(0) = \phi(L) = 0.
 \end{cases}
 $$
 
@@ -129,7 +123,8 @@ De estas opciones solamente la tercera permite que se satisfaga $\phi(0)=\phi(L)
 $$
 \phi_k(x) = \sin\left(\frac{\pi k}{L}x\right), \qquad \lambda_k = \left(\frac{\pi k}{L}\right)^2,
 $$
-tal que $\phi_k''=-\lambda_k\phi_k$. 
+tal que $\phi_k''=-\lambda_k\phi_k$.
+
 Observamos además que $\lambda_k = \lambda_{-k} > 0$ para $k\geq 1$, $\lambda_0=0$, y $\phi_{-k}=-\phi_k$. Es decir que existe por lo menos chance de que $\{\phi_k\}_{k\geq1}$ sean una base. De hecho son linealmente independientes gracias a la siguiente observación de ortogonalidad.
 
 ---
@@ -169,7 +164,7 @@ $$
 Gracias a la diagonalización que ya conocemos para este problema tenemos que
 $$
 \begin{aligned}
-u(x) &= -\sum_{k=1}^\infty \frac{\langle f,\phi_k\rangle }{\lambda_k\|\phi_k\|^2}\phi_k(x),\\
+u(x) &= -\sum_{k=1}^\infty \frac{1}{\lambda_k}\frac{\langle f,\phi_k\rangle }{\|\phi_k\|^2}\phi_k(x),\\
 &= -\frac{2L}{\pi^2}\int_0^L \left(\sum_{k=1}^\infty\frac{\sin(\pi k x/L)\sin(\pi ky/L)}{k^2}\right)f(y)dy,\\
 &= \int_0^L G(x,y)f(y)dy
 \end{aligned}
@@ -204,7 +199,7 @@ $$
 
 ---
 
-Una alternativa más elemental que tenemos para resolver este problema es integrar $u''=f$ dos veces. Primero
+Una alternativa más elemental que tenemos para resolver el problema de Poisson en un segmento es integrar $u''=f$ dos veces. Primero
 $$
 u'(x) = u'(0) + \int_0^x f(y)dy.
 $$
@@ -291,9 +286,7 @@ $$
 u(x,t) = \int_0^L H(x,t,y)u_0(y)dy.
 $$
 
-Una hermosa introducción a estas ideas está presentada en el siguiente video de 3 Blue 1 Brown:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ToIXSwZ1pJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+---
 
 :::{.example}
 Usando que $u(x,t)=x(1-x)-2t$ satisface la ecuación de calor en $(0,1)$ con dato de borde cero, y la serie de senos para la condición inicial $x(1-x)$ de un ejemplo previo, tenemos que
@@ -301,6 +294,12 @@ $$
 \sum_{k=1}^\infty \frac{e^{-(k\pi)^2t}}{(k\pi)^3}\sin(k\pi x) = \frac{x(1-x)-2t}{16}.
 $$
 :::
+
+---
+
+Una hermosa introducción a estas ideas está presentada en el siguiente video de 3 Blue 1 Brown:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ToIXSwZ1pJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### Ecuación de onda
 
@@ -333,7 +332,11 @@ u(x,0) = 0 \text{ para } x \in [0,L],\\
 $$
 entonces
 $$
-u(x,t) = \int_0^L S(x,t,y)v_0(y)dy, \qquad S(x,t,y) := \int_0^t C(x,s,y)ds = \frac{2}{L}\sum_{k=1}^\infty \frac{\sin(k \pi t/L)}{k\pi}\sin(k\pi x)\sin(k\pi y).
+u(x,t) = \int_0^L S(x,t,y)v_0(y)dy,
+$$
+donde
+$$
+S(x,t,y) := \frac{2}{L}\sum_{k=1}^\infty \frac{\sin(k \pi t/L)}{k\pi/L}\sin(k\pi x)\sin(k\pi y).
 $$
 
 En el caso un poco más general
@@ -347,7 +350,7 @@ u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
 $$
 usamos la superposición
 $$
-u(x,t) = \int_0^L W(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dsdy.
+u(x,t) = \int_0^L C(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dsdy.
 $$
 
 ---
@@ -363,11 +366,12 @@ u(x,0) = u_0(x) \text{ para } x \in [0,L],\\
 \end{cases}
 $$
 en términos de los núcleos $C$ y $S$.
+:::
 
 <details>
 <summary>**Solución**</summary>
 $$
-u(x,t) = \int_0^L C(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dy + \int_0^t \int_0^L S(x,t-s,y)f(y,s)dyds
+u(x,t) = \int_0^L C(x,t,y)u_0(y)dy+\int_0^L S(x,t,y)v_0(y)dy + \int_0^t \int_0^L S(x,t-s,y)f(y,s)dyds.
 $$
 </details>
 
@@ -384,12 +388,197 @@ $$
 
 Tenemos la relación de ortogonalidad
 $$
-\int_{-L}^L \phi_k(x)\overline{\phi_j(x)}dx = \int_{-L}^L e^{i(k-j)\pi x}dx =\begin{cases}
+\int_{-L}^L \phi_k(x)\overline{\phi_j(x)}dx = \int_{-L}^L e^{i(k-j)\pi x/L}dx =\begin{cases}
 0 \text{ si } k\neq j,\\
 2L \text{ si } k=j.
 \end{cases}
 $$
-Por lo tanto tenemos la siugiente fórmula para los coeficientes de Fourier
+Por lo tanto tenemos la siguiente fórmula para los **coeficientes de Fourier**
 $$
-\hat f_k := \frac{\langle f,\phi_k\rangle}{\|\phi_k\|^2} = \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi x}dx.
+\hat f_k := \frac{\langle f,\phi_k\rangle}{\|\phi_k\|^2} = \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi x/L}dx.
 $$
+
+## Propiedades de la serie de Fourier
+
+Sea $L>0$ y consideremos funciones $2L$-periódicas en $\mathbb R$. Usualmente usaremos el intervalo $[-L,L)$ como una ventana representativa para el dominio de una de estas funciones.
+
+Tenemos la base de Fourier compleja numerada por los enteros
+$$
+\phi_k(x) := e^{ik\pi x/L}.
+$$
+
+Recordemos que si $f$ se descompone como
+$$
+f = \sum_{k=-\infty}^\infty \hat f_k \phi_k
+$$
+entonces por la ortogonalidad de la base
+$$
+\hat f_k = \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi x/L}dx.
+$$
+Asumiremos que todas las funciones con las que trabajamos en esta sección admiten una de estas descomposiciones.
+
+---
+
+:::{.example}
+Si $f=1$ tenemos que $\hat f_k=1$ si $k=0$ y cero en cualquier otro caso.
+:::
+
+---
+
+:::{.example}
+Si $\hat f_k=1$ para $k=k_0$ y cero en cualquier otro caso, entonces $f(x) = e^{ik_0\pi x/L}$. Si en cambio $\hat f_k=1$ para $k=\pm k_0$ y cero en cualquier otro caso, entonces $f(x) = 2\cos(k_0\pi x/L)$. Finalmente si $\hat f_k=1$ para $k=k_0$,$\hat f_k=-1$ para $k=-k_0$, y cero en cualquier otro caso, entonces $f(x) = 2i\sin(k_0\pi x/L)$.
+:::
+
+---
+
+:::{.exercise}
+Demuestra que si $f$ es una función real y $2L$-periódica, entonces
+$$
+\overline{\hat f_k} = \hat f_{-k}
+$$
+:::
+
+<detalis>
+<summary>**Solución**</summary>
+Basta usar que $\bar f = f$ en la descomposición de $f$
+</details>
+
+### Linealidad
+
+Claramente la transformación que arroja los coeficientes de Fourier satisface el principio de superposición. Es decir que para constantes $\alpha$, $\beta$, y funciones $f$ y $g$
+$$
+(\alpha f +\beta g)^\wedge_k = \alpha \hat f_k + \beta \hat g_k.
+$$
+
+### Traslaciones
+
+Sea $\tau \in \mathbb R$ y $f_\tau(x) := f(x-\tau)$, es decir que la gráfica de $\f_\tau$ es la gráfica de $f$ trasladada $|\tau|$ unidades a la derecha si $\tau\geq 0$ (o a la izquierda si $\tau<0$). El efecto de una traslación horizontal en los coeficientes de Fourier es una modulación de los coeficientes
+$$
+\begin{aligned}
+(f_\tau)_k^\wedge &= \frac{1}{2L}\int_{-L}^L f(x-\tau)e^{-ik\pi x/L}dx,\\
+&= \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi (x+\tau)/L}dx,\\
+&= e^{-ik\pi \tau/L}\hat f_k.
+\end{aligned}
+$$
+
+---
+
+:::{.example}
+Sea $L=\pi$. Dado que $\sin=\cos_{\pi/2}$ tenemos que
+$$
+\sin_k^\wedge = e^{-ik \pi/2}\cos_k^\wedge = (-i)^k \cos_k^\wedge.
+$$
+En particular, como sabemos que $\cos_k^\wedge = 1/2$ para $k=\pm 1$, siendo cero en los demás casos, recuperamos que $\sin_1^\wedge=-i/2$ y $\sin_1^\wedge=i/2$, y cero en los demás casos.
+:::
+
+---
+
+:::{.exercise}
+Demuestra que si $g(x) = f(x)e^{i\pi x/L}$, es decir una modulación de $f$, entonces
+$$
+\hat g_k = \hat f_{k-1} \qquad (\text{una traslación de los coeficientes}).
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+### Derivadas
+
+Para calcular los coeficientes de la derivada a partir de los coeficientes originales usamos la fórmula de integración por partes
+$$
+\begin{aligned}
+(f')_k^\wedge &= \frac{1}{2L}\int_{-L}^L f'(x)e^{-ik\pi x/L}dx,\\
+&= \frac{ik\pi}{2L^2}\int_{-L}^L f(x)e^{-ik\pi x/L}dx,\\
+&= \frac{ik\pi}{L}\hat f_k.
+\end{aligned}
+$$
+También es una fórmula que puede ser deducida a partir de la identidad de la traslación y la linealidad
+$$
+\begin{aligned}
+(f')_k^\wedge &= \lim_{\tau\to 0} \frac{\hat f_k-(f_\tau)^\wedge_k}{\tau} = \lim_{\tau\to 0} \frac{1-e^{-ik\pi \tau/L}}{\tau} \hat f_k = \frac{ik\pi}{L}\hat f_k.
+\end{aligned}
+$$
+
+---
+
+:::{.exercise}
+Demuestra la propiedad de traslación a portir de la identidad de la derivada.
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+### Convoluciones
+
+Otra consecuencia de la propiedad de la traslación es la propiedad de la convolución. Consideremos las tralaciones de una función dada $f$ y promediemos estas con respecto a un peso también $2L$-periódico. Como resultado tenemos la función periódica
+$$
+(f\ast g)(x) := \int_{-L}^L f(x-\tau)g(\tau)d\tau.
+$$
+
+---
+
+
+:::{.example}
+Para $L=\pi$
+$$
+\begin{aligned}
+(\cos\ast\cos)(x) &= \int_{-\pi}^\pi \cos(x-\tau)\cos \tau d\tau,\\
+&= \cos x \int_{-\pi}^\pi \cos^2 \tau d\tau + \sin x\int_{-\pi}^\pi \sin \tau \cos \tau d\tau,\\
+&= \pi \cos x.
+\end{aligned}
+$$
+:::
+
+---
+
+Esta operación es claramente bilineal y simétrica
+$$
+f\ast g = g\ast f.
+$$
+
+---
+
+:::{.exercise}
+Demuestra que la convolución satisfaces la ley asociativa
+$$
+(f\ast g)\ast h = f\ast (g\ast h).
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+Es consecuencia de la identidad de Fubini.
+</details>
+
+---
+
+Para los coeficientes de Fourier tenemos gracias a Fubini que
+
+$$
+\begin{aligned}
+(f\ast g)_k^\wedge &= \hat f_k\int_{-L}^L e^{-ik\pi \tau/L} g(\tau) d\tau = 2L\hat f_k\hat g_k.
+\end{aligned}
+$$
+
+---
+
+:::{.example}
+Para $L=\pi$ tenemos que $\cos_k^\wedge=1/2$ si $k=\pm 1$ y cero en cualquier otro caso. El ejercicio previo donde calculamos $\cos\ast \cos = \pi\cos$ es consistente con la propiedad de la convolución dado que
+$$
+(\cos\ast \cos)_1^\wedge = 2\pi(\cos_1^\wedge)^2 = \pi/2 = (\pi\cos)_1^\wedge.
+$$
+:::
+
+---
+
+:::{.exercise}
+Demuestra que
+$$
+(fg)_k^\wedge = 
+$$
+:::
+
+### Isometría
