@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2022-10-05" />
+<meta name="date" content="2022-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,6 +273,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3.4" data-path="espectro.html"><a href="espectro.html#convoluciones"><i class="fa fa-check"></i><b>12.3.4</b> Convoluciones</a></li>
 <li class="chapter" data-level="12.3.5" data-path="espectro.html"><a href="espectro.html#isometría"><i class="fa fa-check"></i><b>12.3.5</b> Isometría</a></li>
 </ul></li>
+<li class="chapter" data-level="12.4" data-path="espectro.html"><a href="espectro.html#productos-rectángulo-y-la-superficie-del-toro"><i class="fa fa-check"></i><b>12.4</b> Productos: Rectángulo y la superficie del toro</a></li>
+<li class="chapter" data-level="12.5" data-path="espectro.html"><a href="espectro.html#bola-bidimensional"><i class="fa fa-check"></i><b>12.5</b> Bola bidimensional</a></li>
+<li class="chapter" data-level="12.6" data-path="espectro.html"><a href="espectro.html#esfera-tridimensional"><i class="fa fa-check"></i><b>12.6</b> Esfera tridimensional</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -819,16 +822,78 @@ Es consecuencia de la identidad de Fubini.
 </div>
 <hr />
 <div class="exercise">
-<p><span id="exr:unlabeled-div-206" class="exercise"><strong>Ejercicio 12.7  </strong></span>Demuestra que
+<p><span id="exr:unlabeled-div-206" class="exercise"><strong>Ejercicio 12.7  </strong></span>Justifica por qué
 <span class="math display">\[
-(fg)_k^\wedge =
+(fg)_k^\wedge = \sum_{\tau =\infty}^\infty \hat f_{k-\tau}\hat g_\tau
 \]</span></p>
 </div>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+Asumiendo que las series convergen y pueden ser reordenadas
+<span class="math display">\[
+\begin{aligned}
+(fg)(x) &amp;= \left(\sum_{k=-\infty}^\infty \hat f_ke^{-ik\pi x/L}\right)\left(\sum_{k=-\infty}^\infty \hat g_ke^{-ik\pi x/L}\right),\\
+&amp;= \sum_{j,k=-\infty}^\infty \hat f_j\hat g_k e^{-i\pi(j+k)x/L},\\
+&amp;= \sum_{k=-\infty}^\infty \left(\sum_{\tau=-\infty}^\infty \hat f_{k-\tau}\hat g_\tau\right)e^{-i\pi k x/L}.
+\end{aligned}
+\]</span>
+</details>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+The Fourier transform diagonalizes convolution operators aka circulant matrices aka linear operators which commute with translations. <br>The foundation of linear signal processing. <a href="https://t.co/A8RlE7BTFe">https://t.co/A8RlE7BTFe</a> <a href="https://t.co/4Hy50BBcqI">pic.twitter.com/4Hy50BBcqI</a>
+</p>
+— Gabriel Peyré (<span class="citation">(<a href="#ref-gabrielpeyre" role="doc-biblioref"><strong>gabrielpeyre?</strong></a>)</span>) <a href="https://twitter.com/gabrielpeyre/status/1577886370634371073?ref_src=twsrc%5Etfw">October 6, 2022</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <div id="isometría" class="section level3 hasAnchor" number="12.3.5">
 <h3><span class="header-section-number">12.3.5</span> Isometría<a href="espectro.html#isometría" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-
+<p>Los coeficientes de Fourier se pueden entender como una transformación de cambio de base del espacio de funciones periódicas con el producto hermitiano dado por
+<span class="math display">\[
+\langle f,g\rangle = \int_{-L}^L f(x)\overline{g(x)}dx.
+\]</span>
+a las sucesiones indexadas por los enteros.</p>
+<p>El espacio de funciones se denota usualmente por
+<span class="math display">\[
+L^2(\mathbb R/2L\mathbb Z\to \mathbb C) := \left\{f:\mathbb R/2L\mathbb Z\to \mathbb C \ | \ \int_{-L}^L |f|^2 &lt; \infty\right\},
+\]</span>
+y podemos abreviarlo por <span class="math inline">\(L^2\)</span>. El espacio de sucesiones se denota por
+<span class="math display">\[
+\ell^2(\mathbb Z) := \left\{(f_k)_{k\in \mathbb Z} \ | \ \sum_k |f_k|^2&lt;\infty\right\},
+\]</span>
+y también puede ser abreviado como <span class="math inline">\(\ell^2\)</span>. Este espacio de funciones también cuenta con un producto hermitiano que extiende el producto de <span class="math inline">\(\mathbb C^n\)</span>
+<span class="math display">\[
+\langle (f_k),(g_k)\rangle= \sum_k f_k\overline{g_k}.
+\]</span>
+La razón por la cual pedimos que las funciones y las series sean cuadrado integrables o sumables es para que la norma definidas por estos productos sean acotadas. Esto implica que las integrales y series involucradas en los productos hermitianos son absolutamente convergentes.</p>
+<p>Recordemos que <span class="math inline">\(\{\phi_k(x) = e^{ik\pi x/L}\}\)</span> es una base ortogonal en <span class="math inline">\(L^2\)</span>, esto quiere decir que módulo una dilatación <span class="math inline">\(\wedge:L^2\to\ell^2\)</span> es una isometría.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-207" class="theorem"><strong>Teorema 12.1  (Parseval) </strong></span><span class="math display">\[
+\langle (\hat f_k),(\hat g_k)\rangle = \sum_k \hat f_k\overline{\hat g_k} = \frac{1}{2L}\int_{-L}^L f\bar g = \frac{1}{2L}\langle f,g\rangle
+\]</span></p>
 </div>
+<div class="proof">
+<p><span id="unlabeled-div-208" class="proof"><em>Demostración</em>. </span><span class="math display">\[
+\begin{aligned}
+\frac{1}{2L}\int_{-L}^L f\bar g &amp;= \frac{1}{2L}\int_{-L}^L\left(\sum_{k} \hat f_k \phi_k\right)\overline{\left(\sum_{k} \hat g_k \phi_k\right)},\\
+&amp;= \frac{1}{2L}\sum_{j,k} \hat f_k\overline{\hat g_j}\langle \phi_k,\phi_j\rangle,\\
+&amp;= \sum_k \hat f_k\overline{\hat g_k}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="productos-rectángulo-y-la-superficie-del-toro" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Productos: Rectángulo y la superficie del toro<a href="espectro.html#productos-rectángulo-y-la-superficie-del-toro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="bola-bidimensional" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Bola bidimensional<a href="espectro.html#bola-bidimensional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="esfera-tridimensional" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Esfera tridimensional<a href="espectro.html#esfera-tridimensional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
 </div>
 </div>
 

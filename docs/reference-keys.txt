@@ -202,6 +202,7 @@ exm:unlabeled-div-203
 exr:unlabeled-div-204
 exm:unlabeled-div-205
 exr:unlabeled-div-206
+thm:unlabeled-div-207
 entramados
 cálculo-discreto
 gradiente
@@ -286,3 +287,6 @@ traslaciones
 derivadas
 convoluciones
 isometría
+productos-rectángulo-y-la-superficie-del-toro
+bola-bidimensional
+esfera-tridimensional

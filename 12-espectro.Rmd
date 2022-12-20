@@ -575,10 +575,68 @@ $$
 ---
 
 :::{.exercise}
-Demuestra que
+Justifica por qué
 $$
-(fg)_k^\wedge = 
+(fg)_k^\wedge = \sum_{\tau =\infty}^\infty \hat f_{k-\tau}\hat g_\tau
 $$
 :::
 
+<details>
+<summary>**Solución**</summary>
+Asumiendo que las series convergen y pueden ser reordenadas
+$$
+\begin{aligned}
+(fg)(x) &= \left(\sum_{k=-\infty}^\infty \hat f_ke^{-ik\pi x/L}\right)\left(\sum_{k=-\infty}^\infty \hat g_ke^{-ik\pi x/L}\right),\\
+&= \sum_{j,k=-\infty}^\infty \hat f_j\hat g_k e^{-i\pi(j+k)x/L},\\
+&= \sum_{k=-\infty}^\infty \left(\sum_{\tau=-\infty}^\infty \hat f_{k-\tau}\hat g_\tau\right)e^{-i\pi k x/L}.
+\end{aligned}
+$$
+</details>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The Fourier transform diagonalizes convolution operators aka circulant matrices aka linear operators which commute with translations. <br>The foundation of linear signal processing. <a href="https://t.co/A8RlE7BTFe">https://t.co/A8RlE7BTFe</a> <a href="https://t.co/4Hy50BBcqI">pic.twitter.com/4Hy50BBcqI</a></p>&mdash; Gabriel Peyré (@gabrielpeyre) <a href="https://twitter.com/gabrielpeyre/status/1577886370634371073?ref_src=twsrc%5Etfw">October 6, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
 ### Isometría
+
+Los coeficientes de Fourier se pueden entender como una transformación de cambio de base del espacio de funciones periódicas con el producto hermitiano dado por
+$$
+\langle f,g\rangle = \int_{-L}^L f(x)\overline{g(x)}dx.
+$$
+a las sucesiones indexadas por los enteros.
+
+El espacio de funciones se denota usualmente por
+$$
+L^2(\mathbb R/2L\mathbb Z\to \mathbb C) := \left\{f:\mathbb R/2L\mathbb Z\to \mathbb C \ | \ \int_{-L}^L |f|^2 < \infty\right\},
+$$
+y podemos abreviarlo por $L^2$. El espacio de sucesiones se denota por
+$$
+\ell^2(\mathbb Z) := \left\{(f_k)_{k\in \mathbb Z} \ | \ \sum_k |f_k|^2<\infty\right\},
+$$
+y también puede ser abreviado como $\ell^2$. Este espacio de funciones también cuenta con un producto hermitiano que extiende el producto de $\mathbb C^n$
+$$
+\langle (f_k),(g_k)\rangle= \sum_k f_k\overline{g_k}.
+$$
+La razón por la cual pedimos que las funciones y las series sean cuadrado integrables o sumables es para que la norma definidas por estos productos sean acotadas. Esto implica que las integrales y series involucradas en los productos hermitianos son absolutamente convergentes.
+
+Recordemos que $\{\phi_k(x) = e^{ik\pi x/L}\}$ es una base ortogonal en $L^2$, esto quiere decir que módulo una dilatación $\wedge:L^2\to\ell^2$ es una isometría.
+
+:::{.theorem name="Parseval"}
+$$
+\langle (\hat f_k),(\hat g_k)\rangle = \sum_k \hat f_k\overline{\hat g_k} = \frac{1}{2L}\int_{-L}^L f\bar g = \frac{1}{2L}\langle f,g\rangle
+$$
+:::
+
+:::{.proof}
+$$
+\begin{aligned}
+\frac{1}{2L}\int_{-L}^L f\bar g &= \frac{1}{2L}\int_{-L}^L\left(\sum_{k} \hat f_k \phi_k\right)\overline{\left(\sum_{k} \hat g_k \phi_k\right)},\\
+&= \frac{1}{2L}\sum_{j,k} \hat f_k\overline{\hat g_j}\langle \phi_k,\phi_j\rangle,\\
+&= \sum_k \hat f_k\overline{\hat g_k}.
+\end{aligned}
+$$
+:::
+
+## Productos: Rectángulo y la superficie del toro
+
+## Bola bidimensional
+
+## Esfera tridimensional
