@@ -1,0 +1,258 @@
+# Series de Fourier
+
+En este capítulo aprenderemos las propiedades básicas de las series de Fourier. Todas las que aparecen acá son demostradas usando técnicas de cálculo. Para un tratamiento a mayor profuncdidad recomendamos la introducción de [Fourier Analysis: An Introduction](https://press.princeton.edu/books/hardcover/9780691113845/fourier-analysis) por Elias Stein y Rami Shakarchi para obtener un panorama histórico del desarrollo y motivaciones detrás de la teoría.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xWMCgg57MiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Sea $L>0$ y consideremos funciones $2L$-periódicas en $\mathbb R$. Usualmente usaremos el intervalo $[-L,L)$ como una ventana representativa para el dominio de una de estas funciones.
+
+Tenemos la base de Fourier compleja numerada por los enteros
+$$
+\phi_k(x) := e^{ik\pi x/L}.
+$$
+
+Recordemos que si $f$ se descompone como
+$$
+f = \sum_{k=-\infty}^\infty \hat f_k \phi_k
+$$
+entonces por la ortogonalidad de la base
+$$
+\hat f_k = \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi x/L}dx.
+$$
+
+---
+
+:::{.example}
+Si $f=1$ tenemos que $\hat f_k=1$ si $k=0$ y cero en cualquier otro caso.
+:::
+
+---
+
+:::{.example}
+Si $\hat f_k=1$ para $k=k_0$ y cero en cualquier otro caso, entonces $f(x) = e^{ik_0\pi x/L}$. Si en cambio $\hat f_k=1$ para $k=\pm k_0$ y cero en cualquier otro caso, entonces $f(x) = 2\cos(k_0\pi x/L)$. Finalmente si $\hat f_k=1$ para $k=k_0$,$\hat f_k=-1$ para $k=-k_0$, y cero en cualquier otro caso, entonces $f(x) = 2i\sin(k_0\pi x/L)$.
+:::
+
+---
+
+:::{.exercise}
+Demuestra que si $f$ es una función real y $2L$-periódica, entonces
+$$
+\overline{\hat f_k} = \hat f_{-k}
+$$
+:::
+
+<detalis>
+<summary>**Solución**</summary>
+Basta usar que $\bar f = f$ en la descomposición de $f$
+</details>
+
+## Propiedades de la serie de Fourier
+
+### Linealidad
+
+$$
+(\alpha f +\beta g)^\wedge_k = \alpha \hat f_k + \beta \hat g_k.
+$$
+
+### Traslaciones
+
+Sea $\tau \in \mathbb R$ y $T_\tau f(x) := f(x-\tau)$, es decir que la gráfica de $T_\tau f$ es la gráfica de $f$ trasladada $|\tau|$ unidades a la derecha si $\tau\geq 0$ (o a la izquierda si $\tau<0$). El efecto de una traslación horizontal en los coeficientes de Fourier es una modulación de los coeficientes
+$$
+\begin{aligned}
+(T_\tau f)_k^\wedge &= \frac{1}{2L}\int_{-L}^L f(x-\tau)e^{-ik\pi x/L}dx,\\
+&= \frac{1}{2L}\int_{-L}^L f(x)e^{-ik\pi (x+\tau)/L}dx,\\
+&= e^{-ik\pi \tau/L}\hat f_k.
+\end{aligned}
+$$
+
+---
+
+:::{.example}
+Sea $L=\pi$. Dado que $\sin=\cos_{\pi/2}$ tenemos que
+$$
+\sin_k^\wedge = e^{-ik \pi/2}\cos_k^\wedge = (-i)^k \cos_k^\wedge.
+$$
+En particular, como sabemos que $\cos_k^\wedge = 1/2$ para $k=\pm 1$, siendo cero en los demás casos, recuperamos que $\sin_1^\wedge=-i/2$ y $\sin_1^\wedge=i/2$, y cero en los demás casos.
+:::
+
+---
+
+:::{.exercise}
+Demuestra que si $g(x) = f(x)e^{i\pi x/L}$, es decir una modulación de $f$, entonces
+$$
+\hat g_k = \hat f_{k-1} \qquad (\text{una traslación de los coeficientes}).
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+### Derivadas
+
+Para calcular los coeficientes de la derivada a partir de los coeficientes originales usamos la fórmula de integración por partes
+$$
+\begin{aligned}
+(f')_k^\wedge &= \frac{1}{2L}\int_{-L}^L f'(x)e^{-ik\pi x/L}dx,\\
+&= \frac{ik\pi}{2L^2}\int_{-L}^L f(x)e^{-ik\pi x/L}dx,\\
+&= \frac{ik\pi}{L}\hat f_k.
+\end{aligned}
+$$
+También es una fórmula que puede ser deducida a partir de la identidad de la traslación y la linealidad
+$$
+\begin{aligned}
+(f')_k^\wedge &= \lim_{\tau\to 0} \frac{\hat f_k-(T_\tau f)^\wedge_k}{\tau} = \lim_{\tau\to 0} \frac{1-e^{-ik\pi \tau/L}}{\tau} \hat f_k = \frac{ik\pi}{L}\hat f_k.
+\end{aligned}
+$$
+
+---
+
+:::{.exercise}
+Demuestra la propiedad de traslación a portir de la identidad de la derivada.
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+### Convoluciones
+
+Otra consecuencia de la propiedad de la traslación es la propiedad de la convolución. Consideremos las tralaciones de una función dada $f$ y promediemos estas con respecto a un peso también $2L$-periódico. Como resultado tenemos la función periódica
+$$
+(f\ast g)(x) := \int_{-L}^L f(x-\tau)g(\tau)d\tau.
+$$
+
+---
+
+
+:::{.example}
+Para $L=\pi$
+$$
+\begin{aligned}
+(\cos\ast\cos)(x) &= \int_{-\pi}^\pi \cos(x-\tau)\cos \tau d\tau,\\
+&= \cos x \int_{-\pi}^\pi \cos^2 \tau d\tau + \sin x\int_{-\pi}^\pi \sin \tau \cos \tau d\tau,\\
+&= \pi \cos x.
+\end{aligned}
+$$
+:::
+
+---
+
+Esta operación es claramente bilineal y simétrica
+$$
+f\ast g = g\ast f.
+$$
+
+---
+
+:::{.exercise}
+Demuestra que la convolución satisfaces la ley asociativa
+$$
+(f\ast g)\ast h = f\ast (g\ast h).
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+Es consecuencia de la identidad de Fubini.
+</details>
+
+---
+
+Para los coeficientes de Fourier tenemos gracias a Fubini que
+
+$$
+\begin{aligned}
+(f\ast g)_k^\wedge &= 2L\hat f_k\hat g_k.
+\end{aligned}
+$$
+
+---
+
+:::{.example}
+Para $L=\pi$ tenemos que $\cos_k^\wedge=1/2$ si $k=\pm 1$ y cero en cualquier otro caso. El ejercicio previo donde calculamos $\cos\ast \cos = \pi\cos$ es consistente con la propiedad de la convolución dado que
+$$
+(\cos\ast \cos)_1^\wedge = 2\pi(\cos_1^\wedge)^2 = \pi/2 = (\pi\cos)_1^\wedge.
+$$
+:::
+
+---
+
+:::{.exercise}
+Justifica por qué
+$$
+(fg)_k^\wedge = \sum_{\tau =\infty}^\infty \hat f_{k-\tau}\hat g_\tau
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+Asumiendo que las series convergen y pueden ser reordenadas
+$$
+\begin{aligned}
+(fg)(x) &= \left(\sum_{k=-\infty}^\infty \hat f_ke^{-ik\pi x/L}\right)\left(\sum_{k=-\infty}^\infty \hat g_ke^{-ik\pi x/L}\right),\\
+&= \sum_{j,k=-\infty}^\infty \hat f_j\hat g_k e^{-i\pi(j+k)x/L},\\
+&= \sum_{k=-\infty}^\infty \left(\sum_{\tau=-\infty}^\infty \hat f_{k-\tau}\hat g_\tau\right)e^{-i\pi k x/L}.
+\end{aligned}
+$$
+</details>
+
+### Reescalamientos
+
+Dada $f:\mathbb R/2L\mathbb Z\to \mathbb C$ and $m\in\mathbb Z$ tenemos que $R_mf(x) = f(mx)$ vuelve a ser una función $2L$-periódica y por tanto podemos preguntarnos el efecto de esta transformación en los coeficientes de Fourier. Si $m=0$, $R_0f=f(0)$ y por lo tanto $(R_0f)^\wedge_0 = f(0)$, siendo los demás coeficientes iguales a cero.
+
+Para $m\neq 0$ usamos un cambio de variables para calcular los coeficientes con índices múltiplos de $m$
+$$
+\begin{aligned}
+(R_mf)^\wedge_{km} &= \frac{1}{2L}\int_{-L}^L f(mx)e^{-ikm\pi x/L}dx,\\
+&= \frac{1}{2Lm}\int_{-mL}^{mL} f(y)e^{-ik\pi y/L}dy,\\
+&= \hat f_k.
+\end{aligned}
+$$
+
+En general tenemos que $(R_m f)_k^\wedge = 0$ si $k$ no fuese un multiplo de $m$. Para entender esto podemos simplemente aplicar $R_m$ a la serie de $f$,
+$$
+R_m f(x) = \sum_{k=-\infty}^\infty \hat f_k R_m(e^{ik\pi x/L}) =\sum_{k=-\infty}^\infty \hat f_k e^{imk\pi x/L}.
+$$
+En esta serie solamente aparecen las bases indexadas por múltiplos de $m$.
+
+### Isometría
+
+Los coeficientes de Fourier se pueden entender como una transformación de cambio de base del espacio de funciones periódicas con el producto hermitiano dado por
+$$
+\langle f,g\rangle = \int_{-L}^L f(x)\overline{g(x)}dx.
+$$
+a las sucesiones indexadas por los enteros.
+
+El espacio de funciones se denota usualmente por
+$$
+L^2(\mathbb R/2L\mathbb Z\to \mathbb C) := \left\{f:\mathbb R/2L\mathbb Z\to \mathbb C \ | \ \int_{-L}^L |f|^2 < \infty\right\},
+$$
+y podemos abreviarlo por $L^2$. El espacio de sucesiones se denota por
+
+$$
+\ell^2(\mathbb Z) := \left\{(f_k)_{k\in \mathbb Z} \ | \ \sum_k |f_k|^2<\infty\right\},
+$$
+y también puede ser abreviado como $\ell^2$. Este espacio de funciones también cuenta con un producto hermitiano que extiende el producto de $\mathbb C^n$
+$$
+\langle (f_k),(g_k)\rangle= \sum_k f_k\overline{g_k}.
+$$
+La razón por la cual pedimos que las funciones y las series sean cuadrado integrables o sumables es para que la norma definidas por estos productos sean acotadas. Esto implica que las integrales y series involucradas en los productos hermitianos son absolutamente convergentes.
+
+Recordemos que $\{\phi_k(x) = e^{ik\pi x/L}\}$ es una base ortogonal en $L^2$, esto quiere decir que módulo una dilatación, $\wedge:L^2\to\ell^2$ es una isometría.
+
+:::{.theorem name="Parseval"}
+$$
+\langle (\hat f_k),(\hat g_k)\rangle = \sum_k \hat f_k\overline{\hat g_k} = \frac{1}{2L}\int_{-L}^L f\bar g = \frac{1}{2L}\langle f,g\rangle
+$$
+:::
+
+:::{.proof}
+$$
+\begin{aligned}
+\frac{1}{2L}\int_{-L}^L f\bar g &= \frac{1}{2L}\int_{-L}^L\left(\sum_{k=-\infty}^\infty \hat f_k \phi_k\right)\overline{\left(\sum_{k} \hat g_k \phi_k\right)},\\
+&= \frac{1}{2L}\sum_{j,k=-\infty}^\infty \hat f_k\overline{\hat g_j}\langle \phi_k,\phi_j\rangle,\\
+&= \sum_{k=-\infty}^\infty \hat f_k\overline{\hat g_k}.
+\end{aligned}
+$$
+:::

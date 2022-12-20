@@ -1,0 +1,114 @@
+# Método de separación de variables
+
+Las simetrías del Laplaciano permiten simplificar el problema del espectro cuando el dominio es por ejemplo el producto de dos dominios en los cuales el problema ya ha sido resuelto. Veremos con algunos ejemplos concretos como implementar esta idea.
+
+## Rectángulo y toro
+
+Dados $a,b>0$ buscamos autofunciones $\phi=\phi(x,y)$ de la forma
+$$
+\begin{cases}
+\Delta \phi = -\lambda \phi \text{ en } (0,a)\times(0,b),\\
+\phi=0 \text{ en } \partial((0,a)\times(0,b)).
+\end{cases}
+$$
+
+Tomando en cuenta la estructura de producto en el rectángulo proponemos soluciones de la forma
+$$
+\phi(x,y) = X(x)Y(y).
+$$
+Es decir que las condiciones de frontera para $\phi$ se traduce en
+$$
+X(0) = X(a) = Y(0) = Y(b) = 0. 
+$$
+La ecuación para $\phi$ dice que
+$$
+\frac{X''}{X} + \frac{Y''}{Y} = -\lambda.
+$$
+Dado que cada término en la izquierda depende de una variable distinta, es necesario que cada uno de ellos también sea constante. En otras palabras, resuelven el mismo problema de autovalores que estudiamos en la seccion [Segmento con dato de borde cero](#segmento-con-dato-de-borde-cero). Hemos descubierto así una familia de autofunciones parametrizadas por pares de enteros positivos:
+$$
+\phi_{k,l}(x,y) = \sin\left(\frac{\pi k}{a}x\right)\sin\left(\frac{\pi l}{b}y\right),
+$$
+con el correspondiente autovalor:
+$$
+-\lambda_{k,l} := -\pi^2\left(\frac{k^2}{a^2}+\frac{l^2}{b^2}\right).
+$$
+
+Al igual que antes las autofunciones $\phi_{k,l}$ vuelven a ser ortogonales y además forman una base del espacio de funciones. Noten que en este caso los autovalores tienen multiplicidad mayor que uno dado que por ejemplo $\lambda_{k,l}=\lambda_{l,k}$.
+
+En la siguiente actividad de Geogebra hemos ilustrados algunas autofunciones. 
+
+<iframe src="https://www.geogebra.org/3d/wj377kkw?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+
+---
+
+:::{.exercise}
+Calcula
+$$
+\int_0^b\int_0^a \phi_{k,l}(x,y)\phi_{k',l'}(x,y)dxdy
+$$
+:::
+
+<details>
+<summary>**Solution**</summary>
+$$
+\int_0^b\int_0^a \phi_{k,l}(x,y)\phi_{k',l'}(x,y)dxdy = \begin{cases}
+0 \text{ si } (k,l) \neq (k',l'),\\
+\frac{ab}{4} \text{ si } (k,l) = (k',l').
+\end{cases}
+$$
+</details>
+
+---
+
+:::{.exercise}
+Calcula una aproximación para la solución de la ecuación de Poisson
+$$
+\begin{cases}
+\Delta u = -1 \text{ en } (0,1)^2,\\
+u(0,y)=u(1,y)=u(x,0)=u(x,1) = 0.
+\end{cases}
+$$
+:::
+
+<details>
+<summary>**Solution**</summary>
+Calculamos los coeficientes de Fourier para $f=-1$
+$$
+\hat f_{k,l} = 4\int_0^1\int_0^1 (-1)\phi_{k,l}(x,y)dxdy = \begin{cases}
+-\frac{16}{kl\pi^2} \text{ si } k,l = 1 \ (\text{mod 2}),\\
+0 \text{ en los otros casos.}
+\end{cases}
+$$
+Es decir que para la solución $u$ los coeficientes están dados por la siguiente fórmula para $k$, $l$ impares
+$$
+\hat u_{k,l} = -\frac{\hat f_{k,l}}{\lambda_{k,l}} = \frac{16}{kl(k^2+l^2)}.
+$$
+En la siguiente implementación tenemos algunas gráficas para distintos rangos de $k$ y $l$ impares.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+X = np.arange(0, 1.1, 0.1)
+Y = np.arange(0, 1.1, 0.1)
+X, Y = np.meshgrid(X, Y)
+Z = 0*X
+
+for k in range(1,101,2):
+  for l in range(1,101,2):
+    f = 16/(k*l*(k**2+l**2))
+    Z = Z + f*np.sin(np.pi*k*X)*np.sin(np.pi*l*Y)
+
+
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+surf = ax.plot_surface(X, Y, Z)
+plt.show()
+```
+
+</details>
+
+## Bola bidimensional y las funciones de Bessel
+
+## Esfera bidimensional y los esféricos armónicos
+
+## Coordenadas esféricas

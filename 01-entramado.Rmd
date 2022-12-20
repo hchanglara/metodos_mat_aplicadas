@@ -1,4 +1,4 @@
-# (PART\*) Modelos discretos {-}
+# (PART\*) Modelos discretos{-}
 
 # Entramados
 
@@ -29,13 +29,13 @@ plt.show()
 ```
 -->
 
-Antes de proceder a plantear el sistema de ecuaciones recordemos que por lo general el número de ecuaciones e incógnitas deben ser iguales para que este esté bien planteado, es decir que existan soluciones y que sean únicas (al menos localmente). En nuestro caso tenemos cuatro incógnitas, los dos pares de coordenadas de cada nodo libre. Además debemos considerar las restricciones impuestas por las distancias entre los nodos, es decir tres ecuaciones. Hasta el momento el sistema es indeterminado, tiene más incógnitas (4) que ecuaciones (3), sin embargo aún nos falta incorporar la información del fenómeno de equilibrio.
+Antes de proceder a plantear el sistema de ecuaciones recordemos que por lo general el número de ecuaciones e incógnitas deben ser iguales para que este esté bien planteado, es decir que existan soluciones y que sean únicas (al menos localmente). En nuestro caso tenemos cuatro incógnitas, los dos pares de coordenadas de cada nodo libre. Además debemos considerar las restricciones impuestas por las distancias entre los nodos, es decir tres ecuaciones. Hasta el momento el sistema es indeterminado, tiene más incógnitas (4) que ecuaciones (3), sin embargo aún nos falta incorporar la información del fenómeno de equilibrio:
 
 $$
 \begin{cases}
-(x_1-0)^2 + (y_1-0)^2 = \ell_{01}^2\\
-(x_1-x_2)^2 + (y_1-y_2)^2 = \ell_{12}^2\\
-(x_2-3)^2 + (y_2-0)^2 = \ell_{23}^2
+(x_1-0)^2 + (y_1-0)^2 = \ell_{01}^2,\\
+(x_1-x_2)^2 + (y_1-y_2)^2 = \ell_{12}^2,\\
+(x_2-3)^2 + (y_2-0)^2 = \ell_{23}^2.
 \end{cases}
 $$
 
@@ -43,10 +43,10 @@ En cada nodo libre actúan tres fuerzas: dos tensiones y la gravedad $(= -m_ige_
 
 $$
 \begin{cases}
-\lambda_{10}(x_{0}-x_{1})+\lambda_{12}(x_{2}-x_{1}) = 0\\
-\lambda_{10}(y_{0}-y_{1})+\lambda_{12}(y_{2}-y_{1}) = m_{1}g\\
-\lambda_{23}(x_{3}-x_{2})+\lambda_{21}(x_{1}-x_{2}) = 0\\
-\lambda_{23}(y_{3}-y_{2})+\lambda_{21}(y_{1}-y_{2}) = m_{2}g
+\lambda_{10}(x_{0}-x_{1})+\lambda_{12}(x_{2}-x_{1}) = 0,\\
+\lambda_{10}(y_{0}-y_{1})+\lambda_{12}(y_{2}-y_{1}) = m_{1}g,\\
+\lambda_{23}(x_{3}-x_{2})+\lambda_{21}(x_{1}-x_{2}) = 0,\\
+\lambda_{23}(y_{3}-y_{2})+\lambda_{21}(y_{1}-y_{2}) = m_{2}g.
 \end{cases}
 $$
 

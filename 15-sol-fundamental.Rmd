@@ -1,0 +1,3 @@
+# (PART\*) Fórmulas de representación {-}
+
+# Solución fundamental
