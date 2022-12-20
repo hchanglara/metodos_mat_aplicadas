@@ -17,7 +17,7 @@ github-repo: rstudio/bookdown-demo
 
 # Prefacio {-}
 
-En estas notas esbozo la organización del temario que he usado para los cursos de *Modelación Analítica* y *Ecuaciones Diferenciales Parciales (nivel licenciatura)*. Las principales referencias en las que me he basado son:
+En estas notas detallo los temarios que he usado para los cursos de [*Modelación Analítica*](http://personal.cimat.mx:8181/~hector.chang/mod_anal21/) y [*Ecuaciones Diferenciales Parciales (nivel licenciatura)*](http://personal.cimat.mx:8181/~hector.chang/edp_22/), los cuales son subconjuntos de los capítulos en estas notas. Las principales referencias que he usado para estos cursos son:
 
 * L. Craig Evans. *Partial Differential Equations.* 2ed.
 
@@ -27,7 +27,7 @@ En estas notas esbozo la organización del temario que he usado para los cursos 
 
 * Walter Strauss. *Partial Differential Equations. An Introduction.* 2ed.
 
-El objetivo es presentar mi organización personal de temas clásicos enfatizando sus interconexiones y una evolución gradual a temas cada vez más complejos. En muy raras ocasiones suelo estar cómodo dando una clase siguiendo un dado libro de texto. Espero que estas notas sirvan de guía a mis estudiantes que están más acostumbrados a llevar un curso siguiendo un único libro de texto de forma lineal.
+El objetivo es presentar mi organización personal de temas clásicos enfatizando sus interconexiones y una evolución gradual a temas cada vez más complejos. En muy raras ocasiones suelo estar cómodo dando una clase siguiendo un solo libro de texto. En particular, las ecuaciones diferenciales son una disciplina con una gama tan diversa de conexiones que hacen difícil escoger un recorrido lineal como el de los libros de texto y las clases tradicionales. En este sentido he visto apropiado contar con la ventaja de usar documentos hiperenlazados. Como desventaja debo decir que mi notación no siempre coincidirá con la de los libros de texto que uso en mis clases. Espero que estas notas sirvan de guía a mis estudiantes que prefieren organizar sus estudios con una única guía o libro de texto, este documento busca llenar ese espacio y fijar la notación.
 
 No pretendo reescribir con detalle la construcción original de la teoría que ya está elegantemente plasmada en las referencias. Sí busco en cambio incorporar nuevos ejemplos y ejercicios. A modo de invitar a más personas he comenzado con un tratamiento discreto de la modelación y las ecuaciones que pudiera ser un poco más amigable. No solamente tiene esto un objetivo pedagógico, sino que también forma parte de la implementación numérica que podemos hacer de nuestras ecuaciones y que son sin lugar a dudas una muy importante herramienta en las ciencias aplicadas de hoy en día.
 
