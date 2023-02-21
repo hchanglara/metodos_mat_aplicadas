@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas</title>
+  <title>Capítulo 15 Problemas unidimensionales | Métodos de matemáticas aplicadas</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta property="og:title" content="Capítulo 15 Problemas unidimensionales | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Soluciones débiles | Métodos de matemáticas aplicadas" />
+  <meta name="twitter:title" content="Capítulo 15 Problemas unidimensionales | Métodos de matemáticas aplicadas" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="leyes-de-conservación.html"/>
-<link rel="next" href="modelos-estocásticos.html"/>
+<link rel="prev" href="método-de-separación-de-variables.html"/>
+<link rel="next" href="solución-fundamental.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -310,8 +310,150 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="soluciones-débiles" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Soluciones débiles<a href="soluciones-débiles.html#soluciones-débiles" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="problemas-unidimensionales" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Capítulo 15</span> Problemas unidimensionales<a href="problemas-unidimensionales.html#problemas-unidimensionales" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Sea <span class="math inline">\(D=d/dx\)</span> y sea <span class="math inline">\(L = D^2+2bD+c\)</span> un operador diferencial de segundo orden y con coeficientes constantes. Sabemos que las soluciones del problema homogéneo <span class="math inline">\(Lu=0\)</span> están dadas en función de las raíces del polinomio característico <span class="math inline">\(r_\pm := -b\pm \sqrt{b^2-c}\)</span>. Si <span class="math inline">\(b^2\neq c\)</span> entonces las soluciones se escriben en términos de exponenciales (complejas)
+<span class="math display">\[
+u(x) = A_+e^{r_+ t} + A_-e^{r_- t}.
+\]</span>
+Si en cambio <span class="math inline">\(b^2=c\)</span>, entonces <span class="math inline">\(r=r_+=r_-\)</span> y
+<span class="math display">\[
+u(x) = (A+Bt)e^{rt}.
+\]</span></p>
+<p>Cuando consideramos el problema no homogéneo <span class="math inline">\(Lu=f\)</span> las soluciones se escriben como la suma de una solución homogénea y una particular que se escribe en términos de una convolución
+<span class="math display">\[
+U(x) = \int_{0}^x K(y)f(x-y)dy = \int_{0}^x K(x-y)f(y)dy.
+\]</span>
+El núcleo <span class="math inline">\(K\)</span> se calcula como la solución del problema homogéneo
+<span class="math display">\[
+LK= 0, \qquad K(0)=0, \qquad K&#39;(0)=1.
+\]</span></p>
+<hr />
+<div class="example">
+<p><span id="exm:unlabeled-div-211" class="example"><strong>Ejemplo 15.1  </strong></span>La solución del péndulo forzado (<span class="math inline">\(\omega &gt;0\)</span>)
+<span class="math display">\[
+u&#39;&#39; + \omega^2 u = f(t), \qquad u(0)=u_0, \qquad v(0) = v_0
+\]</span>
+está dado por la fórmula de representación
+<span class="math display">\[
+u(x) = u_0\cos(\omega t) + \frac{v_0}{\omega}\sin (\omega t) + \frac{1}{\omega}\int_0^t \sin(\omega s)f(t-s)ds.
+\]</span></p>
+</div>
+<hr />
+<p>El siguiente ejemplo aparece también en la discusión de la <a href="espectro.html#función-de-green">Función de Green</a> usando métodos espectrales.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-212" class="example"><strong>Ejemplo 15.2  </strong></span>La solución de la ecuación de Poisson
+<span class="math display">\[
+u&#39;&#39; = f(x), \qquad u(0)=u(1)=1.
+\]</span>
+Está dada por
+<span class="math display">\[
+u(x) = Ax + \int_0^x (x-y)f(y)dy.
+\]</span>
+La constante <span class="math inline">\(A\)</span> se escoge de forma que <span class="math inline">\(u(1)=0\)</span>, es decir
+<span class="math display">\[
+A = -\int_0^1 (1-y)f(y)dy.
+\]</span>
+Por lo tanto
+<span class="math display">\[
+u(x) = -x\int_0^1 (1-y)f(y)dy + \int_0^x (x-y)f(y)dy = \int_0^1 K(x,y)f(y)dy
+\]</span>
+donde
+<span class="math display">\[
+K(x,y) = \begin{cases}
+-x(1-y) + (x-y) \text{ si } y \in[0,x],\\
+-x(1-y) \text{ si } y \in[x,1].
+\end{cases}
+\]</span>
+lo cual se simplifica a
+<span class="math display">\[
+K(x,y) = \frac{|y-x| + (1-x)y+x(1-y)}{2}.
+\]</span></p>
+</div>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-213" class="exercise"><strong>Ejercicio 15.1  </strong></span>Calcula el núcleo <span class="math inline">\(K\)</span> tal que
+<span class="math display">\[
+u(x) := \int_{-1}^1 K(x,y)f(y)dy
+\]</span>
+es solución del problema de frontera
+<span class="math display">\[
+u&#39;&#39;+u&#39;+u=f(x), \qquad u(-1)=u(1)=0.
+\]</span></p>
+</div>
+<details>
+<sumary><strong>Solución</strong>
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-214" class="exercise"><strong>Ejercicio 15.2  </strong></span>Calcula el núcleo <span class="math inline">\(K\)</span> tal que
+<span class="math display">\[
+u(x) := \int_{0}^1 K(x,y)f(y)dy
+\]</span>
+es solución del problema de frontera
+<span class="math display">\[
+u&#39;&#39;=f(x), \qquad u(0)=u&#39;(1)=0.
+\]</span></p>
+</div>
+<details>
+<sumary><strong>Solución</strong>
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-215" class="exercise"><strong>Ejercicio 15.3  </strong></span>Sea <span class="math inline">\(f\)</span> una función <span class="math inline">\(L\)</span>-periódica. Calcula una fórmula de representación integral para las soluciones <span class="math inline">\(L\)</span>-periódicas de la ecuación <span class="math inline">\(u&#39;&#39;=f\)</span>. ¿Tiene este problema soluciones para toda <span class="math inline">\(f\)</span> o hace falta alguna condición? De existir las soluciones, ¿son únicas?</p>
+</div>
+<details>
+<sumary><strong>Solución</strong>
+</summary>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-216" class="exercise"><strong>Ejercicio 15.4  </strong></span>Calcula la f’ormula de representacion para la solución de la ecuación de Poisson en la bola <span class="math inline">\(B_r \subset \mathbb R^n\)</span> con lado derecho radial, es decir <span class="math inline">\(f=f(\rho)\)</span> con <span class="math inline">\(\rho=|x|\)</span>
+<span class="math display">\[
+\begin{cases}
+\Delta u = f \text{ en } B_r,\\
+u=0\text{ in } \partial B_r.
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+Una solución radial <span class="math inline">\(u=u(\rho)\)</span> satisface
+<span class="math display">\[
+\rho^{1-n}(\rho^{n-1}u&#39;)&#39;=f, \qquad u&#39;(0)=u(r)=0.
+\]</span>
+Por lo que integrando un par de veces recuperamos
+<span class="math display">\[
+u(\rho) - u(0) = \int_0^\rho \int_0^s \frac{t^{n-1}}{s^{n-1}}f(t)dtds = \frac{1}{2-n}\int_0^\rho \left(\frac{t^{n-2}}{\rho^{n-2}}-1\right)tf(t)dt.
+\]</span>
+Para hacer <span class="math inline">\(u(r)=0\)</span> tomamos
+<span class="math display">\[
+u(0) = -\frac{1}{2-n}\int_0^r \left(\frac{t^{n-2}}{r^{n-2}}-1\right)tf(t)dt.
+\]</span>
+Por lo tanto
+<span class="math display">\[
+u(\rho) = \int_0^r K(\rho,t)f(t)dt, \qquad K(\rho,t) = \frac{t}{2-n}\left(\left(\frac{t^{n-2}}{\rho^{n-2}}-1\right)1_{t\leq \rho}-\left(\frac{t^{n-2}}{r^{n-2}}-1\right)\right).
+\]</span>
+</details>
+<hr />
+<div class="exercise">
+<p><span id="exr:unlabeled-div-217" class="exercise"><strong>Ejercicio 15.5  </strong></span>Calcula la f’ormula de representacion para la solución de la ecuación de Poisson en la bola <span class="math inline">\(B_r \subset \mathbb R^n\)</span> con lado derecho radial, es decir <span class="math inline">\(f=f(\rho)\)</span> con <span class="math inline">\(\rho=|x|\)</span>
+<span class="math display">\[
+\begin{cases}
+\Delta u - \omega^2 u = f \text{ en } B_r,\\
+u=0\text{ in } \partial B_r.
+\end{cases}
+\]</span></p>
+</div>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+</details>
 
 </div>
             </section>
@@ -319,8 +461,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="leyes-de-conservación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos-estocásticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="método-de-separación-de-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="solución-fundamental.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -351,7 +493,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-soluciones_debiles.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/15-form_rep_1d.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -359,7 +501,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/10-soluciones_debiles.Rmd",
+"link": "https://github.com/hchanglara/metodos_mat_aplicadas/blob/master/15-form_rep_1d.Rmd",
 "text": null
 },
 "download": ["bookdown_intro.pdf", "bookdown_intro.epub"],

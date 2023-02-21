@@ -41,7 +41,7 @@ En el modelo de [entramados](#entramados) en la sección anterior, el grafo no d
 
 ![](./eje_1.png){width=70%}
 
-Para modelar las tensiones es conveniente considerar el grafo dirigido $G=(V,E')$ de alguna forma arbitraria, quizás $E'=\{(0,1),(1,2),(2,3)\}$. De esta forma contamos con la función par $\lambda:E'\to\mathbb R$ y la función impar $T: E' \to \mathbb R^2$ tales que
+Para modelar las tensiones es conveniente considerar el grafo dirigido $G=(V,E')$ de alguna forma arbitraria, quizás $E'=\{(0,1),(1,2),(2,3)\}$. De esta forma contamos con la función par $\lambda:E'\cup-E'\to\mathbb R$ y la función impar $T: E'\cup-E' \to \mathbb R^2$ tales que
 $$
 T(e) = \lambda(e)(q(e_+)-q(e_-))
 $$
@@ -159,7 +159,7 @@ $$
 con lo cual concluímos la demostración.
 :::
 
-Este argumento nos permite apreciar que $u$ está únicamente determinado salvo potenciales constantes en cada componente conexa de $G$. Las constantes son los valores arbitrarios que daríamos a $u$ sobre el nodo $x_0$, que en nuestra demostración fue cero. En otras palabras, la nulidad del gradiente captura el número de compnentes conexas del grafo.
+Este argumento nos permite apreciar que $u$ está únicamente determinado salvo potenciales constantes en cada componente conexa de $G$. Las constantes son los valores arbitrarios que daríamos a $u$ sobre el nodo $x_0$, que en nuestra demostración fue cero. En otras palabras, la nulidad del gradiente captura el número de componentes conexas del grafo.
 
 ---
 
@@ -298,7 +298,7 @@ Sea $G=(V,E)$ un grafo dirigido finito y $\Omega \subseteq V$. La divergencia de
 
 De hecho la suma en el lado derecho ocurre en realidad sobre un subconjunto de aristas que podemos definir como el borde de $\partial\Omega$
 $$
-\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap E\setminus \Omega \neq \emptyset\}.
+\partial \Omega := \{e\in E\ | \ \{e_+,e_-\} \cap \Omega \neq \emptyset \text{ y } \{e_+,e_-\} \cap V\setminus \Omega \neq \emptyset\}.
 $$
 Es decir las aristas que conectan $\Omega$ con su complemento en cualquier orientación.
 
@@ -364,11 +364,11 @@ $$
 :::
 
 :::{.proof}
-Tomemos un nodo arbitrario $x_0\in V$ y consideremos inductivamente caminos no orientados que vayan conectando a $x_0$ con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un [**árbol generador**](https://en.wikipedia.org/wiki/Spanning_tree) del grafo con raíz en el nodo $x_0$^[En otras palabras un sub-grafo $T_0 := (V_0=V,E_0\subseteq E)$ libre de ciclos y conexo]. Fijamos $f=0$ en las aristas de $E\setminus E_0$ y en los demás ajustaremos $f$ para que satisfaga la ecuación dada.
+Tomemos un nodo arbitrario $x_0\in V$ y consideremos inductivamente caminos no orientados que vayan conectando a $x_0$ con cada uno de los nodos restantes y de tal forma que nunca se formen ciclos en esta construcción. Es decir, estamos proponiendo un [**árbol generador**](https://en.wikipedia.org/wiki/Spanning_tree) del grafo con raíz en el nodo $x_0$^[En otras palabras un sub-grafo $T_0 := (V_0=V,E_0\subseteq E)$ libre de ciclos y conexo]. Denotaremos dicho árbol por $T_0=(V_0=V,E_0)$. Fijamos $f=0$ en las aristas de $E\setminus E_0$ y en los demás ajustaremos $f$ para que satisfaga la ecuación dada.
 
 En la siguiente construcción estaremos definiendo a $f:E\cup-E\to \mathbb R$ como una función impar.
 
-La idea consiste en ir podando las ramas del árbol a medida que asignamos $f$ convenientemente. Si $|V_0|=1$ el problema sería trivial, asumamos así que $|V_0|>1$. En el primer paso tomamos una hoja de $T_0$, es decir un $x\in V_0$ con un único nodo $y \sim_{T_0} x$. Declaramos así $f(x,y) = \mu(x)$ de modo que se tiene que $\operatorname{div}f(x) = \mu(x)$ ($f$ es distinto de cero en a lo sumo una arista en esta suma). Una vez declarado $f$ en la arista $e=(x,y)$ procedemos a considerar el árbol $T_1 = (V_0\setminus \{x\},E_1:=E_0\setminus \{(x,y),(y,x)\})$.
+La idea consiste en ir podando las ramas del árbol a medida que asignamos $f$ convenientemente. Si $|V_0|=1$ el problema sería trivial, asumamos así que $|V_0|>1$. En el primer paso tomamos una hoja de $T_0$, es decir un $x\in V_0$ con un único nodo $y \sim_{T_0} x$. Declaramos así $f(x,y) = \mu(x)$ de modo que se tiene que $\operatorname{div}f(x) = \mu(x)$. Una vez declarado $f$ en la arista $e=(x,y)$ procedemos a considerar el árbol $T_1 = (V_0\setminus \{x\},E_1:=E_0\setminus \{(x,y),(y,x)\})$.
 
 Asumamos de forma inductiva que luego de $k$ pasos contamos con los árboles
 $$
@@ -447,7 +447,7 @@ D_{e,x} = \begin{cases}
 0 \text{ en cualquier otro caso}.
 \end{cases}
 $$
-Mientras que la divergencia $\operatorname{div}:\mathbb R^{|E|}\to\mathbb R^{|V|}$ se representa por la matriz $(\operatorname{div}_{x,e}) \in \mathbb R^{M\times N}$ tal que
+Mientras que la divergencia $\operatorname{div}:\mathbb R^{|E|}\to\mathbb R^{|V|}$ se representa por la matriz $(\operatorname{div}_{x,e}) \in \mathbb R^{|V|\times |E|}$ tal que
 $$
 \operatorname{div}_{x,e} = \begin{cases}
 -1 \text{ si } e_+=x,\\

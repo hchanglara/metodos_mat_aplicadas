@@ -1,0 +1,164 @@
+# Solución fundamental
+
+La idea de la solución fundamental es la construcción de la solución del problema
+$$
+\begin{cases}
+\Delta \phi = \delta \text{ en } \mathbb R^n,\\
+\displaystyle\lim_{|x|\to \infty} \phi = 0. 
+\end{cases}
+$$
+Gracias al principio de superposición esta construcción nos permitiría dar una solución particular de la ecuación de Poisson $\Delta u = f$ usando la convolución
+$$
+u(x) = (\phi\ast f)(x) = \int_{\mathbb R^n} f(y)\phi(x-y)dy.
+$$
+
+
+La simetría por rotaciones de la ecuación sugieren $\phi=\phi(\rho)$, donde $\rho=|x|$. El problema se reduce así a resolver una EDO para $\rho>0$.
+$$
+0= \phi'' + \frac{n-1}{\rho}\phi' = \rho^{1-n}(\rho^{n-1}\phi')'.
+$$
+Integrando un par de veces recuperamos
+$$
+\phi = \begin{cases}
+A + Br^{2-n} \text{ si } n\neq 2,\\
+A+B\ln r \text{ si } n=2.
+\end{cases}
+$$
+Para $n>2$ la condición en infinito se cumple si $A=0$. Para $n\in\{1,2\}$ esta condición no se cumple en ningún caso y de cualquier forma tomamos $A=0$. Para determinar la constante $B$ usamos la fórmula de integración por partes para el Laplaciano (Green).
+
+Consideremos primero el caso $n\neq 2$. Sea $u \in C^2_0(\mathbb R^n)$, decir que $\Delta \phi=\delta$ significa que
+\begin{align*}
+u(0) &= \lim_{r\to 0} \int_{\mathbb R^n\setminus B_r} u(x)\Delta\phi(x)dx,\\
+&= \lim_{r\to 0} \int_{\partial B_r} (uD\phi-\phi Du)\cdot \nu dx,\\
+&= B \lim_{r\to 0} \frac{1}{r^{n-2}}\int_{\partial B_r} ((n-2)r^{-1}u-Du\cdot\nu) dx.
+\end{align*}
+El segundo término es de orden $O(r)$ y tiende a cero cuando $r\to0$. El primer término en cambio tiene límite $-(n-2)|\partial B_1|u(0)$. Por lo tanto en este caso hemos de tomar
+$$
+B = \frac{-1}{(n-2)|\partial B_1|}.
+$$
+
+---
+
+:::{.exercise}
+Demuestra que para $n=2$ debemos tomar $B = 1/(2\pi)$.
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+Definimos finalmente la solución fundamental
+$$
+\phi(x) = \begin{cases}
+-\frac{1}{(n-2)|\partial B_1|}\frac{1}{|x|^{n-2}}\text{ si }n\neq 2,\\
+\frac{1}{2\pi} \ln|x| \text{ si } n=2
+\end{cases}
+$$
+
+:::{.theorem}
+Dado $f \in C^\alpha_0(\mathbb R^n)$, la función $u = \phi\ast f$ es solución particular de la ecuación $\Delta u=f$.
+:::
+
+Para $n=3$ el núcleo $\phi$ es igual potencial eléctrico $u$ generado por una carga puntual en el origen (módulo una elección conveniente de las unidades físicas). Recordemos que el potencial eléctrico quiere decir que la fuerza que se ejerce sobre una carga en la posición $x$ está dado por $-D\phi(x)$. Cuando se consideran varias cargas generando el campo eléctrico, se tiene que el potencial se construye por medio del principio de superposición. Es decir que $u=\phi\ast f$ es el potencial eléctrico que reuslta cuando se tiene una distribución $f$ de cargas. En este caso $f$ puede ser una función suave o quizás una medida singular.
+
+---
+
+:::{.exercise}
+Sean $L>0$ y $x=(x_1,x_2,x_3) \in \mathbb R^3$. Calcula
+$$
+u(x) = \int_{-L}^L \frac{dy}{(x_1^2+x_2^2+(x_3-y)^2)^{1/2}}.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+:::{.exercise}
+Sean $R>0$ y $x=(x_1,x_2,x_3) \in \mathbb R^3$. Calcula
+$$
+u(x) = \int_{\partial B_R} \frac{dS(y)}{|x-y|}.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+:::{.exercise}
+Sean $R>0$ y $x=(x_1,x_2,x_3) \in \mathbb R^3$. Calcula
+$$
+u(x) = \int_{B_R} \frac{dy}{|x-y|}.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+:::{.exercise}
+Sea $x=(x_1,x_2) \in \mathbb R^2$. Calcula
+$$
+u(x) = \int_0^{2\pi} \ln((x_1-\cos\theta)^2+(x_2-\sin\theta)^2)d\theta.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+:::{.exercise}
+Sea $x=(x_1,x_2) \in \mathbb R^2$. Calcula
+$$
+u(x) = \int_{B_1} \ln|x-y| \, dy.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+
+:::{.exercise}
+Sean $a,b>0$ y $x=(x_1,x_2,x_3) \in \mathbb R^3$. Calcula
+$$
+u(x) = \int_{-a}^a\int_{-b}^b \frac{dy_1dy_2}{((x_1-y_1)^2+(x_2-y_2)^2+x_3^2)^{1/2}}.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>
+
+---
+
+:::{.exercise}
+Calcula $p_0,q_0>0$ tales que
+$$
+\int_0^{2\pi} \frac{d\theta}{((x_1-\cos\theta)^2+(x_2-\sin\theta)^2+x_3^2)^{1/2}} = \int_0^{2\pi} \frac{d\theta}{(p_0^2\cos^2\theta+q_0^2\sin^2\theta)^{1/2}}.
+$$
+Definamos de forma recursiva
+$$
+p_{n+1} = \frac{p_n+q_n}{2}, \qquad q_{n+1}=\sqrt{p_nq_n}.
+$$
+Demuestra que estas sucesiones convergen al mismo límite $p_\infty=q_\infty$ y que además 
+$$
+\int_0^{2\pi} \frac{d\theta}{((x_1-\cos\theta)^2+(x_2-\sin\theta)^2+x_3^2)^{1/2}} = \frac{2\pi}{p_\infty}.
+$$
+:::
+
+<details>
+<summary>**Solución**</summary>
+</details>

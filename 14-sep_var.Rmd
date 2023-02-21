@@ -110,5 +110,3 @@ plt.show()
 ## Bola bidimensional y las funciones de Bessel
 
 ## Esfera bidimensional y los esféricos armónicos
-
-## Coordenadas esféricas
