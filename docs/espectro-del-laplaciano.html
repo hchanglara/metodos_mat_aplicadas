@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 5 Espectro del Laplaciano | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2023-02-20" />
+<meta name="date" content="2023-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -473,9 +473,18 @@ Solución
 <summary>
 Solución
 </summary>
+<p>En todos los casos cero es un autovalor simple con autovectores constantes.</p>
 <p><strong>Tetraedro</strong></p>
+<p>El vector <span class="math inline">\((1,-1,0,0)\)</span> junto a sus 12 posibles permutaciones, es un autovector con autovalor <span class="math inline">\(-4\)</span>. De estos tenemos 3 linealmente indeendientes <span class="math inline">\((1,-1,0,0)\)</span>, <span class="math inline">\((0,1,-1,0)\)</span>, y <span class="math inline">\((0,0,1,-1)\)</span>.</p>
 <hr />
 <p><strong>Cubo</strong></p>
+<p>Usamos la siguiente enumeración de los vértices</p>
+<p><img src="cubo.png" style="width:70.0%" />
+Buscamos un autovector de la siguiente forma (sugerida por la simetría del cubo)
+<span class="math display">\[
+v = (1,x,x,-x,-x,-1,x,-x).
+\]</span>
+Es decir que el autovalor asociado es <span class="math inline">\(-3+3x=(-5x+1)/x\)</span>, por lo que $x=</p>
 <hr />
 <p><strong>Octaedro</strong></p>
 <hr />
@@ -870,7 +879,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

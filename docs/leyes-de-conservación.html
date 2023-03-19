@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 9 Leyes de conservación | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2023-02-20" />
+<meta name="date" content="2023-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -327,7 +327,7 @@ Es decir que
 \int_{B_r(x_0)}\partial_t\mu(x,t)dx + \int_{\partial B_r(x_0)} \frac{x-x_0}{r}\cdot f(x,t) \, dS(x) = 0.
 \]</span></p>
 <div class="figure"><span style="display:block;" id="fig:cons"></span>
-<img src="cons.PNG" style="width:70.0%" alt="" />
+<img src="cons.png" style="width:70.0%" alt="" />
 <p class="caption">Figura 9.1:  Ley de conservación</p>
 </div>
 <p>A partir de esta identidad podemos apelar al teorema de la divergencia o usar la expansión de Taylor para llegar al siguiente resultado cuando <span class="math inline">\(r\to0^+\)</span>. Procedamos con la segunda estrategia, un poco más larga pero más elemental a su vez. Tenemos que
@@ -1123,7 +1123,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

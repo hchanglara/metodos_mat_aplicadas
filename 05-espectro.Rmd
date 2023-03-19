@@ -194,11 +194,24 @@ Calcula el espectro del Laplaciano en los siguientes casos:
 <details>
 <summary>Solución</summary>
 
+En todos los casos cero es un autovalor simple con autovectores constantes.
+
 **Tetraedro**
+
+El vector $(1,-1,0,0)$ junto a sus 12 posibles permutaciones, es un autovector con autovalor $-4$. De estos tenemos 3 linealmente indeendientes $(1,-1,0,0)$, $(0,1,-1,0)$, y $(0,0,1,-1)$.
 
 ---
 
 **Cubo**
+
+Usamos la siguiente enumeración de los vértices
+
+![](./cubo.png){width=70%}
+Buscamos un autovector de la siguiente forma (sugerida por la simetría del cubo)
+$$
+v = (1,x,x,-x,-x,-1,x,-x).
+$$
+Es decir que el autovalor asociado es $-3+3x=(-5x+1)/x$, por lo que $x=
 
 ---
 

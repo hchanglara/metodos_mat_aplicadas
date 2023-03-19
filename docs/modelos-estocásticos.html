@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 11 Modelos estocásticos | Métodos de matemáticas aplicadas" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Héctor Andrés Chang-Lara" />
 
 
-<meta name="date" content="2023-02-20" />
+<meta name="date" content="2023-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -360,7 +360,7 @@ Los caminos de <span class="math inline">\(0\)</span> a <span class="math inline
 </details>
 <hr />
 <p>La idea a partir de ahora consiste en obtener una aproximación asintótica de <span class="math inline">\(n!\)</span>. Comenzamos transformado al producto en suma aplicando el logaritmo. Esto nos permite aproximar usando integrales de la siguiente forma</p>
-<p><img src="log.PNG" style="width:70.0%" /></p>
+<p><img src="log.png" style="width:70.0%" /></p>
 <p>Por la monotonía y concavidad del logaritmo podemos comparar la integral con la suma de Riemann que resulta de la ley del trapecio
 <span class="math display">\[
 n\ln n - n+1 = \int_1^n\ln xdx \geq \sum_{i=1}^{n-1}\frac{\ln(i+1)+\ln i}{2} = \ln n! -\frac{\ln n}{2}
@@ -374,7 +374,7 @@ n^{n+1/2}e^{1-n} \geq n!.
 <strong>Margen de cálculo</strong>
 </summary>
 <p>Podemos calcular la integral del logaritmo a partir de la integral de la exponencial como en la siguiente figura (a.k.a. integración por partes):</p>
-<img src="intlog.PNG" style="width:70.0%" />
+<img src="intlog.png" style="width:70.0%" />
 </details>
 <p>Para calcular una cota por abajo para <span class="math inline">\(n!\)</span> debemos acotar por arriba los errores que se van acumulando de la aproximación poligonal de la integral. Definimos así
 <span class="math display">\[
@@ -385,13 +385,13 @@ Es decir que
 n! = n^{n+1/2}e^{1-n-\sum_{i=1}^{n-1}E_i}.
 \]</span></p>
 <p>Para estimar <span class="math inline">\(E_i\)</span> usamos la concavidad, sobrestimando así al logaritmo por la recta tangente en <span class="math inline">\((i,\ln i)\)</span></p>
-<p><img src="area.PNG" style="width:70.0%" /></p>
+<p><img src="area.png" style="width:70.0%" /></p>
 <p>Por lo que usando la propiedad telescópica de la suma
 <span class="math display">\[
 2\sum_{i=1}^{n-1} E_i \leq \sum_{i=1}^n \frac{1}{i} - \ln n
 \]</span>
 Finalmente comparamos el lado derecho a partir de la integral de <span class="math inline">\(1/x\)</span>, la cual define al logaritmo.</p>
-<p><img src="int1x.PNG" style="width:70.0%" /></p>
+<p><img src="int1x.png" style="width:70.0%" /></p>
 <p>Por lo tanto <span class="math inline">\(\sum_{i=1}^n E_i \leq \tfrac{1}{2}\)</span> y
 <span class="math display">\[
 \frac{n!}{n^{n+1/2}e^{-n}} \in [1,e] \qquad \Rightarrow \qquad n! \sim n^{n+1/2}e^{-n}
@@ -1095,7 +1095,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

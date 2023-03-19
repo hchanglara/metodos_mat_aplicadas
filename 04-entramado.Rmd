@@ -15,7 +15,6 @@ Entre cada par de nodos adyacentes se ubica un resorte cuya longitud natural es 
 ```{python}
 import numpy as np
 from numpy import linalg as la
-import matplotlib.pyplot as plt
 import scipy as sp
 import scipy.sparse as sps
 from scipy.integrate import odeint
@@ -112,21 +111,43 @@ sol = odeint(dsdt,s0,t)
 Visualización de los instantes $t\in \{0.05j\ | \ j\in\{0,1,\ldots,10\}\}$
 
 ```{python}
-fig = plt.figure(figsize=(90, 15))
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
 
-for j in range(10):
-  ax = fig.add_subplot(1, 10, j+1, projection='3d')
-  ax.axes.set_xlim3d(left=0, right=1);
-  ax.axes.set_ylim3d(bottom=0, top=1);
-  ax.axes.set_zlim3d(bottom=-1, top=0);
+def update_plot(i):
+    ax.clear()
+    ax.set_xlim3d(left=0, right=1);
+    ax.set_ylim3d(bottom=0, top=1);
+    ax.set_zlim3d(bottom=-1, top=0);
+    
+    sol_fin = sol[30*i,:]
+    pos = np.reshape(sol_fin[:3*N**2],(3,N**2)).T
+    for j in range(N):
+        ax.plot3D(pos[j*N:(j+1)*N,0], pos[j*N:(j+1)*N,1], pos[j*N:(j+1)*N,2],'bo-')
+        ax.plot3D(pos[j:N**2:N,0], pos[j:N**2:N,1], pos[j:N**2:N,2],'b-')
 
-  sol_fin = sol[30*j,:]
-  pos = np.reshape(sol_fin[:3*N**2],(3,N**2)).T
-  for i in range(N):
-    ax.plot3D(pos[i*N:(i+1)*N,0], pos[i*N:(i+1)*N:,1], pos[i*N:(i+1)*N,2],'bo-')
-    ax.plot3D(pos[i:N**2:N,0], pos[i:N**2:N,1], pos[i:N**2:N,2],'b-')
+# Set up the figure and subplots
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
 
-plt.show()
+# Define the initial plot
+ax.set_xlim3d(left=0, right=1);
+ax.set_ylim3d(bottom=0, top=1);
+ax.set_zlim3d(bottom=-1, top=0);
+sol_fin = sol[0,:]
+pos = np.reshape(sol_fin[:3*N**2],(3,N**2)).T
+for j in range(N):
+    ax.plot3D(pos[j*N:(j+1)*N,0], pos[j*N:(j+1)*N,1], pos[j*N:(j+1)*N,2],'bo-')
+    ax.plot3D(pos[j:N**2:N,0], pos[j:N**2:N,1], pos[j:N**2:N,2],'b-')
+
+# Set up the animation
+ani = FuncAnimation(fig, update_plot, frames=10, interval=100)
+
+# Display the animation in the notebook
+HTML(ani.to_jshtml())
 ```
 
 ## Incremento en la rigidez de los resortes
